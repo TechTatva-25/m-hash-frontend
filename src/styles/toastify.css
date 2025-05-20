@@ -1,0 +1,5 @@
+:root {
+	--toastify-color-dark: hsl(217, 59%, 15%);
+	--toastify-color-progress-light: hsl(268, 91%, 44%);
+	--toastify-color-light: hsl(210 40% 96.1%);
+}
