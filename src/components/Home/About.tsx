@@ -4,7 +4,7 @@ export default function About(): React.JSX.Element {
 	return (
 		<div className="flex flex-col items-center justify-center p-2 md:flex-row md:p-8">
 			<div className="flex flex-col justify-start p-4 md:w-2/3">
-				<h2 className="my-3 text-3xl font-bold">About Us</h2>
+				<h2 className="my-3 text-3xl font-bold text-black">About Us</h2>
 				<p className="text-[hsl(var(--foreground))]">
 					Get ready to dive into the future at Manipal Hackathon 2024! With the theme "Pioneering Paradigms",
 					this flagship event of TechTatva 2024 is where creativity and innovation come to the forefront.

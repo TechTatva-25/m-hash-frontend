@@ -28,6 +28,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { useSession } from "@/hooks/useSession";
 import { Endpoints, getEndpoint } from "@/lib/endpoints";
 import { generateColorPalette } from "@/lib/utils";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 export function UserNav(): React.JSX.Element {
 	const { resolvedTheme, setTheme } = useTheme();
@@ -75,7 +76,7 @@ export function UserNav(): React.JSX.Element {
 						Login
 					</Button>
 				</Link>
-				<ThemeToggleButton />
+				<ThemeToggle />
 			</>
 		);
 	} else {

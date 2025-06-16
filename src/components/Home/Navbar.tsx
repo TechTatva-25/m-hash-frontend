@@ -3,12 +3,13 @@ import Image from "next/image";
 import React from "react";
 
 import { NavbarSheet } from "@/components/Home/NavbarSheet";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 import { UserNav } from "../Home/user-nav";
 
 export default function Navbar(): React.JSX.Element {
 	return (
-		<nav className="fixed start-0 top-0 z-20 w-full bg-[hsl(var(--background))]/75 backdrop-blur-md">
+		<nav className="fixed start-0 top-0 z-20 w-full bg-[hsl(var(--background))]/15 backdrop-blur-md">
 			<div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between px-4 py-2">
 				<div className="flex flex-wrap items-center justify-between xs:pl-4 lg:max-w-screen-xl">
 					<a href="/" className="flex items-center">
@@ -126,6 +127,9 @@ export default function Navbar(): React.JSX.Element {
                         </li> */}
 					</ul>
 				</div>
+				{/* <div className="flex items-center gap-4">
+					<ThemeToggle />
+				</div> */}
 			</div>
 		</nav>
 	);

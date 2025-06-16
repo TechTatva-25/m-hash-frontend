@@ -1,7 +1,7 @@
 "use client";
 
-import { ThemeProvider } from "next-themes";
 import React from "react";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import { RecoilRoot } from "recoil";
 
 import ToastProvider from "./ToastProvider";
@@ -9,7 +9,7 @@ import ToastProvider from "./ToastProvider";
 export default function AppProvider({ children }: { children: React.ReactNode }): React.JSX.Element {
 	return (
 		<RecoilRoot>
-			<ThemeProvider attribute={"class"}>
+			<ThemeProvider defaultTheme="light" storageKey="mhash-theme">
 				{children}
 				<ToastProvider />
 			</ThemeProvider>
