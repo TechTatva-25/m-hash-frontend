@@ -125,7 +125,6 @@ const columns: ColumnDef<UserWithActions>[] = [
 							<ModalBody>
 								<div className="flex w-[100%] items-center justify-start gap-5">
 									<Button
-										// eslint-disable-next-line @typescript-eslint/no-misused-promises
 										onClick={handlejudge}
 										className="bg-gray-700 text-yellow-500 hover:text-primary">
 										<UserCheck />

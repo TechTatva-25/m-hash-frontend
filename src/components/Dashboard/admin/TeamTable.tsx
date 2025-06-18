@@ -130,7 +130,6 @@ const columns: ColumnDef<TeamWithActions>[] = [
 					if (!response.ok) {
 						// If the response is not ok, parse the error message accordingly
 						if (contentType?.includes("application/json")) {
-							// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 							const errorData: { message: string } = await response.json();
 							toast.error(errorData.message);
 						} else {
@@ -140,8 +139,6 @@ const columns: ColumnDef<TeamWithActions>[] = [
 					} else {
 						// Handle success case
 						if (contentType?.includes("application/json")) {
-							// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-							// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 							const rrr: { message: string } = await response.json();
 							toast.success(rrr.message);
 						} else {
@@ -200,7 +197,6 @@ const columns: ColumnDef<TeamWithActions>[] = [
 										/>
 
 										<Button
-											// eslint-disable-next-line @typescript-eslint/no-misused-promises, @typescript-eslint/explicit-function-return-type
 											onClick={() => handleSendMail(row.original._id)} // Send email when clicked
 											className="bg-zinc-800 text-white hover:bg-zinc-600">
 											<LuSendHorizonal />
@@ -262,7 +258,6 @@ const columns: ColumnDef<TeamWithActions>[] = [
 											Cancel
 										</Button>
 										<Button
-											// eslint-disable-next-line @typescript-eslint/no-misused-promises, @typescript-eslint/explicit-function-return-type
 											onClick={() => handleDeleteTeam(row.original._id)}
 											variant="ghost"
 											className="bg-green-500 text-white">

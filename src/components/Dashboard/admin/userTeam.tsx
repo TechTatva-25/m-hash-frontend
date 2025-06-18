@@ -160,7 +160,6 @@ export default function UserTeam(): React.JSX.Element {
 							tickMargin={8}
 							minTickGap={32}
 							tickFormatter={(value): string => {
-								// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 								const date = new Date(value);
 								return date.toLocaleDateString("en-US", {
 									month: "short",
@@ -173,7 +172,6 @@ export default function UserTeam(): React.JSX.Element {
 							content={
 								<ChartTooltipContent
 									labelFormatter={(value): string => {
-										// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 										return new Date(value).toLocaleDateString("en-US", {
 											month: "short",
 											day: "numeric",

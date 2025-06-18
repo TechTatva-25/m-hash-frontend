@@ -1,18 +1,26 @@
 @import "tailwindcss";
 
-
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    
-    /* Add other light theme variables here */
-  }
+	:root {
+		--background: 0 0% 100%;
+		--foreground: 222.2 84% 4.9%;
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    
-    /* Add other dark theme variables here */
-  }
+		/* Add other light theme variables here */
+	}
+
+	.dark {
+		--background: 222.2 84% 4.9%;
+		--foreground: 210 40% 98%;
+
+		/* Add other dark theme variables here */
+	}
+}
+
+/* Custom dark/light mode classes */
+.dark-overlay {
+  opacity: 0;
+}
+
+html.dark .dark-overlay {
+  opacity: 1;
 }

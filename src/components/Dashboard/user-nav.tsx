@@ -102,7 +102,6 @@ export function UserNav(): React.JSX.Element {
 				<DropdownMenuSeparator />
 				<DropdownMenuItem
 					className="hover:cursor-pointer disabled:cursor-not-allowed"
-					// eslint-disable-next-line @typescript-eslint/no-misused-promises
 					onClick={signOut}
 					disabled={disabled}>
 					<LogOut className="mr-3 h-4 w-4 text-muted-foreground" />

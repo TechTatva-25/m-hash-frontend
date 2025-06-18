@@ -139,7 +139,6 @@ export default function MultiSelectTeamList({
 					}
 				/>
 				<Button
-					// eslint-disable-next-line @typescript-eslint/no-misused-promises
 					onClick={handleSendRequest}
 					disabled={disabled}
 					className="mt-4 w-full disabled:cursor-not-allowed disabled:opacity-60">

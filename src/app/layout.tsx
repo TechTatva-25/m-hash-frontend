@@ -2,9 +2,18 @@ import "@/styles/globals.css";
 
 import { Metadata } from "next";
 import React from "react";
-import './globals.css'
+import "./globals.css";
 
 import AppProvider from "@/components/AppProvider";
+import { Playfair_Display } from 'next/font/google'
+
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  style: ['normal', 'italic'],
+  variable: '--font-playfair-display',
+  display: 'swap'
+})
 
 export const metadata: Metadata = {
 	title: "Manipal Hackathon 2024",
@@ -44,17 +53,11 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function RootLayout({
-	children,
-}: {
-	children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en" suppressHydrationWarning>
-			<body className="min-h-screen bg-[hsl(var(--background))] text-[hsl(var(--foreground))]">
-				<AppProvider>
-					{children}
-				</AppProvider>
+		<html lang="en" suppressHydrationWarning className={playfairDisplay.variable}>
+			<body className="min-h-screen text-[hsl(var(--foreground))]">
+				<AppProvider>{children}</AppProvider>
 			</body>
 		</html>
 	);

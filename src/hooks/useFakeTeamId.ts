@@ -30,7 +30,6 @@ export const useFakeTeamId = (team: Team): string => {
 	const [fakeTeamId, setFakeTeamId] = React.useState<string>("");
 
 	React.useEffect(() => {
-		// eslint-disable-next-line @typescript-eslint/no-floating-promises
 		getFakeTeamId(team, setFakeTeamId);
 	}, [team]);
 

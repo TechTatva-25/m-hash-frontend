@@ -6,7 +6,10 @@ import * as winston from "winston";
 
 export class Logger {
 	public logger: winston.Logger;
-	constructor(private readonly name: string, private readonly _dirname: string = path.join(process.cwd(), "logs")) {
+	constructor(
+		private readonly name: string,
+		private readonly _dirname: string = path.join(process.cwd(), "logs")
+	) {
 		fs.mkdirSync(this._dirname, { recursive: true });
 		const date = new Date();
 		const dateString = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
@@ -15,7 +18,7 @@ export class Logger {
 				winston.format.colorize(),
 				winston.format.label({ label: `${path.relative(process.cwd(), __filename)} ${this.name}` }),
 				winston.format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
-				// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+
 				winston.format.printf((info) => `${info.timestamp} ${info.label} ${info.level}: ${info.message}`)
 			),
 			transports: [

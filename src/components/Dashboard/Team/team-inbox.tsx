@@ -135,14 +135,12 @@ export default function TeamInbox({
 												<Button
 													variant="success"
 													className="w-full md:w-auto"
-													// eslint-disable-next-line @typescript-eslint/no-misused-promises
 													onClick={(): Promise<void> => handleAcceptJoinRequest(invite._id)}>
 													Accept
 												</Button>
 												<Button
 													variant="destructive"
 													className="w-full md:w-auto"
-													// eslint-disable-next-line @typescript-eslint/no-misused-promises
 													onClick={(): Promise<void> => handleRejectJoinRequest(invite._id)}>
 													Reject
 												</Button>
@@ -194,7 +192,6 @@ export default function TeamInbox({
 											<div className="flex gap-2">
 												<Button
 													variant="outline"
-													// eslint-disable-next-line @typescript-eslint/no-misused-promises
 													onClick={(): Promise<void> => handleCancelInvite(invite._id)}>
 													Cancel
 												</Button>

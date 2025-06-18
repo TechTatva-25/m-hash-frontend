@@ -227,7 +227,7 @@ const SubmissionsTable: React.FC = () => {
 										<span className="truncate">
 											{value === null
 												? "All Problem Statements"
-												: sdg_problem_mappping.get(value) ?? "All Problem Statements"}
+												: (sdg_problem_mappping.get(value) ?? "All Problem Statements")}
 										</span>
 										<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
 									</Button>

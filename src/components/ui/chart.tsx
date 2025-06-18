@@ -60,7 +60,6 @@ const ChartContainer = React.forwardRef<
 ChartContainer.displayName = "Chart";
 
 const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }): JSX.Element | null => {
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const colorConfig = Object.entries(config).filter(([_, config]) => config.theme ?? config.color);
 
 	if (!colorConfig.length) {
@@ -131,8 +130,8 @@ const ChartTooltipContent = React.forwardRef<
 			const [item] = payload;
 			const key = `${labelKey ?? item.dataKey ?? item.name ?? "value"}`;
 			const itemConfig = getPayloadConfigFromPayload(config, item, key);
-			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-			const value = !labelKey && typeof label === "string" ? config[label]?.label ?? label : itemConfig?.label;
+
+			const value = !labelKey && typeof label === "string" ? (config[label]?.label ?? label) : itemConfig?.label;
 
 			if (labelFormatter) {
 				return <div className={cn("font-medium", labelClassName)}>{labelFormatter(value, payload)}</div>;
@@ -163,7 +162,7 @@ const ChartTooltipContent = React.forwardRef<
 					{payload.map((item, index) => {
 						const key = `${nameKey ?? item.name ?? item.dataKey ?? "value"}`;
 						const itemConfig = getPayloadConfigFromPayload(config, item, key);
-						// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+
 						const indicatorColor = (color ?? (item.payload as { fill: string })?.fill) || item.color;
 
 						return (
@@ -173,9 +172,8 @@ const ChartTooltipContent = React.forwardRef<
 									"flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5 [&>svg]:text-muted-foreground",
 									indicator === "dot" && "items-center"
 								)}>
-								{/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
+								{}
 								{formatter && item?.value !== undefined && item.name ? (
-									// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 									formatter(item.value, item.name, item, index, (item.payload as []) ?? [])
 								) : (
 									<>
@@ -257,7 +255,6 @@ const ChartLegendContent = React.forwardRef<
 				className
 			)}>
 			{payload.map((item) => {
-				// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 				const key = `${nameKey ?? item.dataKey ?? "value"}`;
 				const itemConfig = getPayloadConfigFromPayload(config, item, key);
 

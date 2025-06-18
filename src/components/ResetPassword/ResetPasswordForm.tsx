@@ -93,7 +93,7 @@ export default function ResetPasswordPage(): React.JSX.Element {
 			<CardContent className="grid gap-4">
 				{token ? (
 					<Form {...form}>
-						{/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+						{}
 						<form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
 							<FormField
 								control={form.control}

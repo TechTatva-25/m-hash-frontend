@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 "use client";
 
 import { Command as CommandPrimitive, useCommandState } from "cmdk";

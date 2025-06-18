@@ -126,7 +126,7 @@ const Judge = (): React.JSX.Element => {
 						score: 0,
 					})),
 				}));
-				// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+
 				if (!team.judge_score || team.judge_score.length === 0) {
 					return {
 						_id: team._id,
@@ -187,7 +187,7 @@ const Judge = (): React.JSX.Element => {
 						score: 0,
 					})),
 				}));
-				// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+
 				if (!team.judge_score || team.judge_score.length === 0) {
 					return {
 						_id: team._id,
@@ -241,7 +241,6 @@ const Judge = (): React.JSX.Element => {
 	}, [teams, rounds, teamJudgeMapping]);
 
 	React.useEffect((): void => {
-		/* eslint-disable @typescript-eslint/no-floating-promises */
 		(async function (): Promise<void> {
 			const response = await axios.get<AvgDenominatorConfig>(getEndpoint(Endpoints.GET_AVG_DENOMINATOR_CONFIG), {
 				withCredentials: true,
@@ -451,7 +450,7 @@ const Judge = (): React.JSX.Element => {
 											</div>
 										</TableCell>
 										<TableCell className="text-left">
-											{/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
+											{}
 											{team.problemTitle ?? ""}
 										</TableCell>
 										<TableCell className="text-center font-bold">

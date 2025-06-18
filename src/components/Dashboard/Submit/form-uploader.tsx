@@ -71,7 +71,6 @@ export function SubmitForm({
 		const groups: Record<string, typeof statements> = {};
 
 		statements.forEach((statement) => {
-			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 			if (!groups[statement.sdg_id]) {
 				groups[statement.sdg_id] = [];
 			}
@@ -176,7 +175,7 @@ export function SubmitForm({
 			</CardHeader>
 			<CardContent className="grid gap-4 px-4 pb-6 sm:px-6">
 				<Form {...form}>
-					{/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+					{}
 					<form onSubmit={form.handleSubmit(onSubmit)} className="flex w-full flex-col gap-6">
 						<FormField
 							control={form.control}

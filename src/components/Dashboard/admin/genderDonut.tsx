@@ -59,7 +59,6 @@ export default function GenderDonut(): React.JSX.Element {
 						<ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
 						<Pie data={chartData} dataKey="visitors" nameKey="browser" innerRadius={60} strokeWidth={5}>
 							<Label
-								// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 								content={({ viewBox }) => {
 									if (viewBox && "cx" in viewBox && "cy" in viewBox) {
 										return (

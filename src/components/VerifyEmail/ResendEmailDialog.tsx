@@ -76,7 +76,7 @@ export default function ResendEmailDialog({
 				</AlertDialogHeader>
 				<AlertDialogFooter className="flex flex-col items-center justify-center">
 					<Form {...form}>
-						{/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+						{}
 						<form className="w-full space-y-2" onSubmit={form.handleSubmit(onSubmit)}>
 							<FormField
 								control={form.control}

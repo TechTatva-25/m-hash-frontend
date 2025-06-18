@@ -90,7 +90,6 @@ const columns: ColumnDef<TeamWithActions>[] = [
 			<div>
 				<Checkbox
 					checked={row.original.deployed}
-					// eslint-disable-next-line @typescript-eslint/no-misused-promises
 					onClick={async (e): Promise<void> => {
 						try {
 							const response = await axios.post<{ message: string }>(
@@ -199,7 +198,6 @@ const columns: ColumnDef<TeamWithActions>[] = [
                                         /> */}
 
 										<Button
-											// eslint-disable-next-line @typescript-eslint/no-misused-promises, @typescript-eslint/explicit-function-return-type
 											onClick={() => handleUpdate({ teamId: row.original._id })}
 											className="bg-zinc-800 text-white hover:bg-zinc-600">
 											<LuSave />
@@ -225,7 +223,6 @@ const columns: ColumnDef<TeamWithActions>[] = [
 												</div>
 												{index !== 0 ? (
 													<Button
-														// eslint-disable-next-line @typescript-eslint/no-misused-promises, @typescript-eslint/explicit-function-return-type
 														onClick={() =>
 															handleUpdate({
 																teamId: row.original._id,
@@ -252,7 +249,6 @@ const columns: ColumnDef<TeamWithActions>[] = [
 													<span className="text-lg">Reset</span>
 												</div>
 												<Button
-													// eslint-disable-next-line @typescript-eslint/no-misused-promises, @typescript-eslint/explicit-function-return-type
 													onClick={() =>
 														handleUpdate({
 															teamId: row.original._id,

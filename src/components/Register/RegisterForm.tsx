@@ -111,7 +111,7 @@ export default function RegisterForm(): React.JSX.Element {
 			</CardHeader>
 			<CardContent className="grid gap-4 pb-2">
 				<Form {...form}>
-					{/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+					{}
 					<form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
 						<FormField
 							control={form.control}
@@ -154,7 +154,7 @@ export default function RegisterForm(): React.JSX.Element {
 									</div>
 									<Select onValueChange={field.onChange} defaultValue={field.value}>
 										<FormControl>
-											{/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
+											{}
 											<SelectTrigger className={`${field.value ? "" : "text-muted-foreground"}`}>
 												<SelectValue placeholder="Select your Gender" />
 											</SelectTrigger>

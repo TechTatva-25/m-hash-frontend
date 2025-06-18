@@ -36,13 +36,12 @@ export function TicketsTable(): JSX.Element {
 				credentials: "include",
 			});
 			if (!response.ok) {
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 				const errorData: ApiError = await response.json();
 				throw new Error(errorData.message || "Failed to fetch tickets");
 			}
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+
 			const data: Ticket[] = await response.json();
-			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+
 			setTickets(data ?? []);
 		} catch (error) {
 			toast.error((error as Error).message);
@@ -63,11 +62,10 @@ export function TicketsTable(): JSX.Element {
 				credentials: "include",
 			});
 			if (!response.ok) {
-				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 				const errorData: ApiError = await response.json();
 				throw new Error(errorData.message || "Failed to update ticket status");
 			}
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+
 			const updatedTicket: Ticket = await response.json();
 			setTickets((prevTickets) =>
 				prevTickets.map((ticket) => (ticket._id === updatedTicket._id ? updatedTicket : ticket))
@@ -149,7 +147,6 @@ export function TicketsTable(): JSX.Element {
 								</TableCell>
 								<TableCell>
 									<button
-										// eslint-disable-next-line @typescript-eslint/no-misused-promises, @typescript-eslint/explicit-function-return-type
 										onClick={() => updateTicketStatus(ticket._id, ticket.resolved)}
 										className={
 											"w-[10rem] rounded-md bg-gray-900 px-4 py-2 font-semibold text-gray-300 transition-all hover:bg-blue-600"

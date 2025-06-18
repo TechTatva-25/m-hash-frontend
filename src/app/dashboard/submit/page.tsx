@@ -174,7 +174,6 @@ export default function SubmitPage(): React.JSX.Element {
 								<Button
 									variant="danger"
 									className="mt-16 font-bold"
-									// eslint-disable-next-line @typescript-eslint/no-misused-promises
 									onClick={async (): Promise<void> => {
 										setSubmissionLoaded(false);
 										await deleteSubmission(submission._id);

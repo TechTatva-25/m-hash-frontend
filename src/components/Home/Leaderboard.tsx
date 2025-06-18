@@ -234,8 +234,8 @@ export default function Leaderboard(): JSX.Element {
 														index === 0
 															? "text-yellow-400"
 															: index === 1
-															? "text-gray-400"
-															: "text-amber-600"
+																? "text-gray-400"
+																: "text-amber-600"
 													}`}
 												/>
 											) : (

@@ -79,7 +79,7 @@ export default function DataTable<TableProps>({
 					))}
 				</TableHeader>
 				<TableBody>
-					{/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
+					{}
 					{table.getRowModel().rows?.length ? (
 						table.getRowModel().rows.map((row) => (
 							<TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>

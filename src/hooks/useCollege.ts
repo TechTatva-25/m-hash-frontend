@@ -11,7 +11,6 @@ export interface College {
 
 export const getColleges = async (): Promise<College[]> => {
 	try {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 		const response = await axios.get<College[]>(getEndpoint(Endpoints.GET_COLLEGES), {});
 
 		const Colleges = response.data;

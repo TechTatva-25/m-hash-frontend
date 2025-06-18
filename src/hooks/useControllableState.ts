@@ -17,7 +17,7 @@ type SetStateFn<T> = (prevState?: T) => T;
 function useControllableState<T>({
 	prop,
 	defaultProp,
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
+
 	onChange = (): void => {},
 }: UseControllableStateParams<T>): readonly [T | undefined, React.Dispatch<React.SetStateAction<T | undefined>>] {
 	const [uncontrolledProp, setUncontrolledProp] = useUncontrolledState({
@@ -49,7 +49,7 @@ function useUncontrolledState<T>({
 	onChange,
 }: Omit<UseControllableStateParams<T>, "prop">): readonly [
 	T | undefined,
-	React.Dispatch<React.SetStateAction<T | undefined>>
+	React.Dispatch<React.SetStateAction<T | undefined>>,
 ] {
 	const uncontrolledState = React.useState<T | undefined>(defaultProp);
 	const [value] = uncontrolledState;

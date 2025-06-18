@@ -110,7 +110,6 @@ const Judge = (): React.JSX.Element => {
 					}
 				}
 
-				// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 				if (!team.judge_score || team.judge_score.length === 0 || idx === -1) {
 					return {
 						_id: team._id,
@@ -353,7 +352,7 @@ const Judge = (): React.JSX.Element => {
 											</div>
 										</TableCell>
 										<TableCell className="text-center">
-											{/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call */}
+											{}
 											{(team.problemTitle ?? "G1 ").split(" ")[0]}
 										</TableCell>
 										{rounds

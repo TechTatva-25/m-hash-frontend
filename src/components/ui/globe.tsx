@@ -117,7 +117,7 @@ export function Globe({ globeConfig, data }: WorldProps): React.JSX.Element {
 	const _buildData = (): void => {
 		const arcs = data;
 		const points = [];
-		// eslint-disable-next-line @typescript-eslint/prefer-for-of
+
 		for (let i = 0; i < arcs.length; i++) {
 			const arc = arcs[i];
 			const rgb = hexToRgb(arc.color) as { r: number; g: number; b: number };
@@ -155,7 +155,7 @@ export function Globe({ globeConfig, data }: WorldProps): React.JSX.Element {
 				.showAtmosphere(defaultProps.showAtmosphere)
 				.atmosphereColor(defaultProps.atmosphereColor)
 				.atmosphereAltitude(defaultProps.atmosphereAltitude)
-				// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 				.hexPolygonColor(() => {
 					return defaultProps.polygonColor;
 				});
@@ -193,7 +193,7 @@ export function Globe({ globeConfig, data }: WorldProps): React.JSX.Element {
 
 		globeRef.current
 			.ringsData([])
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+
 			.ringColor((e: any) => (t: any) => e.color(t))
 			.ringMaxRadius(defaultProps.maxRings)
 			.ringPropagationSpeed(RING_PROPAGATION_SPEED)
@@ -204,7 +204,6 @@ export function Globe({ globeConfig, data }: WorldProps): React.JSX.Element {
 		if (!globeRef.current || !globeData) return;
 
 		const interval = setInterval(() => {
-			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 			if (!globeRef.current || !globeData) return;
 			numbersOfRings = genRandomNumbers(0, data.length, Math.floor((data.length * 4) / 5));
 
@@ -264,7 +263,6 @@ export function World(props: WorldProps): React.JSX.Element {
 export function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
 	const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
 	hex = hex.replace(shorthandRegex, function (_m, r, g, b) {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/restrict-plus-operands
 		return r + r + g + g + b + b;
 	});
 
@@ -274,7 +272,7 @@ export function hexToRgb(hex: string): { r: number; g: number; b: number } | nul
 				r: parseInt(result[1], 16),
 				g: parseInt(result[2], 16),
 				b: parseInt(result[3], 16),
-		  }
+			}
 		: null;
 }
 

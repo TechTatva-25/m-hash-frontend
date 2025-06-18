@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 "use client";
 
 import axios, { AxiosError } from "axios";
@@ -260,7 +259,6 @@ export function Menu({ isOpen }: MenuProps): React.JSX.Element {
 								<TooltipTrigger asChild>
 									<Button
 										className="h-10 w-full justify-center disabled:cursor-not-allowed disabled:opacity-60"
-										// eslint-disable-next-line @typescript-eslint/no-misused-promises
 										onClick={signOut}
 										disabled={disabled}>
 										<span className={cn(isOpen === false ? "" : "mr-4")}>

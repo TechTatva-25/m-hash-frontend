@@ -49,7 +49,6 @@ export default function BarChart2({ title, description, data }: ChartProps): Rea
 							tickMargin={8}
 							minTickGap={32}
 							tickFormatter={(value): string => {
-								// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 								const date = new Date(value);
 								return date.toLocaleDateString("en-US", {
 									month: "short",
@@ -63,7 +62,6 @@ export default function BarChart2({ title, description, data }: ChartProps): Rea
 									className="w-[150px]"
 									nameKey="count"
 									labelFormatter={(value): string => {
-										// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 										return new Date(value).toLocaleDateString("en-US", {
 											month: "short",
 											day: "numeric",

@@ -18,7 +18,7 @@ const Form = FormProvider;
 
 interface FormFieldContextValue<
 	TFieldValues extends FieldValues = FieldValues,
-	TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+	TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > {
 	name: TName;
 }
@@ -27,7 +27,7 @@ const FormFieldContext = React.createContext<FormFieldContextValue>({} as FormFi
 
 const FormField = <
 	TFieldValues extends FieldValues = FieldValues,
-	TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+	TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >({
 	...props
 }: ControllerProps<TFieldValues, TName>): React.ReactElement => {
@@ -57,7 +57,6 @@ const useFormField = (): FieldT => {
 
 	const fieldState = getFieldState(fieldContext.name, formState);
 
-	// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 	if (!fieldContext) {
 		throw new Error("useFormField should be used within <FormField>");
 	}
@@ -134,7 +133,7 @@ FormDescription.displayName = "FormDescription";
 const FormMessage = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(
 	({ className, children, ...props }, ref) => {
 		const { error, formMessageId } = useFormField();
-		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+
 		const body = error ? String(error?.message) : children;
 
 		if (!body) {

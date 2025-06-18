@@ -39,7 +39,6 @@ export const sdgColorMap: Record<number, string> = {
 
 export const getProblems = async (): Promise<Problem[]> => {
 	try {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
 		const response = await axios.get<Problem[]>(getEndpoint(Endpoints.GET_PROBLEMS), {});
 
 		const problems = response.data.map((problem) => ({

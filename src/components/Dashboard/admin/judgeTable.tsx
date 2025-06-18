@@ -45,7 +45,7 @@ const JudgeTable = (): React.JSX.Element => {
 		const getProblem = async (): Promise<void> => {
 			setLoadingProblems(true);
 			const data = await getProblems();
-			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+
 			if (data) {
 				setProblems(data);
 			} else {
@@ -87,7 +87,6 @@ const JudgeTable = (): React.JSX.Element => {
 	};
 
 	const handleDeleteProblem = async (): Promise<void> => {
-		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 		if (!currentJudge || !problemToDelete) return;
 
 		const success = await deAssignProblemToJudge(currentJudge._id, problemToDelete);
@@ -159,7 +158,6 @@ const JudgeTable = (): React.JSX.Element => {
 			<Modal
 				isOpen={isAssignedProblemsModalOpen}
 				onClose={(): void => setIsAssignedProblemsModalOpen(false)}
-				// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 				title={`Assigned Problems for ${currentJudge?.username}`}>
 				{(currentJudge?.problem_statement.length ?? 0) > 0 ? (
 					<ul>
@@ -189,7 +187,6 @@ const JudgeTable = (): React.JSX.Element => {
 			<Modal
 				isOpen={isAssignModalOpen}
 				onClose={(): void => setIsAssignModalOpen(false)}
-				// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 				title={`Assign Problems to ${currentJudge?.username}`}>
 				<div className="flex flex-col text-white">
 					{problems
@@ -209,7 +206,6 @@ const JudgeTable = (): React.JSX.Element => {
 						))}
 				</div>
 				<button
-					// eslint-disable-next-line @typescript-eslint/no-misused-promises, @typescript-eslint/explicit-function-return-type
 					onClick={() => currentJudge && handleAssignProblem(currentJudge._id)}
 					className="mt-4 rounded bg-blue-500 px-4 py-2 text-white">
 					Assign
@@ -222,7 +218,7 @@ const JudgeTable = (): React.JSX.Element => {
 				onClose={(): void => setIsConfirmModalOpen(false)}
 				title="Confirm Removal">
 				<p>Are you sure you want to remove this problem assignment?</p>
-				{/*eslint-disable-next-line @typescript-eslint/no-misused-promises*/}
+				{}
 				<button onClick={handleDeleteProblem} className="mt-4 rounded bg-red-500 px-4 py-2 text-white">
 					Yes, Remove
 				</button>

@@ -77,7 +77,7 @@ export function Stats(): React.JSX.Element {
 								</CardHeader>
 								<CardContent>
 									<div className="text-2xl font-bold">
-										{stats.loading ? getLoader() : stats.colleges ?? 0}
+										{stats.loading ? getLoader() : (stats.colleges ?? 0)}
 									</div>
 								</CardContent>
 							</Card>

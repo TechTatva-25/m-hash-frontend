@@ -50,7 +50,6 @@ export default function ContactForm(): React.JSX.Element {
 	const contactGroups = React.useMemo(() => {
 		const groups: Record<string, ContactPerson[]> = {};
 		contactPersons.forEach((person) => {
-			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 			if (groups[person.role]) {
 				groups[person.role].push(person);
 			} else {
@@ -89,7 +88,7 @@ export default function ContactForm(): React.JSX.Element {
 			</CardHeader>
 			<CardContent className="grid gap-4 pb-2">
 				<Form {...form}>
-					{/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+					{}
 					<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
 						<FormField
 							control={form.control}

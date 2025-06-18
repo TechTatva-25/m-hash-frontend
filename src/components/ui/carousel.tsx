@@ -110,7 +110,7 @@ const Carousel = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEl
 					carouselRef,
 					api: api,
 					opts,
-					// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+
 					orientation: orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
 					scrollPrev,
 					scrollNext,

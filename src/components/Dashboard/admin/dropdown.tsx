@@ -13,7 +13,6 @@ interface DropdownProps {
 const Dropdown: React.FC<DropdownProps> = ({ members }) => {
 	const [isOpen, setIsOpen] = useState(false);
 
-	// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 	const toggleDropdown = () => setIsOpen(!isOpen);
 
 	return (

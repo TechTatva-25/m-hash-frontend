@@ -56,7 +56,6 @@ export default function TeamsCollege(): React.JSX.Element {
 							tickLine={false}
 							tickMargin={10}
 							axisLine={false}
-							// eslint-disable-next-line @typescript-eslint/explicit-function-return-type, @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
 							tickFormatter={(value) => value.slice(0, 3)}
 							hide
 						/>

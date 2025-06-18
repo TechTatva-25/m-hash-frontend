@@ -12,7 +12,7 @@ import { PSTabs } from "@/components/Home/PSTabs";
 import { Stats } from "@/components/Home/Stats";
 import { Button } from "@/components/ui/button";
 import ScrollToTopButton from "@/components/ui/scroll-to-top-btn";
-import Hero from "@/components/Home/hero";
+import Hero from "@/components/Home/Hero";
 
 export default function Home(): React.JSX.Element {
 	return (
@@ -23,12 +23,12 @@ export default function Home(): React.JSX.Element {
 			<main className="flex w-full flex-1 flex-col items-center justify-center text-center">
 				<div className="w-full">
 					{/*<GlobeDemo />*/}
-					<Hero/>
+					<Hero />
 				</div>
 			</main>
 			<section
 				id="about"
-				className="relative flex scroll-mt-20 flex-col gap-7 overflow-hidden px-4 md:px-8 lg:px-16 xl:px-24 ">
+				className="relative flex scroll-mt-20 flex-col gap-7 overflow-hidden ">
 				<About />
 			</section>
 			<section

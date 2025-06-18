@@ -3,6 +3,7 @@
 import React from "react";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { RecoilRoot } from "recoil";
+import GradientBg from "@/components/ui/gradientBg";
 
 import ToastProvider from "./ToastProvider";
 
@@ -10,8 +11,10 @@ export default function AppProvider({ children }: { children: React.ReactNode })
 	return (
 		<RecoilRoot>
 			<ThemeProvider defaultTheme="light" storageKey="mhash-theme">
-				{children}
-				<ToastProvider />
+				<GradientBg>
+					{children}
+					<ToastProvider />
+				</GradientBg>
 			</ThemeProvider>
 		</RecoilRoot>
 	);

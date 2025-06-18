@@ -86,7 +86,7 @@ export default function LoginForm(): React.JSX.Element {
 			</CardHeader>
 			<CardContent className="grid gap-4 pb-2">
 				<Form {...form}>
-					{/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+					{}
 					<form onSubmit={form.handleSubmit(onSubmit)}>
 						<FormField
 							control={form.control}

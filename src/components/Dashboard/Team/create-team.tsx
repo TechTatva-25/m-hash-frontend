@@ -260,7 +260,6 @@ export default function CreateTeam({
 					))}
 				</div>
 				<Button
-					// eslint-disable-next-line @typescript-eslint/no-misused-promises
 					onClick={handleCreateTeam}
 					disabled={disabled}
 					className="mt-2 w-full disabled:cursor-not-allowed disabled:opacity-60">

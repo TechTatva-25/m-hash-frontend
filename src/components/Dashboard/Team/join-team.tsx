@@ -53,7 +53,6 @@ const TeamCard = ({
 				{team.members.map((member) => `${member.username}`).join(", ")}
 			</p>
 			<Button
-				// eslint-disable-next-line @typescript-eslint/no-misused-promises
 				onClick={(): Promise<void> => handleJoinTeam(team._id)}
 				disabled={disabled}
 				variant="secondary"
