@@ -26,9 +26,7 @@ export default function Home(): React.JSX.Element {
 					<Hero />
 				</div>
 			</main>
-			<section
-				id="about"
-				className="relative flex scroll-mt-20 flex-col gap-7 overflow-hidden ">
+			<section id="about" className="relative flex scroll-mt-20 flex-col gap-7 overflow-hidden ">
 				<About />
 			</section>
 			<section

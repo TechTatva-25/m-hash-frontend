@@ -5,15 +5,15 @@ import React from "react";
 import "./globals.css";
 
 import AppProvider from "@/components/AppProvider";
-import { Playfair_Display } from 'next/font/google'
+import { Playfair_Display } from "next/font/google";
 
 const playfairDisplay = Playfair_Display({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800', '900'],
-  style: ['normal', 'italic'],
-  variable: '--font-playfair-display',
-  display: 'swap'
-})
+	subsets: ["latin"],
+	weight: ["400", "500", "600", "700", "800", "900"],
+	style: ["normal", "italic"],
+	variable: "--font-playfair-display",
+	display: "swap",
+});
 
 export const metadata: Metadata = {
 	title: "Manipal Hackathon 2024",

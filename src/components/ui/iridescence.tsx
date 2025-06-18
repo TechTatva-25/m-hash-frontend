@@ -73,112 +73,103 @@ void main() {
 `;
 
 interface IridescenceProps {
-  speed?: number;
-  amplitude?: number;
-  mouseReact?: boolean;
-  topColor?: [number, number, number];
-  middleColor?: [number, number, number];
-  bottomColor?: [number, number, number];
+	speed?: number;
+	amplitude?: number;
+	mouseReact?: boolean;
+	topColor?: [number, number, number];
+	middleColor?: [number, number, number];
+	bottomColor?: [number, number, number];
 }
 
 export default function Iridescence({
-  speed = 0.8,
-  amplitude = 0.15,
-  mouseReact = true,
-  topColor = [0.831, 0.847, 0.953], // Light lavender #D4D8F3
-  middleColor = [0.976, 0.973, 0.988], // Soft cream #F9F8FC
-  bottomColor = [0.576, 0.651, 0.890], // Periwinkle #93A6E3
-  ...rest
+	speed = 0.8,
+	amplitude = 0.15,
+	mouseReact = true,
+	topColor = [0.831, 0.847, 0.953], // Light lavender #D4D8F3
+	middleColor = [0.976, 0.973, 0.988], // Soft cream #F9F8FC
+	bottomColor = [0.576, 0.651, 0.89], // Periwinkle #93A6E3
+	...rest
 }: IridescenceProps) {
-  const ctnDom = useRef<HTMLDivElement>(null);
-  const mousePos = useRef({ x: 0.5, y: 0.5 });
+	const ctnDom = useRef<HTMLDivElement>(null);
+	const mousePos = useRef({ x: 0.5, y: 0.5 });
 
-  useEffect(() => {
-    if (!ctnDom.current) return;
-    const ctn = ctnDom.current;
-    const renderer = new Renderer();
-    const gl = renderer.gl;
-    gl.clearColor(1, 1, 1, 1);
+	useEffect(() => {
+		if (!ctnDom.current) return;
+		const ctn = ctnDom.current;
+		const renderer = new Renderer();
+		const gl = renderer.gl;
+		gl.clearColor(1, 1, 1, 1);
 
-    let program: Program;
+		let program: Program;
 
-    function resize() {
-      const scale = 1;
-      renderer.setSize(ctn.offsetWidth * scale, ctn.offsetHeight * scale);
-      if (program) {
-        program.uniforms.uResolution.value = [
-          gl.canvas.width,
-          gl.canvas.height
-        ];
-      }
-    }
-    window.addEventListener("resize", resize, false);
-    resize();
+		function resize() {
+			const scale = 1;
+			renderer.setSize(ctn.offsetWidth * scale, ctn.offsetHeight * scale);
+			if (program) {
+				program.uniforms.uResolution.value = [gl.canvas.width, gl.canvas.height];
+			}
+		}
+		window.addEventListener("resize", resize, false);
+		resize();
 
-    const geometry = new Triangle(gl);
-    
-    try {
-      program = new Program(gl, {
-        vertex: vertexShader,
-        fragment: fragmentShader,
-        uniforms: {
-          uTime: { value: 0 },
-          uColor1: { value: [topColor[0], topColor[1], topColor[2]] },
-          uColor2: { value: [middleColor[0], middleColor[1], middleColor[2]] },
-          uColor3: { value: [bottomColor[0], bottomColor[1], bottomColor[2]] },
-          uResolution: { value: [gl.canvas.width, gl.canvas.height] },
-          uMouse: { value: [mousePos.current.x, mousePos.current.y] },
-          uAmplitude: { value: amplitude },
-          uSpeed: { value: speed },
-        },
-      });
-    } catch (error) {
-      console.error("Shader compilation error:", error);
-      return;
-    }
+		const geometry = new Triangle(gl);
 
-    const mesh = new Mesh(gl, { geometry, program });
-    let animateId: number;
+		try {
+			program = new Program(gl, {
+				vertex: vertexShader,
+				fragment: fragmentShader,
+				uniforms: {
+					uTime: { value: 0 },
+					uColor1: { value: [topColor[0], topColor[1], topColor[2]] },
+					uColor2: { value: [middleColor[0], middleColor[1], middleColor[2]] },
+					uColor3: { value: [bottomColor[0], bottomColor[1], bottomColor[2]] },
+					uResolution: { value: [gl.canvas.width, gl.canvas.height] },
+					uMouse: { value: [mousePos.current.x, mousePos.current.y] },
+					uAmplitude: { value: amplitude },
+					uSpeed: { value: speed },
+				},
+			});
+		} catch (error) {
+			console.error("Shader compilation error:", error);
+			return;
+		}
 
-    function update(t: number) {
-      animateId = requestAnimationFrame(update);
-      program.uniforms.uTime.value = t * 0.001;
-      renderer.render({ scene: mesh });
-    }
-    animateId = requestAnimationFrame(update);
-    ctn.appendChild(gl.canvas);
+		const mesh = new Mesh(gl, { geometry, program });
+		let animateId: number;
 
-    function handleMouseMove(e: MouseEvent) {
-      if (!mouseReact) return;
-      const rect = ctn.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width;
-      const y = 1.0 - (e.clientY - rect.top) / rect.height;
-      mousePos.current = { x, y };
-      program.uniforms.uMouse.value = [x, y];
-    }
+		function update(t: number) {
+			animateId = requestAnimationFrame(update);
+			program.uniforms.uTime.value = t * 0.001;
+			renderer.render({ scene: mesh });
+		}
+		animateId = requestAnimationFrame(update);
+		ctn.appendChild(gl.canvas);
 
-    if (mouseReact) {
-      ctn.addEventListener("mousemove", handleMouseMove);
-    }
+		function handleMouseMove(e: MouseEvent) {
+			if (!mouseReact) return;
+			const rect = ctn.getBoundingClientRect();
+			const x = (e.clientX - rect.left) / rect.width;
+			const y = 1.0 - (e.clientY - rect.top) / rect.height;
+			mousePos.current = { x, y };
+			program.uniforms.uMouse.value = [x, y];
+		}
 
-    return () => {
-      cancelAnimationFrame(animateId);
-      window.removeEventListener("resize", resize);
-      if (mouseReact) {
-        ctn.removeEventListener("mousemove", handleMouseMove);
-      }
-      if (ctn.contains(gl.canvas)) {
-        ctn.removeChild(gl.canvas);
-      }
-      gl.getExtension("WEBGL_lose_context")?.loseContext();
-    };
-  }, [speed, amplitude, mouseReact, topColor, middleColor, bottomColor]);
+		if (mouseReact) {
+			ctn.addEventListener("mousemove", handleMouseMove);
+		}
 
-  return (
-    <div
-      ref={ctnDom}
-      className="w-full h-full"
-      {...rest}
-    />
-  );
+		return () => {
+			cancelAnimationFrame(animateId);
+			window.removeEventListener("resize", resize);
+			if (mouseReact) {
+				ctn.removeEventListener("mousemove", handleMouseMove);
+			}
+			if (ctn.contains(gl.canvas)) {
+				ctn.removeChild(gl.canvas);
+			}
+			gl.getExtension("WEBGL_lose_context")?.loseContext();
+		};
+	}, [speed, amplitude, mouseReact, topColor, middleColor, bottomColor]);
+
+	return <div ref={ctnDom} className="w-full h-full" {...rest} />;
 }

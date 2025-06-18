@@ -90,6 +90,23 @@ export default function Stack({
     });
   };
 
+  // Reset cards to original position every few card movements to prevent drift
+  const [moveCount, setMoveCount] = useState(0);
+  
+  const handleSendToBack = (id: number) => {
+    sendToBack(id);
+    
+    // Track number of moves and reset positions periodically to prevent drift
+    setMoveCount(prev => {
+      const newCount = prev + 1;
+      if (newCount > 5) {
+        // Reset to default positioning after 5 moves
+        setTimeout(() => setMoveCount(0), 500);
+      }
+      return newCount;
+    });
+  };
+
   return (
     <div
       className="relative"
@@ -100,21 +117,26 @@ export default function Stack({
       }}
     >
       {cards.map((card, index) => {
-        const randomRotate = randomRotation ? Math.random() * 10 - 5 : 0;
+        // Create a balanced random rotation, biased toward negative values to counter right drift
+        const randomRotate = randomRotation ? (Math.random() * 12 - 8) : 0;
+        
+        // Use moveCount to help reset the drift
+        const rotationAdjustment = moveCount > 3 ? -moveCount : 0;
 
         return (
           <CardRotate
             key={card.id}
-            onSendToBack={() => sendToBack(card.id)}
+            onSendToBack={() => handleSendToBack(card.id)}
             sensitivity={sensitivity}
           >
             <motion.div
               className="rounded-2xl overflow-hidden border-4 border-white"
-              onClick={() => sendToBackOnClick && sendToBack(card.id)}
+              onClick={() => sendToBackOnClick && handleSendToBack(card.id)}
               animate={{
-                rotateZ: (cards.length - index - 1) * 4 + randomRotate,
+                // More balanced rotation that avoids right drift
+                rotateZ: ((index * 2 - Math.floor(cards.length/2)) * 1.5) + randomRotate + rotationAdjustment,
                 scale: 1 + index * 0.06 - cards.length * 0.06,
-                transformOrigin: "90% 90%",
+                transformOrigin: "center",
               }}
               initial={false}
               transition={{

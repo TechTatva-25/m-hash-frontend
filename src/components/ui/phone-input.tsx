@@ -42,7 +42,11 @@ const PhoneInput: React.ForwardRefExoticComponent<PhoneInputProps> = React.forwa
 PhoneInput.displayName = "PhoneInput";
 
 const InputComponent = React.forwardRef<HTMLInputElement, InputProps>(({ className, ...props }, ref) => (
-	<Input className={cn("rounded-e-lg rounded-s-none", className)} {...props} ref={ref} />
+	<Input
+		className={cn("rounded-e-lg rounded-s-none bg-black/20 border-gray-500/30 text-white placeholder:text-gray-400", className)}
+		{...props}
+		ref={ref}
+	/>
 ));
 InputComponent.displayName = "InputComponent";
 
@@ -72,29 +76,29 @@ const CountrySelect = ({ disabled, value, onChange, options }: CountrySelectProp
 				<Button
 					type="button"
 					variant={"outline"}
-					className={cn("flex gap-1 rounded-e-none rounded-s-lg px-3")}
+					className={cn("flex gap-1 rounded-e-none rounded-s-lg px-3 bg-black/20 border-gray-500/30 hover:bg-black/30 hover:border-gray-500/50")}
 					disabled={disabled}>
 					<FlagComponent country={value} countryName={value} />
 					<ChevronsUpDown className={cn("-mr-2 h-4 w-4 opacity-50", disabled ? "hidden" : "opacity-100")} />
 				</Button>
 			</PopoverTrigger>
-			<PopoverContent className="w-[300px] p-0">
-				<Command>
-					<CommandInput placeholder="Search country..." />
-					<CommandEmpty>No country found.</CommandEmpty>
+			<PopoverContent className="w-[300px] p-0 bg-gray-900/95 border-gray-700 backdrop-blur-md">
+				<Command className="bg-transparent">
+					<CommandInput placeholder="Search country..." className="text-gray-200" />
+					<CommandEmpty className="text-gray-400">No country found.</CommandEmpty>
 					<CommandList>
 						<CommandGroup>
 							{options
 								.filter((x) => x.value)
 								.map((option) => (
 									<CommandItem
-										className="gap-2"
+										className="gap-2 text-gray-200 hover:bg-gray-800"
 										key={option.value}
 										onSelect={(): void => handleSelect(option.value)}>
 										<FlagComponent country={option.value} countryName={option.label} />
 										<span className="flex-1 text-sm">{option.label}</span>
 										{option.value && (
-											<span className="text-sm text-foreground/50">
+											<span className="text-sm text-gray-400">
 												{`+${RPNInput.getCountryCallingCode(option.value)}`}
 											</span>
 										)}

@@ -2,7 +2,8 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios, { AxiosError } from "axios";
-import { Check, ChevronsUpDown } from "lucide-react";
+import { Check, ChevronsUpDown, Info, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -15,17 +16,19 @@ import * as z from "zod";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { College, useCollege } from "@/hooks/useCollege";
 import { Endpoints, getEndpoint } from "@/lib/endpoints";
 import { cn } from "@/lib/utils";
+import SpotlightCard from "@/components/ui/spotlight-card";
 
-import { BorderBeam } from "../ui/border-beam";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { Input, PasswordInput } from "../ui/input";
 import { PhoneInput } from "../ui/phone-input";
 
+// Password validation schema remains the same but we'll handle the display differently
 const registerFormSchema = z
 	.object({
 		email: z
@@ -70,6 +73,8 @@ export default function RegisterForm(): React.JSX.Element {
 	const [collegeComboboxOpen, setCollegeComboboxOpen] = React.useState(false);
 	const [collegeValue, setCollegeValue] = React.useState({ display: "", value: "" });
 	const [collegeOther, setCollegeOther] = React.useState(false);
+	const [buttonHover, setButtonHover] = useState(false);
+	const [passwordFocused, setPasswordFocused] = useState(false);
 
 	const router = useRouter();
 
@@ -100,251 +105,503 @@ export default function RegisterForm(): React.JSX.Element {
 		setDisabled(false);
 	};
 
+	// Password requirements
+	const passwordRequirements = [
+		{ id: 1, text: "At least 8 characters" },
+		{ id: 2, text: "At least one uppercase letter (A-Z)" },
+		{ id: 3, text: "At least one lowercase letter (a-z)" },
+		{ id: 4, text: "At least one number (0-9)" },
+		{ id: 5, text: "At least one special character (!@#$...)" },
+	];
+
+	// Function to check if a specific password requirement is met
+	const checkRequirement = (requirement: string, password: string): boolean => {
+		if (!password) return false;
+		switch (requirement) {
+			case "At least 8 characters":
+				return password.length >= 8;
+			case "At least one uppercase letter (A-Z)":
+				return /[A-Z]/.test(password);
+			case "At least one lowercase letter (a-z)":
+				return /[a-z]/.test(password);
+			case "At least one number (0-9)":
+				return /[0-9]/.test(password);
+			case "At least one special character (!@#$...)":
+				return /[^\da-zA-Z]/.test(password);
+			default:
+				return false;
+		}
+	};
+
 	return (
-		<Card className="relative m-4 border-none shadow-md dark:shadow-none sm:mx-auto sm:w-[420px]">
-			<BorderBeam size={400} duration={12} delay={9} />
-			<CardHeader className="space-y-1">
-				<CardTitle className="text-2xl">Create an account</CardTitle>
-				<CardDescription className="font-bold">
-					Please do not use your college-provided email (e.g., Outlook).
-				</CardDescription>
-			</CardHeader>
-			<CardContent className="grid gap-4 pb-2">
-				<Form {...form}>
-					{}
-					<form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
-						<FormField
-							control={form.control}
-							name="email"
-							render={({ field }): React.JSX.Element => (
-								<FormItem>
-									<div className="flex flex-col">
-										<FormLabel>Email</FormLabel>
-										<FormMessage className="text-xs" />
-									</div>
-									<FormControl>
-										<Input {...field} type="email" placeholder="Enter your personal email" />
-									</FormControl>
-								</FormItem>
-							)}
+		<Card className="w-full sm:w-[900px] backdrop-blur-xl bg-black/40 border-gray-500/20 shadow-lg !important">
+			<div className="flex flex-col lg:flex-row">
+				{/* Left side with logo and description */}
+				<div className="lg:w-1/3 flex flex-col items-center justify-center p-6 border-r border-gray-500/20">
+					<div className="relative h-24 w-24 overflow-hidden mb-6">
+						<Image
+							src="/M-Hash-Logo.png"
+							alt="M-Hash Logo"
+							fill
+							style={{ objectFit: 'contain' }}
+							className="drop-shadow-lg"
 						/>
-						<FormField
-							control={form.control}
-							name="username"
-							render={({ field }): React.JSX.Element => (
-								<FormItem>
-									<div className="flex flex-col">
-										<FormLabel>Full Name</FormLabel>
-										<FormMessage className="text-xs" />
-									</div>
-									<FormControl>
-										<Input {...field} placeholder="Enter your name" />
-									</FormControl>
-								</FormItem>
-							)}
-						/>
-						<FormField
-							control={form.control}
-							name="gender"
-							render={({ field }): React.JSX.Element => (
-								<FormItem>
-									<div className="flex flex-col">
-										<FormLabel>Gender</FormLabel>
-										<FormMessage className="text-xs" />
-									</div>
-									<Select onValueChange={field.onChange} defaultValue={field.value}>
-										<FormControl>
-											{}
-											<SelectTrigger className={`${field.value ? "" : "text-muted-foreground"}`}>
-												<SelectValue placeholder="Select your Gender" />
-											</SelectTrigger>
-										</FormControl>
-										<SelectContent>
-											<SelectItem value="Male">Male</SelectItem>
-											<SelectItem value="Female">Female</SelectItem>
-											<SelectItem value="Other">Other</SelectItem>
-										</SelectContent>
-									</Select>
-								</FormItem>
-							)}
-						/>
-						<FormField
-							control={form.control}
-							name="mobile_number"
-							render={(): React.JSX.Element => (
-								<FormItem>
-									<div className="flex flex-col">
-										<FormLabel>Phone Number</FormLabel>
-										<FormMessage className="text-xs" />
-									</div>
-									<FormControl>
-										<PhoneInput
-											onChange={(value): void => form.setValue("mobile_number", value)}
-											name="mobile_number"
-											defaultCountry={"IN"}
-											placeholder="Enter your phone number"
+					</div>
+					<CardTitle className="text-2xl text-center text-white mb-4">Create an account</CardTitle>
+					<CardDescription className="text-center text-gray-300">
+						Join the hackathon community and showcase your skills. Please do not use your college-provided email.
+					</CardDescription>
+
+					<div className="mt-8 hidden lg:block">
+						<p className="text-center text-sm text-gray-400">
+							Already have an account?{" "}
+							<Link href="/login" className="font-semibold leading-6 text-gray-300 hover:text-white transition-colors">
+								Log in
+							</Link>
+						</p>
+						<p className="mt-2 text-center text-sm text-gray-400">
+							<Link href="/" className="font-semibold leading-6 text-gray-300 hover:text-white transition-colors">
+								Go Home
+							</Link>
+						</p>
+					</div>
+				</div>
+
+				{/* Right side with form */}
+				<div className="lg:w-2/3 p-6">
+					<CardContent className="p-0">
+						<Form {...form}>
+							{/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+							<form onSubmit={form.handleSubmit(onSubmit)}>
+								<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+									<FormField
+										control={form.control}
+										name="email"
+										render={({ field }): React.JSX.Element => (
+											<FormItem>
+												<div className="flex flex-col">
+													<FormLabel className="text-gray-200">Email</FormLabel>
+													<FormMessage className="text-xs text-gray-400" />
+												</div>
+												<FormControl>
+													<Input
+														{...field}
+														type="email"
+														placeholder="Enter your personal email"
+														className="bg-black/20 border-gray-500/30 text-white placeholder:text-gray-400 focus-visible:ring-gray-500/50"
+													/>
+												</FormControl>
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name="username"
+										render={({ field }): React.JSX.Element => (
+											<FormItem>
+												<div className="flex flex-col">
+													<FormLabel className="text-gray-200">Full Name</FormLabel>
+													<FormMessage className="text-xs" />
+												</div>
+												<FormControl>
+													<Input
+														{...field}
+														placeholder="Enter your name"
+														className="bg-black/20 border-gray-500/30 text-white placeholder:text-gray-400"
+													/>
+												</FormControl>
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name="gender"
+										render={({ field }): React.JSX.Element => (
+											<FormItem>
+												<div className="flex flex-col">
+													<FormLabel className="text-gray-200">Gender</FormLabel>
+													<FormMessage className="text-xs" />
+												</div>
+												<Select onValueChange={field.onChange} defaultValue={field.value}>
+													<FormControl>
+														{/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
+														<SelectTrigger className={`bg-black/20 border-gray-500/30 text-white ${field.value ? "" : "text-gray-400"}`}>
+															<SelectValue placeholder="Select your Gender" />
+														</SelectTrigger>
+													</FormControl>
+													<SelectContent className="bg-gray-900 border-gray-700">
+														<SelectItem value="Male">Male</SelectItem>
+														<SelectItem value="Female">Female</SelectItem>
+														<SelectItem value="Other">Other</SelectItem>
+													</SelectContent>
+												</Select>
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name="mobile_number"
+										render={(): React.JSX.Element => (
+											<FormItem>
+												<div className="flex flex-col">
+													<FormLabel className="text-gray-200">Phone Number</FormLabel>
+													<FormMessage className="text-xs" />
+												</div>
+												<FormControl>
+													<PhoneInput
+														onChange={(value): void => form.setValue("mobile_number", value)}
+														name="mobile_number"
+														defaultCountry={"IN"}
+														placeholder="Enter your phone number"
+														className="bg-black/20 border-gray-500/30 text-white"
+													/>
+												</FormControl>
+											</FormItem>
+										)}
+									/>
+									<div className="md:col-span-2">
+										<FormField
+											control={form.control}
+											name="college"
+											render={({ field }): React.JSX.Element => (
+												<FormItem>
+													<div className="flex flex-col">
+														<FormLabel className="text-gray-200">College</FormLabel>
+														<FormMessage className="text-xs" />
+													</div>
+													<Popover open={collegeComboboxOpen} onOpenChange={setCollegeComboboxOpen}>
+														<PopoverTrigger asChild>
+															<Button
+																disabled={!colleges.length}
+																variant="outline"
+																role="combobox"
+																aria-expanded={collegeComboboxOpen}
+																className="w-full justify-between font-normal bg-black/20 border-gray-500/30 text-white hover:bg-black/30">
+																<span
+																	className={`max-w-[320px] truncate ${
+																		collegeValue.display ? "" : "text-gray-400"
+																	}`}>
+																	{collegeValue.display
+																		? collegeValue.display
+																		: "Select your College / University"}
+																</span>
+																<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+															</Button>
+														</PopoverTrigger>
+														<PopoverContent className="w-[--radix-popover-trigger-width] p-0 bg-gray-900 border-gray-700">
+															<Command
+																className="bg-gray-900"
+																filter={(input, search): number =>
+																	input.toLowerCase().includes(search.toLowerCase()) ? 1 : 0
+																}>
+																<CommandInput placeholder="Search" className="text-gray-200" />
+																<CommandList className="w-full max-h-[200px]">
+																	<CommandEmpty>No college selected</CommandEmpty>
+																	<CommandGroup>
+																		{colleges.map(
+																			(college): React.ReactNode => (
+																				<CommandItem
+																					key={college._id}
+																					value={college.name}
+																					className="text-gray-200 hover:bg-gray-800"
+																					onSelect={(currentValue): void => {
+																						const selectedCollege =
+																							colleges.find(
+																								(college) =>
+																									college.name.toLocaleLowerCase() ===
+																									currentValue
+																							) ?? otherCollege;
+
+																						setCollegeOther(
+																							selectedCollege.name === otherCollege.name
+																						);
+
+																						setCollegeValue({
+																							display: selectedCollege.name,
+																							value: selectedCollege._id,
+																						});
+
+																						field.onChange(selectedCollege._id);
+
+																						setCollegeComboboxOpen(false);
+																					}}>
+																					<span className="mr-2 flex h-4 w-4 justify-start">
+																						<Check
+																							className={cn(
+																								collegeValue.value === college._id
+																									? "opacity-100"
+																									: "opacity-0"
+																							)}
+																						/>
+																					</span>
+																					{college.name
+																						.split(" ")
+																						.map(
+																							(word) =>
+																								word.charAt(0).toUpperCase() +
+																								word.slice(1).toLowerCase()
+																						)
+																						.join(" ")}
+																				</CommandItem>
+																			)
+																		)}
+																	</CommandGroup>
+																</CommandList>
+															</Command>
+														</PopoverContent>
+													</Popover>
+												</FormItem>
+											)}
 										/>
-									</FormControl>
-								</FormItem>
-							)}
-						/>
-						<FormField
-							control={form.control}
-							name="college"
-							render={({ field }): React.JSX.Element => (
-								<FormItem>
-									<div className="flex flex-col">
-										<FormLabel>College</FormLabel>
-										<FormMessage className="text-xs" />
 									</div>
-									<Popover open={collegeComboboxOpen} onOpenChange={setCollegeComboboxOpen}>
-										<PopoverTrigger asChild>
-											<Button
-												disabled={!colleges.length}
-												variant="outline"
-												role="combobox"
-												aria-expanded={collegeComboboxOpen}
-												className="w-full justify-between font-normal">
-												<span
-													className={`max-w-[320px] truncate ${
-														collegeValue.display ? "" : "text-muted-foreground"
-													}`}>
-													{collegeValue.display
-														? collegeValue.display
-														: "Select your College / University"}
-												</span>
-												<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-											</Button>
-										</PopoverTrigger>
-										<PopoverContent className="w-[--radix-popover-trigger-width] p-0">
-											<Command
-												filter={(input, search): number =>
-													input.toLowerCase().includes(search.toLowerCase()) ? 1 : 0
-												}>
-												<CommandInput placeholder="Search" />
-												<CommandList className="w-full">
-													<CommandEmpty>No college selected</CommandEmpty>
-													<CommandGroup>
-														{colleges.map(
-															(college): React.ReactNode => (
-																<CommandItem
-																	key={college._id}
-																	value={college.name}
-																	onSelect={(currentValue): void => {
-																		const selectedCollege =
-																			colleges.find(
-																				(college) =>
-																					college.name.toLocaleLowerCase() ===
-																					currentValue
-																			) ?? otherCollege;
+									{collegeOther && (
+										<div className="md:col-span-2">
+											<FormField
+												control={form.control}
+												name="collegeOther"
+												render={({ field }): React.JSX.Element => (
+													<FormItem>
+														<FormMessage className="text-xs" />
+														<FormControl>
+															<Input
+																{...field}
+																placeholder="Enter your college name"
+																className="bg-black/20 border-gray-500/30 text-white placeholder:text-gray-400"
+															/>
+														</FormControl>
+													</FormItem>
+												)}
+											/>
+										</div>
+									)}
+									{/* Password fields in a single grid cell with 2 columns - with proper alignment */}
+									<div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+										{/* Password field */}
+										<FormField
+											control={form.control}
+											name="password"
+											render={({ field }): React.JSX.Element => (
+												<FormItem className="relative h-full flex flex-col">
+													<div className="flex items-center justify-between">
+														<FormLabel className="text-gray-200">Password</FormLabel>
 
-																		setCollegeOther(
-																			selectedCollege.name === otherCollege.name
-																		);
+														<TooltipProvider>
+															<Tooltip delayDuration={0}>
+																<TooltipTrigger asChild>
+																	<Button
+																		variant="ghost"
+																		size="icon"
+																		className="h-5 w-5 rounded-full p-0 text-gray-400 hover:bg-transparent hover:text-gray-300"
+																	>
+																		<Info className="h-4 w-4" />
+																		<span className="sr-only">Password requirements</span>
+																	</Button>
+																</TooltipTrigger>
+																<TooltipContent
+																	align="end"
+																	className="w-[260px] p-0 bg-gray-900/95 border-gray-700"
+																>
+																	<div className="p-3">
+																		<p className="text-sm font-medium text-gray-300 mb-2">Password Requirements:</p>
+																		<ul className="text-xs space-y-1 text-gray-400">
+																			{passwordRequirements.map((req) => {
+																				const isMet = checkRequirement(req.text, field.value);
+																				return (
+																					<li key={req.id} className="flex items-center">
+																						{isMet ? (
+																							<Check className="mr-1.5 h-3.5 w-3.5 text-green-500" />
+																						) : (
+																							<X className="mr-1.5 h-3.5 w-3.5 text-red-500" />
+																						)}
+																						{req.text}
+																					</li>
+																				);
+																			})}
+																		</ul>
+																	</div>
+																</TooltipContent>
+															</Tooltip>
+														</TooltipProvider>
+													</div>
+													<FormControl>
+														<PasswordInput
+															{...field}
+															placeholder="Enter your password"
+															className="bg-black/20 border-gray-500/30 text-white placeholder:text-gray-400"
+															onFocus={() => setPasswordFocused(true)}
+															onBlur={() => {
+																setPasswordFocused(false);
+																field.onBlur();
+															}}
+														/>
+													</FormControl>
 
-																		setCollegeValue({
-																			display: selectedCollege.name,
-																			value: selectedCollege._id,
-																		});
-
-																		field.onChange(selectedCollege._id);
-
-																		setCollegeComboboxOpen(false);
-																	}}>
-																	<span className="mr-2 flex h-4 w-4 justify-start">
-																		<Check
-																			className={cn(
-																				collegeValue.value === college._id
-																					? "opacity-100"
-																					: "opacity-0"
-																			)}
-																		/>
-																	</span>
-																	{college.name
-																		.split(" ")
-																		.map(
-																			(word) =>
-																				word.charAt(0).toUpperCase() +
-																				word.slice(1).toLowerCase()
-																		)
-																		.join(" ")}
-																</CommandItem>
-															)
+													{/* Only show non-matching error here, not the complex password requirements */}
+													{form.formState.errors.password &&
+														form.formState.errors.password.message !== "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character" && (
+															<p className="text-xs mt-1 text-gray-400">
+																{form.formState.errors.password.message as string}
+															</p>
 														)}
-													</CommandGroup>
-												</CommandList>
-											</Command>
-										</PopoverContent>
-									</Popover>
-								</FormItem>
-							)}
-						/>
-						{collegeOther && (
-							<FormField
-								control={form.control}
-								name="collegeOther"
-								render={({ field }): React.JSX.Element => (
-									<FormItem>
-										<FormMessage className="text-xs" />
-										<FormControl>
-											<Input {...field} placeholder="Enter your college name" />
-										</FormControl>
-									</FormItem>
-								)}
-							/>
-						)}
-						<FormField
-							control={form.control}
-							name="password"
-							render={({ field }): React.JSX.Element => (
-								<FormItem>
-									<div className="flex flex-col">
-										<FormLabel>Password</FormLabel>
-										<FormMessage className="text-xs" />
+
+													{/* Show password hint popover when focused */}
+													{passwordFocused && (
+														<div className="mt-2 p-3 bg-gray-900/95 border border-gray-700 rounded-md shadow-lg absolute z-10 right-0 w-[260px]">
+															<p className="text-sm font-medium text-gray-300 mb-2">Password Requirements:</p>
+															<ul className="text-xs space-y-1 text-gray-400">
+																{passwordRequirements.map((req) => {
+																	const isMet = checkRequirement(req.text, field.value);
+																	return (
+																		<li key={req.id} className="flex items-center">
+																			{isMet ? (
+																				<Check className="mr-1.5 h-3.5 w-3.5 text-green-500" />
+																			) : (
+																				<X className="mr-1.5 h-3.5 w-3.5 text-red-500" />
+																			)}
+																			{req.text}
+																		</li>
+																	);
+																})}
+															</ul>
+														</div>
+													)}
+												</FormItem>
+											)}
+										/>
+
+										{/* Confirm Password field - fixed alignment */}
+										<FormField
+											control={form.control}
+											name="confirmPassword"
+											render={({ field }): React.JSX.Element => (
+												<FormItem className="h-full flex flex-col">
+													<div className="flex items-center justify-between">
+														<FormLabel className="text-gray-200">Confirm password</FormLabel>
+														<div className="h-5 w-5"></div> {/* Empty div to match the info button's space */}
+													</div>
+													<FormControl>
+														<PasswordInput
+															{...field}
+															placeholder="Confirm your password"
+															className="bg-black/20 border-gray-500/30 text-white placeholder:text-gray-400"
+														/>
+													</FormControl>
+													{form.formState.errors.confirmPassword && (
+														<p className="text-xs mt-1 text-gray-400">
+															{form.formState.errors.confirmPassword.message as string}
+														</p>
+													)}
+												</FormItem>
+											)}
+										/>
 									</div>
-									<FormControl>
-										<PasswordInput {...field} placeholder="Enter your password" />
-									</FormControl>
-								</FormItem>
-							)}
-						/>
-						<FormField
-							control={form.control}
-							name="confirmPassword"
-							render={({ field }): React.JSX.Element => (
-								<FormItem>
-									<div className="flex flex-col">
-										<FormLabel>Confirm password</FormLabel>
-										<FormMessage className="text-xs" />
-									</div>
-									<FormControl>
-										<PasswordInput {...field} placeholder="Confirm your password" />
-									</FormControl>
-								</FormItem>
-							)}
-						/>
-						<Button
-							type="submit"
-							disabled={disabled}
-							className="w-full disabled:cursor-not-allowed disabled:opacity-70">
-							{disabled ? <HashLoader color="#a457f7" size={20} /> : "Sign Up"}
-						</Button>
-					</form>
-				</Form>
-			</CardContent>
-			<CardFooter className="mt-2 flex flex-col items-center justify-center">
-				<p className="text-center text-sm text-muted-foreground">
-					Already have an account?{" "}
-					<Link href="/login" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-						Log in
-					</Link>
-				</p>
-				<p className="mt-2 text-center text-sm text-muted-foreground">
-					<Link href="/" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-						Go Home
-					</Link>
-				</p>
-			</CardFooter>
+								</div>
+
+								{/* Enhanced Glassmorphic Button with SpotlightCard effect */}
+								<div className="mt-6 relative overflow-hidden group">
+									{/* Animated gradient background */}
+									<div
+										className="absolute inset-0 bg-gradient-to-r from-indigo-500/50 via-purple-500/50 to-pink-500/50 opacity-80 group-hover:opacity-100 transition-opacity duration-500 rounded-lg"
+										style={{
+											backgroundSize: '200% 100%',
+											animation: 'gradient-shift 3s ease infinite',
+										}}
+									></div>
+
+									{/* Glass overlay for frosted effect */}
+									<div className="absolute inset-0 backdrop-blur-md bg-white/10 rounded-lg border border-white/30"></div>
+
+									{/* Apply SpotlightCard directly to the Button */}
+									<SpotlightCard
+										className="bg-transparent border-0 rounded-lg p-0 w-full"
+										spotlightColor="rgba(147, 51, 234, 0.3)"
+									>
+										<Button
+											type="submit"
+											disabled={disabled}
+											className={cn(
+												"relative w-full bg-transparent border-0 text-white py-5 rounded-lg text-base font-medium",
+												"shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:shadow-[0_0_20px_rgba(255,255,255,0.25)]",
+												"transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]",
+											)}
+										>
+											{disabled ? (
+												<HashLoader color="#ffffff" size={20} />
+											) : (
+												<>
+													<span className="relative z-10 drop-shadow-sm">Sign Up</span>
+													{/* Subtle inner glow */}
+													<span className="absolute inset-0 bg-white/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
+												</>
+											)}
+										</Button>
+									</SpotlightCard>
+								</div>
+
+								{/* Mobile footer links */}
+								<div className="mt-6 lg:hidden">
+									<p className="text-center text-sm text-gray-400">
+										Already have an account?{" "}
+										<Link href="/login" className="font-semibold leading-6 text-gray-300 hover:text-white transition-colors">
+											Log in
+										</Link>
+									</p>
+									<p className="mt-2 text-center text-sm text-gray-400">
+										<Link href="/" className="font-semibold leading-6 text-gray-300 hover:text-white transition-colors">
+											Go Home
+										</Link>
+									</p>
+								</div>
+							</form>
+						</Form>
+					</CardContent>
+				</div>
+			</div>
+
+			{/* Combined animation keyframes and styles */}
+			<style jsx global>{`
+				@keyframes gradient-animation {
+					0% {
+						background-position: 0% 50%;
+					}
+					50% {
+						background-position: 100% 50%;
+					}
+					100% {
+						background-position: 0% 50%;
+					}
+				}
+
+				@keyframes gradient-shift {
+					0% {
+						background-position: 0% 50%;
+					}
+					50% {
+						background-position: 100% 50%;
+					}
+					100% {
+						background-position: 0% 50%;
+					}
+				}
+
+				/* Prevent form validation from changing box color */
+				.FormItem {
+					color: inherit !important;
+				}
+
+				.FormMessage {
+					color: #9ca3af !important; /* text-gray-400 */
+				}
+
+				/* Override any validation color changes */
+				[data-valid],
+				[data-invalid],
+				[data-pending] {
+					color: inherit !important;
+					background-color: inherit !important;
+					border-color: inherit !important;
+				}
+			`}</style>
 		</Card>
 	);
 }
