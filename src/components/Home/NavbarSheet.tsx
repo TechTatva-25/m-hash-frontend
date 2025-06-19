@@ -5,10 +5,10 @@ import BoringAvatar from "boring-avatars";
 import { LayoutGrid, LogOut } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useTheme } from "next-themes";
 import React from "react";
 import { RiMoonClearFill, RiSunFill } from "react-icons/ri";
 import { toast } from "react-toastify";
+import { useTheme } from "@/components/ThemeProvider";
 
 import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -28,7 +28,7 @@ import { Endpoints, getEndpoint } from "@/lib/endpoints";
 import { generateColorPalette } from "@/lib/utils";
 
 export function NavbarSheet(): React.JSX.Element {
-	const { resolvedTheme, setTheme } = useTheme();
+	const { theme, toggleTheme } = useTheme();
 	const session = useSession();
 	const router = useRouter();
 	const [disabled, setDisabled] = React.useState(false);
@@ -88,28 +88,28 @@ export function NavbarSheet(): React.JSX.Element {
 						<SheetClose asChild>
 							<a
 								href="/#"
-								className="block rounded px-3 py-2 text-[hsl(var(--foreground))] hover:bg-[hsl(var(--card))] dark:text-[hsl(var(--primary-foreground))]">
+								className="block rounded px-3 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">
 								Home
 							</a>
 						</SheetClose>
 						<SheetClose asChild>
 							<a
 								href="/#about"
-								className="block rounded px-3 py-2 text-[hsl(var(--foreground))] hover:bg-[hsl(var(--card))] dark:text-[hsl(var(--primary-foreground))]">
+								className="block rounded px-3 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">
 								About Us
 							</a>
 						</SheetClose>
 						<SheetClose asChild>
 							<a
 								href="/#timeline"
-								className="block rounded px-3 py-2 text-[hsl(var(--foreground))] hover:bg-[hsl(var(--card))] dark:text-[hsl(var(--primary-foreground))]">
+								className="block rounded px-3 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">
 								Timeline
 							</a>
 						</SheetClose>
 						<SheetClose asChild>
 							<a
 								href="/#problem-statements"
-								className="block rounded px-3 py-2 text-[hsl(var(--foreground))] hover:bg-[hsl(var(--card))] dark:text-[hsl(var(--primary-foreground))]">
+								className="block rounded px-3 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">
 								Problem Statements
 							</a>
 						</SheetClose>
@@ -126,7 +126,7 @@ export function NavbarSheet(): React.JSX.Element {
 									window.location.href = "/login";
 								}}
 								variant="outline"
-								className="flex w-full items-center space-x-2 md:w-auto">
+								className="flex w-full items-center space-x-2 text-gray-800 dark:text-gray-200 md:w-auto">
 								Login
 							</Button>
 						</SheetClose>
@@ -136,16 +136,17 @@ export function NavbarSheet(): React.JSX.Element {
 									window.location.href = "/register";
 								}}
 								variant="outline"
-								className="flex w-full items-center space-x-2 md:w-auto">
+								className="flex w-full items-center space-x-2 text-gray-800 dark:text-gray-200 md:w-auto">
 								Register
 							</Button>
 						</SheetClose>
 						<SheetClose asChild>
 							<Button
-								onClick={(): void => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-								className="flex items-center space-x-2">
-								{resolvedTheme === "dark" ? <RiSunFill /> : <RiMoonClearFill />}
-								<span>{resolvedTheme === "dark" ? "Light Mode" : "Dark Mode"}</span>
+								onClick={toggleTheme}
+								variant="outline"
+								className="flex items-center space-x-2 text-gray-800 dark:text-gray-200">
+								{theme === "dark" ? <RiSunFill className="mr-2" /> : <RiMoonClearFill className="mr-2" />}
+								<span>{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
 							</Button>
 						</SheetClose>
 					</div>
@@ -195,13 +196,13 @@ export function NavbarSheet(): React.JSX.Element {
 							</DropdownMenuItem>
 							<DropdownMenuItem
 								className="hover:cursor-pointer"
-								onClick={(): void => setTheme(resolvedTheme === "dark" ? "light" : "dark")}>
-								{resolvedTheme === "dark" ? (
+								onClick={toggleTheme}>
+								{theme === "dark" ? (
 									<RiSunFill className="mr-3 h-4 w-4 text-muted-foreground" />
 								) : (
 									<RiMoonClearFill className="mr-3 h-4 w-4 text-muted-foreground" />
 								)}
-								{resolvedTheme === "dark" ? "Light" : "Dark"} Mode
+								{theme === "dark" ? "Light" : "Dark"} Mode
 							</DropdownMenuItem>
 						</DropdownMenuGroup>
 						<DropdownMenuSeparator />

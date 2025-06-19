@@ -17,10 +17,11 @@ const Hero = () => {
 
 			<div className="absolute left-1/2 top-1/2 mt-10 z-20 -translate-x-1/2 -translate-y-1/2 transform text-center">
 				<h1
-					className="m-0 text-[clamp(2.2rem,8vw,5rem)] font-extrabold text-[hsl(var(--foreground))] mb-4"
-					style={{ fontFamily: "var(--font-playfair-display)", letterSpacing: "0.16em" }}>
-					Manipal Hackathon
-				</h1>
+	className="m-0 text-[clamp(2.5rem,8vw,5rem)] font-extrabold text-[hsl(var(--foreground))] mb-4"
+	style={{ fontFamily: "var(--font-playfair-display)", letterSpacing: "0.16em" }}>
+	Manipal Hackathon
+</h1>
+
 				<h2
 					className="m-0 text-[clamp(1.5rem,5vw,3rem)] font-semibold text-[hsl(var(--foreground))] mb-8"
 					style={{ fontFamily: "var(--font-playfair-display)" }}>
