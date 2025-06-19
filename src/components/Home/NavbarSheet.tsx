@@ -145,7 +145,11 @@ export function NavbarSheet(): React.JSX.Element {
 								onClick={toggleTheme}
 								variant="outline"
 								className="flex items-center space-x-2 text-gray-800 dark:text-gray-200">
-								{theme === "dark" ? <RiSunFill className="mr-2" /> : <RiMoonClearFill className="mr-2" />}
+								{theme === "dark" ? (
+									<RiSunFill className="mr-2" />
+								) : (
+									<RiMoonClearFill className="mr-2" />
+								)}
 								<span>{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
 							</Button>
 						</SheetClose>
@@ -194,9 +198,7 @@ export function NavbarSheet(): React.JSX.Element {
 									Dashboard
 								</Link>
 							</DropdownMenuItem>
-							<DropdownMenuItem
-								className="hover:cursor-pointer"
-								onClick={toggleTheme}>
+							<DropdownMenuItem className="hover:cursor-pointer" onClick={toggleTheme}>
 								{theme === "dark" ? (
 									<RiSunFill className="mr-3 h-4 w-4 text-muted-foreground" />
 								) : (
