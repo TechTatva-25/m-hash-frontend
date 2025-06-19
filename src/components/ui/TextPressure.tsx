@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
 interface TextPressureProps {
 	text?: string;
@@ -19,22 +19,22 @@ interface TextPressureProps {
 }
 
 const TextPressure: React.FC<TextPressureProps> = ({
-													   text = 'Compressa',
-													   fontFamily = 'Compressa VF',
-													   fontUrl = 'https://res.cloudinary.com/dr6lvwubh/raw/upload/v1529908256/CompressaPRO-GX.woff2',
-													   width = true,
-													   weight = true,
-													   italic = true,
-													   alpha = false,
-													   flex = true,
-													   stroke = false,
-													   scale = false,
-													   textColor = '#FFFFFF',
-													   strokeColor = '#FF0000',
-													   strokeWidth = 2,
-													   className = '',
-													   minFontSize = 24,
-												   }) => {
+	text = "Compressa",
+	fontFamily = "Compressa VF",
+	fontUrl = "https://res.cloudinary.com/dr6lvwubh/raw/upload/v1529908256/CompressaPRO-GX.woff2",
+	width = true,
+	weight = true,
+	italic = true,
+	alpha = false,
+	flex = true,
+	stroke = false,
+	scale = false,
+	textColor = "#FFFFFF",
+	strokeColor = "#FF0000",
+	strokeWidth = 2,
+	className = "",
+	minFontSize = 24,
+}) => {
 	const containerRef = useRef<HTMLDivElement | null>(null);
 	const titleRef = useRef<HTMLHeadingElement | null>(null);
 	const spansRef = useRef<(HTMLSpanElement | null)[]>([]);
@@ -46,7 +46,7 @@ const TextPressure: React.FC<TextPressureProps> = ({
 	const [scaleY, setScaleY] = useState(1);
 	const [lineHeight, setLineHeight] = useState(1);
 
-	const chars = text.split('');
+	const chars = text.split("");
 
 	const dist = (a: { x: number; y: number }, b: { x: number; y: number }) => {
 		const dx = b.x - a.x;
@@ -65,8 +65,8 @@ const TextPressure: React.FC<TextPressureProps> = ({
 			cursorRef.current.y = t.clientY;
 		};
 
-		window.addEventListener('mousemove', handleMouseMove);
-		window.addEventListener('touchmove', handleTouchMove, { passive: false });
+		window.addEventListener("mousemove", handleMouseMove);
+		window.addEventListener("touchmove", handleTouchMove, { passive: false });
 
 		if (containerRef.current) {
 			const { left, top, width, height } = containerRef.current.getBoundingClientRect();
@@ -77,8 +77,8 @@ const TextPressure: React.FC<TextPressureProps> = ({
 		}
 
 		return () => {
-			window.removeEventListener('mousemove', handleMouseMove);
-			window.removeEventListener('touchmove', handleTouchMove);
+			window.removeEventListener("mousemove", handleMouseMove);
+			window.removeEventListener("touchmove", handleTouchMove);
 		};
 	}, []);
 
@@ -108,8 +108,8 @@ const TextPressure: React.FC<TextPressureProps> = ({
 
 	useEffect(() => {
 		setSize();
-		window.addEventListener('resize', setSize);
-		return () => window.removeEventListener('resize', setSize);
+		window.addEventListener("resize", setSize);
+		return () => window.removeEventListener("resize", setSize);
 	}, [scale, text]);
 
 	useEffect(() => {
@@ -140,8 +140,8 @@ const TextPressure: React.FC<TextPressureProps> = ({
 
 					const wdth = width ? Math.floor(getAttr(d, 5, 200)) : 100;
 					const wght = weight ? Math.floor(getAttr(d, 100, 900)) : 400;
-					const italVal = italic ? getAttr(d, 0, 1).toFixed(2) : '0';
-					const alphaVal = alpha ? getAttr(d, 0, 1).toFixed(2) : '1';
+					const italVal = italic ? getAttr(d, 0, 1).toFixed(2) : "0";
+					const alphaVal = alpha ? getAttr(d, 0, 1).toFixed(2) : "1";
 
 					span.style.opacity = alphaVal;
 					span.style.fontVariationSettings = `'wght' ${wght}, 'wdth' ${wdth}, 'ital' ${italVal}`;
@@ -156,10 +156,7 @@ const TextPressure: React.FC<TextPressureProps> = ({
 	}, [width, weight, italic, alpha, chars.length]);
 
 	return (
-		<div
-			ref={containerRef}
-			className="relative w-full h-full overflow-hidden bg-transparent"
-		>
+		<div ref={containerRef} className="relative w-full h-full overflow-hidden bg-transparent">
 			<style>{`
         @font-face {
           font-family: '${fontFamily}';
@@ -184,28 +181,23 @@ const TextPressure: React.FC<TextPressureProps> = ({
 
 			<h1
 				ref={titleRef}
-				className={`text-pressure-title ${className} ${flex ? 'flex justify-between' : ''
-				} ${stroke ? 'stroke' : ''} uppercase text-center`}
+				className={`text-pressure-title ${className} ${
+					flex ? "flex justify-between" : ""
+				} ${stroke ? "stroke" : ""} uppercase text-center`}
 				style={{
 					fontFamily,
 					fontSize: fontSize,
 					lineHeight,
 					transform: `scale(1, ${scaleY})`,
-					transformOrigin: 'center top',
+					transformOrigin: "center top",
 					margin: 0,
 					fontWeight: 100,
 					color: stroke ? undefined : textColor,
-				}}
-			>
+				}}>
 				{chars.map((char, i) => (
-					<span
-						key={i}
-						ref={(el) => (spansRef.current[i] = el)}
-						data-char={char}
-						className="inline-block"
-					>
-                        {char}
-                    </span>
+					<span key={i} ref={(el) => (spansRef.current[i] = el)} data-char={char} className="inline-block">
+						{char}
+					</span>
 				))}
 			</h1>
 		</div>

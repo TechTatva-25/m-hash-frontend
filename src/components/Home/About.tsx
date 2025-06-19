@@ -31,12 +31,11 @@ export default function About(): React.JSX.Element {
 							inset 0 1px 0 rgba(255, 255, 255, 0.4),
 							inset 0 -1px 0 rgba(0, 0, 0, 0.1),
 							0 0 30px -5px rgba(255, 215, 0, 0.1)
-						`
+						`,
 					}}>
-					
 					{/* Subtle gold rim accent */}
 					<div className="absolute inset-0 rounded-3xl border border-gradient-to-r from-amber-300/20 via-yellow-400/30 to-amber-300/20 pointer-events-none"></div>
-					
+
 					{/* Enhanced Smooth Light Beam Effect */}
 					<div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-1500 ease-out">
 						{/* Multiple layered beams for smoother effect */}
@@ -44,12 +43,12 @@ export default function About(): React.JSX.Element {
 						<div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/12 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1800 ease-out delay-100"></div>
 						<div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-amber-100/8 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1600 ease-out delay-200 blur-xs"></div>
 					</div>
-					
+
 					{/* Enhanced inner glow with gold highlights */}
 					<div className="absolute inset-0 bg-gradient-to-br from-white/25 via-white/5 to-transparent rounded-3xl"></div>
 					<div className="absolute inset-0 bg-gradient-to-tl from-blue-500/5 via-transparent to-purple-500/5 rounded-3xl"></div>
 					<div className="absolute inset-0 bg-gradient-to-br from-amber-300/5 via-transparent to-yellow-400/3 rounded-3xl"></div>
-					
+
 					<div className="flex flex-col md:flex-row p-6 md:p-10 gap-10 relative z-10">
 						{/* Left side - Stack component */}
 						<div className="md:w-2/5 flex justify-center items-center">
@@ -79,18 +78,18 @@ export default function About(): React.JSX.Element {
 									style={{ fontFamily: "var(--font-playfair-display)" }}>
 									About Us
 								</motion.h2>
-								
+
 								{/* Clean underlines without gold */}
-								<motion.div 
+								<motion.div
 									className="absolute -bottom-3 left-0 h-1 bg-[hsl(var(--foreground))] rounded-full"
 									initial={{ width: 0 }}
 									whileInView={{ width: "100%" }}
 									transition={{ duration: 0.8, delay: 0.5 }}
 									viewport={{ once: true }}
 								/>
-								
+
 								{/* Subtle accent line */}
-								<motion.div 
+								<motion.div
 									className="absolute -bottom-5 left-0 h-[0.5px] bg-[hsl(var(--foreground))]/60 rounded-full"
 									initial={{ width: 0 }}
 									whileInView={{ width: "100%" }}
@@ -124,7 +123,7 @@ export default function About(): React.JSX.Element {
 							</motion.div>
 						</div>
 					</div>
-					
+
 					{/* Subtle gold corner accents */}
 					<div className="absolute top-4 right-4 w-8 h-8 bg-gradient-to-br from-amber-300/20 to-yellow-400/10 rounded-full blur-sm"></div>
 					<div className="absolute bottom-4 left-4 w-6 h-6 bg-gradient-to-tl from-yellow-400/15 to-amber-300/20 rounded-full blur-sm"></div>

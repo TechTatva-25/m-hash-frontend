@@ -143,24 +143,29 @@ export default function RegisterForm(): React.JSX.Element {
 							src="/M-Hash-Logo.png"
 							alt="M-Hash Logo"
 							fill
-							style={{ objectFit: 'contain' }}
+							style={{ objectFit: "contain" }}
 							className="drop-shadow-lg"
 						/>
 					</div>
 					<CardTitle className="text-2xl text-center text-white mb-4">Create an account</CardTitle>
 					<CardDescription className="text-center text-gray-300">
-						Join the hackathon community and showcase your skills. Please do not use your college-provided email.
+						Join the hackathon community and showcase your skills. Please do not use your college-provided
+						email.
 					</CardDescription>
 
 					<div className="mt-8 hidden lg:block">
 						<p className="text-center text-sm text-gray-400">
 							Already have an account?{" "}
-							<Link href="/login" className="font-semibold leading-6 text-gray-300 hover:text-white transition-colors">
+							<Link
+								href="/login"
+								className="font-semibold leading-6 text-gray-300 hover:text-white transition-colors">
 								Log in
 							</Link>
 						</p>
 						<p className="mt-2 text-center text-sm text-gray-400">
-							<Link href="/" className="font-semibold leading-6 text-gray-300 hover:text-white transition-colors">
+							<Link
+								href="/"
+								className="font-semibold leading-6 text-gray-300 hover:text-white transition-colors">
 								Go Home
 							</Link>
 						</p>
@@ -171,7 +176,7 @@ export default function RegisterForm(): React.JSX.Element {
 				<div className="lg:w-2/3 p-6">
 					<CardContent className="p-0">
 						<Form {...form}>
-							{/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+							{}
 							<form onSubmit={form.handleSubmit(onSubmit)}>
 								<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 									<FormField
@@ -224,8 +229,9 @@ export default function RegisterForm(): React.JSX.Element {
 												</div>
 												<Select onValueChange={field.onChange} defaultValue={field.value}>
 													<FormControl>
-														{/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
-														<SelectTrigger className={`bg-black/20 border-gray-500/30 text-white ${field.value ? "" : "text-gray-400"}`}>
+														{}
+														<SelectTrigger
+															className={`bg-black/20 border-gray-500/30 text-white ${field.value ? "" : "text-gray-400"}`}>
 															<SelectValue placeholder="Select your Gender" />
 														</SelectTrigger>
 													</FormControl>
@@ -249,7 +255,9 @@ export default function RegisterForm(): React.JSX.Element {
 												</div>
 												<FormControl>
 													<PhoneInput
-														onChange={(value): void => form.setValue("mobile_number", value)}
+														onChange={(value): void =>
+															form.setValue("mobile_number", value)
+														}
 														name="mobile_number"
 														defaultCountry={"IN"}
 														placeholder="Enter your phone number"
@@ -269,7 +277,9 @@ export default function RegisterForm(): React.JSX.Element {
 														<FormLabel className="text-gray-200">College</FormLabel>
 														<FormMessage className="text-xs" />
 													</div>
-													<Popover open={collegeComboboxOpen} onOpenChange={setCollegeComboboxOpen}>
+													<Popover
+														open={collegeComboboxOpen}
+														onOpenChange={setCollegeComboboxOpen}>
 														<PopoverTrigger asChild>
 															<Button
 																disabled={!colleges.length}
@@ -292,9 +302,14 @@ export default function RegisterForm(): React.JSX.Element {
 															<Command
 																className="bg-gray-900"
 																filter={(input, search): number =>
-																	input.toLowerCase().includes(search.toLowerCase()) ? 1 : 0
+																	input.toLowerCase().includes(search.toLowerCase())
+																		? 1
+																		: 0
 																}>
-																<CommandInput placeholder="Search" className="text-gray-200" />
+																<CommandInput
+																	placeholder="Search"
+																	className="text-gray-200"
+																/>
 																<CommandList className="w-full max-h-[200px]">
 																	<CommandEmpty>No college selected</CommandEmpty>
 																	<CommandGroup>
@@ -313,22 +328,27 @@ export default function RegisterForm(): React.JSX.Element {
 																							) ?? otherCollege;
 
 																						setCollegeOther(
-																							selectedCollege.name === otherCollege.name
+																							selectedCollege.name ===
+																								otherCollege.name
 																						);
 
 																						setCollegeValue({
-																							display: selectedCollege.name,
+																							display:
+																								selectedCollege.name,
 																							value: selectedCollege._id,
 																						});
 
-																						field.onChange(selectedCollege._id);
+																						field.onChange(
+																							selectedCollege._id
+																						);
 
 																						setCollegeComboboxOpen(false);
 																					}}>
 																					<span className="mr-2 flex h-4 w-4 justify-start">
 																						<Check
 																							className={cn(
-																								collegeValue.value === college._id
+																								collegeValue.value ===
+																									college._id
 																									? "opacity-100"
 																									: "opacity-0"
 																							)}
@@ -338,8 +358,12 @@ export default function RegisterForm(): React.JSX.Element {
 																						.split(" ")
 																						.map(
 																							(word) =>
-																								word.charAt(0).toUpperCase() +
-																								word.slice(1).toLowerCase()
+																								word
+																									.charAt(0)
+																									.toUpperCase() +
+																								word
+																									.slice(1)
+																									.toLowerCase()
 																						)
 																						.join(" ")}
 																				</CommandItem>
@@ -391,23 +415,30 @@ export default function RegisterForm(): React.JSX.Element {
 																	<Button
 																		variant="ghost"
 																		size="icon"
-																		className="h-5 w-5 rounded-full p-0 text-gray-400 hover:bg-transparent hover:text-gray-300"
-																	>
+																		className="h-5 w-5 rounded-full p-0 text-gray-400 hover:bg-transparent hover:text-gray-300">
 																		<Info className="h-4 w-4" />
-																		<span className="sr-only">Password requirements</span>
+																		<span className="sr-only">
+																			Password requirements
+																		</span>
 																	</Button>
 																</TooltipTrigger>
 																<TooltipContent
 																	align="end"
-																	className="w-[260px] p-0 bg-gray-900/95 border-gray-700"
-																>
+																	className="w-[260px] p-0 bg-gray-900/95 border-gray-700">
 																	<div className="p-3">
-																		<p className="text-sm font-medium text-gray-300 mb-2">Password Requirements:</p>
+																		<p className="text-sm font-medium text-gray-300 mb-2">
+																			Password Requirements:
+																		</p>
 																		<ul className="text-xs space-y-1 text-gray-400">
 																			{passwordRequirements.map((req) => {
-																				const isMet = checkRequirement(req.text, field.value);
+																				const isMet = checkRequirement(
+																					req.text,
+																					field.value
+																				);
 																				return (
-																					<li key={req.id} className="flex items-center">
+																					<li
+																						key={req.id}
+																						className="flex items-center">
 																						{isMet ? (
 																							<Check className="mr-1.5 h-3.5 w-3.5 text-green-500" />
 																						) : (
@@ -438,7 +469,8 @@ export default function RegisterForm(): React.JSX.Element {
 
 													{/* Only show non-matching error here, not the complex password requirements */}
 													{form.formState.errors.password &&
-														form.formState.errors.password.message !== "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character" && (
+														form.formState.errors.password.message !==
+															"Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character" && (
 															<p className="text-xs mt-1 text-gray-400">
 																{form.formState.errors.password.message as string}
 															</p>
@@ -447,10 +479,15 @@ export default function RegisterForm(): React.JSX.Element {
 													{/* Show password hint popover when focused */}
 													{passwordFocused && (
 														<div className="mt-2 p-3 bg-gray-900/95 border border-gray-700 rounded-md shadow-lg absolute z-10 right-0 w-[260px]">
-															<p className="text-sm font-medium text-gray-300 mb-2">Password Requirements:</p>
+															<p className="text-sm font-medium text-gray-300 mb-2">
+																Password Requirements:
+															</p>
 															<ul className="text-xs space-y-1 text-gray-400">
 																{passwordRequirements.map((req) => {
-																	const isMet = checkRequirement(req.text, field.value);
+																	const isMet = checkRequirement(
+																		req.text,
+																		field.value
+																	);
 																	return (
 																		<li key={req.id} className="flex items-center">
 																			{isMet ? (
@@ -476,8 +513,11 @@ export default function RegisterForm(): React.JSX.Element {
 											render={({ field }): React.JSX.Element => (
 												<FormItem className="h-full flex flex-col">
 													<div className="flex items-center justify-between">
-														<FormLabel className="text-gray-200">Confirm password</FormLabel>
-														<div className="h-5 w-5"></div> {/* Empty div to match the info button's space */}
+														<FormLabel className="text-gray-200">
+															Confirm password
+														</FormLabel>
+														<div className="h-5 w-5"></div>{" "}
+														{/* Empty div to match the info button's space */}
 													</div>
 													<FormControl>
 														<PasswordInput
@@ -503,10 +543,9 @@ export default function RegisterForm(): React.JSX.Element {
 									<div
 										className="absolute inset-0 bg-gradient-to-r from-indigo-500/50 via-purple-500/50 to-pink-500/50 opacity-80 group-hover:opacity-100 transition-opacity duration-500 rounded-lg"
 										style={{
-											backgroundSize: '200% 100%',
-											animation: 'gradient-shift 3s ease infinite',
-										}}
-									></div>
+											backgroundSize: "200% 100%",
+											animation: "gradient-shift 3s ease infinite",
+										}}></div>
 
 									{/* Glass overlay for frosted effect */}
 									<div className="absolute inset-0 backdrop-blur-md bg-white/10 rounded-lg border border-white/30"></div>
@@ -514,17 +553,15 @@ export default function RegisterForm(): React.JSX.Element {
 									{/* Apply SpotlightCard directly to the Button */}
 									<SpotlightCard
 										className="bg-transparent border-0 rounded-lg p-0 w-full"
-										spotlightColor="rgba(147, 51, 234, 0.3)"
-									>
+										spotlightColor="rgba(147, 51, 234, 0.3)">
 										<Button
 											type="submit"
 											disabled={disabled}
 											className={cn(
 												"relative w-full bg-transparent border-0 text-white py-5 rounded-lg text-base font-medium",
 												"shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:shadow-[0_0_20px_rgba(255,255,255,0.25)]",
-												"transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]",
-											)}
-										>
+												"transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]"
+											)}>
 											{disabled ? (
 												<HashLoader color="#ffffff" size={20} />
 											) : (
@@ -542,12 +579,16 @@ export default function RegisterForm(): React.JSX.Element {
 								<div className="mt-6 lg:hidden">
 									<p className="text-center text-sm text-gray-400">
 										Already have an account?{" "}
-										<Link href="/login" className="font-semibold leading-6 text-gray-300 hover:text-white transition-colors">
+										<Link
+											href="/login"
+											className="font-semibold leading-6 text-gray-300 hover:text-white transition-colors">
 											Log in
 										</Link>
 									</p>
 									<p className="mt-2 text-center text-sm text-gray-400">
-										<Link href="/" className="font-semibold leading-6 text-gray-300 hover:text-white transition-colors">
+										<Link
+											href="/"
+											className="font-semibold leading-6 text-gray-300 hover:text-white transition-colors">
 											Go Home
 										</Link>
 									</p>

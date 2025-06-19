@@ -27,20 +27,20 @@ html.dark .dark-overlay {
 
 /* Realistic gold shine animation */
 @keyframes goldShine {
-  0% {
-    background-position: -100% 0;
-  }
-  50% {
-    background-position: 100% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
+	0% {
+		background-position: -100% 0;
+	}
+	50% {
+		background-position: 100% 0;
+	}
+	100% {
+		background-position: 200% 0;
+	}
 }
 
 /* Enhanced gold text rendering */
 .gold-text {
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }

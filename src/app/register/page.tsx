@@ -11,8 +11,7 @@ export default function Register(): React.JSX.Element {
 				backgroundSize: "cover",
 				backgroundPosition: "center",
 				backgroundRepeat: "no-repeat",
-			}}
-		>
+			}}>
 			{/* Dark overlay for background */}
 			<div className="absolute inset-0 bg-black/50"></div>
 			<div className="relative z-10">

@@ -88,7 +88,7 @@ export default function LoginForm(): React.JSX.Element {
 							src="/M-Hash-Logo.png"
 							alt="M-Hash Logo"
 							fill
-							style={{ objectFit: 'contain' }}
+							style={{ objectFit: "contain" }}
 							className="drop-shadow-lg"
 						/>
 					</div>
@@ -100,12 +100,16 @@ export default function LoginForm(): React.JSX.Element {
 					<div className="mt-8 hidden lg:block">
 						<p className="text-center text-sm text-gray-400">
 							Don't have an account?{" "}
-							<Link href="/register" className="font-semibold leading-6 text-gray-300 hover:text-white transition-colors">
+							<Link
+								href="/register"
+								className="font-semibold leading-6 text-gray-300 hover:text-white transition-colors">
 								Sign up
 							</Link>
 						</p>
 						<p className="mt-2 text-center text-sm text-gray-400">
-							<Link href="/" className="font-semibold leading-6 text-gray-300 hover:text-white transition-colors">
+							<Link
+								href="/"
+								className="font-semibold leading-6 text-gray-300 hover:text-white transition-colors">
 								Go Home
 							</Link>
 						</p>
@@ -116,7 +120,7 @@ export default function LoginForm(): React.JSX.Element {
 				<div className="lg:w-2/3 p-6">
 					<CardContent className="p-0">
 						<Form {...form}>
-							{/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+							{}
 							<form onSubmit={form.handleSubmit(onSubmit)}>
 								<FormField
 									control={form.control}
@@ -147,7 +151,10 @@ export default function LoginForm(): React.JSX.Element {
 										<FormItem className="mt-4">
 											<div className="flex flex-row items-center justify-between">
 												<FormLabel className="text-gray-200">Password</FormLabel>
-												<ForgotPasswordDialog modalOpen={modalOpen} setModalOpen={setModalOpen} />
+												<ForgotPasswordDialog
+													modalOpen={modalOpen}
+													setModalOpen={setModalOpen}
+												/>
 											</div>
 											<FormControl>
 												<PasswordInput
@@ -167,10 +174,9 @@ export default function LoginForm(): React.JSX.Element {
 									<div
 										className="absolute inset-0 bg-gradient-to-r from-indigo-500/50 via-purple-500/50 to-pink-500/50 opacity-80 group-hover:opacity-100 transition-opacity duration-500 rounded-lg"
 										style={{
-											backgroundSize: '200% 100%',
-											animation: 'gradient-shift 3s ease infinite',
-										}}
-									></div>
+											backgroundSize: "200% 100%",
+											animation: "gradient-shift 3s ease infinite",
+										}}></div>
 
 									{/* Glass overlay for frosted effect */}
 									<div className="absolute inset-0 backdrop-blur-md bg-white/10 rounded-lg border border-white/30"></div>
@@ -178,15 +184,22 @@ export default function LoginForm(): React.JSX.Element {
 									<Button
 										type="submit"
 										disabled={disabled}
-										className="relative w-full bg-transparent border-0 text-white py-5 rounded-lg text-base font-medium shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:shadow-[0_0_20px_rgba(255,255,255,0.25)] transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]"
-									>
+										className="relative w-full bg-transparent border-0 text-white py-5 rounded-lg text-base font-medium shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:shadow-[0_0_20px_rgba(255,255,255,0.25)] transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]">
 										{disabled ? (
 											<HashLoader color="#ffffff" size={20} />
 										) : (
 											<>
 												<span className="relative z-10 drop-shadow-sm mr-2">Sign In</span>
-												<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 inline-block transition-transform duration-500 ease-in-out group-hover:translate-x-0.5 relative z-10" viewBox="0 0 20 20" fill="currentColor">
-													<path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													className="h-5 w-5 inline-block transition-transform duration-500 ease-in-out group-hover:translate-x-0.5 relative z-10"
+													viewBox="0 0 20 20"
+													fill="currentColor">
+													<path
+														fillRule="evenodd"
+														d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+														clipRule="evenodd"
+													/>
 												</svg>
 												{/* Subtle inner glow */}
 												<span className="absolute inset-0 bg-white/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
@@ -199,12 +212,16 @@ export default function LoginForm(): React.JSX.Element {
 								<div className="mt-6 lg:hidden">
 									<p className="text-center text-sm text-gray-400">
 										Don't have an account?{" "}
-										<Link href="/register" className="font-semibold leading-6 text-gray-300 hover:text-white transition-colors">
+										<Link
+											href="/register"
+											className="font-semibold leading-6 text-gray-300 hover:text-white transition-colors">
 											Sign up
 										</Link>
 									</p>
 									<p className="mt-2 text-center text-sm text-gray-400">
-										<Link href="/" className="font-semibold leading-6 text-gray-300 hover:text-white transition-colors">
+										<Link
+											href="/"
+											className="font-semibold leading-6 text-gray-300 hover:text-white transition-colors">
 											Go Home
 										</Link>
 									</p>
@@ -218,15 +235,27 @@ export default function LoginForm(): React.JSX.Element {
 			{/* Add gradient animation keyframes - smoother and more subtle */}
 			<style jsx global>{`
 				@keyframes gradient-animation {
-					0% { background-position: 0% 50%; }
-					50% { background-position: 100% 50%; }
-					100% { background-position: 0% 50%; }
+					0% {
+						background-position: 0% 50%;
+					}
+					50% {
+						background-position: 100% 50%;
+					}
+					100% {
+						background-position: 0% 50%;
+					}
 				}
-				
+
 				@keyframes gradient-shift {
-					0% { background-position: 0% 50%; }
-					50% { background-position: 100% 50%; }
-					100% { background-position: 0% 50%; }
+					0% {
+						background-position: 0% 50%;
+					}
+					50% {
+						background-position: 100% 50%;
+					}
+					100% {
+						background-position: 0% 50%;
+					}
 				}
 			`}</style>
 		</Card>
