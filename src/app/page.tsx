@@ -5,8 +5,7 @@ import { downloadRules } from "@/app/dashboard/rules/page";
 import About from "@/components/Home/About";
 import ContactForm from "@/components/Home/Contact";
 import Footer from "@/components/Home/Footer";
-import { GeneralTime } from "@/components/Home/GeneralTimeLine";
-import { GlobeDemo } from "@/components/Home/Globe";
+import { HighwayTimeline } from "@/components/Home/HighwayTimeline";
 import Navbar from "@/components/Home/Navbar";
 import { PSTabs } from "@/components/Home/PSTabs";
 import { Stats } from "@/components/Home/Stats";
@@ -26,7 +25,7 @@ export default function Home(): React.JSX.Element {
 					<Hero />
 				</div>
 			</main>
-			<section id="about" className="relative flex scroll-mt-20 flex-col gap-7 overflow-hidden ">
+			<section id="about" className="relative flex scroll-mt-20 flex-col gap-7 overflow-hidden">
 				<About />
 			</section>
 			<section
@@ -34,11 +33,11 @@ export default function Home(): React.JSX.Element {
 				className="relative flex scroll-mt-20 flex-col gap-7 overflow-hidden px-4 md:px-8 lg:px-16 xl:px-24">
 				<Stats />
 			</section>
-			<section
-				id="timeline"
-				className="relative flex scroll-mt-20 flex-col gap-7 overflow-hidden px-4 pt-12 md:px-8 lg:px-16 xl:px-24">
-				<h2 className="m-5 text-center text-3xl font-bold">The General Timeline of Events</h2>
-				<GeneralTime />
+			<section id="timeline" className="relative flex scroll-mt-20 flex-col gap-7 overflow-hidden w-full py-12">
+				<div className="w-[90%] max-w-[1600px] mx-auto">
+					<h2 className="mb-8 text-center text-3xl font-bold">The General Timeline of Events</h2>
+					<HighwayTimeline />
+				</div>
 			</section>
 			<section
 				id="problem-statements"
