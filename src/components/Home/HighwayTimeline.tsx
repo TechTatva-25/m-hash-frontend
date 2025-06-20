@@ -348,4 +348,3 @@ const generalTimeLine = [
 		image: "/assets/tm-4.jpg",
 	},
 ];
-

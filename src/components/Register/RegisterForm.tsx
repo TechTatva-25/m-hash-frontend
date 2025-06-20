@@ -78,18 +78,20 @@ export default function RegisterForm(): React.JSX.Element {
 
 	const router = useRouter();
 
-    const [otherCollege, setOtherCollege] = useState<College | null>(null);
+	const [otherCollege, setOtherCollege] = useState<College | null>(null);
 
-    useEffect(() => {
-	    if (colleges.length) {
-		    const found = colleges.find((college) => college.name.toLowerCase() === "other");
-		    setOtherCollege(found ?? {
-			    _id: "default_id",
-			    name: "OTHER",
-			    state: "UNKNOWN",
-		    });
-	}
-    }, [colleges]);
+	useEffect(() => {
+		if (colleges.length) {
+			const found = colleges.find((college) => college.name.toLowerCase() === "other");
+			setOtherCollege(
+				found ?? {
+					_id: "default_id",
+					name: "OTHER",
+					state: "UNKNOWN",
+				}
+			);
+		}
+	}, [colleges]);
 
 	const form = useForm<z.infer<typeof registerFormSchema>>({
 		mode: "onChange",
@@ -334,9 +336,16 @@ export default function RegisterForm(): React.JSX.Element {
 																									currentValue.toLowerCase()
 																							) ?? otherCollege;
 
-																						if (!selectedCollege || !otherCollege) return;
+																						if (
+																							!selectedCollege ||
+																							!otherCollege
+																						)
+																							return;
 
-																						setCollegeOther(selectedCollege._id === otherCollege._id);
+																						setCollegeOther(
+																							selectedCollege._id ===
+																								otherCollege._id
+																						);
 
 																						setCollegeValue({
 																							display:
