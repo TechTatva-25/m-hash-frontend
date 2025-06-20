@@ -46,7 +46,7 @@ export default function ContactForm(): React.JSX.Element {
 	const [disabled, setDisabled] = useState(false);
 	const { theme } = useTheme();
 	const isDark = theme === "dark";
-	
+
 	const form = useForm<z.infer<typeof ContactFormSchema>>({
 		mode: "onChange",
 		resolver: zodResolver(ContactFormSchema),
@@ -93,22 +93,20 @@ export default function ContactForm(): React.JSX.Element {
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.5 }}
-						viewport={{ once: true }}
-					>
-						<h2 
+						viewport={{ once: true }}>
+						<h2
 							className="text-4xl md:text-5xl font-bold text-[hsl(var(--foreground))]"
-							style={{ fontFamily: "var(--font-playfair-display)" }}
-						>
+							style={{ fontFamily: "var(--font-playfair-display)" }}>
 							Get In Touch
 						</h2>
-						<motion.div 
+						<motion.div
 							className="absolute -bottom-3 left-0 h-1 bg-[hsl(var(--foreground))] rounded-full"
 							initial={{ width: 0 }}
 							whileInView={{ width: "100%" }}
 							transition={{ duration: 0.8, delay: 0.5 }}
 							viewport={{ once: true }}
 						/>
-						<motion.div 
+						<motion.div
 							className="absolute -bottom-5 left-0 h-[0.5px] bg-[hsl(var(--foreground))]/60 rounded-full"
 							initial={{ width: 0 }}
 							whileInView={{ width: "80%" }}
@@ -116,17 +114,16 @@ export default function ContactForm(): React.JSX.Element {
 							viewport={{ once: true }}
 						/>
 					</motion.div>
-					<motion.p 
+					<motion.p
 						className="text-lg text-[hsl(var(--foreground))] max-w-2xl mx-auto opacity-80"
 						initial={{ opacity: 0 }}
 						whileInView={{ opacity: 0.8 }}
 						transition={{ duration: 0.5, delay: 0.3 }}
-						viewport={{ once: true }}
-					>
+						viewport={{ once: true }}>
 						Have questions or want to learn more about Manipal Hackathon? We're here to help!
 					</motion.p>
 				</div>
-				
+
 				<div className="max-w-5xl mx-auto">
 					<motion.div
 						className="group relative backdrop-blur-2xl bg-gradient-to-br from-white/20 via-white/10 to-transparent rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 hover:shadow-3xl"
@@ -148,15 +145,15 @@ export default function ContactForm(): React.JSX.Element {
 
 						{/* Squares background - only behind the form */}
 						<div className="absolute inset-0 w-full h-full z-0 pointer-events-none opacity-30">
-							<Squares 
-								speed={0.5} 
+							<Squares
+								speed={0.5}
 								squareSize={40}
 								direction="diagonal"
 								borderColor="rgba(99, 102, 241, 0.15)"
 								hoverFillColor="rgba(139, 92, 246, 0.1)"
 							/>
 						</div>
-						
+
 						{/* Subtle corner accents */}
 						<div className="absolute top-4 right-4 w-8 h-8 bg-gradient-to-br from-indigo-300/20 to-purple-400/10 rounded-full blur-sm"></div>
 						<div className="absolute bottom-4 left-4 w-6 h-6 bg-gradient-to-tl from-purple-400/15 to-indigo-300/20 rounded-full blur-sm"></div>
@@ -168,10 +165,13 @@ export default function ContactForm(): React.JSX.Element {
 									whileInView={{ opacity: 1, x: 0 }}
 									transition={{ duration: 0.5, delay: 0.2 }}
 									viewport={{ once: true }}
-									className="h-full"
-								>
-									<h3 className="text-2xl font-bold mb-6 text-[hsl(var(--foreground))]" style={{ fontFamily: "var(--font-playfair-display)" }}>Send Us a Message</h3>
-									
+									className="h-full">
+									<h3
+										className="text-2xl font-bold mb-6 text-[hsl(var(--foreground))]"
+										style={{ fontFamily: "var(--font-playfair-display)" }}>
+										Send Us a Message
+									</h3>
+
 									<Form {...form}>
 										<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
 											<FormField
@@ -179,7 +179,9 @@ export default function ContactForm(): React.JSX.Element {
 												name="email"
 												render={({ field }): React.JSX.Element => (
 													<FormItem>
-														<FormLabel className="text-[hsl(var(--foreground))]">Email</FormLabel>
+														<FormLabel className="text-[hsl(var(--foreground))]">
+															Email
+														</FormLabel>
 														<FormControl>
 															<div className="relative">
 																<Input
@@ -200,26 +202,27 @@ export default function ContactForm(): React.JSX.Element {
 												name="message"
 												render={({ field }): React.JSX.Element => (
 													<FormItem>
-														<FormLabel className="text-[hsl(var(--foreground))]">Message</FormLabel>
+														<FormLabel className="text-[hsl(var(--foreground))]">
+															Message
+														</FormLabel>
 														<FormControl>
-															<Textarea 
-																{...field} 
-																placeholder="Enter your message" 
-																className="min-h-[150px] bg-white/15 border-0 focus:ring-1 focus:ring-indigo-500 text-[hsl(var(--foreground))] placeholder:text-gray-500" 
+															<Textarea
+																{...field}
+																placeholder="Enter your message"
+																className="min-h-[150px] bg-white/15 border-0 focus:ring-1 focus:ring-indigo-500 text-[hsl(var(--foreground))] placeholder:text-gray-500"
 															/>
 														</FormControl>
 														<FormMessage />
 													</FormItem>
 												)}
 											/>
-											
+
 											{/* Glassmorphic Button */}
 											<div className="mt-8 relative group">
 												<button
 													type="submit"
 													disabled={disabled}
-													className="group relative w-full inline-flex items-center justify-center px-8 py-4 text-base font-medium text-white transition-all duration-500 ease-out hover:scale-105 active:scale-95"
-												>
+													className="group relative w-full inline-flex items-center justify-center px-8 py-4 text-base font-medium text-white transition-all duration-500 ease-out hover:scale-105 active:scale-95">
 													{/* Outer border ring */}
 													<div className="absolute inset-0 rounded-full border-2 border-white/20 transition-all duration-300 group-hover:border-white/40"></div>
 
@@ -239,13 +242,12 @@ export default function ContactForm(): React.JSX.Element {
 														) : (
 															<>
 																<FiSend className="mr-2" />
-																<span 
+																<span
 																	className="tracking-wider font-medium"
 																	style={{
 																		fontFamily: "var(--font-playfair-display)",
 																		textShadow: "0 2px 8px rgba(0,0,0,0.5)",
-																	}}
-																>
+																	}}>
 																	Send Message
 																</span>
 															</>
@@ -257,7 +259,7 @@ export default function ContactForm(): React.JSX.Element {
 									</Form>
 								</motion.div>
 							</div>
-							
+
 							{/* Contact List */}
 							<div className="lg:w-1/2 p-8 border-t lg:border-t-0 lg:border-l-0 relative z-10">
 								<motion.div
@@ -265,14 +267,19 @@ export default function ContactForm(): React.JSX.Element {
 									whileInView={{ opacity: 1, x: 0 }}
 									transition={{ duration: 0.5, delay: 0.4 }}
 									viewport={{ once: true }}
-									className="h-full"
-								>
-									<h3 className="text-2xl font-bold mb-6 text-[hsl(var(--foreground))]" style={{ fontFamily: "var(--font-playfair-display)" }}>Contact Persons</h3>
-									
+									className="h-full">
+									<h3
+										className="text-2xl font-bold mb-6 text-[hsl(var(--foreground))]"
+										style={{ fontFamily: "var(--font-playfair-display)" }}>
+										Contact Persons
+									</h3>
+
 									<div className="space-y-8">
 										{Object.entries(contactGroups).map(([role, contacts], index) => (
 											<div key={index}>
-												<h4 className="text-xl font-medium mb-4 text-[hsl(var(--foreground))]">{role}</h4>
+												<h4 className="text-xl font-medium mb-4 text-[hsl(var(--foreground))]">
+													{role}
+												</h4>
 												<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 													{contacts.map((contact, idx) => (
 														<motion.div
@@ -284,14 +291,14 @@ export default function ContactForm(): React.JSX.Element {
 															whileHover={{ scale: 1.03 }}
 															className="backdrop-blur-lg bg-white/15 rounded-xl p-4 transition-all hover:bg-white/25 mx-auto w-full"
 															style={{
-																boxShadow: "0 10px 30px -10px rgba(0, 0, 0, 0.05)"
-															}}
-														>
-															<p className="font-bold text-[hsl(var(--foreground))]">{contact.name}</p>
-															<Link 
+																boxShadow: "0 10px 30px -10px rgba(0, 0, 0, 0.05)",
+															}}>
+															<p className="font-bold text-[hsl(var(--foreground))]">
+																{contact.name}
+															</p>
+															<Link
 																href={`tel:${contact.phone}`}
-																className="flex items-center mt-2 text-indigo-500 hover:text-indigo-300 transition-colors"
-															>
+																className="flex items-center mt-2 text-indigo-500 hover:text-indigo-300 transition-colors">
 																<BsTelephone className="mr-2" />
 																{contact.phone}
 															</Link>
