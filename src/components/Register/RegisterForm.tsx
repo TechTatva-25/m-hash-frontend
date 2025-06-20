@@ -6,7 +6,7 @@ import { Check, ChevronsUpDown, Info, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { isValidPhoneNumber } from "react-phone-number-input";
 import { HashLoader } from "react-spinners";
@@ -78,11 +78,18 @@ export default function RegisterForm(): React.JSX.Element {
 
 	const router = useRouter();
 
-	const otherCollege: College = colleges.find((college) => college.name === "OTHER") ?? {
-		_id: "default_id",
-		name: "OTHER",
-		state: "UNKNOWN",
-	};
+    const [otherCollege, setOtherCollege] = useState<College | null>(null);
+
+    useEffect(() => {
+	    if (colleges.length) {
+		    const found = colleges.find((college) => college.name.toLowerCase() === "other");
+		    setOtherCollege(found ?? {
+			    _id: "default_id",
+			    name: "OTHER",
+			    state: "UNKNOWN",
+		    });
+	}
+    }, [colleges]);
 
 	const form = useForm<z.infer<typeof registerFormSchema>>({
 		mode: "onChange",
@@ -324,13 +331,12 @@ export default function RegisterForm(): React.JSX.Element {
 																							colleges.find(
 																								(college) =>
 																									college.name.toLocaleLowerCase() ===
-																									currentValue
+																									currentValue.toLowerCase()
 																							) ?? otherCollege;
 
-																						setCollegeOther(
-																							selectedCollege.name ===
-																								otherCollege.name
-																						);
+																						if (!selectedCollege || !otherCollege) return;
+
+																						setCollegeOther(selectedCollege._id === otherCollege._id);
 
 																						setCollegeValue({
 																							display:
