@@ -33,9 +33,9 @@ export default function Home(): React.JSX.Element {
 				className="relative flex scroll-mt-20 flex-col gap-7 overflow-hidden px-4 md:px-8 lg:px-16 xl:px-24">
 				<Stats />
 			</section>
-			<section id="timeline" className="relative flex scroll-mt-20 flex-col gap-7 overflow-hidden w-full py-12">
-				<div className="w-[90%] max-w-[1600px] mx-auto">
-					<h2 className="mb-8 text-center text-3xl font-bold">The General Timeline of Events</h2>
+			<section id="timeline" className="relative flex scroll-mt-20 flex-col gap-7 overflow-hidden w-full py-16">
+				<div className="w-[95%] max-w-[1800px] mx-auto">
+					<h2 className="mb-10 text-center text-3xl font-bold">The General Timeline of Events</h2>
 					<HighwayTimeline />
 				</div>
 			</section>

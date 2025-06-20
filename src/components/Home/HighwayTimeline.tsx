@@ -1,8 +1,10 @@
 "use client";
 import Image from "next/image";
-import React, { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Hyperspeed from "./hyperspeed";
+import React, { useState } from "react";
+import { useTheme } from "next-themes";
+import { Calendar, Clock, Flag, Target, Sparkles } from "lucide-react";
+import { GlowingEffect } from "@/components/ui/glowing-effect";
+
 
 interface TimelineStage {
 	date: string;
@@ -12,275 +14,175 @@ interface TimelineStage {
 }
 
 export function HighwayTimeline({ timeline = generalTimeLine }: { timeline?: TimelineStage[] }): React.JSX.Element {
-	const [activeIndex, setActiveIndex] = useState(0);
-	const [isHyperSpeed, setIsHyperSpeed] = useState(false);
-	const timelineRef = useRef<HTMLDivElement>(null);
-	const dragConstraintsRef = useRef<HTMLDivElement>(null);
-	const [isTransitioning, setIsTransitioning] = useState(false);
+	const { theme } = useTheme();
+	const isDarkTheme = theme !== "light";
 
-	// Transition to next stage with improved timing
-	const nextStage = () => {
-		if (isTransitioning) return;
-		setIsTransitioning(true);
-		setIsHyperSpeed(true);
+	const iconMap = [
+		<Flag key="flag" className="h-5 w-5 text-purple-600 dark:text-purple-400" />,
+		<Target key="target" className="h-5 w-5 text-blue-600 dark:text-blue-400" />,
+		<Calendar key="calendar" className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />,
+		<Clock key="clock" className="h-5 w-5 text-cyan-600 dark:text-cyan-400" />,
+	];
 
-		setTimeout(() => {
-			setActiveIndex((prev) => (prev + 1) % timeline.length);
-			setTimeout(() => {
-				setIsHyperSpeed(false);
-				setIsTransitioning(false);
-			}, 600);
-		}, 400);
-	};
-
-	// Transition to previous stage with improved timing
-	const prevStage = () => {
-		if (isTransitioning) return;
-		setIsTransitioning(true);
-		setIsHyperSpeed(true);
-
-		setTimeout(() => {
-			setActiveIndex((prev) => (prev - 1 + timeline.length) % timeline.length);
-			setTimeout(() => {
-				setIsHyperSpeed(false);
-				setIsTransitioning(false);
-			}, 600);
-		}, 400);
-	};
-
-	const handleDragEnd = (event: any, info: any) => {
-		if (isTransitioning) return;
-
-		if (info.offset.x < -100) {
-			nextStage();
-		} else if (info.offset.x > 100) {
-			prevStage();
-		}
-	};
-
-	// Handle scroll events to navigate between stages
-	useEffect(() => {
-		const handleScroll = (event: WheelEvent) => {
-			if (timelineRef.current && timelineRef.current.contains(event.target as Node)) {
-				event.preventDefault();
-
-				if (isTransitioning) return;
-
-				// Detect scroll direction
-				if (event.deltaY > 20) {
-					nextStage();
-				} else if (event.deltaY < -20) {
-					prevStage();
-				}
-			}
-		};
-
-		// Add wheel event listener with passive: false to allow preventDefault
-		window.addEventListener("wheel", handleScroll, { passive: false });
-
-		return () => {
-			window.removeEventListener("wheel", handleScroll);
-		};
-	}, [isTransitioning]);
-
-	// Handle keyboard navigation
-	useEffect(() => {
-		const handleKeyDown = (event: KeyboardEvent) => {
-			if (isTransitioning) return;
-
-			if (event.key === "ArrowRight") {
-				nextStage();
-			} else if (event.key === "ArrowLeft") {
-				prevStage();
-			}
-		};
-
-		window.addEventListener("keydown", handleKeyDown);
-		return () => {
-			window.removeEventListener("keydown", handleKeyDown);
-		};
-	}, [isTransitioning]);
+	// Define grid area configurations for each item
+	const gridAreas = [
+		"md:[grid-area:1/1/3/7] xl:[grid-area:1/1/3/7]", // Larger item spanning 2 rows
+		"md:[grid-area:1/7/2/13] xl:[grid-area:1/7/2/13]", // Standard width item
+		"md:[grid-area:3/1/5/7] xl:[grid-area:2/7/4/13]", // Medium height item
+		"md:[grid-area:2/7/3/13] xl:[grid-area:3/1/4/7]", // Adjusted to match step 2 height
+	];
 
 	return (
-		<motion.div
-			className="relative backdrop-blur-2xl bg-gradient-to-br from-white/40 via-white/30 to-white/20 dark:from-white/10 dark:via-white/5 dark:to-white/2 border border-black/10 dark:border-white/15 rounded-3xl shadow-2xl overflow-hidden transition-all duration-500"
-			initial={{ opacity: 0, y: 30 }}
-			whileInView={{ opacity: 1, y: 0 }}
-			transition={{ duration: 0.7 }}
-			viewport={{ once: true }}
-			style={{
-				boxShadow: `
-          0 20px 50px -12px rgba(0, 0, 0, 0.2),
-          0 0 0 1px rgba(255, 255, 255, 0.2),
-          inset 0 1px 1px 0 rgba(255, 255, 255, 0.5),
-          inset 0 -1px 1px 0 rgba(255, 255, 255, 0.2)
-        `,
-			}}>
-			<div className="absolute inset-0 opacity-50">
-				<div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/5 dark:to-purple-500/5"></div>
-				<div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-black/20 dark:via-white/40 to-transparent"></div>
-				<div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-black/10 dark:via-white/10 to-transparent"></div>
-			</div>
-
-			<div className="relative w-full h-[550px] overflow-hidden" ref={timelineRef}>
-				{/* Background Hyperspeed Effect - Centered properly */}
-				<div className="absolute inset-0 z-0 flex items-center justify-center">
-					<div className="absolute inset-0 transform-gpu translate-x-[-5%]">
-						<Hyperspeed
-							effectOptions={{
-								speedUp: isHyperSpeed ? 2 : 0.2, // Slower default speed, smoother acceleration
-								length: 800, // Longer loop length
-								colors: {
-									roadColor: 0x1a1a24, // Lighter road color (was 0x0f0f13)
-									islandColor: 0x24243a, // Lighter island color (was 0x13131a)
-									background: 0x121220, // Lighter background (was 0x070711)
-									shoulderLines: 0xa855f7, // Brighter purple (was 0x9333ea)
-									brokenLines: 0x818cf8, // Brighter indigo (was 0x6366f1)
-									leftCars: [0xd8b4fe, 0xa78bfa, 0xc084fc], // Brighter purple/violet shades
-									rightCars: [0x818cf8, 0x6366f1, 0x60a5fa], // Brighter blue/indigo shades
-									sticks: 0xc084fc, // Brighter purple for sticks (was 0x9333ea)
-								},
-								isHyper: isHyperSpeed,
-								fov: isHyperSpeed ? 100 : 90,
-								// Adjust distances for better center alignment
-								roadWidth: 20, // Slightly wider road
-								islandWidth: 2.5,
-								lightStickWidth: [0.15, 0.6], // Wider light sticks for visibility
-								lightPairsPerRoadWay: 80, // More lights for smoother appearance
-								totalSideLightSticks: 30, // More side sticks
-								carLightsLength: [800 * 0.06, 800 * 0.4], // Adjusted for longer path
-								movingAwaySpeed: [40, 60], // Slower movement for smoother flow
-								movingCloserSpeed: [-80, -120], // Slower movement for smoother flow
-							}}
-						/>
-					</div>
-				</div>
-
-				{/* Navigation Controls - Only arrows */}
-				<div className="absolute top-1/2 left-8 right-8 sm:left-12 sm:right-12 z-20 flex justify-between transform -translate-y-1/2 pointer-events-none">
-					<motion.button
-						initial={{ opacity: 0.7 }}
-						whileHover={{
-							opacity: 1,
-							scale: 1.1,
-							boxShadow: "0 0 15px 2px rgba(0, 0, 0, 0.3)",
-						}}
-						transition={{ duration: 0.2 }}
-						onClick={prevStage}
-						className="p-4 rounded-full bg-black/20 dark:bg-white/10 backdrop-blur-md text-black dark:text-white shadow-lg pointer-events-auto transition-all border border-black/20 dark:border-white/20"
-						aria-label="Previous Stage">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="28"
-							height="28"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							strokeWidth="2"
-							strokeLinecap="round"
-							strokeLinejoin="round">
-							<polyline points="15 18 9 12 15 6"></polyline>
-						</svg>
-					</motion.button>
-					<motion.button
-						initial={{ opacity: 0.7 }}
-						whileHover={{
-							opacity: 1,
-							scale: 1.1,
-							boxShadow: "0 0 15px 2px rgba(0, 0, 0, 0.3)",
-						}}
-						transition={{ duration: 0.2 }}
-						onClick={nextStage}
-						className="p-4 rounded-full bg-black/20 dark:bg-white/10 backdrop-blur-md text-black dark:text-white shadow-lg pointer-events-auto transition-all border border-black/20 dark:border-white/20"
-						aria-label="Next Stage">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="28"
-							height="28"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							strokeWidth="2"
-							strokeLinecap="round"
-							strokeLinejoin="round">
-							<polyline points="9 18 15 12 9 6"></polyline>
-						</svg>
-					</motion.button>
-				</div>
-
-				{/* Content Area */}
-				<div className="absolute inset-0 z-10 flex items-center justify-center">
-					<div ref={dragConstraintsRef} className="w-full max-w-full px-6 py-8">
-						<AnimatePresence mode="wait">
-							<motion.div
-								key={activeIndex}
-								initial={{ opacity: 0, x: 200 }}
-								animate={{ opacity: 1, x: 0 }}
-								exit={{ opacity: 0, x: -200 }}
-								transition={{ type: "spring", stiffness: 100, damping: 20 }}
-								drag="x"
-								dragConstraints={{ left: 0, right: 0 }}
-								dragElastic={0.2}
-								onDragEnd={handleDragEnd}
-								className="w-full mx-auto">
-								<div className="bg-white/20 dark:bg-white/10 backdrop-blur-md rounded-xl overflow-hidden shadow-2xl relative border border-black/10 dark:border-white/15">
-									<div className="absolute inset-0 bg-gradient-to-br from-black/5 dark:from-white/10 via-transparent to-purple-500/5 pointer-events-none"></div>
-									<div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-black/20 dark:via-white/30 to-transparent"></div>
-									<div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-black/10 dark:via-white/10 to-transparent"></div>
-
-									<div className="grid grid-cols-1 lg:grid-cols-2 gap-0 relative">
-										{/* Image Section */}
-										<div className="relative h-80 lg:h-[350px] overflow-hidden">
-											<div className="absolute inset-0 bg-black/30 z-10"></div>
-											<Image
-												src={timeline[activeIndex].image}
-												alt={timeline[activeIndex].badge}
-												fill
-												className="object-cover z-0"
-												priority
-											/>
-											<div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-20"></div>
-											<div className="absolute bottom-0 left-0 p-6 md:p-8 z-30">
-												<span className="inline-block px-6 py-2 mb-3 text-sm font-semibold text-white rounded-full bg-gradient-to-r from-purple-500/90 to-purple-700/90 backdrop-blur-md shadow-lg border border-white/20">
-													{timeline[activeIndex].badge}
-												</span>
-												<h3 className="text-white text-xl md:text-2xl font-medium drop-shadow-md">
-													{timeline[activeIndex].date}
-												</h3>
-											</div>
-										</div>
-
-										{/* Content Section */}
-										<div className="p-6 md:p-8 lg:p-10 relative">
-											<div className="prose prose-lg dark:prose-invert max-w-none">
-												{timeline[activeIndex].description}
-											</div>
-
-											<div className="mt-8 flex items-center gap-4">
-												<span className="text-sm text-white/70 font-medium">
-													Stage {activeIndex + 1} of {timeline.length}
-												</span>
-												<div className="flex-1 h-2 bg-white/10 rounded-full overflow-hidden backdrop-blur-sm">
-													<div
-														className="h-full bg-gradient-to-r from-purple-500 to-blue-500 relative"
-														style={{
-															width: `${((activeIndex + 1) / timeline.length) * 100}%`,
-														}}>
-														<div className="absolute top-0 inset-x-0 h-px bg-white/40"></div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</motion.div>
-						</AnimatePresence>
-					</div>
-				</div>
-			</div>
-		</motion.div>
+		<div className="w-full py-8 px-4 md:px-6 lg:px-8">
+			<ul className="grid grid-cols-1 gap-6 md:grid-cols-12 md:grid-rows-4 lg:gap-6 max-w-7xl mx-auto">
+				{timeline.map((stage, index) => (
+					<TimelineItem
+						key={index}
+						index={index}
+						stage={stage}
+						icon={iconMap[index % iconMap.length]}
+						gridArea={gridAreas[index % gridAreas.length]}
+					/>
+				))}
+			</ul>
+		</div>
 	);
 }
+
+interface TimelineItemProps {
+	index: number;
+	stage: TimelineStage;
+	icon: React.ReactNode;
+	gridArea: string;
+}
+
+const TimelineItem = ({ index, stage, icon, gridArea }: TimelineItemProps) => {
+	const { theme } = useTheme();
+	const isDarkTheme = theme !== "light";
+
+	// Adjusted image height with more consistency
+	const imageHeight = "h-36";
+
+	return (
+		<li className={`min-h-[14rem] list-none ${gridArea}`}>
+			<div
+				className="relative h-full rounded-2xl border border-gray-200/40 dark:border-white/10 p-2 md:p-2.5 cursor-pointer hover:border-purple-400/60 dark:hover:border-purple-500/60 transition-all duration-300 will-change-transform hover:shadow-lg hover:-translate-y-1 group"
+				style={{
+					background: isDarkTheme
+						? 'rgba(0, 0, 0, 0.2)'
+						: 'rgba(255, 255, 255, 0.7)',
+					backdropFilter: 'blur(12px)',
+					boxShadow: isDarkTheme
+						? '0 8px 30px rgba(0, 0, 0, 0.3)'
+						: '0 8px 30px rgba(0, 0, 0, 0.06)'
+				}}
+			>
+				<GlowingEffect
+					spread={50}
+					glow={true}
+					disabled={false}
+					proximity={80}
+					inactiveZone={0.01}
+					borderWidth={1.5}
+				/>
+				<div
+					className="relative flex h-full flex-col rounded-xl p-3 md:p-4 dark:shadow-[0px_0px_35px_0px_#2D2D2D] overflow-hidden"
+					style={{
+						background: isDarkTheme
+							? 'rgba(15, 15, 25, 0.6)'
+							: 'rgba(255, 255, 255, 0.8)',
+						backdropFilter: 'blur(8px)',
+						borderWidth: '0.75px',
+						borderStyle: 'solid',
+						borderColor: isDarkTheme
+							? 'rgba(255, 255, 255, 0.08)'
+							: 'rgba(255, 255, 255, 0.8)'
+					}}
+				>
+					<div className="relative flex flex-col h-full justify-between gap-2">
+						<div className="flex items-center justify-between mb-1">
+							<div
+								className="w-fit rounded-lg border p-2 backdrop-blur-sm"
+								style={{
+									background: isDarkTheme
+										? 'rgba(0, 0, 0, 0.4)'
+										: 'rgba(255, 255, 255, 0.9)',
+									borderColor: isDarkTheme
+										? 'rgba(255, 255, 255, 0.1)'
+										: 'rgba(190, 190, 255, 0.5)'
+								}}
+							>
+								{icon}
+							</div>
+							<span
+								className="text-sm font-medium px-3 py-1 rounded-full"
+								style={{
+									background: isDarkTheme
+										? 'rgba(0, 0, 0, 0.4)'
+										: 'rgba(110, 110, 234, 0.1)',
+									color: isDarkTheme
+										? 'rgba(180, 180, 220, 0.8)'
+										: 'rgba(80, 70, 170, 0.9)'
+								}}
+							>
+								Step {index + 1}
+							</span>
+						</div>
+
+						{/* Image section with fixed dimensions */}
+						<div className={`relative ${imageHeight} w-full mb-2 overflow-hidden rounded-lg flex-shrink-0`}>
+							<div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10"></div>
+							<Image
+								src={stage.image}
+								alt={stage.badge}
+								fill
+								className="object-cover transition-transform group-hover:scale-105 duration-500"
+								sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+							/>
+						</div>
+
+						<div className="flex flex-col flex-1 min-h-0">
+							<h3
+								className="text-xl/[1.3] font-semibold text-balance truncate"
+								style={{
+									color: isDarkTheme
+										? 'rgba(255, 255, 255, 0.95)'
+										: 'rgba(30, 30, 60, 0.95)'
+								}}
+							>
+								{stage.badge}
+							</h3>
+							<h2
+								className="text-sm/[1.1] mb-1.5"
+								style={{
+									color: isDarkTheme
+										? 'rgba(200, 200, 230, 0.8)'
+										: 'rgba(80, 70, 120, 0.9)'
+								}}
+							>
+								{stage.date}
+							</h2>
+
+							{/* Description text with increased size for better readability */}
+							<div
+								className="text-sm/[1.4] overflow-y-auto flex-1 pr-1.5 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-700 scrollbar-track-transparent"
+								style={{
+									color: isDarkTheme
+										? 'rgba(200, 200, 230, 0.7)'
+										: 'rgba(60, 60, 100, 0.8)',
+									WebkitMaskImage: 'linear-gradient(to bottom, black 90%, transparent 100%)',
+									maskImage: 'linear-gradient(to bottom, black 90%, transparent 100%)'
+								}}
+							>
+								{stage.description}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+	);
+};
 
 const generalTimeLine = [
 	{
@@ -348,4 +250,3 @@ const generalTimeLine = [
 		image: "/assets/tm-4.jpg",
 	},
 ];
-
