@@ -85,7 +85,7 @@ export default function ContactForm(): React.JSX.Element {
 	};
 
 	return (
-		<section id="contact" className="py-20 relative min-h-screen">
+		<section id="contact" className="pb-20 relative min-h-screen">
 			<div className="container mx-auto px-4 relative z-10">
 				<div className="text-center mb-16">
 					<motion.div
@@ -159,21 +159,21 @@ export default function ContactForm(): React.JSX.Element {
 						<div className="absolute bottom-4 left-4 w-6 h-6 bg-gradient-to-tl from-purple-400/15 to-indigo-300/20 rounded-full blur-sm"></div>
 						<div className="flex flex-col lg:flex-row">
 							{/* Contact Form */}
-							<div className="lg:w-1/2 p-8 relative z-10">
+							<div className="lg:w-1/2 p-8 relative z-10 flex items-center justify-center">
 								<motion.div
 									initial={{ opacity: 0, x: -20 }}
 									whileInView={{ opacity: 1, x: 0 }}
 									transition={{ duration: 0.5, delay: 0.2 }}
 									viewport={{ once: true }}
-									className="h-full">
+									className="w-full flex flex-col justify-center">
 									<h3
-										className="text-2xl font-bold mb-6 text-[hsl(var(--foreground))]"
+										className="text-2xl font-bold mb-6 text-[hsl(var(--foreground))] text-center"
 										style={{ fontFamily: "var(--font-playfair-display)" }}>
 										Send Us a Message
 									</h3>
 
 									<Form {...form}>
-										<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+										<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 w-full">
 											<FormField
 												control={form.control}
 												name="email"
@@ -188,9 +188,9 @@ export default function ContactForm(): React.JSX.Element {
 																	{...field}
 																	type="email"
 																	placeholder="Enter your email"
-																	className="pl-10 bg-white/15 border-0 focus:ring-1 focus:ring-indigo-500 text-[hsl(var(--foreground))] placeholder:text-gray-500"
+																	className="pl-10 bg-white/30 border-0 shadow-inner focus:ring-1 focus:ring-white/50 focus:shadow-[0_0_10px_rgba(255,255,255,0.2)] text-gray-800 placeholder:text-gray-500/70 rounded-lg backdrop-blur-sm"
 																/>
-																<HiOutlineMail className="absolute left-3 top-3 text-muted-foreground" />
+																<HiOutlineMail className="absolute left-3 top-3 text-gray-600" />
 															</div>
 														</FormControl>
 														<FormMessage />
@@ -209,7 +209,7 @@ export default function ContactForm(): React.JSX.Element {
 															<Textarea
 																{...field}
 																placeholder="Enter your message"
-																className="min-h-[150px] bg-white/15 border-0 focus:ring-1 focus:ring-indigo-500 text-[hsl(var(--foreground))] placeholder:text-gray-500"
+																className="min-h-[150px] bg-white/30 border-0 shadow-inner focus:ring-1 focus:ring-white/50 focus:shadow-[0_0_10px_rgba(255,255,255,0.2)] text-gray-800 placeholder:text-gray-500/70 rounded-lg backdrop-blur-sm"
 															/>
 														</FormControl>
 														<FormMessage />
@@ -243,7 +243,7 @@ export default function ContactForm(): React.JSX.Element {
 															<>
 																<FiSend className="mr-2" />
 																<span
-																	className="tracking-wider font-medium"
+																	className="tracking-wider font-medium text-center cursor-pointer"
 																	style={{
 																		fontFamily: "var(--font-playfair-display)",
 																		textShadow: "0 2px 8px rgba(0,0,0,0.5)",
@@ -260,16 +260,25 @@ export default function ContactForm(): React.JSX.Element {
 								</motion.div>
 							</div>
 
+							{/* Vertical Divider */}
+							<div className="hidden lg:block absolute left-1/2 top-[15%] bottom-[15%] w-[1px] bg-gradient-to-b from-white/5 via-white/20 to-white/5 transform -translate-x-1/2">
+								{/* Glow effect */}
+								<div className="absolute inset-0 blur-sm bg-gradient-to-b from-indigo-300/10 via-white/20 to-purple-300/10"></div>
+								{/* Accent dots */}
+								<div className="absolute w-1.5 h-1.5 bg-white/40 rounded-full left-1/2 top-0 transform -translate-x-1/2 -translate-y-1/2 blur-[1px]"></div>
+								<div className="absolute w-1.5 h-1.5 bg-white/40 rounded-full left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2 blur-[1px]"></div>
+							</div>
+
 							{/* Contact List */}
-							<div className="lg:w-1/2 p-8 border-t lg:border-t-0 lg:border-l-0 relative z-10">
+							<div className="lg:w-1/2 p-8 border-t lg:border-t-0 lg:border-l-0 relative z-10 flex items-center justify-center">
 								<motion.div
 									initial={{ opacity: 0, x: 20 }}
 									whileInView={{ opacity: 1, x: 0 }}
 									transition={{ duration: 0.5, delay: 0.4 }}
 									viewport={{ once: true }}
-									className="h-full">
+									className="w-full flex flex-col justify-center">
 									<h3
-										className="text-2xl font-bold mb-6 text-[hsl(var(--foreground))]"
+										className="text-2xl font-bold mb-6 text-[hsl(var(--foreground))] text-center"
 										style={{ fontFamily: "var(--font-playfair-display)" }}>
 										Contact Persons
 									</h3>
@@ -277,9 +286,7 @@ export default function ContactForm(): React.JSX.Element {
 									<div className="space-y-8">
 										{Object.entries(contactGroups).map(([role, contacts], index) => (
 											<div key={index}>
-												<h4 className="text-xl font-medium mb-4 text-[hsl(var(--foreground))]">
-													{role}
-												</h4>
+												<h4 className="text-xl font-medium mb-4 text-[hsl(var(--foreground))] text-center">{role}</h4>
 												<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 													{contacts.map((contact, idx) => (
 														<motion.div
@@ -289,16 +296,14 @@ export default function ContactForm(): React.JSX.Element {
 															transition={{ duration: 0.3, delay: 0.1 * idx }}
 															viewport={{ once: true }}
 															whileHover={{ scale: 1.03 }}
-															className="backdrop-blur-lg bg-white/15 rounded-xl p-4 transition-all hover:bg-white/25 mx-auto w-full"
+															className={`backdrop-blur-lg bg-white/40 rounded-xl p-4 transition-all hover:bg-white/50 w-full ${contacts.length % 2 !== 0 && idx === contacts.length - 1 ? 'md:col-span-2 md:w-[calc(50%-0.5rem)] md:mx-auto' : ''}`}
 															style={{
-																boxShadow: "0 10px 30px -10px rgba(0, 0, 0, 0.05)",
+																boxShadow: "0 10px 30px -10px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.4)"
 															}}>
-															<p className="font-bold text-[hsl(var(--foreground))]">
-																{contact.name}
-															</p>
-															<Link
+															<p className="font-bold text-gray-800">{contact.name}</p>
+															<Link 
 																href={`tel:${contact.phone}`}
-																className="flex items-center mt-2 text-indigo-500 hover:text-indigo-300 transition-colors">
+																className="flex items-center mt-2 text-indigo-600 hover:text-indigo-500 transition-colors">
 																<BsTelephone className="mr-2" />
 																{contact.phone}
 															</Link>
