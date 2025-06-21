@@ -11,14 +11,14 @@ interface LiquidChromeProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const LiquidChrome: React.FC<LiquidChromeProps> = ({
-															  baseColor = [0.1, 0.1, 0.1],
-															  speed = 0.2,
-															  amplitude = 0.5,
-															  frequencyX = 3,
-															  frequencyY = 2,
-															  interactive = true,
-															  ...props
-														  }) => {
+	baseColor = [0.1, 0.1, 0.1],
+	speed = 0.2,
+	amplitude = 0.5,
+	frequencyX = 3,
+	frequencyY = 2,
+	interactive = true,
+	...props
+}) => {
 	const containerRef = useRef<HTMLDivElement | null>(null);
 
 	useEffect(() => {
@@ -97,11 +97,7 @@ export const LiquidChrome: React.FC<LiquidChromeProps> = ({
 			uniforms: {
 				uTime: { value: 0 },
 				uResolution: {
-					value: new Float32Array([
-						gl.canvas.width,
-						gl.canvas.height,
-						gl.canvas.width / gl.canvas.height,
-					]),
+					value: new Float32Array([gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height]),
 				},
 				uBaseColor: { value: new Float32Array(baseColor) },
 				uAmplitude: { value: amplitude },
@@ -115,10 +111,7 @@ export const LiquidChrome: React.FC<LiquidChromeProps> = ({
 		function resize() {
 			// Reducing scale for better performance on lower-end devices
 			const scale = window.devicePixelRatio > 1 ? 0.8 : 0.7;
-			renderer.setSize(
-				container.offsetWidth * scale,
-				container.offsetHeight * scale
-			);
+			renderer.setSize(container.offsetWidth * scale, container.offsetHeight * scale);
 			const resUniform = program.uniforms.uResolution.value as Float32Array;
 			resUniform[0] = gl.canvas.width;
 			resUniform[1] = gl.canvas.height;
@@ -157,13 +150,13 @@ export const LiquidChrome: React.FC<LiquidChromeProps> = ({
 		let lastTime = 0;
 		function update(t: number) {
 			animationId = requestAnimationFrame(update);
-			
+
 			// Limit animation frame rate for better performance
 			if (t - lastTime < 30) {
 				return;
 			}
 			lastTime = t;
-			
+
 			program.uniforms.uTime.value = t * 0.001 * speed;
 			renderer.render({ scene: mesh });
 		}
@@ -185,13 +178,7 @@ export const LiquidChrome: React.FC<LiquidChromeProps> = ({
 		};
 	}, [baseColor, speed, amplitude, frequencyX, frequencyY, interactive]);
 
-	return (
-		<div
-			ref={containerRef}
-			className="w-full h-full"
-			{...props}
-		/>
-	);
+	return <div ref={containerRef} className="w-full h-full" {...props} />;
 };
 
 export default LiquidChrome;

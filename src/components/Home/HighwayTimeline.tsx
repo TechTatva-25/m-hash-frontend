@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { Calendar, Clock, Flag, Target } from "lucide-react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 
-
 interface TimelineStage {
 	date: string;
 	description: React.ReactNode;
@@ -18,43 +17,55 @@ export function HighwayTimeline({ timeline = generalTimeLine }: { timeline?: Tim
 		<Target key="target" className="h-5 w-5 text-blue-600" />,
 		<Calendar key="calendar" className="h-5 w-5 text-indigo-600" />,
 		<Clock key="clock" className="h-5 w-5 text-cyan-600" />,
-	];return (
+	];
+	return (
 		<div className="w-full py-16 px-4 md:px-6 lg:px-8">
 			<div className="max-w-7xl mx-auto relative">
 				{/* Subtle glass background for the entire timeline section */}
 				<div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/15 via-white/8 to-transparent -z-10 backdrop-blur-sm"></div>
-				
+
 				{/* Title section */}
 				<div className="relative mb-16 text-center">
-					<h2 className="text-4xl md:text-5xl font-bold text-[hsl(var(--foreground))]" 
+					<h2
+						className="text-4xl md:text-5xl font-bold text-[hsl(var(--foreground))]"
 						style={{ fontFamily: "var(--font-playfair-display)" }}>
 						Event Timeline
-					</h2>					<div className="h-1 w-64 mx-auto mt-4 bg-[hsl(var(--foreground))] rounded-full"></div>
+					</h2>{" "}
+					<div className="h-1 w-64 mx-auto mt-4 bg-[hsl(var(--foreground))] rounded-full"></div>
 					<div className="h-[0.5px] w-80 mx-auto mt-2 bg-[hsl(var(--foreground))]/60 rounded-full"></div>
 				</div>
-				
-				{/* Vertical timeline line - perfectly centered */}				
-				<div className="absolute left-1/2 top-24 bottom-0 w-[2px] hidden md:block transform -translate-x-1/2 
+
+				{/* Vertical timeline line - perfectly centered */}
+				<div
+					className="absolute left-1/2 top-24 bottom-0 w-[2px] hidden md:block transform -translate-x-1/2 
 					bg-gradient-to-b from-purple-300/20 via-indigo-400/40 to-blue-300/20 z-0 h-[calc(100%+100vh)]">
 					{/* Glassmorphic blur effect */}
 					<div className="absolute inset-0 blur-[2px]"></div>
-				</div>{/* Timeline items in zigzag pattern */}
+				</div>
+				{/* Timeline items in zigzag pattern */}
 				<div className="relative z-10 space-y-24 md:space-y-40 py-6">
-					{timeline.map((stage, index) => (						<div key={index} className={`relative ${index % 2 === 0 ? 'md:pr-[52%]' : 'md:pl-[52%]'}`}>							{/* Connector circle - centered on vertical line */}
-							<div className={`hidden md:block absolute top-12 w-5 h-5 rounded-full z-20
+					{timeline.map((stage, index) => (
+						<div key={index} className={`relative ${index % 2 === 0 ? "md:pr-[52%]" : "md:pl-[52%]"}`}>
+							{" "}
+							{/* Connector circle - centered on vertical line */}
+							<div
+								className={`hidden md:block absolute top-12 w-5 h-5 rounded-full z-20
 								left-1/2 transform -translate-x-1/2
 								bg-white/30 backdrop-blur-md border border-white/40 shadow-lg`}>
 								{/* Inner pulse effect */}
 								<div className="absolute inset-[3px] rounded-full bg-gradient-to-br from-indigo-400/60 to-purple-500/60 animate-pulse"></div>
 								{/* Outer glow effect */}
 								<div className="absolute -inset-1 rounded-full bg-indigo-400/20 animate-ping opacity-75 duration-1000 blur-sm"></div>
-							</div>{/* Horizontal connector line - connecting card to circle */}
-							<div className={`hidden md:block absolute top-[3.1rem] h-[2px] z-10
-								${index % 2 === 0 ? 'left-[50%] right-[52%]' : 'left-[52%] right-[50%]'}
-								${index % 2 === 0 ? 'bg-gradient-to-l' : 'bg-gradient-to-r'}
+							</div>
+							{/* Horizontal connector line - connecting card to circle */}
+							<div
+								className={`hidden md:block absolute top-[3.1rem] h-[2px] z-10
+								${index % 2 === 0 ? "left-[50%] right-[52%]" : "left-[52%] right-[50%]"}
+								${index % 2 === 0 ? "bg-gradient-to-l" : "bg-gradient-to-r"}
 								from-purple-400/30 to-indigo-400/30 backdrop-blur-sm`}>
 								<div className="absolute inset-0 blur-[1px]"></div>
-							</div>							<TimelineItem
+							</div>{" "}
+							<TimelineItem
 								index={index}
 								stage={stage}
 								icon={iconMap[index % iconMap.length]}
@@ -68,7 +79,6 @@ export function HighwayTimeline({ timeline = generalTimeLine }: { timeline?: Tim
 	);
 }
 
-
 interface TimelineItemProps {
 	index: number;
 	stage: TimelineStage;
@@ -80,61 +90,75 @@ const TimelineItem = ({ index, stage, icon, isRight }: TimelineItemProps) => {
 	// Adjusted image height with more consistency
 	const imageHeight = "h-36";
 
-	return (		<div className="group">			<div				className={`relative rounded-2xl border border-white/50 p-2 md:p-2.5 
+	return (
+		<div className="group">
+			{" "}
+			<div
+				className={`relative rounded-2xl border border-white/50 p-2 md:p-2.5 
 				  cursor-pointer hover:border-purple-400/60 
 				  transition-all duration-300 will-change-transform hover:shadow-lg hover:-translate-y-1 group-hover:scale-[1.02]
-				  ${isRight ? 'md:text-left' : ''}`}style={{
-					background: 'rgba(255, 255, 255, 0.15)',
-					backdropFilter: 'blur(12px)',
-					boxShadow: '0 32px 64px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4)'
-				}}
-			>
+				  ${isRight ? "md:text-left" : ""}`}
+				style={{
+					background: "rgba(255, 255, 255, 0.15)",
+					backdropFilter: "blur(12px)",
+					boxShadow:
+						"0 32px 64px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
+				}}>
 				{/* Enhanced Smooth Light Beam Effect */}
 				<div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-1500 ease-out rounded-2xl overflow-hidden">
 					{/* Multiple layered beams for smoother effect */}
 					<div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/8 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-2000 ease-out blur-sm"></div>
 					<div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/12 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1800 ease-out delay-100"></div>
-				</div>				<GlowingEffect
+				</div>{" "}
+				<GlowingEffect
 					spread={80}
 					glow={true}
 					disabled={false}
 					proximity={100}
 					inactiveZone={0.01}
 					borderWidth={1.2}
-				/>				<div className="relative flex flex-col rounded-xl p-3 md:p-4 overflow-hidden"style={{
-						background: 'rgba(255, 255, 255, 0.4)',
-						backdropFilter: 'blur(8px)',
-						borderWidth: '0.75px',
-						borderStyle: 'solid',
-						borderColor: 'rgba(255, 255, 255, 0.6)',
-						boxShadow: '0 8px 30px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.3)'
-					}}
-				>					{/* Enhanced inner glow with subtle highlights */}
+				/>{" "}
+				<div
+					className="relative flex flex-col rounded-xl p-3 md:p-4 overflow-hidden"
+					style={{
+						background: "rgba(255, 255, 255, 0.4)",
+						backdropFilter: "blur(8px)",
+						borderWidth: "0.75px",
+						borderStyle: "solid",
+						borderColor: "rgba(255, 255, 255, 0.6)",
+						boxShadow: "0 8px 30px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.3)",
+					}}>
+					{" "}
+					{/* Enhanced inner glow with subtle highlights */}
 					<div className="absolute inset-0 bg-gradient-to-br from-white/35 via-white/10 to-transparent rounded-xl"></div>
 					<div className="absolute inset-0 bg-gradient-to-tl from-blue-500/10 via-transparent to-purple-500/10 rounded-xl"></div>
-					<div className="relative flex flex-col h-full justify-between gap-2 z-10">						<div className="flex items-center justify-between mb-1">
+					<div className="relative flex flex-col h-full justify-between gap-2 z-10">
+						{" "}
+						<div className="flex items-center justify-between mb-1">
 							<div
-								className="w-fit rounded-lg border p-2 backdrop-blur-sm"								style={{
-									background: 'rgba(255, 255, 255, 0.6)',
-									borderColor: 'rgba(255, 255, 255, 0.8)',
-									boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.4)'
-								}}
-							>
+								className="w-fit rounded-lg border p-2 backdrop-blur-sm"
+								style={{
+									background: "rgba(255, 255, 255, 0.6)",
+									borderColor: "rgba(255, 255, 255, 0.8)",
+									boxShadow: "0 4px 12px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
+								}}>
 								{icon}
 							</div>
 							<span
-								className="text-sm font-medium px-3 py-1 rounded-full"								style={{
-									background: 'rgba(100, 100, 230, 0.15)',
-									color: 'rgba(60, 50, 160, 0.9)',
-									backdropFilter: 'blur(8px)',
-									border: '1px solid rgba(255, 255, 255, 0.6)',
-									boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.4)'
-								}}
-							>
+								className="text-sm font-medium px-3 py-1 rounded-full"
+								style={{
+									background: "rgba(100, 100, 230, 0.15)",
+									color: "rgba(60, 50, 160, 0.9)",
+									backdropFilter: "blur(8px)",
+									border: "1px solid rgba(255, 255, 255, 0.6)",
+									boxShadow: "0 2px 8px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
+								}}>
 								Step {index + 1}
 							</span>
-						</div>{/* Image section with fixed dimensions */}
-						<div className={`relative ${imageHeight} w-full mb-2 overflow-hidden rounded-lg flex-shrink-0 group-hover:shadow-xl transition-all duration-500`}>
+						</div>
+						{/* Image section with fixed dimensions */}
+						<div
+							className={`relative ${imageHeight} w-full mb-2 overflow-hidden rounded-lg flex-shrink-0 group-hover:shadow-xl transition-all duration-500`}>
 							{/* Elegant gradient overlay that works in both light and dark modes */}
 							<div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-black/5 z-10"></div>
 							{/* Additional subtle colored overlay for visual interest */}
@@ -149,26 +173,27 @@ const TimelineItem = ({ index, stage, icon, isRight }: TimelineItemProps) => {
 								sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 							/>
 						</div>
-
 						<div className="px-2 pt-3 flex flex-col flex-1 min-h-0 relative">
-							{/* Subtle background for better text readability in light mode */}							<div className="absolute inset-0 bg-white/25 rounded-lg -z-10"></div>
+							{/* Subtle background for better text readability in light mode */}{" "}
+							<div className="absolute inset-0 bg-white/25 rounded-lg -z-10"></div>
 							<h3
-								className="text-xl/[1.3] font-semibold text-balance truncate text-left"								style={{
-									color: 'rgba(30, 20, 60, 0.95)'
-								}}
-							>
+								className="text-xl/[1.3] font-semibold text-balance truncate text-left"
+								style={{
+									color: "rgba(30, 20, 60, 0.95)",
+								}}>
 								{stage.badge}
-							</h3>							<h2
-								className="text-sm/[1.1] mb-1.5 py-1 rounded-md inline-block text-left text-black"								
-							>
+							</h3>{" "}
+							<h2 className="text-sm/[1.1] mb-1.5 py-1 rounded-md inline-block text-left text-black">
 								{stage.date}
-							</h2>{/* Description text with increased size for better readability */}							<div
-								className="text-sm/[1.4] overflow-y-auto flex-1 pr-1.5 scrollbar-thin scrollbar-thumb-indigo-200 scrollbar-track-transparent pb-3 text-left"								style={{
-									color: 'rgba(40, 40, 80, 0.9)',
-									WebkitMaskImage: 'linear-gradient(to bottom, black 90%, transparent 100%)',
-									maskImage: 'linear-gradient(to bottom, black 90%, transparent 100%)'
-								}}
-							>
+							</h2>
+							{/* Description text with increased size for better readability */}{" "}
+							<div
+								className="text-sm/[1.4] overflow-y-auto flex-1 pr-1.5 scrollbar-thin scrollbar-thumb-indigo-200 scrollbar-track-transparent pb-3 text-left"
+								style={{
+									color: "rgba(40, 40, 80, 0.9)",
+									WebkitMaskImage: "linear-gradient(to bottom, black 90%, transparent 100%)",
+									maskImage: "linear-gradient(to bottom, black 90%, transparent 100%)",
+								}}>
 								{stage.description}
 							</div>
 						</div>
@@ -178,7 +203,6 @@ const TimelineItem = ({ index, stage, icon, isRight }: TimelineItemProps) => {
 		</div>
 	);
 };
-
 
 const generalTimeLine = [
 	{
