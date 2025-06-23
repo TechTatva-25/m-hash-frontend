@@ -286,7 +286,9 @@ export default function ContactForm(): React.JSX.Element {
 									<div className="space-y-8">
 										{Object.entries(contactGroups).map(([role, contacts], index) => (
 											<div key={index}>
-												<h4 className="text-xl font-medium mb-4 text-[hsl(var(--foreground))] text-center">{role}</h4>
+												<h4 className="text-xl font-medium mb-4 text-[hsl(var(--foreground))] text-center">
+													{role}
+												</h4>
 												<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 													{contacts.map((contact, idx) => (
 														<motion.div
@@ -296,12 +298,13 @@ export default function ContactForm(): React.JSX.Element {
 															transition={{ duration: 0.3, delay: 0.1 * idx }}
 															viewport={{ once: true }}
 															whileHover={{ scale: 1.03 }}
-															className={`backdrop-blur-lg bg-white/40 rounded-xl p-4 transition-all hover:bg-white/50 w-full ${contacts.length % 2 !== 0 && idx === contacts.length - 1 ? 'md:col-span-2 md:w-[calc(50%-0.5rem)] md:mx-auto' : ''}`}
+															className={`backdrop-blur-lg bg-white/40 rounded-xl p-4 transition-all hover:bg-white/50 w-full ${contacts.length % 2 !== 0 && idx === contacts.length - 1 ? "md:col-span-2 md:w-[calc(50%-0.5rem)] md:mx-auto" : ""}`}
 															style={{
-																boxShadow: "0 10px 30px -10px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.4)"
+																boxShadow:
+																	"0 10px 30px -10px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.4)",
 															}}>
 															<p className="font-bold text-gray-800">{contact.name}</p>
-															<Link 
+															<Link
 																href={`tel:${contact.phone}`}
 																className="flex items-center mt-2 text-indigo-600 hover:text-indigo-500 transition-colors">
 																<BsTelephone className="mr-2" />
