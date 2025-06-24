@@ -166,7 +166,9 @@ export function NavbarSheet(): React.JSX.Element {
 							<TooltipTrigger asChild>
 								<DropdownMenuTrigger asChild>
 									<Button variant="outline" className="relative h-10 w-10 rounded-full">
-										<Avatar className="h-10 w-10">											<BoringAvatar
+										<Avatar className="h-10 w-10">
+											{" "}
+											<BoringAvatar
 												name={username}
 												variant="beam"
 												size={40}

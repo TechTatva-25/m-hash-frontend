@@ -191,21 +191,28 @@ export function Menu({ isOpen }: MenuProps): React.JSX.Element {
 		} finally {
 			setDisabled(false);
 		}
-	};	return (
+	};
+	return (
 		<ScrollArea className="[&>div>div[style]]:!block scrollbar-hide" hidden>
 			<nav className="mt-4 h-full w-full">
 				<ul className="flex flex-col items-start space-y-1 px-2">
 					{menuList.map(({ groupLabel, menus }, index) => (
-						<li className={cn("w-full", groupLabel ? "pt-2" : "")} key={index}>							{(isOpen && groupLabel) || isOpen === undefined ? (
-								<p className="max-w-[248px] truncate px-4 pb-1 text-sm font-medium text-muted-foreground"
+						<li className={cn("w-full", groupLabel ? "pt-2" : "")} key={index}>
+							{" "}
+							{(isOpen && groupLabel) || isOpen === undefined ? (
+								<p
+									className="max-w-[248px] truncate px-4 pb-1 text-sm font-medium text-muted-foreground"
 									style={{ fontFamily: "var(--font-playfair-display)" }}>
 									{groupLabel}
-								</p>							) : !isOpen && isOpen !== undefined && groupLabel ? (
+								</p>
+							) : !isOpen && isOpen !== undefined && groupLabel ? (
 								<TooltipProvider>
 									<Tooltip delayDuration={100}>
-										<TooltipTrigger className="w-full"><div className="flex w-full items-center justify-center">
-											<Separator orientation="horizontal" className="w-full" />
-										</div></TooltipTrigger>
+										<TooltipTrigger className="w-full">
+											<div className="flex w-full items-center justify-center">
+												<Separator orientation="horizontal" className="w-full" />
+											</div>
+										</TooltipTrigger>
 										<TooltipContent side="right">
 											<p>{groupLabel}</p>
 										</TooltipContent>
@@ -215,7 +222,8 @@ export function Menu({ isOpen }: MenuProps): React.JSX.Element {
 								<p className="pb-2"></p>
 							)}
 							{menus.map(({ href, label, icon: Icon, active, submenus }, index) =>
-								submenus.length === 0 ? (									<div className="w-full" key={index}>
+								submenus.length === 0 ? (
+									<div className="w-full" key={index}>
 										<TooltipProvider disableHoverableContent>
 											<Tooltip delayDuration={100}>
 												<TooltipTrigger asChild>
@@ -223,23 +231,28 @@ export function Menu({ isOpen }: MenuProps): React.JSX.Element {
 														variant={active ? "secondary" : "ghost"}
 														className={cn(
 															"mb-1 h-10 w-full justify-start backdrop-blur-sm transition-all duration-300",
-															active 
-																? isDark ? "hover:bg-purple-500/15" : "hover:bg-purple-500/10"
-																: isDark ? "hover:bg-slate-300/5" : "hover:bg-slate-300/30"
+															active
+																? isDark
+																	? "hover:bg-purple-500/15"
+																	: "hover:bg-purple-500/10"
+																: isDark
+																	? "hover:bg-slate-300/5"
+																	: "hover:bg-slate-300/30"
 														)}
 														style={{
-															background: active 
-																? isDark ? 'rgba(139, 92, 246, 0.1)' : 'rgba(139, 92, 246, 0.05)'
-																: 'transparent',
-															border: active 
-																? `1px solid ${isDark ? 'rgba(168, 85, 247, 0.15)' : 'rgba(168, 85, 247, 0.1)'}`
+															background: active
+																? isDark
+																	? "rgba(139, 92, 246, 0.1)"
+																	: "rgba(139, 92, 246, 0.05)"
+																: "transparent",
+															border: active
+																? `1px solid ${isDark ? "rgba(168, 85, 247, 0.15)" : "rgba(168, 85, 247, 0.1)"}`
 																: undefined,
-															boxShadow: active 
-																? `0 2px 4px ${isDark ? 'rgba(0, 0, 0, 0.1)' : 'rgba(0, 0, 0, 0.03)'}`
-																: undefined
+															boxShadow: active
+																? `0 2px 4px ${isDark ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.03)"}`
+																: undefined,
 														}}
-														asChild
-													>
+														asChild>
 														<Link href={href}>
 															<span className={cn(isOpen === false ? "" : "mr-4")}>
 																<Icon size={18} />
@@ -275,15 +288,16 @@ export function Menu({ isOpen }: MenuProps): React.JSX.Element {
 								)
 							)}
 						</li>
-					))}					<li className="flex w-full grow items-end">
+					))}{" "}
+					<li className="flex w-full grow items-end">
 						<TooltipProvider disableHoverableContent>
 							<Tooltip delayDuration={100}>
 								<TooltipTrigger asChild>
 									<Button
-										className={`h-10 w-full justify-center backdrop-blur-sm transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-60 ${isDark ? 'hover:bg-red-500/10' : 'hover:bg-red-500/5'}`}
+										className={`h-10 w-full justify-center backdrop-blur-sm transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-60 ${isDark ? "hover:bg-red-500/10" : "hover:bg-red-500/5"}`}
 										style={{
-											border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(203, 213, 225, 0.5)'}`,
-											boxShadow: `0 2px 4px ${isDark ? 'rgba(0, 0, 0, 0.05)' : 'rgba(0, 0, 0, 0.02)'}`
+											border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(203, 213, 225, 0.5)"}`,
+											boxShadow: `0 2px 4px ${isDark ? "rgba(0, 0, 0, 0.05)" : "rgba(0, 0, 0, 0.02)"}`,
 										}}
 										onClick={signOut}
 										disabled={disabled}>

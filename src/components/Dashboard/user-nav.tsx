@@ -54,14 +54,13 @@ export function UserNav(): React.JSX.Element {
 						variant="outline"
 						className="h-10 w-10 rounded-full transition-all duration-300 hover:scale-105 focus:scale-105 p-0"
 						style={{
-							background: theme === "dark" 
-								? 'rgba(255, 255, 255, 0.05)' 
-								: 'rgba(255, 255, 255, 0.3)',
-							border: `1px solid ${theme === "dark" ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.4)'}`,
-							boxShadow: `0 2px 8px ${theme === "dark" ? 'rgba(0, 0, 0, 0.2)' : 'rgba(0, 0, 0, 0.03)'}`
-						}}
-					>
-						<div className="relative h-9 w-9 rounded-full overflow-hidden cursor-pointer">							<Avatar className="h-9 w-9">
+							background: theme === "dark" ? "rgba(255, 255, 255, 0.05)" : "rgba(255, 255, 255, 0.3)",
+							border: `1px solid ${theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.4)"}`,
+							boxShadow: `0 2px 8px ${theme === "dark" ? "rgba(0, 0, 0, 0.2)" : "rgba(0, 0, 0, 0.03)"}`,
+						}}>
+						<div className="relative h-9 w-9 rounded-full overflow-hidden cursor-pointer">
+							{" "}
+							<Avatar className="h-9 w-9">
 								<BoringAvatar
 									name={session?.username ?? ""}
 									variant="beam"
@@ -69,67 +68,70 @@ export function UserNav(): React.JSX.Element {
 									colors={generateColorPalette(session?.userId ?? "")}
 								/>
 							</Avatar>
-							<div className="absolute inset-0 backdrop-blur-sm" style={{
-								background: theme === "dark" ? 'rgba(139, 92, 246, 0.05)' : 'rgba(139, 92, 246, 0.03)',
-								mixBlendMode: "overlay"
-							}}></div>
+							<div
+								className="absolute inset-0 backdrop-blur-sm"
+								style={{
+									background:
+										theme === "dark" ? "rgba(139, 92, 246, 0.05)" : "rgba(139, 92, 246, 0.03)",
+									mixBlendMode: "overlay",
+								}}></div>
 						</div>
 						<span className="sr-only">Open user menu</span>
 					</Button>
 				</DropdownMenuTrigger>
 
-				<DropdownMenuContent 
-					className="w-56 overflow-hidden backdrop-blur-md border transition-all duration-300" 
+				<DropdownMenuContent
+					className="w-56 overflow-hidden backdrop-blur-md border transition-all duration-300"
 					align="end"
 					style={{
-						background: theme === "dark" 
-							? 'rgba(30, 41, 59, 0.8)' 
-							: 'rgba(255, 255, 255, 0.8)',
-						borderColor: theme === "dark" ? 'rgba(255, 255, 255, 0.1)' : 'rgba(203, 213, 225, 0.5)',
-						boxShadow: `0 4px 20px ${theme === "dark" ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0.1)'}`
-					}}
-				>
+						background: theme === "dark" ? "rgba(30, 41, 59, 0.8)" : "rgba(255, 255, 255, 0.8)",
+						borderColor: theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(203, 213, 225, 0.5)",
+						boxShadow: `0 4px 20px ${theme === "dark" ? "rgba(0, 0, 0, 0.3)" : "rgba(0, 0, 0, 0.1)"}`,
+					}}>
 					{/* Subtle purple accent overlay */}
-					<div className="absolute inset-0" style={{
-						background: theme === "dark"
-							? 'linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(79, 70, 229, 0.03))'
-							: 'linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(79, 70, 229, 0.04))'
-					}}></div>
-					
+					<div
+						className="absolute inset-0"
+						style={{
+							background:
+								theme === "dark"
+									? "linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(79, 70, 229, 0.03))"
+									: "linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(79, 70, 229, 0.04))",
+						}}></div>
+
 					<div className="relative">
 						<DropdownMenuLabel className="font-normal">
 							<div className="flex flex-col space-y-1">
 								<p className="text-sm font-medium leading-none">{session?.username ?? ""}</p>
-								<p className="text-xs leading-none text-muted-foreground">{session?.user?.email ?? ""}</p>
+								<p className="text-xs leading-none text-muted-foreground">
+									{session?.user?.email ?? ""}
+								</p>
 							</div>
 						</DropdownMenuLabel>
 						<DropdownMenuSeparator />
-						<DropdownMenuGroup>							<DropdownMenuItem 
+						<DropdownMenuGroup>
+							{" "}
+							<DropdownMenuItem
 								className={`hover:cursor-pointer my-1 transition-all duration-300 rounded-md hover:bg-opacity-10 ${
-									theme === "dark" 
-										? "hover:bg-purple-500" 
-										: "hover:bg-purple-500"
+									theme === "dark" ? "hover:bg-purple-500" : "hover:bg-purple-500"
 								}`}
 								style={{
-									borderRadius: '6px',
-									background: 'transparent'
+									borderRadius: "6px",
+									background: "transparent",
 								}}
-								asChild
-							>
+								asChild>
 								<Link href="/dashboard" className="flex items-center">
 									<LayoutGrid className="mr-3 h-4 w-4 text-muted-foreground" />
 									Dashboard
 								</Link>
 							</DropdownMenuItem>
 						</DropdownMenuGroup>
-						<DropdownMenuSeparator />						<DropdownMenuItem
+						<DropdownMenuSeparator />{" "}
+						<DropdownMenuItem
 							className={`hover:cursor-pointer my-1 disabled:cursor-not-allowed transition-all duration-300 rounded-md hover:bg-opacity-10 ${
-								theme === "dark" 
-									? "hover:bg-red-500" 
-									: "hover:bg-red-500"
+								theme === "dark" ? "hover:bg-red-500" : "hover:bg-red-500"
 							}`}
 							style={{
-								borderRadius: '6px'
+								borderRadius: "6px",
 							}}
 							onClick={signOut}
 							disabled={disabled}>

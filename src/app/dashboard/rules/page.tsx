@@ -43,36 +43,36 @@ export default function RulesPage(): React.JSX.Element {
 		<ContentLayout title="Rules">
 			<section className="flex flex-1 flex-col py-4 sm:py-8">
 				<Breadcrumb>
-					<BreadcrumbList 
+					<BreadcrumbList
 						className="text-[15px] p-2 rounded-md backdrop-blur-sm"
 						style={{
-							background: isDark 
-								? 'rgba(255, 255, 255, 0.03)' 
-								: 'rgba(255, 255, 255, 0.2)',
-							border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.4)'}`,
-							boxShadow: `0 2px 6px ${isDark ? 'rgba(0, 0, 0, 0.1)' : 'rgba(0, 0, 0, 0.02)'}`
-						}}
-					>
+							background: isDark ? "rgba(255, 255, 255, 0.03)" : "rgba(255, 255, 255, 0.2)",
+							border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.05)" : "rgba(255, 255, 255, 0.4)"}`,
+							boxShadow: `0 2px 6px ${isDark ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.02)"}`,
+						}}>
 						<BreadcrumbItem>
 							<BreadcrumbLink asChild>
-								<Link href="/" className="transition-colors hover:text-purple-500">Home</Link>
+								<Link href="/" className="transition-colors hover:text-purple-500">
+									Home
+								</Link>
 							</BreadcrumbLink>
 						</BreadcrumbItem>
 						<BreadcrumbSeparator slash />
 						<BreadcrumbItem>
 							<BreadcrumbLink asChild>
-								<Link href="/dashboard" className="transition-colors hover:text-purple-500">Dashboard</Link>
+								<Link href="/dashboard" className="transition-colors hover:text-purple-500">
+									Dashboard
+								</Link>
 							</BreadcrumbLink>
 						</BreadcrumbItem>
 						<BreadcrumbSeparator slash />
 						<BreadcrumbItem>
-							<BreadcrumbPage 
+							<BreadcrumbPage
 								className="font-semibold"
-								style={{ 
+								style={{
 									fontFamily: "var(--font-playfair-display)",
-									color: isDark ? 'rgba(139, 92, 246, 0.8)' : 'rgba(79, 70, 229, 0.8)'
-								}}
-							>
+									color: isDark ? "rgba(139, 92, 246, 0.8)" : "rgba(79, 70, 229, 0.8)",
+								}}>
 								Rules
 							</BreadcrumbPage>
 						</BreadcrumbItem>
@@ -82,54 +82,55 @@ export default function RulesPage(): React.JSX.Element {
 					<div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
 						<div className="flex flex-col space-y-4">
 							{Array.from({ length: 3 }).map((_, index) => (
-								<Skeleton 
-									key={index} 
-									style={{ 
+								<Skeleton
+									key={index}
+									style={{
 										height: Math.random() * 200 + 200,
-										background: isDark ? 'rgba(139, 92, 246, 0.08)' : 'rgba(139, 92, 246, 0.05)',
-										borderRadius: '12px'
-									}} 
+										background: isDark ? "rgba(139, 92, 246, 0.08)" : "rgba(139, 92, 246, 0.05)",
+										borderRadius: "12px",
+									}}
 								/>
 							))}
 						</div>
 						<div className="flex flex-col space-y-4">
 							{Array.from({ length: 3 }).map((_, index) => (
-								<Skeleton 
-									key={index} 
-									style={{ 
+								<Skeleton
+									key={index}
+									style={{
 										height: Math.random() * 200 + 200,
-										background: isDark ? 'rgba(139, 92, 246, 0.08)' : 'rgba(139, 92, 246, 0.05)',
-										borderRadius: '12px'
-									}} 
+										background: isDark ? "rgba(139, 92, 246, 0.08)" : "rgba(139, 92, 246, 0.05)",
+										borderRadius: "12px",
+									}}
 								/>
 							))}
 						</div>
 					</div>
 				)}
 				{!session?.loading && (
-					<div 
+					<div
 						className="mt-8 backdrop-blur-md relative overflow-hidden rounded-xl p-6"
 						style={{
-							background: isDark 
-								? 'rgba(30, 41, 59, 0.3)' 
-								: 'rgba(255, 255, 255, 0.2)',
-							border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.5)'}`,
-							boxShadow: `0 4px 20px ${isDark ? 'rgba(0, 0, 0, 0.2)' : 'rgba(0, 0, 0, 0.05)'}`
-						}}
-					>
+							background: isDark ? "rgba(30, 41, 59, 0.3)" : "rgba(255, 255, 255, 0.2)",
+							border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.05)" : "rgba(255, 255, 255, 0.5)"}`,
+							boxShadow: `0 4px 20px ${isDark ? "rgba(0, 0, 0, 0.2)" : "rgba(0, 0, 0, 0.05)"}`,
+						}}>
 						{/* Subtle purple accent overlay */}
-						<div className="absolute inset-0" style={{
-							background: isDark
-								? 'linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(79, 70, 229, 0.02))'
-								: 'linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(79, 70, 229, 0.04))'
-						}}></div>
-						
+						<div
+							className="absolute inset-0"
+							style={{
+								background: isDark
+									? "linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(79, 70, 229, 0.02))"
+									: "linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(79, 70, 229, 0.04))",
+							}}></div>
+
 						{/* Enhanced inner glow with subtle highlights */}
-						<div className="absolute inset-0" style={{
-							background: `linear-gradient(135deg, ${isDark ? 'rgba(255, 255, 255, 0.02)' : 'rgba(255, 255, 255, 0.1)'}, transparent)`,
-							mixBlendMode: "overlay"
-						}}></div>
-						
+						<div
+							className="absolute inset-0"
+							style={{
+								background: `linear-gradient(135deg, ${isDark ? "rgba(255, 255, 255, 0.02)" : "rgba(255, 255, 255, 0.1)"}, transparent)`,
+								mixBlendMode: "overlay",
+							}}></div>
+
 						<div className="relative z-10">
 							<MarkdownArticle content={RULES_MARKDOWN} />
 						</div>
@@ -139,15 +140,13 @@ export default function RulesPage(): React.JSX.Element {
 				<Button
 					className="fixed bottom-6 right-8 h-12 w-12 p-3 transition-all duration-300 backdrop-blur-md hover:scale-105 focus:scale-105 cursor-pointer"
 					style={{
-						background: isDark 
-							? 'rgba(139, 92, 246, 0.15)' 
-							: 'rgba(139, 92, 246, 0.2)',
-						border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.4)'}`,
-						boxShadow: `0 4px 20px ${isDark ? 'rgba(0, 0, 0, 0.3)' : 'rgba(139, 92, 246, 0.2)'}`
+						background: isDark ? "rgba(139, 92, 246, 0.15)" : "rgba(139, 92, 246, 0.2)",
+						border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.4)"}`,
+						boxShadow: `0 4px 20px ${isDark ? "rgba(0, 0, 0, 0.3)" : "rgba(139, 92, 246, 0.2)"}`,
 					}}
 					onClick={downloadRules}
 					title="Download Rules">
-					<FaRegFilePdf className="h-10 w-10" color={isDark ? '#c4b5fd' : '#8b5cf6'} />
+					<FaRegFilePdf className="h-10 w-10" color={isDark ? "#c4b5fd" : "#8b5cf6"} />
 				</Button>
 			</section>
 		</ContentLayout>

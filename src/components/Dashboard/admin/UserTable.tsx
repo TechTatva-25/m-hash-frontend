@@ -59,15 +59,18 @@ const columns: ColumnDef<UserWithActions>[] = [
 			const isDark = theme === "dark";
 			return (
 				<div>
-					<a 
-						href={`mailto:${row.original.email}`} 
-						style={{ 
-							color: `${isDark ? 'rgba(168, 85, 247, 0.9)' : 'rgba(139, 92, 246, 1)'}`,
-							transition: 'all 0.2s ease'
+					<a
+						href={`mailto:${row.original.email}`}
+						style={{
+							color: `${isDark ? "rgba(168, 85, 247, 0.9)" : "rgba(139, 92, 246, 1)"}`,
+							transition: "all 0.2s ease",
 						}}
-						onMouseOver={(e) => e.currentTarget.style.color = `${isDark ? 'rgba(192, 132, 252, 0.9)' : 'rgba(168, 85, 247, 1)'}`}
-						onMouseOut={(e) => e.currentTarget.style.color = `${isDark ? 'rgba(168, 85, 247, 0.9)' : 'rgba(139, 92, 246, 1)'}`}
-					>
+						onMouseOver={(e) =>
+							(e.currentTarget.style.color = `${isDark ? "rgba(192, 132, 252, 0.9)" : "rgba(168, 85, 247, 1)"}`)
+						}
+						onMouseOut={(e) =>
+							(e.currentTarget.style.color = `${isDark ? "rgba(168, 85, 247, 0.9)" : "rgba(139, 92, 246, 1)"}`)
+						}>
 						{row.original.email}
 					</a>
 				</div>
@@ -82,15 +85,18 @@ const columns: ColumnDef<UserWithActions>[] = [
 			const isDark = theme === "dark";
 			return (
 				<div>
-					<a 
+					<a
 						href={`tel:${row.original.mobile_number}`}
-						style={{ 
-							color: `${isDark ? 'rgba(168, 85, 247, 0.9)' : 'rgba(139, 92, 246, 1)'}`,
-							transition: 'all 0.2s ease'
+						style={{
+							color: `${isDark ? "rgba(168, 85, 247, 0.9)" : "rgba(139, 92, 246, 1)"}`,
+							transition: "all 0.2s ease",
 						}}
-						onMouseOver={(e) => e.currentTarget.style.color = `${isDark ? 'rgba(192, 132, 252, 0.9)' : 'rgba(168, 85, 247, 1)'}`}
-						onMouseOut={(e) => e.currentTarget.style.color = `${isDark ? 'rgba(168, 85, 247, 0.9)' : 'rgba(139, 92, 246, 1)'}`}
-					>
+						onMouseOver={(e) =>
+							(e.currentTarget.style.color = `${isDark ? "rgba(192, 132, 252, 0.9)" : "rgba(168, 85, 247, 1)"}`)
+						}
+						onMouseOut={(e) =>
+							(e.currentTarget.style.color = `${isDark ? "rgba(168, 85, 247, 0.9)" : "rgba(139, 92, 246, 1)"}`)
+						}>
 						{row.original.mobile_number}
 					</a>
 				</div>
@@ -138,58 +144,57 @@ const columns: ColumnDef<UserWithActions>[] = [
 
 			return (
 				<>
-					<Button 
-						onClick={handleOpenModal} 
-						variant="ghost" 
+					<Button
+						onClick={handleOpenModal}
+						variant="ghost"
 						style={{
-							marginTop: '0.5rem',
-							borderRadius: '0.75rem',
-							backdropFilter: 'blur(8px)',
-							transition: 'all 0.2s ease',
-							backgroundColor: `${isDark ? 'rgba(30, 41, 59, 0.4)' : 'rgba(241, 245, 249, 0.7)'}`,
-							color: `${isDark ? 'rgba(203, 213, 225, 1)' : 'rgba(51, 65, 85, 1)'}`,
+							marginTop: "0.5rem",
+							borderRadius: "0.75rem",
+							backdropFilter: "blur(8px)",
+							transition: "all 0.2s ease",
+							backgroundColor: `${isDark ? "rgba(30, 41, 59, 0.4)" : "rgba(241, 245, 249, 0.7)"}`,
+							color: `${isDark ? "rgba(203, 213, 225, 1)" : "rgba(51, 65, 85, 1)"}`,
 						}}
 						onMouseOver={(e) => {
-							e.currentTarget.style.backgroundColor = `${isDark ? 'rgba(168, 85, 247, 0.2)' : 'rgba(168, 85, 247, 0.2)'}`;
-							e.currentTarget.style.color = `${isDark ? 'rgba(192, 132, 252, 1)' : 'rgba(139, 92, 246, 1)'}`;
+							e.currentTarget.style.backgroundColor = `${isDark ? "rgba(168, 85, 247, 0.2)" : "rgba(168, 85, 247, 0.2)"}`;
+							e.currentTarget.style.color = `${isDark ? "rgba(192, 132, 252, 1)" : "rgba(139, 92, 246, 1)"}`;
 						}}
 						onMouseOut={(e) => {
-							e.currentTarget.style.backgroundColor = `${isDark ? 'rgba(30, 41, 59, 0.4)' : 'rgba(241, 245, 249, 0.7)'}`;
-							e.currentTarget.style.color = `${isDark ? 'rgba(203, 213, 225, 1)' : 'rgba(51, 65, 85, 1)'}`;
-						}}
-					>
+							e.currentTarget.style.backgroundColor = `${isDark ? "rgba(30, 41, 59, 0.4)" : "rgba(241, 245, 249, 0.7)"}`;
+							e.currentTarget.style.color = `${isDark ? "rgba(203, 213, 225, 1)" : "rgba(51, 65, 85, 1)"}`;
+						}}>
 						<FaEllipsisVertical />
 					</Button>
 					{isModalOpen && (
 						<Modal isOpen={isModalOpen} onClose={handleCloseModal}>
 							<ModalHeader>
 								<div className="flex w-[100%] items-center justify-between">
-									<span style={{
-										fontWeight: 600,
-										fontSize: '1.125rem',
-										color: `${isDark ? 'rgba(255, 255, 255, 1)' : 'rgba(30, 41, 59, 1)'}`
-									}}>
+									<span
+										style={{
+											fontWeight: 600,
+											fontSize: "1.125rem",
+											color: `${isDark ? "rgba(255, 255, 255, 1)" : "rgba(30, 41, 59, 1)"}`,
+										}}>
 										{row.original.username}
 									</span>
 									<button
 										onClick={handleCloseModal}
 										style={{
-											borderRadius: '9999px',
-											padding: '0.375rem',
-											cursor: 'pointer',
-											transition: 'all 0.2s ease',
-											backgroundColor: `${isDark ? 'rgba(239, 68, 68, 0.1)' : 'rgba(239, 68, 68, 0.1)'}`,
-											color: `${isDark ? 'rgba(248, 113, 113, 1)' : 'rgba(239, 68, 68, 1)'}`
+											borderRadius: "9999px",
+											padding: "0.375rem",
+											cursor: "pointer",
+											transition: "all 0.2s ease",
+											backgroundColor: `${isDark ? "rgba(239, 68, 68, 0.1)" : "rgba(239, 68, 68, 0.1)"}`,
+											color: `${isDark ? "rgba(248, 113, 113, 1)" : "rgba(239, 68, 68, 1)"}`,
 										}}
 										onMouseOver={(e) => {
-											e.currentTarget.style.backgroundColor = `${isDark ? 'rgba(239, 68, 68, 0.2)' : 'rgba(239, 68, 68, 0.2)'}`;
-											e.currentTarget.style.color = `${isDark ? 'rgba(252, 165, 165, 1)' : 'rgba(248, 113, 113, 1)'}`;
+											e.currentTarget.style.backgroundColor = `${isDark ? "rgba(239, 68, 68, 0.2)" : "rgba(239, 68, 68, 0.2)"}`;
+											e.currentTarget.style.color = `${isDark ? "rgba(252, 165, 165, 1)" : "rgba(248, 113, 113, 1)"}`;
 										}}
 										onMouseOut={(e) => {
-											e.currentTarget.style.backgroundColor = `${isDark ? 'rgba(239, 68, 68, 0.1)' : 'rgba(239, 68, 68, 0.1)'}`;
-											e.currentTarget.style.color = `${isDark ? 'rgba(248, 113, 113, 1)' : 'rgba(239, 68, 68, 1)'}`;
-										}}
-									>
+											e.currentTarget.style.backgroundColor = `${isDark ? "rgba(239, 68, 68, 0.1)" : "rgba(239, 68, 68, 0.1)"}`;
+											e.currentTarget.style.color = `${isDark ? "rgba(248, 113, 113, 1)" : "rgba(239, 68, 68, 1)"}`;
+										}}>
 										<X className="h-4 w-4" />
 									</button>
 								</div>
@@ -199,96 +204,125 @@ const columns: ColumnDef<UserWithActions>[] = [
 									<Button
 										onClick={handlejudge}
 										style={{
-											backdropFilter: 'blur(8px)',
-											transition: 'all 0.2s ease',
-											cursor: 'pointer',
-											backgroundColor: `${isDark ? 'rgba(168, 85, 247, 0.2)' : 'rgba(168, 85, 247, 0.2)'}`,
-											color: `${isDark ? 'rgba(192, 132, 252, 1)' : 'rgba(139, 92, 246, 1)'}`,
-											border: `1px solid ${isDark ? 'rgba(168, 85, 247, 0.3)' : 'rgba(168, 85, 247, 0.3)'}`
+											backdropFilter: "blur(8px)",
+											transition: "all 0.2s ease",
+											cursor: "pointer",
+											backgroundColor: `${isDark ? "rgba(168, 85, 247, 0.2)" : "rgba(168, 85, 247, 0.2)"}`,
+											color: `${isDark ? "rgba(192, 132, 252, 1)" : "rgba(139, 92, 246, 1)"}`,
+											border: `1px solid ${isDark ? "rgba(168, 85, 247, 0.3)" : "rgba(168, 85, 247, 0.3)"}`,
 										}}
 										onMouseOver={(e) => {
-											e.currentTarget.style.backgroundColor = `${isDark ? 'rgba(168, 85, 247, 0.3)' : 'rgba(168, 85, 247, 0.3)'}`;
-											e.currentTarget.style.color = `${isDark ? 'rgba(216, 180, 254, 1)' : 'rgba(168, 85, 247, 1)'}`;
+											e.currentTarget.style.backgroundColor = `${isDark ? "rgba(168, 85, 247, 0.3)" : "rgba(168, 85, 247, 0.3)"}`;
+											e.currentTarget.style.color = `${isDark ? "rgba(216, 180, 254, 1)" : "rgba(168, 85, 247, 1)"}`;
 										}}
 										onMouseOut={(e) => {
-											e.currentTarget.style.backgroundColor = `${isDark ? 'rgba(168, 85, 247, 0.2)' : 'rgba(168, 85, 247, 0.2)'}`;
-											e.currentTarget.style.color = `${isDark ? 'rgba(192, 132, 252, 1)' : 'rgba(139, 92, 246, 1)'}`;
-										}}
-									>
+											e.currentTarget.style.backgroundColor = `${isDark ? "rgba(168, 85, 247, 0.2)" : "rgba(168, 85, 247, 0.2)"}`;
+											e.currentTarget.style.color = `${isDark ? "rgba(192, 132, 252, 1)" : "rgba(139, 92, 246, 1)"}`;
+										}}>
 										<UserCheck className="h-5 w-5 mr-2" /> Make Judge
 									</Button>
 								</div>
-								<div style={{
-									marginTop: '1rem',
-									display: 'flex',
-									flexDirection: 'column',
-									alignItems: 'flex-start',
-									justifyContent: 'flex-start',
-									gap: '1.25rem',
-									borderRadius: '0.75rem',
-									padding: '1rem',
-									backdropFilter: 'blur(8px)',
-									border: `1px solid ${isDark ? 'rgba(51, 65, 85, 0.7)' : 'rgba(226, 232, 240, 0.7)'}`,
-									backgroundColor: `${isDark ? 'rgba(30, 41, 59, 0.3)' : 'rgba(255, 255, 255, 0.4)'}`,
-								}}>
+								<div
+									style={{
+										marginTop: "1rem",
+										display: "flex",
+										flexDirection: "column",
+										alignItems: "flex-start",
+										justifyContent: "flex-start",
+										gap: "1.25rem",
+										borderRadius: "0.75rem",
+										padding: "1rem",
+										backdropFilter: "blur(8px)",
+										border: `1px solid ${isDark ? "rgba(51, 65, 85, 0.7)" : "rgba(226, 232, 240, 0.7)"}`,
+										backgroundColor: `${isDark ? "rgba(30, 41, 59, 0.3)" : "rgba(255, 255, 255, 0.4)"}`,
+									}}>
 									<span className="font-medium text-foreground">
-										<span style={{
-											color: `${isDark ? 'rgba(148, 163, 184, 1)' : 'rgba(100, 116, 139, 1)'}`
-										}}>Name:</span> {row.original.username}
+										<span
+											style={{
+												color: `${isDark ? "rgba(148, 163, 184, 1)" : "rgba(100, 116, 139, 1)"}`,
+											}}>
+											Name:
+										</span>{" "}
+										{row.original.username}
 									</span>
 									<span className="font-medium text-foreground">
-										<span style={{
-											color: `${isDark ? 'rgba(148, 163, 184, 1)' : 'rgba(100, 116, 139, 1)'}`
-										}}>College: </span>
+										<span
+											style={{
+												color: `${isDark ? "rgba(148, 163, 184, 1)" : "rgba(100, 116, 139, 1)"}`,
+											}}>
+											College:{" "}
+										</span>
 										{row.original.collegeOther}
 									</span>
 									<span className="font-medium text-foreground">
-										<span style={{
-											color: `${isDark ? 'rgba(148, 163, 184, 1)' : 'rgba(100, 116, 139, 1)'}`
-										}}>Email: </span>{" "}
-										<a 
-											href={`mailto:${row.original.email}`} 
-											style={{ 
-												transition: 'all 0.2s ease',
-												color: `${isDark ? 'rgba(192, 132, 252, 1)' : 'rgba(139, 92, 246, 1)'}`
+										<span
+											style={{
+												color: `${isDark ? "rgba(148, 163, 184, 1)" : "rgba(100, 116, 139, 1)"}`,
+											}}>
+											Email:{" "}
+										</span>{" "}
+										<a
+											href={`mailto:${row.original.email}`}
+											style={{
+												transition: "all 0.2s ease",
+												color: `${isDark ? "rgba(192, 132, 252, 1)" : "rgba(139, 92, 246, 1)"}`,
 											}}
-											onMouseOver={(e) => e.currentTarget.style.color = `${isDark ? 'rgba(216, 180, 254, 1)' : 'rgba(168, 85, 247, 1)'}`}
-											onMouseOut={(e) => e.currentTarget.style.color = `${isDark ? 'rgba(192, 132, 252, 1)' : 'rgba(139, 92, 246, 1)'}`}
-										>
+											onMouseOver={(e) =>
+												(e.currentTarget.style.color = `${isDark ? "rgba(216, 180, 254, 1)" : "rgba(168, 85, 247, 1)"}`)
+											}
+											onMouseOut={(e) =>
+												(e.currentTarget.style.color = `${isDark ? "rgba(192, 132, 252, 1)" : "rgba(139, 92, 246, 1)"}`)
+											}>
 											{row.original.email}
 										</a>
 									</span>
 									<span className="font-medium text-foreground">
-										<span style={{
-											color: `${isDark ? 'rgba(148, 163, 184, 1)' : 'rgba(100, 116, 139, 1)'}`
-										}}>Mobile: </span>{" "}
-										<a 
-											href={`tel:${row.original.mobile_number}`} 
-											style={{ 
-												transition: 'all 0.2s ease',
-												color: `${isDark ? 'rgba(192, 132, 252, 1)' : 'rgba(139, 92, 246, 1)'}`
+										<span
+											style={{
+												color: `${isDark ? "rgba(148, 163, 184, 1)" : "rgba(100, 116, 139, 1)"}`,
+											}}>
+											Mobile:{" "}
+										</span>{" "}
+										<a
+											href={`tel:${row.original.mobile_number}`}
+											style={{
+												transition: "all 0.2s ease",
+												color: `${isDark ? "rgba(192, 132, 252, 1)" : "rgba(139, 92, 246, 1)"}`,
 											}}
-											onMouseOver={(e) => e.currentTarget.style.color = `${isDark ? 'rgba(216, 180, 254, 1)' : 'rgba(168, 85, 247, 1)'}`}
-											onMouseOut={(e) => e.currentTarget.style.color = `${isDark ? 'rgba(192, 132, 252, 1)' : 'rgba(139, 92, 246, 1)'}`}
-										>
+											onMouseOver={(e) =>
+												(e.currentTarget.style.color = `${isDark ? "rgba(216, 180, 254, 1)" : "rgba(168, 85, 247, 1)"}`)
+											}
+											onMouseOut={(e) =>
+												(e.currentTarget.style.color = `${isDark ? "rgba(192, 132, 252, 1)" : "rgba(139, 92, 246, 1)"}`)
+											}>
 											{row.original.mobile_number}
 										</a>
 									</span>
 									<span className="font-medium text-foreground">
-										<span style={{
-											color: `${isDark ? 'rgba(148, 163, 184, 1)' : 'rgba(100, 116, 139, 1)'}`
-										}}>Gender: </span>
+										<span
+											style={{
+												color: `${isDark ? "rgba(148, 163, 184, 1)" : "rgba(100, 116, 139, 1)"}`,
+											}}>
+											Gender:{" "}
+										</span>
 										{row.original.gender}
 									</span>
 									<span className="font-medium text-foreground">
-										<span style={{
-											color: `${isDark ? 'rgba(148, 163, 184, 1)' : 'rgba(100, 116, 139, 1)'}`
-										}}>Role: </span> {row.original.role}
+										<span
+											style={{
+												color: `${isDark ? "rgba(148, 163, 184, 1)" : "rgba(100, 116, 139, 1)"}`,
+											}}>
+											Role:{" "}
+										</span>{" "}
+										{row.original.role}
 									</span>
 									<span className="font-medium text-foreground">
-										<span style={{
-											color: `${isDark ? 'rgba(148, 163, 184, 1)' : 'rgba(100, 116, 139, 1)'}`
-										}}>Joined At: </span>{" "}
+										<span
+											style={{
+												color: `${isDark ? "rgba(148, 163, 184, 1)" : "rgba(100, 116, 139, 1)"}`,
+											}}>
+											Joined At:{" "}
+										</span>{" "}
 										{new Date(row.original.createdAt).toLocaleDateString()}
 									</span>
 								</div>
@@ -360,59 +394,70 @@ const UsersTable: React.FC = () => {
 	return (
 		<div className="relative">
 			{/* Glass panel container */}
-			<div style={{
-				padding: '1.5rem',
-				borderRadius: '0.75rem',
-				overflow: 'hidden',
-				backgroundColor: `${isDark ? 'rgba(15, 23, 42, 0.6)' : 'rgba(255, 255, 255, 0.7)'}`,
-				backdropFilter: 'blur(12px)',
-				boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-				border: `1px solid ${isDark ? 'rgba(30, 41, 59, 0.7)' : 'rgba(226, 232, 240, 0.7)'}`
-			}}>
+			<div
+				style={{
+					padding: "1.5rem",
+					borderRadius: "0.75rem",
+					overflow: "hidden",
+					backgroundColor: `${isDark ? "rgba(15, 23, 42, 0.6)" : "rgba(255, 255, 255, 0.7)"}`,
+					backdropFilter: "blur(12px)",
+					boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+					border: `1px solid ${isDark ? "rgba(30, 41, 59, 0.7)" : "rgba(226, 232, 240, 0.7)"}`,
+				}}>
 				{/* Purple gradient overlay */}
-				<div className="absolute inset-0 pointer-events-none" style={{
-					background: `${isDark ? 'linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(79, 70, 229, 0.03))' : 'linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(79, 70, 229, 0.05))'}`
-				}}></div>
-				
+				<div
+					className="absolute inset-0 pointer-events-none"
+					style={{
+						background: `${isDark ? "linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(79, 70, 229, 0.03))" : "linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(79, 70, 229, 0.05))"}`,
+					}}></div>
+
 				{/* Accent edge */}
 				<div className="absolute inset-0 rounded-xl overflow-hidden">
-					<div className="absolute top-0 left-0 right-0 h-[1px]" style={{
-						background: `linear-gradient(to right, transparent, ${isDark ? 'rgba(139, 92, 246, 0.3)' : 'rgba(139, 92, 246, 0.5)'}, transparent)`
-					}}></div>
-					<div className="absolute bottom-0 left-0 right-0 h-[1px]" style={{
-						background: `linear-gradient(to right, transparent, ${isDark ? 'rgba(79, 70, 229, 0.2)' : 'rgba(79, 70, 229, 0.4)'}, transparent)`
-					}}></div>
+					<div
+						className="absolute top-0 left-0 right-0 h-[1px]"
+						style={{
+							background: `linear-gradient(to right, transparent, ${isDark ? "rgba(139, 92, 246, 0.3)" : "rgba(139, 92, 246, 0.5)"}, transparent)`,
+						}}></div>
+					<div
+						className="absolute bottom-0 left-0 right-0 h-[1px]"
+						style={{
+							background: `linear-gradient(to right, transparent, ${isDark ? "rgba(79, 70, 229, 0.2)" : "rgba(79, 70, 229, 0.4)"}, transparent)`,
+						}}></div>
 				</div>
-				
+
 				<div className="relative flex w-[100%] items-end justify-between mb-6">
 					<div>
-						<p style={{
-							fontSize: '1.5rem',
-							fontWeight: 600,
-							fontFamily: "var(--font-playfair-display)",
-							color: `${isDark ? 'rgba(255, 255, 255, 1)' : 'rgba(30, 41, 59, 1)'}`
-						}}>Users</p>
+						<p
+							style={{
+								fontSize: "1.5rem",
+								fontWeight: 600,
+								fontFamily: "var(--font-playfair-display)",
+								color: `${isDark ? "rgba(255, 255, 255, 1)" : "rgba(30, 41, 59, 1)"}`,
+							}}>
+							Users
+						</p>
 					</div>
 					<Input
 						placeholder="Enter name"
 						value={fetchProps.search}
 						onChange={(e): void => setFetchProps({ ...fetchProps, search: e.target.value, offset: 0 })}
 						style={{
-							width: '20%',
-							minWidth: '10rem',
-							backdropFilter: 'blur(8px)',
-							border: `1px solid ${isDark ? 'rgba(51, 65, 85, 1)' : 'rgba(226, 232, 240, 1)'}`,
-							backgroundColor: `${isDark ? 'rgba(30, 41, 59, 0.4)' : 'rgba(255, 255, 255, 0.5)'}`,
-							color: `${isDark ? 'rgba(255, 255, 255, 1)' : 'rgba(15, 23, 42, 1)'}`,
+							width: "20%",
+							minWidth: "10rem",
+							backdropFilter: "blur(8px)",
+							border: `1px solid ${isDark ? "rgba(51, 65, 85, 1)" : "rgba(226, 232, 240, 1)"}`,
+							backgroundColor: `${isDark ? "rgba(30, 41, 59, 0.4)" : "rgba(255, 255, 255, 0.5)"}`,
+							color: `${isDark ? "rgba(255, 255, 255, 1)" : "rgba(15, 23, 42, 1)"}`,
 						}}
 					/>
 				</div>
 				<div className="relative">
-					<div style={{
-						border: `1px solid ${isDark ? 'rgba(51, 65, 85, 1)' : 'rgba(226, 232, 240, 1)'}`,
-						backgroundColor: `${isDark ? 'rgba(15, 23, 42, 0.3)' : 'rgba(255, 255, 255, 0.4)'}`,
-						backdropFilter: 'blur(8px)'
-					}}>
+					<div
+						style={{
+							border: `1px solid ${isDark ? "rgba(51, 65, 85, 1)" : "rgba(226, 232, 240, 1)"}`,
+							backgroundColor: `${isDark ? "rgba(15, 23, 42, 0.3)" : "rgba(255, 255, 255, 0.4)"}`,
+							backdropFilter: "blur(8px)",
+						}}>
 						<DataTable
 							columns={columns}
 							data={users}
@@ -422,33 +467,35 @@ const UsersTable: React.FC = () => {
 						/>
 					</div>
 					{loading && (
-						<div style={{
-							margin: '1.5rem 0',
-							display: 'flex',
-							alignItems: 'center',
-							justifyContent: 'center',
-							borderRadius: '0.75rem',
-							padding: '1rem',
-							backgroundColor: `${isDark ? 'rgba(30, 41, 59, 0.4)' : 'rgba(255, 255, 255, 0.4)'}`,
-							border: `1px solid ${isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.5)'}`,
-							backdropFilter: 'blur(8px)'
-						}}>
+						<div
+							style={{
+								margin: "1.5rem 0",
+								display: "flex",
+								alignItems: "center",
+								justifyContent: "center",
+								borderRadius: "0.75rem",
+								padding: "1rem",
+								backgroundColor: `${isDark ? "rgba(30, 41, 59, 0.4)" : "rgba(255, 255, 255, 0.4)"}`,
+								border: `1px solid ${isDark ? "rgba(51, 65, 85, 0.5)" : "rgba(226, 232, 240, 0.5)"}`,
+								backdropFilter: "blur(8px)",
+							}}>
 							<BeatLoader color="#a457f7" size={12} />
 						</div>
 					)}
 					{!loading && users.length === 0 && (
-						<div style={{
-							margin: '1.5rem 0',
-							display: 'flex',
-							alignItems: 'center',
-							justifyContent: 'center',
-							borderRadius: '0.75rem',
-							padding: '1rem',
-							backgroundColor: `${isDark ? 'rgba(30, 41, 59, 0.4)' : 'rgba(255, 255, 255, 0.4)'}`,
-							border: `1px solid ${isDark ? 'rgba(51, 65, 85, 0.5)' : 'rgba(226, 232, 240, 0.5)'}`,
-							backdropFilter: 'blur(8px)',
-							color: `${isDark ? 'rgba(148, 163, 184, 1)' : 'rgba(100, 116, 139, 1)'}`
-						}}>
+						<div
+							style={{
+								margin: "1.5rem 0",
+								display: "flex",
+								alignItems: "center",
+								justifyContent: "center",
+								borderRadius: "0.75rem",
+								padding: "1rem",
+								backgroundColor: `${isDark ? "rgba(30, 41, 59, 0.4)" : "rgba(255, 255, 255, 0.4)"}`,
+								border: `1px solid ${isDark ? "rgba(51, 65, 85, 0.5)" : "rgba(226, 232, 240, 0.5)"}`,
+								backdropFilter: "blur(8px)",
+								color: `${isDark ? "rgba(148, 163, 184, 1)" : "rgba(100, 116, 139, 1)"}`,
+							}}>
 							<p>No users found</p>
 						</div>
 					)}

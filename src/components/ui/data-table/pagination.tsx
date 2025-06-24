@@ -25,32 +25,29 @@ export function DataTablePagination<TData>({ table, pageSize }: DataTablePaginat
 
 	// Custom button styles for glassmorphic effect
 	const buttonStyle = {
-		background: isDark 
-			? 'rgba(139, 92, 246, 0.1)'
-			: 'rgba(139, 92, 246, 0.05)',
-		border: `1px solid ${isDark ? 'rgba(139, 92, 246, 0.2)' : 'rgba(139, 92, 246, 0.15)'}`,
-		color: isDark ? 'white' : '#1e293b',
-		backdropFilter: 'blur(4px)',
-		WebkitBackdropFilter: 'blur(4px)',
+		background: isDark ? "rgba(139, 92, 246, 0.1)" : "rgba(139, 92, 246, 0.05)",
+		border: `1px solid ${isDark ? "rgba(139, 92, 246, 0.2)" : "rgba(139, 92, 246, 0.15)"}`,
+		color: isDark ? "white" : "#1e293b",
+		backdropFilter: "blur(4px)",
+		WebkitBackdropFilter: "blur(4px)",
 	};
 
 	const buttonDisabledStyle = {
-		background: isDark
-			? 'rgba(100, 116, 139, 0.1)'
-			: 'rgba(148, 163, 184, 0.05)',
-		border: `1px solid ${isDark ? 'rgba(100, 116, 139, 0.2)' : 'rgba(148, 163, 184, 0.15)'}`,
-		color: isDark ? 'rgba(148, 163, 184, 0.5)' : 'rgba(100, 116, 139, 0.6)',
+		background: isDark ? "rgba(100, 116, 139, 0.1)" : "rgba(148, 163, 184, 0.05)",
+		border: `1px solid ${isDark ? "rgba(100, 116, 139, 0.2)" : "rgba(148, 163, 184, 0.15)"}`,
+		color: isDark ? "rgba(148, 163, 184, 0.5)" : "rgba(100, 116, 139, 0.6)",
 	};
 
 	return (
 		<div className="flex w-full flex-row items-center justify-center p-3 sm:justify-between sm:px-4">
-			<div className={`hidden text-sm sm:flex ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+			<div className={`hidden text-sm sm:flex ${isDark ? "text-slate-300" : "text-slate-600"}`}>
 				{table.getFilteredSelectedRowModel().rows.length} of {table.getFilteredRowModel().rows.length} rows
 				selected.
 			</div>
 			<div className="flex items-center space-x-6 lg:space-x-8">
 				<div className="flex items-center sm:space-x-2">
-					<p className={`hidden text-sm font-medium sm:block ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+					<p
+						className={`hidden text-sm font-medium sm:block ${isDark ? "text-slate-300" : "text-slate-600"}`}>
 						Rows per page
 					</p>
 					<Select
@@ -58,24 +55,22 @@ export function DataTablePagination<TData>({ table, pageSize }: DataTablePaginat
 						onValueChange={(value): void => {
 							table.setPageSize(Number(value));
 						}}>
-						<SelectTrigger 
-							aria-label={"pageSize"} 
+						<SelectTrigger
+							aria-label={"pageSize"}
 							className={`h-8 w-[70px] ${
-								isDark 
-									? 'bg-slate-800/40 border-slate-700 text-white' 
-									: 'bg-white/50 border-slate-200 text-slate-900'
-							} backdrop-blur-sm`}
-						>
+								isDark
+									? "bg-slate-800/40 border-slate-700 text-white"
+									: "bg-white/50 border-slate-200 text-slate-900"
+							} backdrop-blur-sm`}>
 							<SelectValue placeholder={table.getState().pagination.pageSize} />
 						</SelectTrigger>
-						<SelectContent 
+						<SelectContent
 							side="top"
 							className={`${
-								isDark 
-									? 'bg-slate-800/90 border-slate-700 text-white' 
-									: 'bg-white/90 border-slate-200 text-slate-900'
-							} backdrop-blur-md`}
-						>
+								isDark
+									? "bg-slate-800/90 border-slate-700 text-white"
+									: "bg-white/90 border-slate-200 text-slate-900"
+							} backdrop-blur-md`}>
 							{[5, 10, 20, 30, 40, 50].map((pageSize) => (
 								<SelectItem key={pageSize} value={`${pageSize}`}>
 									{pageSize}
@@ -84,7 +79,8 @@ export function DataTablePagination<TData>({ table, pageSize }: DataTablePaginat
 						</SelectContent>
 					</Select>
 				</div>
-				<div className={`flex items-center justify-center text-sm font-medium ${isDark ? 'text-slate-300' : 'text-slate-600'} sm:w-[100px]`}>
+				<div
+					className={`flex items-center justify-center text-sm font-medium ${isDark ? "text-slate-300" : "text-slate-600"} sm:w-[100px]`}>
 					Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
 				</div>
 				<div className="flex items-center space-x-2">

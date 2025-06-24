@@ -18,7 +18,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 		const handleToggle = () => setSidebarOpen((prev) => !prev);
 		window.addEventListener("toggle-sidebar", handleToggle);
 		return () => window.removeEventListener("toggle-sidebar", handleToggle);
-	}, []);	// Dashboard-specific gradient colors
+	}, []); // Dashboard-specific gradient colors
 	const dashboardGradient = {
 		lightFrom: "#f5f5fc", // Very light lavender
 		lightVia: "#eeeef9", // Light lavender
@@ -29,7 +29,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 	};
 	return (
 		<div
-			className="min-h-screen w-full transition-colors duration-500"			style={{
+			className="min-h-screen w-full transition-colors duration-500"
+			style={{
 				background: `linear-gradient(to bottom, 
 					${isDark ? dashboardGradient.darkFrom : dashboardGradient.lightFrom}, 
 					${isDark ? dashboardGradient.darkVia : dashboardGradient.lightVia}, 

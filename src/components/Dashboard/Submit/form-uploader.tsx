@@ -204,10 +204,11 @@ export function SubmitForm({
 																	key={statement._id}
 																	value={statement._id.toString()}>
 																	<SelectLabel className="flex flex-row items-center overflow-hidden truncate text-ellipsis p-0 py-1.5">
-																		{statement.icon ?
-																			<statement.icon className="h-4 w-4" /> :
+																		{statement.icon ? (
+																			<statement.icon className="h-4 w-4" />
+																		) : (
 																			<div className="h-4 w-4" />
-																		}
+																		)}
 																		<div className="ml-4 flex max-w-[95%] flex-col">
 																			{statement.title}
 																			<span className="line-clamp-1 text-xs text-muted-foreground">

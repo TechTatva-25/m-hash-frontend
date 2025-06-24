@@ -29,65 +29,74 @@ export function Sidebar(): React.JSX.Element {
 				sidebarOpen ? "w-72" : "w-[90px]"
 			)}
 			style={{
-				background: theme === "dark" 
-					? 'linear-gradient(to bottom, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.9))'
-					: 'linear-gradient(to bottom, rgba(245, 245, 252, 0.8), rgba(238, 238, 249, 0.85))',
-				borderRight: `1px solid ${theme === "dark" ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.7)'}`,
-				boxShadow: `0 4px 20px ${theme === "dark" ? 'rgba(0, 0, 0, 0.5)' : 'rgba(0, 0, 0, 0.08)'}`
-			}}>			<SidebarToggle />
+				background:
+					theme === "dark"
+						? "linear-gradient(to bottom, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.9))"
+						: "linear-gradient(to bottom, rgba(245, 245, 252, 0.8), rgba(238, 238, 249, 0.85))",
+				borderRight: `1px solid ${theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.7)"}`,
+				boxShadow: `0 4px 20px ${theme === "dark" ? "rgba(0, 0, 0, 0.5)" : "rgba(0, 0, 0, 0.08)"}`,
+			}}>
+			{" "}
+			<SidebarToggle />
 			<div className="relative flex h-full flex-col overflow-hidden px-3 py-4 scrollbar-hide">
 				{/* Subtle background gradient effect */}
-				<div className="absolute inset-0 -z-10" style={{
-					background: theme === "dark"
-						? 'linear-gradient(to bottom, rgba(139, 92, 246, 0.05), rgba(79, 70, 229, 0.03))'
-						: 'linear-gradient(to bottom, rgba(139, 92, 246, 0.1), rgba(79, 70, 229, 0.05))'
-				}}></div>
-				
+				<div
+					className="absolute inset-0 -z-10"
+					style={{
+						background:
+							theme === "dark"
+								? "linear-gradient(to bottom, rgba(139, 92, 246, 0.05), rgba(79, 70, 229, 0.03))"
+								: "linear-gradient(to bottom, rgba(139, 92, 246, 0.1), rgba(79, 70, 229, 0.05))",
+					}}></div>
 				{/* Accent edge */}
-				<div className="absolute right-0 top-0 bottom-0 w-[1px]" style={{
-					background: `linear-gradient(to bottom, transparent, ${theme === "dark" ? 'rgba(139, 92, 246, 0.3)' : 'rgba(139, 92, 246, 0.5)'}, transparent)`
-				}}></div>
-				
+				<div
+					className="absolute right-0 top-0 bottom-0 w-[1px]"
+					style={{
+						background: `linear-gradient(to bottom, transparent, ${theme === "dark" ? "rgba(139, 92, 246, 0.3)" : "rgba(139, 92, 246, 0.5)"}, transparent)`,
+					}}></div>
 				{/* Enhanced inner glow with subtle highlights */}
-				<div className="absolute inset-0" style={{
-					background: `linear-gradient(135deg, ${theme === "dark" ? 'rgba(255, 255, 255, 0.03)' : 'rgba(255, 255, 255, 0.15)'}, transparent)`,
-					mixBlendMode: "overlay"
-				}}></div>				<div className="flex justify-between items-center mb-4 relative z-10">
-					<Link 
-						href="/dashboard" 
+				<div
+					className="absolute inset-0"
+					style={{
+						background: `linear-gradient(135deg, ${theme === "dark" ? "rgba(255, 255, 255, 0.03)" : "rgba(255, 255, 255, 0.15)"}, transparent)`,
+						mixBlendMode: "overlay",
+					}}></div>{" "}
+				<div className="flex justify-between items-center mb-4 relative z-10">
+					<Link
+						href="/dashboard"
 						className={cn(
 							"flex items-center gap-2 px-3 py-2 rounded-md backdrop-blur-md transition-all duration-300",
 							sidebarOpen ? "translate-x-0" : "justify-center"
 						)}
 						style={{
-							background: theme === "dark" 
-								? 'rgba(255, 255, 255, 0.05)' 
-								: 'rgba(255, 255, 255, 0.3)',
-							border: `1px solid ${theme === "dark" ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.4)'}`,
-							boxShadow: `0 2px 8px ${theme === "dark" ? 'rgba(0, 0, 0, 0.1)' : 'rgba(0, 0, 0, 0.03)'}`
+							background: theme === "dark" ? "rgba(255, 255, 255, 0.05)" : "rgba(255, 255, 255, 0.3)",
+							border: `1px solid ${theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.4)"}`,
+							boxShadow: `0 2px 8px ${theme === "dark" ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.03)"}`,
 						}}>
 						<div className="relative">
-							<Image 
-								src="/M-Hash-Logo.png" 
-								alt="Manipal Hackathon Logo" 
-								width={30} 
+							<Image
+								src="/M-Hash-Logo.png"
+								alt="Manipal Hackathon Logo"
+								width={30}
 								height={30}
-								className="relative z-10" 
+								className="relative z-10"
 							/>
-							<div className="absolute inset-0 blur-sm opacity-50" style={{
-								background: theme === "dark" ? 'rgba(139, 92, 246, 0.3)' : 'rgba(139, 92, 246, 0.15)'
-							}}></div>
+							<div
+								className="absolute inset-0 blur-sm opacity-50"
+								style={{
+									background:
+										theme === "dark" ? "rgba(139, 92, 246, 0.3)" : "rgba(139, 92, 246, 0.15)",
+								}}></div>
 						</div>
 						<h1
 							className={cn(
 								"whitespace-nowrap text-lg font-bold transition-[transform,opacity,display] duration-300 ease-in-out",
-								sidebarOpen
-									? "translate-x-0 opacity-100"
-									: "hidden -translate-x-96 opacity-0"
+								sidebarOpen ? "translate-x-0 opacity-100" : "hidden -translate-x-96 opacity-0"
 							)}
-							style={{ 
+							style={{
 								fontFamily: "var(--font-playfair-display)",
-								color: theme === "dark" ? 'white' : '#1e293b',							}}>
+								color: theme === "dark" ? "white" : "#1e293b",
+							}}>
 							Hackathon 2024
 						</h1>
 					</Link>
@@ -99,16 +108,15 @@ export function Sidebar(): React.JSX.Element {
 							sidebarOpen ? "" : "absolute right-1/2 transform translate-x-1/2 top-16"
 						)}
 						style={{
-							background: theme === "dark" 
-								? 'rgba(139, 92, 246, 0.15)' 
-								: 'rgba(139, 92, 246, 0.2)',
-							border: `1px solid ${theme === "dark" ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.4)'}`,
-							boxShadow: `0 2px 8px ${theme === "dark" ? 'rgba(0, 0, 0, 0.2)' : 'rgba(139, 92, 246, 0.1)'}`
+							background: theme === "dark" ? "rgba(139, 92, 246, 0.15)" : "rgba(139, 92, 246, 0.2)",
+							border: `1px solid ${theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.4)"}`,
+							boxShadow: `0 2px 8px ${theme === "dark" ? "rgba(0, 0, 0, 0.2)" : "rgba(139, 92, 246, 0.1)"}`,
 						}}>
 						{theme === "dark" ? (
 							<RiSunFill className="h-5 w-5 text-white" />
 						) : (
-							<RiMoonClearFill className="h-5 w-5 text-gray-800" />						)}
+							<RiMoonClearFill className="h-5 w-5 text-gray-800" />
+						)}
 					</button>
 				</div>
 				<div className={cn(sidebarOpen ? "" : "mt-16")}>

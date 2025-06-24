@@ -7,7 +7,8 @@ import { Button } from "./button";
 
 export type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, type, value = "", ...props }, ref) => {	return (
+const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, type, value = "", ...props }, ref) => {
+	return (
 		<input
 			type={type}
 			className={cn(
