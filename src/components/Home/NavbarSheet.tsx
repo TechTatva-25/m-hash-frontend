@@ -126,7 +126,7 @@ export function NavbarSheet(): React.JSX.Element {
 									window.location.href = "/login";
 								}}
 								variant="outline"
-								className="flex w-full items-center space-x-2 text-gray-800 dark:text-gray-200 md:w-auto">
+								className="flex w-full items-center cursor-pointer space-x-2 text-gray-800 dark:text-gray-200 md:w-auto">
 								Login
 							</Button>
 						</SheetClose>
@@ -166,10 +166,9 @@ export function NavbarSheet(): React.JSX.Element {
 							<TooltipTrigger asChild>
 								<DropdownMenuTrigger asChild>
 									<Button variant="outline" className="relative h-10 w-10 rounded-full">
-										<Avatar className="h-10 w-10">
-											<BoringAvatar
+										<Avatar className="h-10 w-10">											<BoringAvatar
 												name={username}
-												variant="marble"
+												variant="beam"
 												size={40}
 												colors={generateColorPalette(username)}
 											/>

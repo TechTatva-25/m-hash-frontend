@@ -70,7 +70,7 @@ export function UserNav(): React.JSX.Element {
 		content = (
 			<>
 				<Link href="/login">
-					<Button variant="outline" className="w-full md:w-auto">
+					<Button variant="outline" className="w-full md:w-auto cursor-pointer">
 						Login
 					</Button>
 				</Link>
@@ -85,11 +85,11 @@ export function UserNav(): React.JSX.Element {
 						<Tooltip delayDuration={100}>
 							<TooltipTrigger asChild>
 								<DropdownMenuTrigger asChild>
-									<Button variant="outline" className="relative h-10 w-10 rounded-full">
+									<Button variant="outline" className="relative h-10 w-10 rounded-full cursor-pointer">
 										<Avatar className="h-10 w-10">
 											<BoringAvatar
 												name={username}
-												variant="marble"
+												variant="beam"
 												size={40}
 												colors={generateColorPalette(userId)}
 											/>

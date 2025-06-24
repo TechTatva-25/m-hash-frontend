@@ -21,6 +21,8 @@ import { getTeam, Team } from "@/hooks/useTeam";
 import { Endpoints, getEndpoint } from "@/lib/endpoints";
 import { generateColorPalette } from "@/lib/utils";
 
+import { useTheme } from "@/components/ThemeProvider";
+
 interface UserFetchParams {
 	offset: number;
 	search: string;
@@ -154,34 +156,97 @@ export default function CreateTeam({
 		void debouncedFetchUsers();
 		return (): void => {
 			debouncedFetchUsers.cancel();
-		};
-	}, [fetchParams.search, debouncedFetchUsers]);
+		};	}, [fetchParams.search, debouncedFetchUsers]);
+	
+	// Access theme context to adapt component to light/dark mode
+	const { theme } = useTheme();
+	const isDark = theme === "dark";
+		return (		<Card className="group relative backdrop-blur-xl rounded-xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl hover:scale-[1.01]"
+			style={{
+				background: isDark 
+					? 'linear-gradient(to bottom right, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.8))'
+					: 'linear-gradient(to bottom right, rgba(255, 255, 255, 0.8), rgba(241, 245, 249, 0.9))',
+				boxShadow: `
+					0 10px 30px ${isDark ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0.08)'}, 
+					0 0 0 1px ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.5)'}
+				`,
+				border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.6)'}`,
+			}}>
+			{/* Subtle background gradient effect similar to HighwayTimeline */}
+			<div className="absolute inset-0 rounded-xl -z-10" style={{
+				background: isDark
+					? 'linear-gradient(to bottom right, rgba(139, 92, 246, 0.05), rgba(79, 70, 229, 0.03))'
+					: 'linear-gradient(to bottom right, rgba(139, 92, 246, 0.1), rgba(79, 70, 229, 0.05))'
+			}}></div>
+			
+			{/* Accent edge */}
+			<div className="absolute inset-0 rounded-xl overflow-hidden">
+				<div className="absolute top-0 left-0 right-0 h-[1px]" style={{
+					background: `linear-gradient(to right, transparent, ${isDark ? 'rgba(139, 92, 246, 0.3)' : 'rgba(139, 92, 246, 0.5)'}, transparent)`
+				}}></div>
+				<div className="absolute bottom-0 left-0 right-0 h-[1px]" style={{
+					background: `linear-gradient(to right, transparent, ${isDark ? 'rgba(79, 70, 229, 0.2)' : 'rgba(79, 70, 229, 0.4)'}, transparent)`
+				}}></div>
+			</div>
+			
+			{/* Enhanced inner glow with subtle highlights */}
+			<div className="absolute inset-0 rounded-xl" style={{
+				background: `linear-gradient(to bottom right, ${isDark ? 'rgba(255, 255, 255, 0.03)' : 'rgba(255, 255, 255, 0.15)'}, transparent)`,
+				mixBlendMode: "overlay"
+			}}></div>
+			
+			{/* Light beam effect on hover - similar to HighwayTimeline */}
+			<div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-1500 ease-out rounded-xl overflow-hidden">
+				<div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-2000 ease-out"></div>
+			</div>
 
-	return (
-		<Card>
-			<CardHeader className="relative">
-				<CardTitle>Create Team</CardTitle>
-				<CardDescription>Create a new team and invite your friends to join.</CardDescription>
-				{selectedUsers.length > 0 && (
-					<Badge className="absolute right-6 top-5 z-10 flex flex-row" variant="secondary">
+			<CardHeader className="relative z-10">
+				<div className="relative inline-block mb-4">
+					<CardTitle className="text-3xl font-bold text-[hsl(var(--foreground))]" style={{ fontFamily: "var(--font-playfair-display)" }}>Create Team</CardTitle>
+					
+					{/* Clean underlines */}
+					<div className="absolute -bottom-2 left-0 h-1 w-[100%] bg-[hsl(var(--foreground))] rounded-full"></div>
+					<div className="absolute -bottom-4 left-0 h-[0.5px] w-[100%] bg-[hsl(var(--foreground))]/60 rounded-full"></div>
+				</div>
+						<CardDescription className="text-[hsl(var(--foreground))]/80">Create a new team and invite your friends to join.</CardDescription>
+				{selectedUsers.length > 0 && (					<Badge className="absolute right-6 top-5 z-10 flex flex-row backdrop-blur-xl" variant="secondary" style={{
+						background: isDark
+							? 'linear-gradient(to right, rgba(139, 92, 246, 0.15), rgba(79, 70, 229, 0.15))'
+							: 'linear-gradient(to right, rgba(139, 92, 246, 0.2), rgba(79, 70, 229, 0.2))',
+						border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.4)'}`,
+						boxShadow: `0 2px 10px ${isDark ? 'rgba(0, 0, 0, 0.2)' : 'rgba(0, 0, 0, 0.05)'}`
+					}}>
 						<FaUsers className="h-4 w-4" />
 						<p className="ml-2 text-sm font-semibold">{selectedUsers.length}/5 Members</p>
 					</Badge>
 				)}
 			</CardHeader>
-			<CardContent className="px-2 pb-2 sm:px-6 sm:pb-6">
-				<Input
+			<CardContent className="relative z-10 px-2 pb-2 sm:px-6 sm:pb-6">				<Input
 					disabled={disabled}
 					placeholder="Enter team name"
-					className="mb-4"
+					className="mb-4 backdrop-blur-lg"
+					style={{
+						background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.6)',
+						border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.4)'}`,
+					}}
 					value={teamName}
 					onChange={(e): void => setTeamName(e.target.value)}
-				/>
-				<div className="mb-4 flex flex-col rounded-md border bg-background/50 p-2">
-					<Input
+				/><div className="mb-4 flex flex-col rounded-md border-0 p-2" style={{
+					background: isDark 
+						? 'linear-gradient(to bottom right, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02))'
+						: 'linear-gradient(to bottom right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.3))',
+					backdropFilter: "blur(12px)",
+					WebkitBackdropFilter: "blur(12px)",
+					boxShadow: `inset 0 0 0 1px ${isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.3)'}`,
+					borderRadius: '0.5rem'
+				}}>					<Input
 						disabled={disabled}
 						placeholder="Search for a user"
-						className="mb-2"
+						className="mb-2 backdrop-blur-lg"
+						style={{
+							background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.6)',
+							border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.4)'}`,
+						}}
 						value={fetchParams.search}
 						onChange={(e): void => setFetchParams({ ...fetchParams, search: e.target.value, offset: 0 })}
 					/>
@@ -192,10 +257,9 @@ export default function CreateTeam({
 								<div
 									key={index}
 									className="flex cursor-pointer flex-row items-center rounded-md p-2 transition-all duration-200 ease-in-out hover:bg-accent">
-									<Avatar className="h-10 w-10">
-										<BoringAvatar
+									<Avatar className="h-10 w-10">										<BoringAvatar
 											name={user.username}
-											variant="marble"
+											variant="beam"
 											size={40}
 											colors={generateColorPalette(user._id)}
 										/>
@@ -229,8 +293,15 @@ export default function CreateTeam({
 							)}
 						</InfiniteScroll>
 					</ScrollArea>
-				</div>
-				<div className="mb-4 flex min-h-16 flex-row flex-wrap items-center gap-2 rounded-md border bg-background/50 p-2">
+				</div>				<div className="mb-4 flex min-h-16 flex-row flex-wrap items-center gap-2 rounded-md border-0 p-2" style={{
+					background: isDark 
+						? 'linear-gradient(to bottom right, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02))'
+						: 'linear-gradient(to bottom right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.3))',
+					backdropFilter: "blur(12px)",
+					WebkitBackdropFilter: "blur(12px)",
+					boxShadow: `inset 0 0 0 1px ${isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.3)'}`,
+					borderRadius: '0.5rem'
+				}}>
 					{selectedUsers.length === 0 && (
 						<div className="flex h-full w-full flex-row items-center justify-center text-muted-foreground">
 							<FaUsers className="h-6 w-6" />
@@ -238,11 +309,10 @@ export default function CreateTeam({
 						</div>
 					)}
 					{selectedUsers.map((user) => (
-						<div key={user._id} className="flex flex-row items-center rounded-md border bg-transparent p-2">
-							<Avatar className="h-8 w-8">
-								<BoringAvatar
+						<div key={user._id} className="flex flex-row items-center rounded-md border-0 bg-transparent p-2">
+							<Avatar className="h-8 w-8">								<BoringAvatar
 									name={user.username}
-									variant="marble"
+									variant="beam"
 									size={32}
 									colors={generateColorPalette(user._id)}
 								/>
@@ -260,13 +330,54 @@ export default function CreateTeam({
 							)}
 						</div>
 					))}
+				</div>				{/* Glassmorphic Button inspired by Send Message button */}
+				<div className="mt-2 relative group">
+					<button
+						onClick={handleCreateTeam}
+						disabled={disabled}
+						className="group relative w-full inline-flex items-center justify-center px-8 py-4 text-base font-medium text-white transition-all duration-500 ease-out hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-60">						{/* Outer border ring */}
+						<div className="absolute inset-0 rounded-full border-2 transition-all duration-300 group-hover:border-white/40"
+							style={{
+								borderColor: isDark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(167, 139, 250, 0.3)'
+							}}></div>						{/* Glow effect */}
+						<div className="absolute inset-0 rounded-full blur-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+							style={{
+								background: isDark 
+									? 'linear-gradient(to right, rgba(129, 140, 248, 0.2), rgba(167, 139, 250, 0.2))' 
+									: 'linear-gradient(to right, rgba(139, 92, 246, 0.15), rgba(167, 139, 250, 0.15))'
+							}}></div>{/* Enhanced glassmorphic background */}
+						<div className="absolute inset-1 rounded-full shadow-2xl transition-all duration-300 group-hover:bg-white/20"
+							style={{
+								background: isDark 
+									? 'rgba(255, 255, 255, 0.15)' 
+									: 'linear-gradient(to right, rgba(233, 213, 255, 0.8), rgba(243, 232, 255, 0.8))',
+								backdropFilter: "blur(12px)"
+							}}></div>{/* Inner highlight */}
+						<div className="absolute inset-2 rounded-full opacity-60"
+							style={{
+								background: isDark 
+									? 'linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent)'
+									: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.4))'
+							}}></div>{/* Button content */}
+						<div className="relative z-10 flex items-center justify-center">
+							{disabled ? (
+								<HashLoader color="#ffffff" size={20} />
+							) : (
+								<>
+									<FaUsers className={`mr-2 ${isDark ? 'text-white' : 'text-gray-900'}`} />
+									<span
+										className={`tracking-wider font-medium text-center cursor-pointer ${isDark ? 'text-white' : 'text-gray-900'}`}
+										style={{
+											fontFamily: "var(--font-playfair-display)",
+											textShadow: isDark ? "0 2px 8px rgba(0,0,0,0.5)" : "0 1px 2px rgba(0,0,0,0.1)",
+										}}>
+										Create Team
+									</span>
+								</>
+							)}
+						</div>
+					</button>
 				</div>
-				<Button
-					onClick={handleCreateTeam}
-					disabled={disabled}
-					className="mt-2 w-full disabled:cursor-not-allowed disabled:opacity-60">
-					{disabled ? <HashLoader color="#a457f7" size={20} /> : "Create Team"}
-				</Button>
 			</CardContent>
 		</Card>
 	);

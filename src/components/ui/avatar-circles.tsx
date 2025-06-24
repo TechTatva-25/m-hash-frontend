@@ -13,6 +13,7 @@ interface AvatarCirclesProps {
 	numPeople?: number;
 	avatarOptions: { name: string; url: string }[];
 	boringAvatars?: boolean;
+	isUser?: boolean; // New prop to distinguish between user and team avatars
 }
 
 const AvatarCircles = ({
@@ -20,6 +21,7 @@ const AvatarCircles = ({
 	className,
 	avatarOptions,
 	boringAvatars,
+	isUser = false, // Default to team (marble variant)
 }: AvatarCirclesProps): React.JSX.Element => {
 	return (
 		<div className={cn("z-10 flex -space-x-4 rtl:space-x-reverse", className)}>
@@ -47,7 +49,7 @@ const AvatarCircles = ({
 							<TooltipTrigger>
 								<BoringAvatar
 									size={40}
-									variant="marble"
+									variant={isUser ? "beam" : "marble"}
 									colors={generateColorPalette(url)}
 									name={name}
 								/>

@@ -62,7 +62,10 @@ const DropdownMenuContent = React.forwardRef<
 			ref={ref}
 			sideOffset={sideOffset}
 			className={cn(
-				"z-50 min-w-[8rem] overflow-hidden rounded-xl border border-white/20 dark:border-slate-800/20 bg-gradient-to-b from-white/80 to-white/60 dark:from-slate-950/80 dark:to-slate-900/60 backdrop-blur-2xl backdrop-saturate-150 p-2 text-popover-foreground shadow-[0_10px_40px_-15px_rgba(0,0,0,0.2),0_0_0_1px_rgba(255,255,255,0.1)] dark:shadow-[0_10px_40px_-15px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.05)] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+				"z-50 min-w-[8rem] overflow-hidden rounded-xl border backdrop-blur-xl backdrop-saturate-150 p-2 text-popover-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+				"border-white/20 dark:border-slate-700/40",
+				"bg-gradient-to-br from-white/90 to-white/80 dark:from-slate-900/90 dark:to-slate-800/90",
+				"shadow-[0_10px_40px_-15px_rgba(0,0,0,0.2),0_0_0_1px_rgba(255,255,255,0.1)] dark:shadow-[0_10px_40px_-15px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.05)]",
 				className
 			)}
 			{...props}
@@ -80,7 +83,11 @@ const DropdownMenuItem = React.forwardRef<
 	<DropdownMenuPrimitive.Item
 		ref={ref}
 		className={cn(
-			"relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors data-[disabled]:pointer-events-none data-[disabled]:opacity-50 focus:bg-accent focus:text-accent-foreground",
+			"relative flex cursor-default select-none items-center rounded-md px-2 py-1.5 text-sm outline-none transition-colors",
+			"data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+			"focus:bg-purple-500/10 dark:focus:bg-purple-500/15",
+			"hover:bg-purple-100/60 dark:hover:bg-purple-500/15",
+			"focus:text-slate-900 dark:focus:text-slate-200",
 			inset && "pl-8",
 			className
 		)}
@@ -150,7 +157,7 @@ const DropdownMenuSeparator = React.forwardRef<
 	React.ElementRef<typeof DropdownMenuPrimitive.Separator>,
 	React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Separator>
 >(({ className, ...props }, ref) => (
-	<DropdownMenuPrimitive.Separator ref={ref} className={cn("-mx-1 my-1 h-px bg-muted", className)} {...props} />
+	<DropdownMenuPrimitive.Separator ref={ref} className={cn("-mx-1 my-1 h-px bg-slate-200/70 dark:bg-slate-700/50", className)} {...props} />
 ));
 DropdownMenuSeparator.displayName = DropdownMenuPrimitive.Separator.displayName;
 
