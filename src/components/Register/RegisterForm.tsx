@@ -6,7 +6,7 @@ import { Check, ChevronsUpDown, Info, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { isValidPhoneNumber } from "react-phone-number-input";
 import { HashLoader } from "react-spinners";
@@ -17,7 +17,8 @@ import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, Command
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { College, useCollege } from "@/hooks/useCollege";
+import { College } from "@/hooks/useCollege";
+import { useSession } from "@/hooks/useSession";
 import { Endpoints, getEndpoint } from "@/lib/endpoints";
 import { cn } from "@/lib/utils";
 import SpotlightCard from "@/components/ui/spotlight-card";
@@ -27,6 +28,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { Input, PasswordInput } from "../ui/input";
 import { PhoneInput } from "../ui/phone-input";
+import OTPVerificationForm from "./OTPVerificationForm";
 
 // Password validation schema remains the same but we'll handle the display differently
 const registerFormSchema = z
@@ -50,7 +52,7 @@ const registerFormSchema = z
 				"Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
 			),
 		confirmPassword: z.string(),
-		college: z.string().min(5),
+		college: z.string().min(1, "Please select a college"),
 		collegeOther: z.string().min(5).optional(),
 		mobile_number: z
 			.string()
@@ -65,36 +67,129 @@ const registerFormSchema = z
 				path: ["confirmPassword"],
 			});
 		}
+	})
+	.superRefine(({ college, collegeOther }, ctx) => {
+		if (college === "OTHER" && (!collegeOther || collegeOther.length < 5)) {
+			ctx.addIssue({
+				code: z.ZodIssueCode.custom,
+				message: "Please enter your college name",
+				path: ["collegeOther"],
+			});
+		}
 	});
 
 export default function RegisterForm(): React.JSX.Element {
-	const colleges = useCollege();
+	const [colleges, setColleges] = useState<College[]>([]);
+	const [loading, setLoading] = useState(true);
 	const [disabled, setDisabled] = useState(false);
 	const [collegeComboboxOpen, setCollegeComboboxOpen] = React.useState(false);
 	const [collegeValue, setCollegeValue] = React.useState({ display: "", value: "" });
 	const [collegeOther, setCollegeOther] = React.useState(false);
-	const [buttonHover, setButtonHover] = useState(false);
 	const [passwordFocused, setPasswordFocused] = useState(false);
+	const [showOTPVerification, setShowOTPVerification] = useState(false);
+	const [registrationEmail, setRegistrationEmail] = useState("");
+	const [verificationSuccessful, setVerificationSuccessful] = useState(false);
 
 	const router = useRouter();
 
-	const otherCollege: College = colleges.find((college) => college.name === "OTHER") ?? {
-		_id: "default_id",
-		name: "OTHER",
-		state: "UNKNOWN",
-	};
+	// Check authentication state
+	const { data: session, isLoading: sessionLoading } = useSession();
+
+	useEffect(() => {
+		// If session is loading, we can return early to avoid flickering
+		if (sessionLoading) return;
+
+		// If user is already logged in, redirect to home
+		if (session) {
+			router.push("/");
+		}
+	}, [session, sessionLoading, router]);
+
+	// Fetch colleges directly in the component
+	useEffect(() => {
+		const fetchColleges = async () => {
+			try {
+				console.log("Attempting to fetch colleges from:", getEndpoint(Endpoints.GET_COLLEGES));
+				const response = await axios.get(getEndpoint(Endpoints.GET_COLLEGES));
+				if (Array.isArray(response.data)) {
+					console.log("Colleges data received:", response.data);
+					setColleges(response.data);
+				} else {
+					console.error("College data is not in expected format:", response.data);
+					toast.error("Failed to load colleges. Invalid data format received.");
+				}
+				setLoading(false);
+			} catch (error: any) {
+				console.error("Error fetching colleges:", error);
+
+				// Provide more specific error messages based on the error type
+				if (error.code === "ERR_NETWORK") {
+					toast.error("Cannot connect to the backend server. Please ensure it's running on the correct port.");
+				} else if (error.response?.status === 404) {
+					toast.error("College endpoint not found. The backend API may be misconfigured.");
+				} else {
+					toast.error("Failed to load colleges. Please refresh the page.");
+				}
+
+				// Add dummy college data as a fallback
+				const dummyColleges = [
+					{ _id: "default", name: "Your College (Server Unavailable)" },
+					{ _id: "OTHER", name: "OTHER" },
+				];
+				console.log("Using fallback college data:", dummyColleges);
+				setColleges(dummyColleges);
+				setLoading(false);
+			}
+		};
+
+		fetchColleges();
+	}, []);
+
+	// Redirect to login page if verification is successful
+	useEffect(() => {
+		if (verificationSuccessful) {
+			toast.success("Account created successfully! Redirecting to login...");
+			setTimeout(() => router.push("/login"), 2000);
+		}
+	}, [verificationSuccessful, router]);
+
+	// Define otherCollege after colleges are loaded
+	const otherCollege: College =
+		colleges.find((college) => college.name === "OTHER") ||
+		{ _id: "OTHER", name: "OTHER", state: "UNKNOWN" };
 
 	const form = useForm<z.infer<typeof registerFormSchema>>({
 		mode: "onChange",
 		resolver: zodResolver(registerFormSchema),
+		defaultValues: {
+			email: "",
+			username: "",
+			password: "",
+			confirmPassword: "",
+			college: "",
+			mobile_number: "",
+			gender: undefined,
+		},
 	});
 
 	const onSubmit = async (data: z.infer<typeof registerFormSchema>): Promise<void> => {
 		setDisabled(true);
 		try {
-			const response = await axios.post<{ message: string }>(getEndpoint(Endpoints.REGISTER), data);
-			toast.success(`${response.data.message}, check your email to verify your account!`);
-			setTimeout(() => router.push("/login"), 5000);
+			// Prepare the data to match backend requirements
+			const payload = {
+				email: data.email,
+				username: data.username,
+				password: data.password,
+				college: data.college,
+				collegeOther: data.college === otherCollege._id ? data.collegeOther : undefined,
+				mobile_number: data.mobile_number,
+				gender: data.gender,
+			};
+
+			const response = await axios.post(getEndpoint(Endpoints.REGISTER), payload);
+			setRegistrationEmail(data.email);
+			setShowOTPVerification(true);
+			toast.success(response.data.message);
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
 				toast.error((error as AxiosError<{ message: string }>).response?.data.message ?? error.message);
@@ -103,6 +198,14 @@ export default function RegisterForm(): React.JSX.Element {
 			}
 		}
 		setDisabled(false);
+	};
+
+	const handleVerificationSuccess = () => {
+		setVerificationSuccessful(true);
+	};
+
+	const handleVerificationCancel = () => {
+		setShowOTPVerification(false);
 	};
 
 	// Password requirements
@@ -132,6 +235,17 @@ export default function RegisterForm(): React.JSX.Element {
 				return false;
 		}
 	};
+
+	// If we're showing the OTP verification form, render that instead
+	if (showOTPVerification) {
+		return (
+			<OTPVerificationForm
+				email={registrationEmail}
+				onVerificationSuccess={handleVerificationSuccess}
+				onCancel={handleVerificationCancel}
+			/>
+		);
+	}
 
 	return (
 		<Card className="w-full sm:w-[900px] backdrop-blur-xl bg-black/40 border-gray-500/20 shadow-lg !important">
@@ -176,7 +290,6 @@ export default function RegisterForm(): React.JSX.Element {
 				<div className="lg:w-2/3 p-6">
 					<CardContent className="p-0">
 						<Form {...form}>
-							{}
 							<form onSubmit={form.handleSubmit(onSubmit)}>
 								<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 									<FormField
@@ -229,16 +342,18 @@ export default function RegisterForm(): React.JSX.Element {
 												</div>
 												<Select onValueChange={field.onChange} defaultValue={field.value}>
 													<FormControl>
-														{}
-														<SelectTrigger
-															className={`bg-black/20 border-gray-500/30 text-white ${field.value ? "" : "text-gray-400"}`}>
-															<SelectValue placeholder="Select your Gender" />
+														<SelectTrigger className="h-10 backdrop-blur-md bg-black/30 border-gray-400/30 text-white shadow-sm
+															hover:bg-white/10 transition-colors focus:ring-2 focus:ring-purple-500/50 focus:border-purple-400/50">
+															<SelectValue
+																placeholder="Select your Gender"
+																className="placeholder:text-gray-300"
+															/>
 														</SelectTrigger>
 													</FormControl>
-													<SelectContent className="bg-gray-900 border-gray-700">
-														<SelectItem value="Male">Male</SelectItem>
-														<SelectItem value="Female">Female</SelectItem>
-														<SelectItem value="Other">Other</SelectItem>
+													<SelectContent className="backdrop-blur-xl bg-black/70 border border-gray-500/30 text-white shadow-lg animate-in fade-in-80 zoom-in-95">
+														<SelectItem value="Male" className="focus:bg-white/10 hover:bg-white/20">Male</SelectItem>
+														<SelectItem value="Female" className="focus:bg-white/10 hover:bg-white/20">Female</SelectItem>
+														<SelectItem value="Other" className="focus:bg-white/10 hover:bg-white/20">Other</SelectItem>
 													</SelectContent>
 												</Select>
 											</FormItem>
@@ -247,7 +362,7 @@ export default function RegisterForm(): React.JSX.Element {
 									<FormField
 										control={form.control}
 										name="mobile_number"
-										render={(): React.JSX.Element => (
+										render={({ field }): React.JSX.Element => (
 											<FormItem>
 												<div className="flex flex-col">
 													<FormLabel className="text-gray-200">Phone Number</FormLabel>
@@ -255,13 +370,13 @@ export default function RegisterForm(): React.JSX.Element {
 												</div>
 												<FormControl>
 													<PhoneInput
-														onChange={(value): void =>
-															form.setValue("mobile_number", value)
-														}
-														name="mobile_number"
-														defaultCountry={"IN"}
+														value={field.value}
+														onChange={(value): void => {
+															if (value) form.setValue("mobile_number", value);
+														}}
+														defaultCountry="IN"
 														placeholder="Enter your phone number"
-														className="bg-black/20 border-gray-500/30 text-white"
+														className="backdrop-blur-md bg-black/30 border-gray-400/30 text-white shadow-sm hover:bg-black/20 focus:ring-2 focus:ring-purple-500/50 focus:border-purple-400/50"
 													/>
 												</FormControl>
 											</FormItem>
@@ -282,93 +397,87 @@ export default function RegisterForm(): React.JSX.Element {
 														onOpenChange={setCollegeComboboxOpen}>
 														<PopoverTrigger asChild>
 															<Button
-																disabled={!colleges.length}
+																disabled={loading || !colleges.length}
 																variant="outline"
 																role="combobox"
 																aria-expanded={collegeComboboxOpen}
-																className="w-full justify-between font-normal bg-black/20 border-gray-500/30 text-white hover:bg-black/30">
-																<span
-																	className={`max-w-[320px] truncate ${
-																		collegeValue.display ? "" : "text-gray-400"
-																	}`}>
-																	{collegeValue.display
-																		? collegeValue.display
-																		: "Select your College / University"}
-																</span>
-																<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+																className="w-full justify-between font-normal h-10 backdrop-blur-md bg-black/30 border-gray-400/30 text-white
+																hover:bg-white/10 transition-colors focus:ring-2 focus:ring-purple-500/50 focus:border-purple-400/50">
+																{loading ? (
+																	<span className="text-gray-400">Loading colleges...</span>
+																) : (
+																	<span
+																		className={`max-w-[320px] truncate ${
+																			collegeValue.display ? "text-white" : "text-gray-300"
+																		}`}>
+																		{collegeValue.display
+																			? collegeValue.display
+																			: "Select your College / University"}
+																	</span>
+																)}
+																<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-70" />
 															</Button>
 														</PopoverTrigger>
-														<PopoverContent className="w-[--radix-popover-trigger-width] p-0 bg-gray-900 border-gray-700">
+														<PopoverContent className="w-[--radix-popover-trigger-width] p-0 backdrop-blur-xl bg-black/70 border border-gray-500/30 text-white shadow-lg animate-in fade-in-80 zoom-in-95">
 															<Command
-																className="bg-gray-900"
-																filter={(input, search): number =>
-																	input.toLowerCase().includes(search.toLowerCase())
+																className="bg-transparent"
+																filter={(value, search) =>
+																	value.toLowerCase().includes(search.toLowerCase())
 																		? 1
 																		: 0
 																}>
 																<CommandInput
-																	placeholder="Search"
-																	className="text-gray-200"
+																	placeholder="Search for your college"
+																	className="text-white placeholder:text-gray-300 bg-black/40 border-b border-gray-600/30 focus:ring-0 focus:outline-none"
 																/>
-																<CommandList className="w-full max-h-[200px]">
-																	<CommandEmpty>No college selected</CommandEmpty>
-																	<CommandGroup>
-																		{colleges.map(
-																			(college): React.ReactNode => (
-																				<CommandItem
-																					key={college._id}
-																					value={college.name}
-																					className="text-gray-200 hover:bg-gray-800"
-																					onSelect={(currentValue): void => {
-																						const selectedCollege =
-																							colleges.find(
-																								(college) =>
-																									college.name.toLocaleLowerCase() ===
-																									currentValue
-																							) ?? otherCollege;
+																<CommandList className="w-full max-h-[300px] overflow-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent">
+																	<CommandEmpty className="py-3 text-center text-gray-300">No college found</CommandEmpty>
+																	<CommandGroup className="p-1.5">
+																		{colleges.map((college): React.ReactNode => (
+																			<CommandItem
+																				key={college._id}
+																				value={college.name}
+																				className="text-gray-200 hover:bg-gray-800"
+																				onSelect={(currentValue): void => {
+																					const selectedCollege =
+																						colleges.find(
+																							(college) =>
+																								college.name.toLowerCase() ===
+																								currentValue.toLowerCase()
+																						) ?? otherCollege;
 
-																						setCollegeOther(
-																							selectedCollege.name ===
-																								otherCollege.name
-																						);
+																					setCollegeOther(
+																						selectedCollege.name === "OTHER"
+																					);
 
-																						setCollegeValue({
-																							display:
-																								selectedCollege.name,
-																							value: selectedCollege._id,
-																						});
+																					setCollegeValue({
+																						display: selectedCollege.name,
+																						value: selectedCollege._id,
+																					});
 
-																						field.onChange(
-																							selectedCollege._id
-																						);
+																					form.setValue("college", selectedCollege._id);
 
-																						setCollegeComboboxOpen(false);
-																					}}>
-																					<span className="mr-2 flex h-4 w-4 justify-start">
-																						<Check
-																							className={cn(
-																								collegeValue.value ===
-																									college._id
-																									? "opacity-100"
-																									: "opacity-0"
-																							)}
-																						/>
-																					</span>
-																					{college.name
-																						.split(" ")
-																						.map(
-																							(word) =>
-																								word
-																									.charAt(0)
-																									.toUpperCase() +
-																								word
-																									.slice(1)
-																									.toLowerCase()
-																						)
-																						.join(" ")}
-																				</CommandItem>
-																			)
-																		)}
+																					setCollegeComboboxOpen(false);
+																				}}>
+																				<span className="mr-2 flex h-4 w-4 justify-start">
+																					<Check
+																						className={cn(
+																							field.value === college._id
+																								? "opacity-100"
+																								: "opacity-0"
+																						)}
+																					/>
+																				</span>
+																				{college.name
+																					.split(" ")
+																					.map(
+																						(word) =>
+																							word.charAt(0).toUpperCase() +
+																							word.slice(1).toLowerCase()
+																					)
+																					.join(" ")}
+																			</CommandItem>
+																		))}
 																	</CommandGroup>
 																</CommandList>
 															</Command>
@@ -385,7 +494,10 @@ export default function RegisterForm(): React.JSX.Element {
 												name="collegeOther"
 												render={({ field }): React.JSX.Element => (
 													<FormItem>
-														<FormMessage className="text-xs" />
+														<div className="flex flex-col">
+															<FormLabel className="text-gray-200">College Name</FormLabel>
+															<FormMessage className="text-xs" />
+														</div>
 														<FormControl>
 															<Input
 																{...field}
@@ -405,7 +517,7 @@ export default function RegisterForm(): React.JSX.Element {
 											control={form.control}
 											name="password"
 											render={({ field }): React.JSX.Element => (
-												<FormItem className="relative h-full flex flex-col">
+												<FormItem className="relative flex flex-col">
 													<div className="flex items-center justify-between">
 														<FormLabel className="text-gray-200">Password</FormLabel>
 
@@ -471,14 +583,14 @@ export default function RegisterForm(): React.JSX.Element {
 													{form.formState.errors.password &&
 														form.formState.errors.password.message !==
 															"Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character" && (
-															<p className="text-xs mt-1 text-gray-400">
+															<p className="text-xs mt-1 text-red-500">
 																{form.formState.errors.password.message as string}
 															</p>
 														)}
 
-													{/* Show password hint popover when focused */}
+													{/* Show password hint popover when focused - positioned below the input */}
 													{passwordFocused && (
-														<div className="mt-2 p-3 bg-gray-900/95 border border-gray-700 rounded-md shadow-lg absolute z-10 right-0 w-[260px]">
+														<div className="mt-2 p-3 bg-gray-900/95 border border-gray-700 rounded-md shadow-lg absolute z-10 left-0 top-full mt-1 w-[260px]">
 															<p className="text-sm font-medium text-gray-300 mb-2">
 																Password Requirements:
 															</p>
@@ -511,7 +623,7 @@ export default function RegisterForm(): React.JSX.Element {
 											control={form.control}
 											name="confirmPassword"
 											render={({ field }): React.JSX.Element => (
-												<FormItem className="h-full flex flex-col">
+												<FormItem className="flex flex-col">
 													<div className="flex items-center justify-between">
 														<FormLabel className="text-gray-200">
 															Confirm password
@@ -527,7 +639,7 @@ export default function RegisterForm(): React.JSX.Element {
 														/>
 													</FormControl>
 													{form.formState.errors.confirmPassword && (
-														<p className="text-xs mt-1 text-gray-400">
+														<p className="text-xs mt-1 text-red-500">
 															{form.formState.errors.confirmPassword.message as string}
 														</p>
 													)}
@@ -566,7 +678,7 @@ export default function RegisterForm(): React.JSX.Element {
 												<HashLoader color="#ffffff" size={20} />
 											) : (
 												<>
-													<span className="relative z-10 drop-shadow-sm">Sign Up</span>
+													<span className="relative z-10 drop-shadow-sm">Next</span>
 													{/* Subtle inner glow */}
 													<span className="absolute inset-0 bg-white/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
 												</>
@@ -639,8 +751,6 @@ export default function RegisterForm(): React.JSX.Element {
 				[data-invalid],
 				[data-pending] {
 					color: inherit !important;
-					background-color: inherit !important;
-					border-color: inherit !important;
 				}
 			`}</style>
 		</Card>

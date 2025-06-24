@@ -3,9 +3,7 @@ import BoringAvatar from "boring-avatars";
 import React, { useState } from "react";
 import { FaUsers } from "react-icons/fa";
 import { toast } from "react-toastify";
-import { useRecoilState } from "recoil";
 
-import { teamPresentState } from "@/atoms/team-present";
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -31,7 +29,6 @@ export default function DeleteTeamCard({
 	setTeam: React.Dispatch<React.SetStateAction<Team | null>>;
 }): React.ReactElement {
 	const [disabled, setDisabled] = useState(false);
-	const [, setRecoilTeamPresent] = useRecoilState(teamPresentState);
 
 	const handleDeleteTeam = (): void => {
 		setDisabled(true);
@@ -40,7 +37,6 @@ export default function DeleteTeamCard({
 			.then(() => {
 				toast.success("Team deleted successfully.");
 				setTeam(null);
-				setRecoilTeamPresent(false);
 			})
 			.catch((error: AxiosError<{ message: string }>) => {
 				toast.error(error.response?.data.message ?? "Failed to delete team.");

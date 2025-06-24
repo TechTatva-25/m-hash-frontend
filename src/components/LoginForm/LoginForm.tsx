@@ -36,7 +36,7 @@ export default function LoginForm(): React.JSX.Element {
 	const session = useSession();
 	const [disabled, setDisabled] = useState(false);
 	const [modalOpen, setModalOpen] = useState(false);
-	const [buttonHover, setButtonHover] = useState(false);
+	const [isRedirecting, setIsRedirecting] = useState(false);
 	const form = useForm<z.infer<typeof loginFormSchema>>({
 		mode: "onChange",
 		resolver: zodResolver(loginFormSchema),
@@ -44,18 +44,29 @@ export default function LoginForm(): React.JSX.Element {
 
 	React.useEffect(() => {
 		if (session?.userId) {
+			// User is already logged in, show redirecting state and navigate
+			setIsRedirecting(true);
 			setDisabled(true);
 
-			if (session.user?.role === "judge") {
-				// router.push("/dashboard/judge");
-				router.push("/dashboard/judgePresentation");
-			} else if (session.user?.role === "admin") {
-				router.push("/dashboard/admin");
-			} else {
-				router.push("/dashboard");
+			// Use router.replace for immediate navigation instead of setTimeout
+			try {
+				if (session.user?.role === "judge") {
+					router.replace("/dashboard/judgePresentation");
+				} else if (session.user?.role === "admin") {
+					router.replace("/dashboard/admin");
+				} else {
+					router.replace("/dashboard");
+				}
+			} catch (error) {
+				console.error("Navigation error:", error);
+				// Fallback to window.location as a last resort if router fails
+				window.location.href = "/dashboard";
 			}
+		} else if (session && !session.loading && !session.userId) {
+			// User is definitely not logged in, enable the form
+			setDisabled(false);
 		}
-	}, [session]);
+	}, [session, router]);
 
 	const onSubmit = async (data: z.infer<typeof loginFormSchema>): Promise<void> => {
 		setDisabled(true);
@@ -72,11 +83,25 @@ export default function LoginForm(): React.JSX.Element {
 			if (axios.isAxiosError(error)) {
 				toast.error((error as AxiosError<{ message: string }>).response?.data.message ?? error.message);
 			} else {
-				toast.error("An error occurred while registering");
+				toast.error("An error occurred while logging in");
 			}
 			setDisabled(false);
 		}
 	};
+
+	// Show loading indicator if still checking session or redirecting
+	if (session?.loading || isRedirecting) {
+		return (
+			<Card className="w-full sm:w-[800px] backdrop-blur-xl bg-black/40 border-gray-500/20 shadow-lg flex items-center justify-center py-20">
+				<div className="text-center">
+					<HashLoader color="#ffffff" size={50} />
+					<p className="mt-6 text-white text-lg">
+						{isRedirecting ? "You're already logged in. Redirecting..." : "Checking your session..."}
+					</p>
+				</div>
+			</Card>
+		);
+	}
 
 	return (
 		<Card className="w-full sm:w-[800px] backdrop-blur-xl bg-black/40 border-gray-500/20 shadow-lg">

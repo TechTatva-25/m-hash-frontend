@@ -9,9 +9,7 @@ import { FaUsers } from "react-icons/fa";
 import { IoMdAdd } from "react-icons/io";
 import { BeatLoader, HashLoader } from "react-spinners";
 import { toast } from "react-toastify";
-import { useRecoilState } from "recoil";
 
-import { teamPresentState } from "@/atoms/team-present";
 import { Avatar } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -43,7 +41,6 @@ export default function CreateTeam({
 	const [disabled, setDisabled] = React.useState(false);
 	const [selectedUsers, setSelectedUsers] = React.useState<User[]>([currentUser]);
 	const [usersMap, setUsersMap] = React.useState<Map<string, User>>(new Map());
-	const [, setRecoilTeamPresent] = useRecoilState(teamPresentState);
 
 	const fetchUsers = async (reset = false): Promise<void> => {
 		try {
@@ -87,13 +84,19 @@ export default function CreateTeam({
 	const handleCreateTeam = async (): Promise<void> => {
 		let team: Team | undefined;
 
+		// Validate team name before proceeding
+		if (!teamName || teamName.trim() === '') {
+			toast.error("Please enter a team name");
+			return;
+		}
+
 		try {
 			setDisabled(true);
 			let response;
 			try {
 				response = await axios.post<{ message: string }>(
 					getEndpoint(Endpoints.CREATE_TEAM),
-					{ name: teamName },
+					{ name: teamName.trim() },
 					{ withCredentials: true }
 				);
 			} catch (error) {
@@ -142,7 +145,6 @@ export default function CreateTeam({
 
 			if (team) {
 				setTeam(team);
-				setRecoilTeamPresent(true);
 			}
 		}
 	};
@@ -269,3 +271,4 @@ export default function CreateTeam({
 		</Card>
 	);
 }
+

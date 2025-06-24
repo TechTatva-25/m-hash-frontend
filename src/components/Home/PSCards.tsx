@@ -29,10 +29,35 @@ const PS_CARD_DESCRIPTION_MAXLEN = 300;
 
 export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 	const player = React.useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
-	const sdgIcon = (sdg_id: number): React.ReactElement => {
+	const [imageErrors, setImageErrors] = React.useState<Record<number, boolean>>({});
+
+	const sdgIcon = (sdg_id: number): React.ReactElement | null => {
 		const Icon = sdgIconMap[sdg_id];
-		return <Icon className="mr-2 h-4 w-4" />;
+		return Icon ? <Icon className="mr-2 h-4 w-4" /> : null;
 	};
+
+	// Function to handle image load errors
+	const handleImageError = (index: number) => {
+		setImageErrors(prev => ({
+			...prev,
+			[index]: true
+		}));
+	};
+
+	// Function to get fallback image based on SDG ID
+	const getFallbackImage = (sdgId: number) => {
+		// List of available SDG images to prevent 404 errors
+		const availableSdgImages = [3, 4, 8, 9]; // Add more as they become available
+
+		// If the SDG image exists, use it; otherwise use a generic placeholder
+		if (availableSdgImages.includes(sdgId)) {
+			return `/assets/sdg_${sdgId}.png`;
+		} else {
+			// Use a generic placeholder or one of the existing SDG images
+			return '/placeholder.png'; // This uses the placeholder.png file in your public directory
+		}
+	};
+
 	return (
 		<Carousel
 			className="w-full"
@@ -50,11 +75,12 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 							<Card className="relative h-full rounded-md bg-card/30">
 								<CardContent className="flex h-full flex-col items-center justify-between p-4">
 									<Image
-										src={ps.thumbnail}
+										src={imageErrors[index] ? getFallbackImage(ps.sdg_id) : ps.thumbnail}
 										alt={`Problem statement ${index + 1}`}
 										width={300}
 										height={300}
 										className="mb-4 w-full rounded-md"
+										onError={() => handleImageError(index)}
 									/>
 									<Badge
 										className={`absolute right-6 top-6 mb-4 ${sdgColorMap[ps.sdg_id]}`}

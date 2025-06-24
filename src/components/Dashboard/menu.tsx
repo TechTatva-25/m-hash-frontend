@@ -4,7 +4,7 @@ import axios, { AxiosError } from "axios";
 import { LogOut } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaMap } from "react-icons/fa";
 import { FaChartSimple, FaRegEnvelope, FaStackOverflow, FaTimeline, FaUser } from "react-icons/fa6";
 // import { FaChartSimple, FaGavel, FaRegEnvelope, FaStackOverflow, FaTimeline, FaUser } from "react-icons/fa6";
@@ -12,9 +12,7 @@ import { FaRankingStar } from "react-icons/fa6";
 import { GoNumber } from "react-icons/go";
 import { MdDriveFolderUpload } from "react-icons/md";
 import { toast } from "react-toastify";
-import { useRecoilValue } from "recoil";
 
-import { teamPresentState } from "@/atoms/team-present";
 import { useSession } from "@/hooks/useSession";
 import { useTeam } from "@/hooks/useTeam";
 import { Endpoints, getEndpoint } from "@/lib/endpoints";
@@ -38,9 +36,19 @@ export function Menu({ isOpen }: MenuProps): React.JSX.Element {
 	const session = useSession();
 	const team = useTeam();
 
-	const recoilTeamPresent = useRecoilValue(teamPresentState);
+	// Replacing Recoil state with local state
+	const [teamPresent, setTeamPresent] = useState(false);
 
-	if (recoilTeamPresent && team._id && (session?.user?.role === "user" || session?.user?.role === "admin")) {
+	// Initialize team presence state based on team data
+	useEffect(() => {
+		if (team && team._id) {
+			setTeamPresent(true);
+		} else {
+			setTeamPresent(false);
+		}
+	}, [team]);
+
+	if (teamPresent && team._id && (session?.user?.role === "user" || session?.user?.role === "admin")) {
 		menuList
 			.find((menu) => menu.groupLabel === "Team")
 			?.menus.push({
