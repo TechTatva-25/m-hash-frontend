@@ -124,7 +124,9 @@ export default function RegisterForm(): React.JSX.Element {
 
 				// Provide more specific error messages based on the error type
 				if (error.code === "ERR_NETWORK") {
-					toast.error("Cannot connect to the backend server. Please ensure it's running on the correct port.");
+					toast.error(
+						"Cannot connect to the backend server. Please ensure it's running on the correct port."
+					);
 				} else if (error.response?.status === 404) {
 					toast.error("College endpoint not found. The backend API may be misconfigured.");
 				} else {
@@ -154,9 +156,11 @@ export default function RegisterForm(): React.JSX.Element {
 	}, [verificationSuccessful, router]);
 
 	// Define otherCollege after colleges are loaded
-	const otherCollege: College =
-		colleges.find((college) => college.name === "OTHER") ||
-		{ _id: "OTHER", name: "OTHER", state: "UNKNOWN" };
+	const otherCollege: College = colleges.find((college) => college.name === "OTHER") || {
+		_id: "OTHER",
+		name: "OTHER",
+		state: "UNKNOWN",
+	};
 
 	const form = useForm<z.infer<typeof registerFormSchema>>({
 		mode: "onChange",
@@ -342,7 +346,8 @@ export default function RegisterForm(): React.JSX.Element {
 												</div>
 												<Select onValueChange={field.onChange} defaultValue={field.value}>
 													<FormControl>
-														<SelectTrigger className="h-10 backdrop-blur-md bg-black/30 border-gray-400/30 text-white shadow-sm
+														<SelectTrigger
+															className="h-10 backdrop-blur-md bg-black/30 border-gray-400/30 text-white shadow-sm
 															hover:bg-white/10 transition-colors focus:ring-2 focus:ring-purple-500/50 focus:border-purple-400/50">
 															<SelectValue
 																placeholder="Select your Gender"
@@ -351,9 +356,21 @@ export default function RegisterForm(): React.JSX.Element {
 														</SelectTrigger>
 													</FormControl>
 													<SelectContent className="backdrop-blur-xl bg-black/70 border border-gray-500/30 text-white shadow-lg animate-in fade-in-80 zoom-in-95">
-														<SelectItem value="Male" className="focus:bg-white/10 hover:bg-white/20">Male</SelectItem>
-														<SelectItem value="Female" className="focus:bg-white/10 hover:bg-white/20">Female</SelectItem>
-														<SelectItem value="Other" className="focus:bg-white/10 hover:bg-white/20">Other</SelectItem>
+														<SelectItem
+															value="Male"
+															className="focus:bg-white/10 hover:bg-white/20">
+															Male
+														</SelectItem>
+														<SelectItem
+															value="Female"
+															className="focus:bg-white/10 hover:bg-white/20">
+															Female
+														</SelectItem>
+														<SelectItem
+															value="Other"
+															className="focus:bg-white/10 hover:bg-white/20">
+															Other
+														</SelectItem>
 													</SelectContent>
 												</Select>
 											</FormItem>
@@ -404,11 +421,15 @@ export default function RegisterForm(): React.JSX.Element {
 																className="w-full justify-between font-normal h-10 backdrop-blur-md bg-black/30 border-gray-400/30 text-white
 																hover:bg-white/10 transition-colors focus:ring-2 focus:ring-purple-500/50 focus:border-purple-400/50">
 																{loading ? (
-																	<span className="text-gray-400">Loading colleges...</span>
+																	<span className="text-gray-400">
+																		Loading colleges...
+																	</span>
 																) : (
 																	<span
 																		className={`max-w-[320px] truncate ${
-																			collegeValue.display ? "text-white" : "text-gray-300"
+																			collegeValue.display
+																				? "text-white"
+																				: "text-gray-300"
 																		}`}>
 																		{collegeValue.display
 																			? collegeValue.display
@@ -431,53 +452,67 @@ export default function RegisterForm(): React.JSX.Element {
 																	className="text-white placeholder:text-gray-300 bg-black/40 border-b border-gray-600/30 focus:ring-0 focus:outline-none"
 																/>
 																<CommandList className="w-full max-h-[300px] overflow-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent">
-																	<CommandEmpty className="py-3 text-center text-gray-300">No college found</CommandEmpty>
+																	<CommandEmpty className="py-3 text-center text-gray-300">
+																		No college found
+																	</CommandEmpty>
 																	<CommandGroup className="p-1.5">
-																		{colleges.map((college): React.ReactNode => (
-																			<CommandItem
-																				key={college._id}
-																				value={college.name}
-																				className="text-gray-200 hover:bg-gray-800"
-																				onSelect={(currentValue): void => {
-																					const selectedCollege =
-																						colleges.find(
-																							(college) =>
-																								college.name.toLowerCase() ===
-																								currentValue.toLowerCase()
-																						) ?? otherCollege;
+																		{colleges.map(
+																			(college): React.ReactNode => (
+																				<CommandItem
+																					key={college._id}
+																					value={college.name}
+																					className="text-gray-200 hover:bg-gray-800"
+																					onSelect={(currentValue): void => {
+																						const selectedCollege =
+																							colleges.find(
+																								(college) =>
+																									college.name.toLowerCase() ===
+																									currentValue.toLowerCase()
+																							) ?? otherCollege;
 
-																					setCollegeOther(
-																						selectedCollege.name === "OTHER"
-																					);
+																						setCollegeOther(
+																							selectedCollege.name ===
+																								"OTHER"
+																						);
 
-																					setCollegeValue({
-																						display: selectedCollege.name,
-																						value: selectedCollege._id,
-																					});
+																						setCollegeValue({
+																							display:
+																								selectedCollege.name,
+																							value: selectedCollege._id,
+																						});
 
-																					form.setValue("college", selectedCollege._id);
+																						form.setValue(
+																							"college",
+																							selectedCollege._id
+																						);
 
-																					setCollegeComboboxOpen(false);
-																				}}>
-																				<span className="mr-2 flex h-4 w-4 justify-start">
-																					<Check
-																						className={cn(
-																							field.value === college._id
-																								? "opacity-100"
-																								: "opacity-0"
-																						)}
-																					/>
-																				</span>
-																				{college.name
-																					.split(" ")
-																					.map(
-																						(word) =>
-																							word.charAt(0).toUpperCase() +
-																							word.slice(1).toLowerCase()
-																					)
-																					.join(" ")}
-																			</CommandItem>
-																		))}
+																						setCollegeComboboxOpen(false);
+																					}}>
+																					<span className="mr-2 flex h-4 w-4 justify-start">
+																						<Check
+																							className={cn(
+																								field.value ===
+																									college._id
+																									? "opacity-100"
+																									: "opacity-0"
+																							)}
+																						/>
+																					</span>
+																					{college.name
+																						.split(" ")
+																						.map(
+																							(word) =>
+																								word
+																									.charAt(0)
+																									.toUpperCase() +
+																								word
+																									.slice(1)
+																									.toLowerCase()
+																						)
+																						.join(" ")}
+																				</CommandItem>
+																			)
+																		)}
 																	</CommandGroup>
 																</CommandList>
 															</Command>
@@ -495,7 +530,9 @@ export default function RegisterForm(): React.JSX.Element {
 												render={({ field }): React.JSX.Element => (
 													<FormItem>
 														<div className="flex flex-col">
-															<FormLabel className="text-gray-200">College Name</FormLabel>
+															<FormLabel className="text-gray-200">
+																College Name
+															</FormLabel>
 															<FormMessage className="text-xs" />
 														</div>
 														<FormControl>

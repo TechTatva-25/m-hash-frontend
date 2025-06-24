@@ -76,10 +76,12 @@ export default function DeleteTeamCard({
 						</div>
 					</div>
 					<AlertDialog>
-						<AlertDialogTrigger className="flex w-full items-center justify-end">
-							<Button className="w-full sm:w-20" variant={"destructive"} disabled={disabled}>
-								Delete
-							</Button>
+						<AlertDialogTrigger asChild>
+							<div className="flex w-full items-center justify-end">
+								<Button className="w-full sm:w-20" variant={"destructive"} disabled={disabled}>
+									Delete
+								</Button>
+							</div>
 						</AlertDialogTrigger>
 						<AlertDialogContent>
 							<AlertDialogHeader>

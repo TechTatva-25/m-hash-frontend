@@ -109,6 +109,8 @@ export function SubmitForm({
 			// }
 			formData.append("video_url", input.video_url.trim());
 			formData.append("problem_id", input.statement);
+			// Add cloud_name parameter to ensure Cloudinary upload works correctly
+			formData.append("cloud_name", "auto");
 			try {
 				await axios.post(getEndpoint(Endpoints.MAKE_SUBMISSION), formData, {
 					withCredentials: true,
@@ -202,7 +204,10 @@ export function SubmitForm({
 																	key={statement._id}
 																	value={statement._id.toString()}>
 																	<SelectLabel className="flex flex-row items-center overflow-hidden truncate text-ellipsis p-0 py-1.5">
-																		<statement.icon className="h-4 w-4" />
+																		{statement.icon ?
+																			<statement.icon className="h-4 w-4" /> :
+																			<div className="h-4 w-4" />
+																		}
 																		<div className="ml-4 flex max-w-[95%] flex-col">
 																			{statement.title}
 																			<span className="line-clamp-1 text-xs text-muted-foreground">

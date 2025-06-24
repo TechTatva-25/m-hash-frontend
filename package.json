@@ -103,6 +103,7 @@
 		"dayjs": "^1.11.13",
 		"embla-carousel-autoplay": "^8.6.0",
 		"embla-carousel-react": "^8.6.0",
+		"file-loader": "^6.2.0",
 		"framer-motion": "^12.18.1",
 		"github-markdown-css": "^5.8.1",
 		"lodash.debounce": "^4.0.8",

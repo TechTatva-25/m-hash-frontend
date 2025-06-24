@@ -13,9 +13,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
 	// Handle sidebar toggle through a custom event
 	useEffect(() => {
-		const handleToggle = () => setSidebarOpen(prev => !prev);
-		window.addEventListener('toggle-sidebar', handleToggle);
-		return () => window.removeEventListener('toggle-sidebar', handleToggle);
+		const handleToggle = () => setSidebarOpen((prev) => !prev);
+		window.addEventListener("toggle-sidebar", handleToggle);
+		return () => window.removeEventListener("toggle-sidebar", handleToggle);
 	}, []);
 
 	return (

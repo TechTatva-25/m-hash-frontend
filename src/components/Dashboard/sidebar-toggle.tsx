@@ -19,12 +19,7 @@ export function SidebarToggle(): React.JSX.Element {
 
 	return (
 		<div className="invisible absolute -right-[16px] top-[50%] z-20 lg:visible">
-			<Button
-				onClick={handleToggle}
-				className="h-8 w-8 rounded-full"
-				variant="outline"
-				size="icon"
-			>
+			<Button onClick={handleToggle} className="h-8 w-8 rounded-full" variant="outline" size="icon">
 				<ChevronLeft
 					className={cn(
 						"h-4 w-4 transition-transform duration-700 ease-in-out",

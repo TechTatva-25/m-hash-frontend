@@ -25,11 +25,9 @@ interface Invite {
 	updatedAt: Date;
 }
 
-export default function InvitesInbox({
-	setTeam,
-}: {
+export const InvitesInbox: React.FC<{
 	setTeam: React.Dispatch<React.SetStateAction<Team | null>>;
-}): React.JSX.Element {
+}> = ({ setTeam }) => {
 	const [reload, setReload] = React.useState(false);
 	const [disabled, setDisabled] = React.useState(false);
 	const [invites, setInvites] = React.useState<Invite[]>([]);
@@ -47,7 +45,10 @@ export default function InvitesInbox({
 	};
 
 	React.useEffect(() => {
-		void fetchInvites();
+		fetchInvites();
+		return () => {
+			// Cleanup function if needed
+		};
 	}, [reload]);
 
 	const acceptInvite = async (inviteId: string): Promise<void> => {
@@ -58,7 +59,7 @@ export default function InvitesInbox({
 			const team = await getTeam();
 			setTeam(team);
 			setRecoilTeamPresent(true);
-			setTimeout((): void => setReload(true), 1000);
+			setReload((prev) => !prev);
 		} catch (error) {
 			toast.error((error as AxiosError<{ message: string }>).response?.data.message);
 		} finally {
@@ -71,7 +72,7 @@ export default function InvitesInbox({
 			setDisabled(true);
 			await axios.post(getEndpoint(Endpoints.REJECT_INVITE), { inviteId }, { withCredentials: true });
 			toast.success("Invite rejected successfully.");
-			setReload(true);
+			setReload((prev) => !prev);
 		} catch (error) {
 			toast.error((error as AxiosError<{ message: string }>).response?.data.message);
 		} finally {
@@ -84,7 +85,7 @@ export default function InvitesInbox({
 			setDisabled(true);
 			await axios.post(getEndpoint(Endpoints.CANCEL_JOIN_REQUEST), { inviteId }, { withCredentials: true });
 			toast.success("Join request cancelled successfully.");
-			setReload(true);
+			setReload((prev) => !prev);
 		} catch (error) {
 			toast.error((error as AxiosError<{ message: string }>).response?.data.message);
 		} finally {
@@ -133,12 +134,16 @@ export default function InvitesInbox({
 													disabled={disabled}
 													variant="success"
 													className="h-8 w-8 p-0 disabled:opacity-50"
-													onClick={(): void => void acceptInvite(invite._id)}>
+													onClick={(): void => {
+														acceptInvite(invite._id);
+													}}>
 													<FaCheck className="h-4 w-4" />
 												</Button>
 												<Button
 													variant="danger"
-													onClick={(): void => void rejectInvite(invite._id)}
+													onClick={(): void => {
+														rejectInvite(invite._id);
+													}}
 													className="h-8 w-8 p-0 disabled:opacity-50"
 													disabled={disabled}>
 													<X className="h-4 w-4" />
@@ -179,7 +184,9 @@ export default function InvitesInbox({
 													variant="danger"
 													className="h-8 w-8 p-0 disabled:opacity-50"
 													disabled={disabled}
-													onClick={(): void => void cancelJoinRequest(invite._id)}>
+													onClick={(): void => {
+														cancelJoinRequest(invite._id);
+													}}>
 													<X className="h-4 w-4" />
 												</Button>
 											</div>
@@ -192,4 +199,6 @@ export default function InvitesInbox({
 			</CardContent>
 		</Card>
 	);
-}
+};
+
+export default InvitesInbox;

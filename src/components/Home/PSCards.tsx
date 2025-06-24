@@ -38,9 +38,9 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 
 	// Function to handle image load errors
 	const handleImageError = (index: number) => {
-		setImageErrors(prev => ({
+		setImageErrors((prev) => ({
 			...prev,
-			[index]: true
+			[index]: true,
 		}));
 	};
 
@@ -54,7 +54,7 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 			return `/assets/sdg_${sdgId}.png`;
 		} else {
 			// Use a generic placeholder or one of the existing SDG images
-			return '/placeholder.png'; // This uses the placeholder.png file in your public directory
+			return "/placeholder.png"; // This uses the placeholder.png file in your public directory
 		}
 	};
 

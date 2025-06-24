@@ -1,9 +1,9 @@
 import axios, { AxiosError } from "axios";
 import BoringAvatar from "boring-avatars";
-import React, { useState } from "react";
+import * as React from "react";
 import { FaUsers } from "react-icons/fa";
 import { toast } from "react-toastify";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 
 import { teamPresentState } from "@/atoms/team-present";
 import {
@@ -23,15 +23,12 @@ import { Team } from "@/hooks/useTeam";
 import { Endpoints, getEndpoint } from "@/lib/endpoints";
 import { generateColorPalette } from "@/lib/utils";
 
-export default function LeaveTeamCard({
-	team,
-	setTeam,
-}: {
+export const LeaveTeamCard: React.FC<{
 	team: Team;
 	setTeam: React.Dispatch<React.SetStateAction<Team | null>>;
-}): React.ReactElement {
-	const [disabled, setDisabled] = useState(false);
-	const [, setRecoilTeamPresent] = useRecoilState(teamPresentState);
+}> = ({ team, setTeam }) => {
+	const [disabled, setDisabled] = React.useState(false);
+	const setRecoilTeamPresent = useSetRecoilState(teamPresentState);
 
 	const handleLeaveTeam = (): void => {
 		setDisabled(true);
@@ -51,9 +48,12 @@ export default function LeaveTeamCard({
 	};
 
 	return (
-		<Card className="mt-7 w-full rounded-md border border-red-500 bg-red-500/5 px-4 py-6 shadow-md dark:border-red-700/50 dark:bg-red-600/5">
+		<Card className="w-full rounded-md border border-yellow-500 bg-yellow-500/5 px-4 py-6 shadow-md dark:border-yellow-700/50 dark:bg-yellow-600/5">
 			<CardTitle className="text-xl font-semibold">Leave Team</CardTitle>
-			<CardDescription className="mb-4 mt-1">Leave the team by clicking the button below.</CardDescription>
+			<CardDescription className="mb-4 mt-1">
+				You can leave this team, but remember, if you are the team leader, you will need to transfer leadership
+				first.
+			</CardDescription>
 			<CardContent className="flex w-full flex-col gap-4 p-0 pt-4">
 				<div className="flex w-full flex-col items-center gap-4 sm:flex-row">
 					<div className="flex w-full flex-grow flex-row gap-4">
@@ -78,17 +78,22 @@ export default function LeaveTeamCard({
 						</div>
 					</div>
 					<AlertDialog>
-						<AlertDialogTrigger className="flex w-full items-center justify-end">
-							<Button className="w-full sm:w-20" variant={"destructive"} disabled={disabled}>
-								Leave
-							</Button>
+						<AlertDialogTrigger asChild>
+							<div className="flex w-full items-center justify-end">
+								<Button
+									className="w-full sm:w-20"
+									variant={"destructive"}
+									disabled={disabled || team.team_leader._id === team.user_id}>
+									Leave
+								</Button>
+							</div>
 						</AlertDialogTrigger>
 						<AlertDialogContent>
 							<AlertDialogHeader>
 								<AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
 							</AlertDialogHeader>
 							<AlertDialogDescription>
-								This action will permanently remove you from your team.
+								You are about to leave the team. This will remove you from the team roster.
 							</AlertDialogDescription>
 							<AlertDialogFooter>
 								<AlertDialogCancel>Cancel</AlertDialogCancel>
@@ -100,4 +105,6 @@ export default function LeaveTeamCard({
 			</CardContent>
 		</Card>
 	);
-}
+};
+
+export default LeaveTeamCard;

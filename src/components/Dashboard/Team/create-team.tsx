@@ -85,7 +85,7 @@ export default function CreateTeam({
 		let team: Team | undefined;
 
 		// Validate team name before proceeding
-		if (!teamName || teamName.trim() === '') {
+		if (!teamName || teamName.trim() === "") {
 			toast.error("Please enter a team name");
 			return;
 		}
@@ -271,4 +271,3 @@ export default function CreateTeam({
 		</Card>
 	);
 }
-
