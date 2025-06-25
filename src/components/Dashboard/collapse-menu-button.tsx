@@ -97,7 +97,8 @@ export function CollapseMenuButton({
 		<DropdownMenu>
 			<TooltipProvider disableHoverableContent>
 				<Tooltip delayDuration={100}>
-					<TooltipTrigger asChild><DropdownMenuTrigger asChild>
+					<TooltipTrigger asChild>
+						<DropdownMenuTrigger asChild>
 							<Button variant={active ? "secondary" : "ghost"} className="mb-1 h-10 w-full justify-start">
 								<div className="flex w-full items-center justify-between">
 									<div className="flex items-center">
@@ -114,7 +115,8 @@ export function CollapseMenuButton({
 									</div>
 								</div>
 							</Button>
-						</DropdownMenuTrigger></TooltipTrigger>
+						</DropdownMenuTrigger>
+					</TooltipTrigger>
 					<TooltipContent side="right" align="start" alignOffset={2}>
 						{label}
 					</TooltipContent>

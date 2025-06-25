@@ -102,14 +102,14 @@ const FormLabel = React.forwardRef<
 	const isDark = theme === "dark";
 
 	return (
-		<Label 
-			ref={ref} 
-			className={cn(className, "font-medium")} 
-			htmlFor={formItemId} 
-			style={{ 
-				color: `${isDark ? 'rgba(220, 200, 255, 0.9)' : 'rgba(103, 80, 164, 0.9)'}`,
+		<Label
+			ref={ref}
+			className={cn(className, "font-medium")}
+			htmlFor={formItemId}
+			style={{
+				color: `${isDark ? "rgba(220, 200, 255, 0.9)" : "rgba(103, 80, 164, 0.9)"}`,
 			}}
-			{...props} 
+			{...props}
 		/>
 	);
 });
@@ -139,14 +139,14 @@ const FormDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttribu
 		const isDark = theme === "dark";
 
 		return (
-			<p 
-				ref={ref} 
-				id={formDescriptionId} 
-				className={cn("text-sm", className)} 
-				style={{ 
-					color: `${isDark ? 'rgba(200, 180, 240, 0.7)' : 'rgba(103, 80, 164, 0.7)'}` 
+			<p
+				ref={ref}
+				id={formDescriptionId}
+				className={cn("text-sm", className)}
+				style={{
+					color: `${isDark ? "rgba(200, 180, 240, 0.7)" : "rgba(103, 80, 164, 0.7)"}`,
 				}}
-				{...props} 
+				{...props}
 			/>
 		);
 	}
@@ -170,9 +170,9 @@ const FormMessage = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<
 				ref={ref}
 				id={formMessageId}
 				className={cn("text-sm font-medium tracking-tight", className)}
-				style={{ 
-					color: `${isDark ? 'rgba(255, 150, 150, 0.9)' : 'rgba(220, 50, 50, 0.9)'}`,
-					textShadow: `0 0 1px ${isDark ? 'rgba(255, 0, 0, 0.2)' : 'rgba(255, 0, 0, 0.1)'}`
+				style={{
+					color: `${isDark ? "rgba(255, 150, 150, 0.9)" : "rgba(220, 50, 50, 0.9)"}`,
+					textShadow: `0 0 1px ${isDark ? "rgba(255, 0, 0, 0.2)" : "rgba(255, 0, 0, 0.1)"}`,
 				}}
 				{...props}>
 				{body}

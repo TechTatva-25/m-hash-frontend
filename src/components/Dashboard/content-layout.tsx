@@ -25,7 +25,7 @@ export function ContentLayout({ title, children }: ContentLayoutProps): React.JS
 					backgroundAttachment: "fixed",
 					backgroundSize: "cover",
 					backgroundRepeat: "no-repeat",
-					minHeight: "100%"
+					minHeight: "100%",
 				}}>
 				{/* Subtle purple gradient overlay */}
 				<div
@@ -37,7 +37,7 @@ export function ContentLayout({ title, children }: ContentLayoutProps): React.JS
 						backgroundAttachment: "fixed",
 						backgroundSize: "cover",
 						backgroundRepeat: "no-repeat",
-						minHeight: "100%"
+						minHeight: "100%",
 					}}></div>
 
 				<div className="relative pb-10 w-full">{children}</div>
