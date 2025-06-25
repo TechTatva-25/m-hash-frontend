@@ -5,6 +5,7 @@ import { ChevronRightIcon } from "lucide-react";
 import React from "react";
 import { toast } from "react-toastify";
 
+import { useTheme } from "@/components/ThemeProvider";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
@@ -32,6 +33,8 @@ export default function TeamInbox({
 	setTeam: React.Dispatch<React.SetStateAction<Team | null>>;
 }): React.ReactElement {
 	const [invites, setInvites] = React.useState<Invite[]>([]);
+	const { theme } = useTheme();
+	const isDark = theme === "dark";
 
 	const fetchInvites = async (): Promise<void> => {
 		try {
@@ -97,17 +100,37 @@ export default function TeamInbox({
 
 	return (
 		<div className="my-10 flex w-full flex-col items-center justify-center gap-10">
-			<Collapsible className="grid w-full gap-4 rounded-md border bg-card" defaultOpen>
-				<CollapsibleTrigger className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-lg font-semibold [&[data-state=open]>svg]:rotate-90">
+			<Collapsible 
+				className="grid w-full gap-4 rounded-md"
+				style={{
+					background: `${isDark ? 'rgba(30, 30, 40, 0.5)' : 'rgba(255, 255, 255, 0.5)'}`,
+					backdropFilter: "blur(10px)",
+					border: `1px solid ${isDark ? 'rgba(103, 80, 164, 0.3)' : 'rgba(132, 95, 220, 0.3)'}`,
+					boxShadow: `0 4px 24px ${isDark ? 'rgba(0, 0, 0, 0.2)' : 'rgba(103, 80, 164, 0.1)'}`
+				}} 
+				defaultOpen>
+				<CollapsibleTrigger 
+					className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-lg font-semibold [&[data-state=open]>svg]:rotate-90"
+					style={{
+						color: `${isDark ? 'rgba(220, 200, 255, 0.9)' : 'rgba(103, 80, 164, 0.9)'}`,
+						borderBottom: `1px solid ${isDark ? 'rgba(103, 80, 164, 0.3)' : 'rgba(132, 95, 220, 0.3)'}`
+					}}>
 					Join Requests
 					<ChevronRightIcon className="ml-auto h-5 w-5 transition-all" />
 				</CollapsibleTrigger>
 				<CollapsibleContent>
-					<Card className="border-none bg-transparent">
+					<Card 
+						className="border-none"
+						style={{
+							background: "transparent"
+						}}>
 						<CardContent className="-mt-4 p-0">
 							<div className="grid w-full gap-4">
 								{invites.filter((invite) => invite.type === "incoming").length === 0 && (
-									<p className="border-t py-6 text-center text-sm text-muted-foreground">
+									<p className="border-t py-6 text-center text-sm text-muted-foreground"
+										style={{ 
+											borderColor: `${isDark ? 'rgba(103, 80, 164, 0.3)' : 'rgba(132, 95, 220, 0.3)'}` 
+										}}>
 										No join requests found
 									</p>
 								)}
@@ -116,7 +139,11 @@ export default function TeamInbox({
 									.map((invite) => (
 										<div
 											key={invite._id}
-											className="flex w-full cursor-pointer flex-col items-center justify-between gap-4 px-4 py-3 transition-all duration-300 ease-in-out hover:bg-accent sm:px-7 md:flex-row">
+											className="flex w-full cursor-pointer flex-col items-center justify-between gap-4 px-4 py-3 transition-all duration-300 ease-in-out sm:px-7 md:flex-row hover:opacity-90"
+											style={{ 
+												borderTop: `1px solid ${isDark ? 'rgba(103, 80, 164, 0.2)' : 'rgba(132, 95, 220, 0.2)'}`,
+												background: `${isDark ? 'rgba(30, 30, 40, 0.3)' : 'rgba(255, 255, 255, 0.3)'}`
+											}}>
 											<div className="flex w-full items-center gap-4 md:w-auto">
 												<div className="flex h-10 w-10">
 													<BoringAvatar
@@ -127,20 +154,33 @@ export default function TeamInbox({
 													/>
 												</div>
 												<div className="flex flex-col text-center md:text-left">
-													<p className="font-medium">{invite.user.username}</p>
+													<p className="font-medium"
+														style={{ color: `${isDark ? 'rgba(220, 200, 255, 0.9)' : 'rgba(103, 80, 164, 0.9)'}` }}>
+														{invite.user.username}
+													</p>
 													<p className="text-sm text-muted-foreground">{invite.user.email}</p>
 												</div>
 											</div>
 											<div className="flex w-full justify-center gap-2 md:w-auto md:justify-end">
 												<Button
 													variant="success"
-													className="w-full md:w-auto"
+													className="w-full md:w-auto hover:opacity-80 transition-opacity"
+													style={{
+														background: `${isDark ? 'rgba(0, 180, 130, 0.9)' : 'rgba(0, 200, 130, 0.9)'}`,
+														backdropFilter: "blur(10px)",
+														border: `1px solid ${isDark ? 'rgba(0, 180, 130, 0.3)' : 'rgba(0, 200, 130, 0.3)'}`
+													}}
 													onClick={(): Promise<void> => handleAcceptJoinRequest(invite._id)}>
 													Accept
 												</Button>
 												<Button
 													variant="destructive"
-													className="w-full md:w-auto"
+													className="w-full md:w-auto hover:opacity-80 transition-opacity cursor-pointer"
+													style={{
+														background: `${isDark ? 'rgba(180, 30, 30, 0.9)' : 'rgba(220, 50, 50, 0.9)'}`,
+														backdropFilter: "blur(10px)",
+														border: `1px solid ${isDark ? 'rgba(180, 30, 30, 0.3)' : 'rgba(220, 50, 50, 0.3)'}`
+													}}
 													onClick={(): Promise<void> => handleRejectJoinRequest(invite._id)}>
 													Reject
 												</Button>
@@ -152,17 +192,37 @@ export default function TeamInbox({
 					</Card>
 				</CollapsibleContent>
 			</Collapsible>
-			<Collapsible className="grid w-full gap-4 rounded-md border bg-card" defaultOpen>
-				<CollapsibleTrigger className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-lg font-semibold [&[data-state=open]>svg]:rotate-90">
+			<Collapsible 
+				className="grid w-full gap-4 rounded-md"
+				style={{
+					background: `${isDark ? 'rgba(30, 30, 40, 0.5)' : 'rgba(255, 255, 255, 0.5)'}`,
+					backdropFilter: "blur(10px)",
+					border: `1px solid ${isDark ? 'rgba(103, 80, 164, 0.3)' : 'rgba(132, 95, 220, 0.3)'}`,
+					boxShadow: `0 4px 24px ${isDark ? 'rgba(0, 0, 0, 0.2)' : 'rgba(103, 80, 164, 0.1)'}`
+				}} 
+				defaultOpen>
+				<CollapsibleTrigger 
+					className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-lg font-semibold [&[data-state=open]>svg]:rotate-90"
+					style={{
+						color: `${isDark ? 'rgba(220, 200, 255, 0.9)' : 'rgba(103, 80, 164, 0.9)'}`,
+						borderBottom: `1px solid ${isDark ? 'rgba(103, 80, 164, 0.3)' : 'rgba(132, 95, 220, 0.3)'}`
+					}}>
 					Invites
 					<ChevronRightIcon className="ml-auto h-5 w-5 transition-all" />
 				</CollapsibleTrigger>
 				<CollapsibleContent>
-					<Card className="border-none bg-transparent">
+					<Card 
+						className="border-none"
+						style={{
+							background: "transparent"
+						}}>
 						<CardContent className="-mt-4 p-0">
 							<div className="grid w-full">
 								{invites.filter((invite) => invite.type === "outgoing").length === 0 && (
-									<p className="border-t py-6 text-center text-sm text-muted-foreground">
+									<p className="border-t py-6 text-center text-sm text-muted-foreground"
+										style={{ 
+											borderColor: `${isDark ? 'rgba(103, 80, 164, 0.3)' : 'rgba(132, 95, 220, 0.3)'}` 
+										}}>
 										No invites found
 									</p>
 								)}
@@ -171,27 +231,44 @@ export default function TeamInbox({
 									.map((invite) => (
 										<div
 											key={invite._id}
-											className="flex w-full cursor-pointer items-center justify-between gap-4 px-4 py-3 transition-all duration-300 ease-in-out hover:bg-accent sm:px-7">
+											className="flex w-full cursor-pointer items-center justify-between gap-4 px-4 py-3 transition-all duration-300 ease-in-out sm:px-7 hover:opacity-90"
+											style={{ 
+												borderTop: `1px solid ${isDark ? 'rgba(103, 80, 164, 0.2)' : 'rgba(132, 95, 220, 0.2)'}`,
+												background: `${isDark ? 'rgba(30, 30, 40, 0.3)' : 'rgba(255, 255, 255, 0.3)'}`
+											}}>
 											<div className="flex items-center gap-4">
 												<div className="flex h-10 w-10">
 													<BoringAvatar
 														size={40}
 														name={invite.user.username}
-														variant="marble"
+														variant="beam"
 														colors={generateColorPalette(invite.user._id)}
 													/>
 												</div>
 												<div>
-													<p className="font-medium">{invite.team.name}</p>
+													<p className="font-medium"
+														style={{ color: `${isDark ? 'rgba(220, 200, 255, 0.9)' : 'rgba(103, 80, 164, 0.9)'}` }}>
+														{invite.team.name}
+													</p>
 													<p className="text-sm text-muted-foreground">
 														Pending invite to{" "}
-														<span className="font-medium">{invite.user.username}</span>
+														<span className="font-medium"
+															style={{ color: `${isDark ? 'rgba(220, 200, 255, 0.9)' : 'rgba(103, 80, 164, 0.9)'}` }}>
+															{invite.user.username}
+														</span>
 													</p>
 												</div>
 											</div>
 											<div className="flex gap-2">
 												<Button
 													variant="outline"
+													className="hover:opacity-80 transition-opacity cursor-pointer"
+													style={{
+														background: `transparent`,
+														backdropFilter: "blur(10px)",
+														border: `1px solid ${isDark ? 'rgba(103, 80, 164, 0.5)' : 'rgba(132, 95, 220, 0.5)'}`,
+														color: `${isDark ? 'rgba(220, 200, 255, 0.9)' : 'rgba(103, 80, 164, 0.9)'}`
+													}}
 													onClick={(): Promise<void> => handleCancelInvite(invite._id)}>
 													Cancel
 												</Button>

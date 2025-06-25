@@ -11,6 +11,7 @@ import {
 	useFormContext,
 } from "react-hook-form";
 
+import { useTheme } from "@/components/ThemeProvider";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 
@@ -97,8 +98,20 @@ const FormLabel = React.forwardRef<
 	React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
 >(({ className, ...props }, ref) => {
 	const { formItemId } = useFormField();
+	const { theme } = useTheme();
+	const isDark = theme === "dark";
 
-	return <Label ref={ref} className={className} htmlFor={formItemId} {...props} />;
+	return (
+		<Label 
+			ref={ref} 
+			className={cn(className, "font-medium")} 
+			htmlFor={formItemId} 
+			style={{ 
+				color: `${isDark ? 'rgba(220, 200, 255, 0.9)' : 'rgba(103, 80, 164, 0.9)'}`,
+			}}
+			{...props} 
+		/>
+	);
 });
 FormLabel.displayName = "FormLabel";
 
@@ -122,9 +135,19 @@ FormControl.displayName = "FormControl";
 const FormDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(
 	({ className, ...props }, ref) => {
 		const { formDescriptionId } = useFormField();
+		const { theme } = useTheme();
+		const isDark = theme === "dark";
 
 		return (
-			<p ref={ref} id={formDescriptionId} className={cn("text-sm text-muted-foreground", className)} {...props} />
+			<p 
+				ref={ref} 
+				id={formDescriptionId} 
+				className={cn("text-sm", className)} 
+				style={{ 
+					color: `${isDark ? 'rgba(200, 180, 240, 0.7)' : 'rgba(103, 80, 164, 0.7)'}` 
+				}}
+				{...props} 
+			/>
 		);
 	}
 );
@@ -133,6 +156,8 @@ FormDescription.displayName = "FormDescription";
 const FormMessage = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(
 	({ className, children, ...props }, ref) => {
 		const { error, formMessageId } = useFormField();
+		const { theme } = useTheme();
+		const isDark = theme === "dark";
 
 		const body = error ? String(error?.message) : children;
 
@@ -144,7 +169,11 @@ const FormMessage = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<
 			<p
 				ref={ref}
 				id={formMessageId}
-				className={cn("text-sm font-medium tracking-tight text-destructive", className)}
+				className={cn("text-sm font-medium tracking-tight", className)}
+				style={{ 
+					color: `${isDark ? 'rgba(255, 150, 150, 0.9)' : 'rgba(220, 50, 50, 0.9)'}`,
+					textShadow: `0 0 1px ${isDark ? 'rgba(255, 0, 0, 0.2)' : 'rgba(255, 0, 0, 0.1)'}`
+				}}
 				{...props}>
 				{body}
 			</p>

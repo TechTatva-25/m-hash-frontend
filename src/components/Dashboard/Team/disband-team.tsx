@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { FaUsers } from "react-icons/fa";
 import { toast } from "react-toastify";
 
+import { useTheme } from "@/components/ThemeProvider";
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -29,6 +30,8 @@ export default function DeleteTeamCard({
 	setTeam: React.Dispatch<React.SetStateAction<Team | null>>;
 }): React.ReactElement {
 	const [disabled, setDisabled] = useState(false);
+	const { theme } = useTheme();
+	const isDark = theme === "dark";
 
 	const handleDeleteTeam = (): void => {
 		setDisabled(true);
@@ -47,8 +50,19 @@ export default function DeleteTeamCard({
 	};
 
 	return (
-		<Card className="w-full rounded-md border border-red-500 bg-red-500/5 px-4 py-6 shadow-md dark:border-red-700/50 dark:bg-red-600/5">
-			<CardTitle className="text-xl font-semibold">Delete Team</CardTitle>
+		<Card 
+			className="w-full rounded-md px-4 py-6"
+			style={{
+				background: `${isDark ? 'rgba(60, 20, 20, 0.5)' : 'rgba(255, 240, 240, 0.5)'}`,
+				backdropFilter: "blur(10px)",
+				border: `1px solid ${isDark ? 'rgba(180, 30, 30, 0.4)' : 'rgba(220, 50, 50, 0.4)'}`,
+				boxShadow: `0 4px 24px ${isDark ? 'rgba(180, 30, 30, 0.2)' : 'rgba(220, 50, 50, 0.1)'}`
+			}}>
+			<CardTitle 
+				className="text-xl font-semibold"
+				style={{ color: `${isDark ? 'rgba(255, 200, 200, 0.9)' : 'rgba(180, 30, 30, 0.9)'}` }}>
+				Delete Team
+			</CardTitle>
 			<CardDescription className="mb-4 mt-1">
 				The team will be permanently deleted. This action is irreversible and cannot be undone.
 			</CardDescription>
@@ -64,13 +78,23 @@ export default function DeleteTeamCard({
 							/>
 						</div>
 						<div className="flex flex-col">
-							<p className="text-lg font-medium">{team.name}</p>
+							<p className="text-lg font-medium"
+								style={{ color: `${isDark ? 'rgba(255, 200, 200, 0.9)' : 'rgba(180, 30, 30, 0.9)'}` }}>
+								{team.name}
+							</p>
 							<p className="text-sm text-muted-foreground">
-								<span className="font-semibold">Leader:</span> {team.team_leader.username}
+								<span className="font-semibold"
+									style={{ color: `${isDark ? 'rgba(255, 200, 200, 0.8)' : 'rgba(180, 30, 30, 0.8)'}` }}>
+									Leader:
+								</span> {team.team_leader.username}
 							</p>
 							<div className="flex items-center gap-2 text-sm text-muted-foreground">
-								<span className="font-semibold">Members:</span>
-								<FaUsers className="h-4 w-4" />
+								<span className="font-semibold"
+									style={{ color: `${isDark ? 'rgba(255, 200, 200, 0.8)' : 'rgba(180, 30, 30, 0.8)'}` }}>
+									Members:
+								</span>
+								<FaUsers className="h-4 w-4" 
+									style={{ color: `${isDark ? 'rgba(255, 200, 200, 0.7)' : 'rgba(180, 30, 30, 0.7)'}` }}/>
 								<span>{team.members.length}/5</span>
 							</div>
 						</div>
@@ -78,22 +102,53 @@ export default function DeleteTeamCard({
 					<AlertDialog>
 						<AlertDialogTrigger asChild>
 							<div className="flex w-full items-center justify-end">
-								<Button className="w-full sm:w-20" variant={"destructive"} disabled={disabled}>
+								<Button 
+									className="w-full cursor-pointer transition-opacity hover:opacity-80 sm:w-20" 
+									style={{
+										background: `${isDark ? 'rgba(180, 30, 30, 0.9)' : 'rgba(220, 50, 50, 0.9)'}`,
+										border: `1px solid ${isDark ? 'rgba(180, 30, 30, 0.3)' : 'rgba(220, 50, 50, 0.3)'}`
+									}}
+									variant="destructive" 
+									disabled={disabled}>
 									Delete
 								</Button>
 							</div>
 						</AlertDialogTrigger>
-						<AlertDialogContent>
+						<AlertDialogContent
+							style={{
+								background: `${isDark ? 'rgba(30, 30, 40, 0.9)' : 'rgba(255, 255, 255, 0.9)'}`,
+								backdropFilter: "blur(10px)",
+								border: `1px solid ${isDark ? 'rgba(180, 30, 30, 0.4)' : 'rgba(220, 50, 50, 0.4)'}`,
+								boxShadow: `0 4px 24px ${isDark ? 'rgba(0, 0, 0, 0.2)' : 'rgba(180, 30, 30, 0.1)'}`
+							}}>
 							<AlertDialogHeader>
-								<AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+								<AlertDialogTitle 
+									style={{ color: `${isDark ? 'rgba(255, 200, 200, 0.9)' : 'rgba(180, 30, 30, 0.9)'}` }}>
+									Are you absolutely sure?
+								</AlertDialogTitle>
 							</AlertDialogHeader>
 							<AlertDialogDescription>
 								This action cannot be undone. This will permanently delete your team and remove your
 								data from our servers. Submitted PPT, if any, will also be erased.
 							</AlertDialogDescription>
 							<AlertDialogFooter>
-								<AlertDialogCancel>Cancel</AlertDialogCancel>
-								<AlertDialogAction onClick={handleDeleteTeam}>Delete</AlertDialogAction>
+								<AlertDialogCancel 
+									className="cursor-pointer transition-opacity hover:opacity-80"
+									style={{
+										background: `${isDark ? 'rgba(30, 30, 40, 0.5)' : 'rgba(240, 240, 240, 0.5)'}`,
+										border: `1px solid ${isDark ? 'rgba(180, 30, 30, 0.3)' : 'rgba(220, 50, 50, 0.3)'}`
+									}}>
+									Cancel
+								</AlertDialogCancel>
+								<AlertDialogAction 
+									className="cursor-pointer transition-opacity hover:opacity-80"
+									style={{
+										background: `${isDark ? 'rgba(180, 30, 30, 0.9)' : 'rgba(220, 50, 50, 0.9)'}`,
+										border: `1px solid ${isDark ? 'rgba(180, 30, 30, 0.3)' : 'rgba(220, 50, 50, 0.3)'}`
+									}}
+									onClick={handleDeleteTeam}>
+									Delete
+								</AlertDialogAction>
 							</AlertDialogFooter>
 						</AlertDialogContent>
 					</AlertDialog>

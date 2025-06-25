@@ -25,7 +25,7 @@ export default function UserTeam({ team }: { team: Team }): React.ReactElement {
 								<BoringAvatar
 									size={40}
 									name={user.username}
-									variant="marble"
+									variant="beam"
 									colors={generateColorPalette(user._id)}
 								/>
 							</div>

@@ -6,6 +6,7 @@ import * as React from "react";
 import { forwardRef, useEffect } from "react";
 
 import { cn } from "@/lib/utils";
+import { useTheme } from "@/components/ThemeProvider";
 
 import { Badge } from "./badge";
 import { Command, CommandGroup, CommandItem, CommandList } from "./command";
@@ -192,6 +193,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
 		const [open, setOpen] = React.useState(false);
 		const mouseOn = React.useRef<boolean>(false);
 		const [isLoading, setIsLoading] = React.useState(false);
+		const { theme } = useTheme();
 
 		const [selected, setSelected] = React.useState<Option[]>(value ?? []);
 		const [options, setOptions] = React.useState<GroupOption>(transToGroupOption(arrayDefaultOptions, groupBy));
@@ -374,13 +376,18 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
 				filter={commandFilter()}>
 				<div
 					className={cn(
-						"group min-h-10 rounded-md border border-input text-sm ring-offset-background focus-within:ring-1 focus-within:ring-ring focus-within:ring-offset-1",
+						"group min-h-10 rounded-md text-sm ring-offset-background focus-within:ring-1 focus-within:ring-ring focus-within:ring-offset-1",
 						{
 							"px-3 py-2": selected.length !== 0,
 							"cursor-text": !disabled && selected.length !== 0,
 						},
 						className
 					)}
+					style={{
+						position: 'relative',
+						border: '1px solid rgba(139, 92, 246, 0.4)',
+						boxShadow: '0 2px 6px rgba(139, 92, 246, 0.05)'
+					}}
 					onClick={(): void => {
 						if (disabled) return;
 						inputRef.current?.focus();
@@ -461,10 +468,20 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
 						</button>
 					</div>
 				</div>
-				<div className="relative">
+				<div style={{ position: 'static' }}>
 					{open && (
 						<CommandList
-							className="absolute top-1 z-10 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in"
+							className="absolute top-full z-[150] w-full rounded-md border border-purple-300/40 text-popover-foreground shadow-md outline-none animate-in mt-1"
+							style={{
+								backdropFilter: 'blur(16px)',
+								boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
+								maxHeight: '300px',
+								overflowY: 'auto',
+								position: 'absolute',
+								left: 0,
+								right: 0,
+								backgroundColor: `${theme === 'dark' ? 'rgba(15, 23, 42, 0.9)' : 'rgba(255, 255, 255, 0.9)'}`,
+							}}
 							onMouseLeave={(): void => {
 								mouseOn.current = false;
 							}}
@@ -475,9 +492,13 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
 								inputRef.current?.focus();
 							}}>
 							{isLoading ? (
-								<>{loadingIndicator}</>
+								<div className="p-4">{loadingIndicator}</div>
 							) : (
-								<>
+								<div style={{
+									borderRadius: 'inherit',
+									background: `${theme === 'dark' ? 'rgba(15, 23, 42, 0.95)' : 'rgba(255, 255, 255, 0.95)'}`,
+									border: `1px solid ${theme === 'dark' ? 'rgba(139, 92, 246, 0.3)' : 'rgba(139, 92, 246, 0.2)'}`,
+								}}>
 									{EmptyItem()}
 									{CreatableItem()}
 									{!selectFirstItem && <CommandItem value="-" className="hidden" />}
@@ -510,7 +531,12 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
 															className={cn(
 																"cursor-pointer",
 																option.disable && "cursor-default text-muted-foreground"
-															)}>
+															)}
+															style={{
+																backgroundColor: `${theme === 'dark' ? 'rgba(30, 41, 59, 0.4)' : 'rgba(241, 245, 249, 0.7)'}`,
+																margin: '4px',
+																borderRadius: '6px',
+															}}>
 															{optionNode ? optionNode(option) : option.label}
 														</CommandItem>
 													);
@@ -518,7 +544,7 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
 											</>
 										</CommandGroup>
 									))}
-								</>
+								</div>
 							)}
 						</CommandList>
 					)}
