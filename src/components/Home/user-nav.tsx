@@ -7,10 +7,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import React from "react";
-import { RiMoonClearFill, RiSunFill } from "react-icons/ri";
 import { toast } from "react-toastify";
 
-import ThemeToggleButton from "@/components/Home/ThemeToggleButton";
 import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -26,10 +24,9 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { useSession } from "@/hooks/useSession";
 import { Endpoints, getEndpoint } from "@/lib/endpoints";
 import { generateColorPalette } from "@/lib/utils";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 export function UserNav(): React.JSX.Element {
-	const { resolvedTheme, setTheme } = useTheme();
+	const { resolvedTheme } = useTheme();
 	const session = useSession();
 	const router = useRouter();
 	const [disabled, setDisabled] = React.useState(false);
@@ -74,7 +71,6 @@ export function UserNav(): React.JSX.Element {
 						Login
 					</Button>
 				</Link>
-				<ThemeToggle />
 			</>
 		);
 	} else {
@@ -119,16 +115,6 @@ export function UserNav(): React.JSX.Element {
 									<LayoutGrid className="mr-3 h-4 w-4 text-muted-foreground" />
 									Dashboard
 								</Link>
-							</DropdownMenuItem>
-							<DropdownMenuItem
-								className="hover:cursor-pointer"
-								onClick={(): void => setTheme(resolvedTheme === "dark" ? "light" : "dark")}>
-								{resolvedTheme === "dark" ? (
-									<RiSunFill className="mr-3 h-4 w-4 text-muted-foreground" />
-								) : (
-									<RiMoonClearFill className="mr-3 h-4 w-4 text-muted-foreground" />
-								)}
-								{resolvedTheme === "dark" ? "Light" : "Dark"} Mode
 							</DropdownMenuItem>
 						</DropdownMenuGroup>
 						<DropdownMenuSeparator />

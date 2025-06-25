@@ -71,7 +71,10 @@ export default function Navbar(): React.JSX.Element {
 					<NavbarSheet />
 				</div>
 				<div className="hidden items-center space-x-3 xl:order-2 xl:flex xl:gap-3 xl:space-x-0 rtl:space-x-reverse">
-					<UserNav />
+					<div className="flex items-center gap-4">
+						<UserNav />
+						<ThemeToggle />
+					</div>
 				</div>
 				<div
 					className="hidden w-full items-center justify-between xl:order-1 xl:flex xl:w-auto"
@@ -127,9 +130,6 @@ export default function Navbar(): React.JSX.Element {
                         </li> */}
 					</ul>
 				</div>
-				{/* <div className="flex items-center gap-4">
-					<ThemeToggle />
-				</div> */}
 			</div>
 		</nav>
 	);
