@@ -44,3 +44,56 @@ html.dark .dark-overlay {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+
+/* Neon glassmorphic scrollbar styles */
+/* For WebKit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  margin: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, rgba(139, 92, 246, 0.5), rgba(79, 70, 229, 0.5));
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 8px rgba(139, 92, 246, 0.3);
+  backdrop-filter: blur(4px);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, rgba(139, 92, 246, 0.7), rgba(79, 70, 229, 0.7));
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.5);
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139, 92, 246, 0.5) rgba(255, 255, 255, 0.03);
+}
+
+/* Custom class for neon scrollbar container */
+.neon-scroll {
+  scrollbar-gutter: stable;
+}
+
+/* Dark mode adjustments */
+html.dark ::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, rgba(139, 92, 246, 0.4), rgba(79, 70, 229, 0.4));
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, rgba(139, 92, 246, 0.6), rgba(79, 70, 229, 0.6));
+}
+
