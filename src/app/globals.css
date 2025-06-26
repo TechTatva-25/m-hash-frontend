@@ -99,52 +99,52 @@ html.dark ::-webkit-scrollbar-thumb:hover {
 
 /* Animations for PSCards component */
 @keyframes float-slow {
-  0% {
-    transform: translateY(0) translateX(0);
-  }
-  25% {
-    transform: translateY(-10px) translateX(5px);
-  }
-  50% {
-    transform: translateY(0) translateX(10px);
-  }
-  75% {
-    transform: translateY(10px) translateX(5px);
-  }
-  100% {
-    transform: translateY(0) translateX(0);
-  }
+	0% {
+		transform: translateY(0) translateX(0);
+	}
+	25% {
+		transform: translateY(-10px) translateX(5px);
+	}
+	50% {
+		transform: translateY(0) translateX(10px);
+	}
+	75% {
+		transform: translateY(10px) translateX(5px);
+	}
+	100% {
+		transform: translateY(0) translateX(0);
+	}
 }
 
 @keyframes pulse-slow {
-  0% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 0.3;
-  }
+	0% {
+		opacity: 0.3;
+	}
+	50% {
+		opacity: 0.5;
+	}
+	100% {
+		opacity: 0.3;
+	}
 }
 
 @keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
+	0% {
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateX(100%);
+	}
 }
 
 .animate-float-slow {
-  animation: float-slow 8s ease-in-out infinite;
+	animation: float-slow 8s ease-in-out infinite;
 }
 
 .animate-pulse-slow {
-  animation: pulse-slow 6s ease-in-out infinite;
+	animation: pulse-slow 6s ease-in-out infinite;
 }
 
 .animate-shimmer {
-  animation: shimmer 2.5s infinite;
+	animation: shimmer 2.5s infinite;
 }

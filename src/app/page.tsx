@@ -46,17 +46,16 @@ export default function Home(): React.JSX.Element {
 					{/* Animated heading like About Us */}
 					<h2
 						className="text-4xl md:text-5xl font-bold text-[hsl(var(--foreground))] font-playfair-display text-center"
-						style={{ fontFamily: "var(--font-playfair-display)" }}
-					>
+						style={{ fontFamily: "var(--font-playfair-display)" }}>
 						Problem Statements
 					</h2>
 					{/* Animated underline */}
-					<div className="absolute -bottom-3 left-1/2 -translate-x-1/2 h-1 bg-[hsl(var(--foreground))] rounded-full"
-						style={{ width: '100%', minWidth: 120, maxWidth: 320 }}
-					></div>
-					<div className="absolute -bottom-5 left-1/2 -translate-x-1/2 h-[0.5px] bg-[hsl(var(--foreground))]/60 rounded-full"
-						style={{ width: '100%', minWidth: 120, maxWidth: 320 }}
-					></div>
+					<div
+						className="absolute -bottom-3 left-1/2 -translate-x-1/2 h-1 bg-[hsl(var(--foreground))] rounded-full"
+						style={{ width: "100%", minWidth: 120, maxWidth: 320 }}></div>
+					<div
+						className="absolute -bottom-5 left-1/2 -translate-x-1/2 h-[0.5px] bg-[hsl(var(--foreground))]/60 rounded-full"
+						style={{ width: "100%", minWidth: 120, maxWidth: 320 }}></div>
 				</div>
 				<PSTabs />
 			</section>

@@ -40,7 +40,7 @@ module.exports = {
 					"50%": { opacity: "0.5" },
 					"100%": { opacity: "0.3" },
 				},
-				"shimmer": {
+				shimmer: {
 					"0%": { transform: "translateX(-100%)" },
 					"100%": { transform: "translateX(100%)" },
 				},
@@ -50,7 +50,7 @@ module.exports = {
 				"accordion-up": "accordion-up 0.2s ease-out",
 				"float-slow": "float-slow 8s ease-in-out infinite",
 				"pulse-slow": "pulse-slow 6s ease-in-out infinite",
-				"shimmer": "shimmer 2.5s infinite",
+				shimmer: "shimmer 2.5s infinite",
 			},
 		},
 	},

@@ -126,25 +126,29 @@ export default function ContactForm(): React.JSX.Element {
 
 				<div className="max-w-5xl mx-auto">
 					<motion.div
-						className={`group relative rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 hover:shadow-3xl border border-white/30 dark:border-white/10 p-0 md:p-1 ${isDark ? 'bg-gradient-to-br from-[#1a102a]/80 via-[#23233a]/80 to-[#2a1a3a]/90' : 'bg-gradient-to-br from-white/60 via-purple-100/40 to-white/10'}`}
+						className={`group relative rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 hover:shadow-3xl border border-white/30 dark:border-white/10 p-0 md:p-1 ${isDark ? "bg-gradient-to-br from-[#1a102a]/80 via-[#23233a]/80 to-[#2a1a3a]/90" : "bg-gradient-to-br from-white/60 via-purple-100/40 to-white/10"}`}
 						initial={{ opacity: 0, y: 50 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.8 }}
 						viewport={{ once: true }}
 						style={{
-							boxShadow: `0 32px 64px -12px rgba(103,80,164,0.13), 0 1.5px 0 0 rgba(255,255,255,0.10)`
+							boxShadow: `0 32px 64px -12px rgba(103,80,164,0.13), 0 1.5px 0 0 rgba(255,255,255,0.10)`,
 						}}>
 						{/* Glassmorphic overlay and glow */}
-						<div className={`absolute inset-0 rounded-3xl pointer-events-none z-0 ${isDark ? 'bg-gradient-to-br from-purple-900/30 via-indigo-900/20 to-transparent' : 'bg-gradient-to-br from-white/40 via-purple-100/30 to-transparent'}`}></div>
-						<div className={`absolute inset-0 rounded-3xl pointer-events-none z-0 ${isDark ? 'bg-gradient-to-tl from-blue-900/20 via-transparent to-purple-900/20' : 'bg-gradient-to-tl from-blue-200/10 via-transparent to-purple-200/10'}`}></div>
+						<div
+							className={`absolute inset-0 rounded-3xl pointer-events-none z-0 ${isDark ? "bg-gradient-to-br from-purple-900/30 via-indigo-900/20 to-transparent" : "bg-gradient-to-br from-white/40 via-purple-100/30 to-transparent"}`}></div>
+						<div
+							className={`absolute inset-0 rounded-3xl pointer-events-none z-0 ${isDark ? "bg-gradient-to-tl from-blue-900/20 via-transparent to-purple-900/20" : "bg-gradient-to-tl from-blue-200/10 via-transparent to-purple-200/10"}`}></div>
 						<div className="absolute inset-0 rounded-3xl pointer-events-none z-0 backdrop-blur-2xl" />
 
 						{/* Subtle border highlight */}
 						<div className="absolute inset-0 rounded-3xl border border-white/20 dark:border-white/10 pointer-events-none z-10" />
 
 						{/* Corner accents */}
-						<div className={`absolute top-4 right-4 w-8 h-8 rounded-full blur-xl z-10 ${isDark ? 'bg-gradient-to-br from-purple-800/30 to-indigo-900/20' : 'bg-gradient-to-br from-indigo-300/20 to-purple-400/10'}`}></div>
-						<div className={`absolute bottom-4 left-4 w-6 h-6 rounded-full blur-xl z-10 ${isDark ? 'bg-gradient-to-tl from-purple-900/20 to-indigo-900/30' : 'bg-gradient-to-tl from-purple-400/15 to-indigo-300/20'}`}></div>
+						<div
+							className={`absolute top-4 right-4 w-8 h-8 rounded-full blur-xl z-10 ${isDark ? "bg-gradient-to-br from-purple-800/30 to-indigo-900/20" : "bg-gradient-to-br from-indigo-300/20 to-purple-400/10"}`}></div>
+						<div
+							className={`absolute bottom-4 left-4 w-6 h-6 rounded-full blur-xl z-10 ${isDark ? "bg-gradient-to-tl from-purple-900/20 to-indigo-900/30" : "bg-gradient-to-tl from-purple-400/15 to-indigo-300/20"}`}></div>
 						<div className="flex flex-col lg:flex-row">
 							{/* Contact Form */}
 							<div className="lg:w-1/2 p-8 relative z-10 flex items-center justify-center">
@@ -274,7 +278,10 @@ export default function ContactForm(): React.JSX.Element {
 									<div className="space-y-8">
 										{Object.entries(contactGroups).map(([role, contacts], index) => (
 											<div key={index}>
-												<h4 className={`text-xl font-medium mb-4 text-center ${isDark ? "text-[rgba(230,210,255,0.95)]" : "text-[rgba(103,80,164,0.9)]"}`}>{role}</h4>
+												<h4
+													className={`text-xl font-medium mb-4 text-center ${isDark ? "text-[rgba(230,210,255,0.95)]" : "text-[rgba(103,80,164,0.9)]"}`}>
+													{role}
+												</h4>
 												<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 													{contacts.map((contact, idx) => (
 														<motion.div
