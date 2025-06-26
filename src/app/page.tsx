@@ -39,9 +39,7 @@ export default function Home(): React.JSX.Element {
 					<HighwayTimeline />
 				</div>
 			</section>
-			<section
-				id="problem-statements"
-				className="relative flex w-full scroll-mt-20 flex-col px-4 pt-16">
+			<section id="problem-statements" className="relative flex w-full scroll-mt-20 flex-col px-4 pt-16">
 				<div className="relative inline-block mb-12 mx-auto w-fit">
 					{/* Animated heading like About Us */}
 					<h2

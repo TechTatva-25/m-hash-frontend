@@ -24,12 +24,12 @@ export function PSTabs(): React.JSX.Element {
 
 	return (
 		<motion.div
-			className="py-4 sm:py-8 md:py-16 w-full"
+			className="py-4 sm:py-8 md:py-10 w-full"
 			initial={{ opacity: 0, y: 30 }}
 			whileInView={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.7 }}
 			viewport={{ once: true }}>
-			<div className="container mx-auto px-2 sm:px-4 max-w-[1800px] w-full">
+			<div className="container mx-auto px-2 sm:px-4 max-w-[95%] sm:max-w-[85%] md:max-w-[80%] lg:max-w-[75%] xl:max-w-[1200px] w-full">
 				<motion.div
 					className={`relative backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-lg overflow-hidden py-3 sm:py-5 ${
 						isDark

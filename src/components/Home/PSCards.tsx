@@ -108,7 +108,7 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 						(ps, index) => (
 							<CarouselItem
 								key={index}
-								className="group flex-shrink-0 md:basis-1/2 lg:basis-1/3 px-3 py-2 min-w-72">
+								className="group flex-shrink-0 sm:basis-1/2 md:basis-1/3 lg:basis-1/5 xl:basis-1/6 2xl:basis-1/7 px-3 py-2 min-w-72">
 								<motion.div
 									initial={{ opacity: 0, y: 20 }}
 									animate={{ opacity: 1, y: 0 }}
@@ -117,7 +117,7 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 									onHoverStart={() => setHoveredCard(index)}
 									onHoverEnd={() => setHoveredCard(null)}>
 									<Card
-										className={`relative h-full min-h-[480px] rounded-xl overflow-hidden transition-all duration-500 transform-gpu ${
+										className={`relative h-full min-h-[380px] md:min-h-[320px] lg:min-h-[300px] xl:min-h-[280px] rounded-xl overflow-hidden transition-all duration-500 transform-gpu ${
 											hoveredCard === index ? "scale-[1.02]" : ""
 										}`}
 										style={{
@@ -256,10 +256,12 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 													}}>
 													{ps.title}
 												</h3>
-												<p className="text-justify text-sm leading-relaxed opacity-85 transition-all duration-300 group-hover:opacity-100" style={{
-													fontSize: "clamp(0.85rem, 1.5vw, 0.875rem)",
-													minHeight: "100px",
-												}}>
+												<p
+													className="text-justify text-sm leading-relaxed opacity-85 transition-all duration-300 group-hover:opacity-100"
+													style={{
+														fontSize: "clamp(0.85rem, 1.5vw, 0.875rem)",
+														minHeight: "100px",
+													}}>
 													{ps.description.length > PS_CARD_DESCRIPTION_MAXLEN
 														? `${ps.description.slice(0, PS_CARD_DESCRIPTION_MAXLEN)}...`
 														: ps.description}
