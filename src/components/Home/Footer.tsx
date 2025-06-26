@@ -40,7 +40,7 @@ export default function Footer(): React.JSX.Element {
 							<FaLinkedinIn />
 						</a>
 					</div>
-					<p className="text-muted-foreground">&copy; 2024 All rights reserved by Manipal Hackathon</p>
+					<p className="text-muted-foreground">&copy; 2025 All rights reserved by Manipal Hackathon</p>
 				</div>
 			</div>
 		</footer>

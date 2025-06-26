@@ -9,7 +9,7 @@ import { HighwayTimeline } from "@/components/Home/HighwayTimeline";
 import Navbar from "@/components/Home/Navbar";
 import { PSTabs } from "@/components/Home/PSTabs";
 import { Stats } from "@/components/Home/Stats";
-import { Button } from "@/components/ui/button";
+import GlassmorphicButton from "@/components/ui/GlassmorphicButton";
 import ScrollToTopButton from "@/components/ui/scroll-to-top-btn";
 import Hero from "@/components/Home/Hero";
 
@@ -35,20 +35,40 @@ export default function Home(): React.JSX.Element {
 			</section>
 			<section id="timeline" className="relative flex scroll-mt-20 flex-col gap-7 overflow-hidden w-full py-16">
 				<div className="w-[95%] max-w-[1800px] mx-auto">
-					<h2 className="mb-10 text-center text-3xl font-bold">The General Timeline of Events</h2>
+					{/* <h2 className="mb-10 text-center text-3xl font-bold">The General Timeline of Events</h2> */}
 					<HighwayTimeline />
 				</div>
 			</section>
 			<section
 				id="problem-statements"
 				className="relative flex w-3/4 scroll-mt-20 flex-col px-4 pt-16 md:w-[80%] md:px-8 lg:px-16 xl:px-24">
-				<h2 className="mb-12 text-center text-3xl font-bold">Problem Statements</h2>
+				<div className="relative inline-block mb-12 mx-auto w-fit">
+					{/* Animated heading like About Us */}
+					<h2
+						className="text-4xl md:text-5xl font-bold text-[hsl(var(--foreground))] font-playfair-display text-center"
+						style={{ fontFamily: "var(--font-playfair-display)" }}
+					>
+						Problem Statements
+					</h2>
+					{/* Animated underline */}
+					<div className="absolute -bottom-3 left-1/2 -translate-x-1/2 h-1 bg-[hsl(var(--foreground))] rounded-full"
+						style={{ width: '100%', minWidth: 120, maxWidth: 320 }}
+					></div>
+					<div className="absolute -bottom-5 left-1/2 -translate-x-1/2 h-[0.5px] bg-[hsl(var(--foreground))]/60 rounded-full"
+						style={{ width: '100%', minWidth: 120, maxWidth: 320 }}
+					></div>
+				</div>
 				<PSTabs />
 			</section>
-			<Button type="submit" onClick={downloadRules} className="mt-12 w-52 font-semibold sm:w-64">
-				Download Rulebook
-				<FaRegFilePdf className="ml-4 h-6 w-6" />
-			</Button>
+
+			<div className="flex justify-center w-full">
+				<GlassmorphicButton
+					text="Download Rulebook"
+					size="lg"
+					// icon={<FaRegFilePdf className="h-7 w-7 text-purple-500 drop-shadow-lg" />}
+					onClick={downloadRules}
+				/>
+			</div>
 			<section
 				id="contact-us"
 				className="relative flex w-11/12 scroll-mt-20 flex-col px-4 pt-20 sm:w-3/4 md:w-[80%] md:px-8 lg:px-16 xl:px-24">

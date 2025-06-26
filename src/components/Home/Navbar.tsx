@@ -15,11 +15,11 @@ export default function Navbar(): React.JSX.Element {
 					<a href="/" className="flex items-center">
 						<Image
 							unoptimized
-							className="w-12 xs:w-16"
+							className="w-14 xs:w-16"
 							src="/M-Hash-Logo.png"
 							alt="Manipal Hackathon Logo"
-							width={64}
-							height={64}
+							width={74}
+							height={74}
 						/>
 					</a>
 					<a

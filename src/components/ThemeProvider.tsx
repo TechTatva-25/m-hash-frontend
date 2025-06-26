@@ -58,11 +58,7 @@ export function ThemeProvider({
 
 		// Save to localStorage for persistence
 		localStorage.setItem(storageKey, theme);
-
-		// Force a DOM repaint to ensure theme classes are applied
-		document.body.style.display = "none";
-		document.body.offsetHeight; // Trigger a reflow
-		document.body.style.display = "";
+		// (Removed DOM repaint hack that caused scroll-to-top)
 	}, [theme, storageKey, mounted]);
 
 	const toggleTheme = () => {

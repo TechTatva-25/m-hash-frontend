@@ -107,7 +107,7 @@ const Toast = React.forwardRef<
 				boxShadow: `0 4px 6px ${isDark ? "rgba(0, 0, 0, 0.2)" : "rgba(0, 0, 0, 0.1)"}`,
 				transition: "all 0.2s ease",
 				backdropFilter: "blur(12px)",
-				backgroundColor: colors.background,
+	   backgroundColor: isDark ? colors.background : "#fff",
 				border: colors.border,
 				color: colors.text,
 				...(props.style as React.CSSProperties),
