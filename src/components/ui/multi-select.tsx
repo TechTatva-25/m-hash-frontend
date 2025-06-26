@@ -384,9 +384,9 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
 						className
 					)}
 					style={{
-						position: 'relative',
-						border: '1px solid rgba(139, 92, 246, 0.4)',
-						boxShadow: '0 2px 6px rgba(139, 92, 246, 0.05)'
+						position: "relative",
+						border: "1px solid rgba(139, 92, 246, 0.4)",
+						boxShadow: "0 2px 6px rgba(139, 92, 246, 0.05)",
 					}}
 					onClick={(): void => {
 						if (disabled) return;
@@ -468,19 +468,19 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
 						</button>
 					</div>
 				</div>
-				<div style={{ position: 'static' }}>
+				<div style={{ position: "static" }}>
 					{open && (
 						<CommandList
 							className="absolute top-full z-[100] w-full rounded-md border border-purple-300/40 text-popover-foreground shadow-md outline-none animate-in mt-1"
 							style={{
-								backdropFilter: 'blur(16px)',
-								boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
-								maxHeight: '300px',
-								overflowY: 'auto',
-								position: 'absolute',
+								backdropFilter: "blur(16px)",
+								boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)",
+								maxHeight: "300px",
+								overflowY: "auto",
+								position: "absolute",
 								left: 0,
 								right: 0,
-								backgroundColor: `${theme === 'dark' ? 'rgba(15, 23, 42, 0.9)' : 'rgba(255, 255, 255, 0.9)'}`,
+								backgroundColor: `${theme === "dark" ? "rgba(15, 23, 42, 0.9)" : "rgba(255, 255, 255, 0.9)"}`,
 							}}
 							onMouseLeave={(): void => {
 								mouseOn.current = false;
@@ -494,11 +494,12 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
 							{isLoading ? (
 								<div className="p-4">{loadingIndicator}</div>
 							) : (
-								<div style={{
-									borderRadius: 'inherit',
-									background: `${theme === 'dark' ? 'rgba(15, 23, 42, 0.95)' : 'rgba(255, 255, 255, 0.95)'}`,
-									border: `1px solid ${theme === 'dark' ? 'rgba(139, 92, 246, 0.3)' : 'rgba(139, 92, 246, 0.2)'}`,
-								}}>
+								<div
+									style={{
+										borderRadius: "inherit",
+										background: `${theme === "dark" ? "rgba(15, 23, 42, 0.95)" : "rgba(255, 255, 255, 0.95)"}`,
+										border: `1px solid ${theme === "dark" ? "rgba(139, 92, 246, 0.3)" : "rgba(139, 92, 246, 0.2)"}`,
+									}}>
 									{EmptyItem()}
 									{CreatableItem()}
 									{!selectFirstItem && <CommandItem value="-" className="hidden" />}
@@ -533,9 +534,9 @@ const MultipleSelector = React.forwardRef<MultipleSelectorRef, MultipleSelectorP
 																option.disable && "cursor-default text-muted-foreground"
 															)}
 															style={{
-																backgroundColor: `${theme === 'dark' ? 'rgba(30, 41, 59, 0.4)' : 'rgba(241, 245, 249, 0.7)'}`,
-																margin: '4px',
-																borderRadius: '6px',
+																backgroundColor: `${theme === "dark" ? "rgba(30, 41, 59, 0.4)" : "rgba(241, 245, 249, 0.7)"}`,
+																margin: "4px",
+																borderRadius: "6px",
 															}}>
 															{optionNode ? optionNode(option) : option.label}
 														</CommandItem>
