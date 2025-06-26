@@ -7,7 +7,6 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { z } from "zod";
 
-import { useTheme } from "@/components/ThemeProvider";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileUploader } from "@/components/ui/file-uploader";
@@ -61,8 +60,6 @@ export function SubmitForm({
 	const [isUploading, setIsUploading] = React.useState(false);
 	const [progresses, setProgresses] = React.useState<Record<string, number>>({});
 	const [statements, setProblems] = React.useState<Problem[]>([]);
-	const { theme } = useTheme();
-	const isDark = theme === "dark";
 
 	React.useEffect(() => {
 		void getProblems().then((problems) => {
@@ -169,35 +166,14 @@ export function SubmitForm({
 	};
 
 	return (
-		<Card
-			className="relative shadow-md dark:shadow-none"
-			style={{
-				background: `${isDark ? "rgba(30, 30, 40, 0.5)" : "rgba(255, 255, 255, 0.5)"}`,
-				backdropFilter: "blur(10px)",
-				border: `1px solid ${isDark ? "rgba(103, 80, 164, 0.3)" : "rgba(132, 95, 220, 0.3)"}`,
-				boxShadow: `0 4px 24px ${isDark ? "rgba(0, 0, 0, 0.2)" : "rgba(103, 80, 164, 0.1)"}`,
-			}}>
-			<CardHeader
-				className="space-y-1 px-4 sm:px-6"
-				style={{
-					borderBottom: `1px solid ${isDark ? "rgba(103, 80, 164, 0.2)" : "rgba(132, 95, 220, 0.2)"}`,
-				}}>
-				<CardTitle
-					className="text-2xl"
-					style={{ color: `${isDark ? "rgba(220, 200, 255, 0.9)" : "rgba(103, 80, 164, 0.9)"}` }}>
-					Make a submission
-				</CardTitle>
-				<CardDescription
-					style={{ color: `${isDark ? "rgba(200, 180, 240, 0.7)" : "rgba(103, 80, 164, 0.7)"}` }}>
+		<Card className="relative shadow-md dark:shadow-none">
+			<CardHeader className="space-y-1 px-4 sm:px-6">
+				<CardTitle className="text-2xl">Make a submission</CardTitle>
+				<CardDescription>
 					Submit your problem statement, presentation and video below. ProblemStatementID is the
 					two-character-long code before the problem statement.
 				</CardDescription>
-				{fakeTeamId && (
-					<CardDescription
-						style={{ color: `${isDark ? "rgba(200, 180, 240, 0.7)" : "rgba(103, 80, 164, 0.7)"}` }}>
-						Team ID: {fakeTeamId}
-					</CardDescription>
-				)}
+				{fakeTeamId && <CardDescription>Team ID: {fakeTeamId}</CardDescription>}
 			</CardHeader>
 			<CardContent className="grid gap-4 px-4 pb-6 sm:px-6">
 				<Form {...form}>
@@ -215,72 +191,27 @@ export function SubmitForm({
 												onValueChange={field.onChange}
 												value={field.value}
 												defaultValue={field.value}>
-												<SelectTrigger
-													className="h-14 py-6 text-start cursor-pointer"
-													style={{
-														background: `${isDark ? "rgba(40, 40, 50, 0.3)" : "rgba(250, 250, 255, 0.3)"}`,
-														backdropFilter: "blur(8px)",
-														border: `1px solid ${isDark ? "rgba(103, 80, 164, 0.3)" : "rgba(132, 95, 220, 0.3)"}`,
-														boxShadow: `0 2px 10px ${isDark ? "rgba(0, 0, 0, 0.2)" : "rgba(103, 80, 164, 0.1)"}`,
-														color: `${isDark ? "rgba(220, 200, 255, 0.9)" : "rgba(103, 80, 164, 0.9)"}`,
-													}}>
+												<SelectTrigger className="h-14 py-6 text-start">
 													<SelectValue placeholder="Select your problem statement" />
 												</SelectTrigger>
-												<SelectContent
-													className="max-h-[320px] w-[--radix-select-trigger-width]"
-													style={{
-														background: `${isDark ? "rgba(40, 40, 50, 0.7)" : "rgba(250, 250, 255, 0.7)"}`,
-														backdropFilter: "blur(10px)",
-														border: `1px solid ${isDark ? "rgba(103, 80, 164, 0.3)" : "rgba(132, 95, 220, 0.3)"}`,
-														boxShadow: `0 4px 20px ${isDark ? "rgba(0, 0, 0, 0.3)" : "rgba(103, 80, 164, 0.2)"}`,
-													}}>
+												<SelectContent className="max-h-[320px] w-[--radix-select-trigger-width]">
 													{Object.entries(statementGroups).map(([type, statements]) => (
 														<SelectGroup key={type}>
 															{statements.map((statement) => (
 																<SelectItem
 																	showCheck={false}
-																	className={`
-																		cursor-pointer px-4 
-																		focus:bg-transparent focus:ring-0 
-																		data-[highlighted]:bg-transparent data-[highlighted]:ring-0 
-																		transition-all duration-200
-																		hover:${isDark ? "bg-purple-800/20" : "bg-purple-300/20"}
-																	`}
-																	style={{
-																		background: "transparent",
-																		marginBottom: "2px",
-																	}}
+																	className="cursor-pointer px-4"
 																	key={statement._id}
 																	value={statement._id.toString()}>
 																	<SelectLabel className="flex flex-row items-center overflow-hidden truncate text-ellipsis p-0 py-1.5">
 																		{statement.icon ? (
-																			<div
-																				className="flex items-center justify-center rounded-full p-1"
-																				style={{
-																					background: `${isDark ? "rgba(103, 80, 164, 0.2)" : "rgba(132, 95, 220, 0.1)"}`,
-																				}}>
-																				<statement.icon
-																					className="h-4 w-4"
-																					style={{
-																						color: `${isDark ? "rgba(220, 200, 255, 0.9)" : "rgba(103, 80, 164, 0.9)"}`,
-																					}}
-																				/>
-																			</div>
+																			<statement.icon className="h-4 w-4" />
 																		) : (
 																			<div className="h-4 w-4" />
 																		)}
 																		<div className="ml-4 flex max-w-[95%] flex-col">
-																			<span
-																				style={{
-																					color: `${isDark ? "rgba(220, 200, 255, 0.9)" : "rgba(103, 80, 164, 0.9)"}`,
-																				}}>
-																				{statement.title}
-																			</span>
-																			<span
-																				className="line-clamp-1 text-xs"
-																				style={{
-																					color: `${isDark ? "rgba(200, 180, 240, 0.7)" : "rgba(103, 80, 164, 0.7)"}`,
-																				}}>
+																			{statement.title}
+																			<span className="line-clamp-1 text-xs text-muted-foreground">
 																				{statement.description}
 																			</span>
 																		</div>
@@ -373,14 +304,6 @@ export function SubmitForm({
 												onChange={field.onChange}
 												value={field.value}
 												disabled={isUploading}
-												className="h-11 py-6"
-												style={{
-													background: `${isDark ? "rgba(40, 40, 50, 0.3)" : "rgba(250, 250, 255, 0.3)"}`,
-													backdropFilter: "blur(8px)",
-													border: `1px solid ${isDark ? "rgba(103, 80, 164, 0.3)" : "rgba(132, 95, 220, 0.3)"}`,
-													boxShadow: `0 2px 10px ${isDark ? "rgba(0, 0, 0, 0.2)" : "rgba(103, 80, 164, 0.1)"}`,
-													color: `${isDark ? "rgba(220, 200, 255, 0.9)" : "rgba(103, 80, 164, 0.9)"}`,
-												}}
 											/>
 										</FormControl>
 										<FormMessage />
@@ -388,16 +311,7 @@ export function SubmitForm({
 								</div>
 							)}
 						/>
-						<Button
-							className="w-full cursor-pointer transition-opacity hover:opacity-90"
-							disabled={loading}
-							type="submit"
-							style={{
-								background: `${isDark ? "rgba(103, 80, 164, 0.8)" : "rgba(132, 95, 220, 0.8)"}`,
-								color: `${isDark ? "rgba(240, 240, 255, 0.95)" : "rgba(255, 255, 255, 0.95)"}`,
-								border: `1px solid ${isDark ? "rgba(140, 110, 200, 0.5)" : "rgba(150, 120, 230, 0.5)"}`,
-								boxShadow: `0 4px 12px ${isDark ? "rgba(40, 40, 50, 0.4)" : "rgba(103, 80, 164, 0.3)"}`,
-							}}>
+						<Button className="w-full" disabled={loading} type="submit">
 							Submit
 						</Button>
 					</form>

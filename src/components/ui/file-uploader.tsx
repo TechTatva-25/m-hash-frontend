@@ -6,7 +6,6 @@ import * as React from "react";
 import Dropzone, { type DropzoneProps, type FileRejection } from "react-dropzone";
 import { toast } from "react-toastify";
 
-import { useTheme } from "@/components/ThemeProvider";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -107,9 +106,6 @@ export function FileUploader(props: FileUploaderProps): React.ReactElement {
 		...dropzoneProps
 	} = props;
 
-	const { theme } = useTheme();
-	const isDark = theme === "dark";
-
 	const [files, setFiles] = useControllableState({
 		prop: valueProp,
 		onChange: onValueChange,
@@ -192,80 +188,31 @@ export function FileUploader(props: FileUploaderProps): React.ReactElement {
 						<div
 							{...getRootProps()}
 							className={cn(
-								"group relative grid h-52 w-full cursor-pointer place-items-center rounded-lg px-5 py-2.5 text-center transition",
+								"group relative grid h-52 w-full cursor-pointer place-items-center rounded-lg border-2 border-dashed border-muted-foreground/25 px-5 py-2.5 text-center transition hover:bg-muted/25",
 								"ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+								isDragActive && "border-muted-foreground/50",
 								isDisabled && "pointer-events-none opacity-60",
 								className
 							)}
-							style={{
-								background: `${isDark ? "rgba(40, 40, 50, 0.3)" : "rgba(250, 250, 255, 0.3)"}`,
-								backdropFilter: "blur(8px)",
-								border: `2px dashed ${
-									isDragActive
-										? isDark
-											? "rgba(132, 95, 220, 0.7)"
-											: "rgba(103, 80, 164, 0.7)"
-										: isDark
-											? "rgba(103, 80, 164, 0.3)"
-											: "rgba(132, 95, 220, 0.3)"
-								}`,
-								boxShadow: `0 4px 16px ${isDark ? "rgba(0, 0, 0, 0.2)" : "rgba(103, 80, 164, 0.1)"}`,
-							}}
 							{...dropzoneProps}>
 							<input {...getInputProps()} />
 							{isDragActive ? (
 								<div className="flex flex-col items-center justify-center gap-4 sm:px-5">
-									<div
-										className="rounded-full p-3"
-										style={{
-											border: `1px dashed ${isDark ? "rgba(132, 95, 220, 0.7)" : "rgba(103, 80, 164, 0.7)"}`,
-											background: `${isDark ? "rgba(60, 60, 70, 0.4)" : "rgba(245, 245, 255, 0.4)"}`,
-										}}>
-										<UploadIcon
-											className="size-7"
-											style={{
-												color: `${isDark ? "rgba(220, 200, 255, 0.8)" : "rgba(103, 80, 164, 0.8)"}`,
-											}}
-											aria-hidden="true"
-										/>
+									<div className="rounded-full border border-dashed p-3">
+										<UploadIcon className="size-7 text-muted-foreground" aria-hidden="true" />
 									</div>
-									<p
-										className="font-medium"
-										style={{
-											color: `${isDark ? "rgba(220, 200, 255, 0.8)" : "rgba(103, 80, 164, 0.8)"}`,
-										}}>
-										Drop the files here
-									</p>
+									<p className="font-medium text-muted-foreground">Drop the files here</p>
 								</div>
 							) : (
 								<div className="flex flex-col items-center justify-center gap-4 sm:px-5">
-									<div
-										className="rounded-full p-3"
-										style={{
-											border: `1px dashed ${isDark ? "rgba(103, 80, 164, 0.5)" : "rgba(132, 95, 220, 0.5)"}`,
-											background: `${isDark ? "rgba(50, 50, 60, 0.3)" : "rgba(245, 245, 255, 0.3)"}`,
-										}}>
-										<UploadIcon
-											className="size-7"
-											style={{
-												color: `${isDark ? "rgba(200, 180, 240, 0.7)" : "rgba(103, 80, 164, 0.7)"}`,
-											}}
-											aria-hidden="true"
-										/>
+									<div className="rounded-full border border-dashed p-3">
+										<UploadIcon className="size-7 text-muted-foreground" aria-hidden="true" />
 									</div>
 									<div className="flex flex-col gap-px">
-										<p
-											className="font-medium"
-											style={{
-												color: `${isDark ? "rgba(220, 200, 255, 0.8)" : "rgba(103, 80, 164, 0.8)"}`,
-											}}>
+										<p className="font-medium text-muted-foreground">
 											Drag {`'n'`} drop files here, or click to select files
 										</p>
-										<p
-											className="text-sm"
-											style={{
-												color: `${isDark ? "rgba(200, 180, 240, 0.6)" : "rgba(103, 80, 164, 0.6)"}`,
-											}}>
+										<p className="text-sm text-muted-foreground/70">
 											You can upload
 											{maxFileCount > 1
 												? ` ${maxFileCount === Infinity ? "multiple" : maxFileCount}
@@ -311,58 +258,21 @@ interface FileCardProps {
 }
 
 function FileCard({ file, progress, onRemove }: FileCardProps): React.ReactElement {
-	const { theme } = useTheme();
-	const isDark = theme === "dark";
-
 	return (
 		<div className="flex flex-col gap-2">
-			<div
-				className="relative flex items-center gap-2.5 p-3 rounded-lg"
-				style={{
-					background: `${isDark ? "rgba(40, 40, 50, 0.3)" : "rgba(250, 250, 255, 0.3)"}`,
-					backdropFilter: "blur(8px)",
-					border: `1px solid ${isDark ? "rgba(103, 80, 164, 0.3)" : "rgba(132, 95, 220, 0.3)"}`,
-					boxShadow: `0 2px 10px ${isDark ? "rgba(0, 0, 0, 0.2)" : "rgba(103, 80, 164, 0.1)"}`,
-				}}>
+			<div className="relative flex items-center gap-2.5">
 				<div className="flex flex-1 gap-2.5">
 					{isFileWithPreview(file) ? <FilePreview file={file} /> : null}
 					<div className="flex w-full flex-col gap-2">
 						<div className="flex flex-col gap-px">
-							<p
-								className="line-clamp-1 text-sm font-medium"
-								style={{ color: `${isDark ? "rgba(220, 200, 255, 0.9)" : "rgba(103, 80, 164, 0.9)"}` }}>
-								{file.name}
-							</p>
-							<p
-								className="text-xs"
-								style={{ color: `${isDark ? "rgba(200, 180, 240, 0.7)" : "rgba(103, 80, 164, 0.7)"}` }}>
-								{formatBytes(file.size)}
-							</p>
+							<p className="line-clamp-1 text-sm font-medium text-foreground/80">{file.name}</p>
+							<p className="text-xs text-muted-foreground">{formatBytes(file.size)}</p>
 						</div>
-						{progress ? (
-							<Progress
-								className="h-2"
-								value={progress}
-								style={{
-									background: `${isDark ? "rgba(60, 60, 70, 0.3)" : "rgba(245, 245, 255, 0.3)"}`,
-									border: `1px solid ${isDark ? "rgba(103, 80, 164, 0.2)" : "rgba(132, 95, 220, 0.2)"}`,
-								}}
-							/>
-						) : null}
+						{progress ? <Progress className="h-2" value={progress} /> : null}
 					</div>
 				</div>
 				<div className="flex items-center gap-2">
-					<Button
-						type="button"
-						variant="outline"
-						size="icon"
-						className="size-7 cursor-pointer hover:opacity-80"
-						style={{
-							background: `${isDark ? "rgba(60, 60, 70, 0.4)" : "rgba(245, 245, 255, 0.4)"}`,
-							border: `1px solid ${isDark ? "rgba(103, 80, 164, 0.3)" : "rgba(132, 95, 220, 0.3)"}`,
-							color: `${isDark ? "rgba(220, 200, 255, 0.8)" : "rgba(103, 80, 164, 0.8)"}`,
-						}}
-						onClick={onRemove}>
+					<Button type="button" variant="outline" size="icon" className="size-7" onClick={onRemove}>
 						<Cross2Icon className="size-4" aria-hidden="true" />
 						<span className="sr-only">Remove file</span>
 					</Button>
@@ -381,9 +291,6 @@ interface FilePreviewProps {
 }
 
 function FilePreview({ file }: FilePreviewProps): React.ReactElement {
-	const { theme } = useTheme();
-	const isDark = theme === "dark";
-
 	if (file.type.startsWith("image/")) {
 		return (
 			<Image
@@ -393,26 +300,9 @@ function FilePreview({ file }: FilePreviewProps): React.ReactElement {
 				height={48}
 				loading="lazy"
 				className="aspect-square shrink-0 rounded-md object-cover"
-				style={{
-					border: `1px solid ${isDark ? "rgba(103, 80, 164, 0.3)" : "rgba(132, 95, 220, 0.3)"}`,
-					boxShadow: `0 2px 6px ${isDark ? "rgba(0, 0, 0, 0.2)" : "rgba(103, 80, 164, 0.1)"}`,
-				}}
 			/>
 		);
 	}
 
-	return (
-		<div
-			className="flex h-12 w-12 items-center justify-center rounded-md"
-			style={{
-				background: `${isDark ? "rgba(50, 50, 60, 0.3)" : "rgba(245, 245, 255, 0.3)"}`,
-				border: `1px solid ${isDark ? "rgba(103, 80, 164, 0.3)" : "rgba(132, 95, 220, 0.3)"}`,
-			}}>
-			<FileTextIcon
-				className="size-8"
-				style={{ color: `${isDark ? "rgba(200, 180, 240, 0.7)" : "rgba(103, 80, 164, 0.7)"}` }}
-				aria-hidden="true"
-			/>
-		</div>
-	);
+	return <FileTextIcon className="size-10 text-muted-foreground" aria-hidden="true" />;
 }
