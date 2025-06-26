@@ -103,12 +103,12 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 					loop: true,
 					align: "start",
 				}}>
-				<CarouselContent className="flex py-4 px-20">
+				<CarouselContent className="flex py-4 px-4 md:px-10 lg:px-20">
 					{(filter === "all" ? problems : problems.filter((problem) => problem.type === filter)).map(
 						(ps, index) => (
 							<CarouselItem
 								key={index}
-								className="group flex-shrink-0 md:basis-1/2 lg:basis-1/3 px-3 py-2">
+								className="group flex-shrink-0 md:basis-1/2 lg:basis-1/3 px-3 py-2 min-w-72">
 								<motion.div
 									initial={{ opacity: 0, y: 20 }}
 									animate={{ opacity: 1, y: 0 }}
@@ -117,7 +117,7 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 									onHoverStart={() => setHoveredCard(index)}
 									onHoverEnd={() => setHoveredCard(null)}>
 									<Card
-										className={`relative h-full rounded-xl overflow-hidden transition-all duration-500 transform-gpu ${
+										className={`relative h-full min-h-[480px] rounded-xl overflow-hidden transition-all duration-500 transform-gpu ${
 											hoveredCard === index ? "scale-[1.02]" : ""
 										}`}
 										style={{
@@ -251,10 +251,15 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 														textShadow: isDark
 															? "0 2px 4px rgba(0,0,0,0.2)"
 															: "0 1px 2px rgba(103,80,164,0.1)",
+														fontSize: "clamp(1rem, 2vw, 1.125rem)",
+														minHeight: "2.5rem",
 													}}>
 													{ps.title}
 												</h3>
-												<p className="text-justify text-sm leading-relaxed opacity-85 transition-all duration-300 group-hover:opacity-100">
+												<p className="text-justify text-sm leading-relaxed opacity-85 transition-all duration-300 group-hover:opacity-100" style={{
+													fontSize: "clamp(0.85rem, 1.5vw, 0.875rem)",
+													minHeight: "100px",
+												}}>
 													{ps.description.length > PS_CARD_DESCRIPTION_MAXLEN
 														? `${ps.description.slice(0, PS_CARD_DESCRIPTION_MAXLEN)}...`
 														: ps.description}
@@ -530,7 +535,7 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 				</CarouselContent>
 
 				<CarouselPrevious
-					className="cursor-pointer absolute left-4 md:left-6 lg:left-8 z-30 transition-all duration-300 hover:scale-110"
+					className="cursor-pointer absolute left-0 sm:left-2 md:left-4 lg:left-8 z-30 transition-all duration-300 hover:scale-110"
 					style={{
 						background: isDark
 							? "linear-gradient(135deg, rgba(30,30,45,0.8) 0%, rgba(35,35,60,0.7) 100%)"
@@ -549,7 +554,7 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 				</CarouselPrevious>
 
 				<CarouselNext
-					className="cursor-pointer absolute right-4 md:right-6 lg:right-8 z-30 transition-all duration-300 hover:scale-110"
+					className="cursor-pointer absolute right-0 sm:right-2 md:right-4 lg:right-8 z-30 transition-all duration-300 hover:scale-110"
 					style={{
 						background: isDark
 							? "linear-gradient(135deg, rgba(30,30,45,0.8) 0%, rgba(35,35,60,0.7) 100%)"

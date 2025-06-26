@@ -41,7 +41,7 @@ export default function Home(): React.JSX.Element {
 			</section>
 			<section
 				id="problem-statements"
-				className="relative flex w-3/4 scroll-mt-20 flex-col px-4 pt-16 md:w-[80%] md:px-8 lg:px-16 xl:px-24">
+				className="relative flex w-full scroll-mt-20 flex-col px-4 pt-16">
 				<div className="relative inline-block mb-12 mx-auto w-fit">
 					{/* Animated heading like About Us */}
 					<h2
