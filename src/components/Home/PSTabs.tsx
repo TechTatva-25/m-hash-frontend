@@ -85,7 +85,7 @@ export function PSTabs(): React.JSX.Element {
 									}`}>
 									ALL
 								</TabsTrigger>
-								<TabsTrigger
+								{/* <TabsTrigger
 									value="real"
 									className={`transition-all duration-300 text-xs sm:text-sm px-3 sm:px-4 py-2 rounded-lg w-full md:w-auto text-center ${
 										selectedTab === "real" &&
@@ -106,7 +106,7 @@ export function PSTabs(): React.JSX.Element {
 									}`}>
 									<span className="hidden sm:inline">Paradigm II: GAMIFIED WORLD</span>
 									<span className="sm:hidden">GAMIFIED WORLD</span>
-								</TabsTrigger>
+								</TabsTrigger> */}
 							</TabsList>
 							<PSCards filter={selectedTab} problems={problems} />
 						</Tabs>

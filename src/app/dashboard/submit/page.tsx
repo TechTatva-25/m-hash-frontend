@@ -9,6 +9,7 @@ import { IoWarning } from "react-icons/io5";
 import { ContentLayout } from "@/components/Dashboard/content-layout";
 import { SubmitForm } from "@/components/Dashboard/Submit/form-uploader";
 import { Spinner } from "@/components/Dashboard/Submit/loader";
+import { useTheme } from "@/components/ThemeProvider";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import {
 	Breadcrumb,
@@ -32,6 +33,8 @@ export default function SubmitPage(): React.JSX.Element {
 	const fakeTeamId = useFakeTeamId(team);
 	const { submission, submissionLoaded, deleteSubmission, setSubmission, setSubmissionLoaded } = useSubmission();
 	const [problemStatement, setProblemStatement] = React.useState<Problem>();
+	const { theme } = useTheme();
+	const isDark = theme === "dark";
 
 	React.useEffect(() => {
 		if (session?.loading) return;
@@ -63,21 +66,38 @@ export default function SubmitPage(): React.JSX.Element {
 		<ContentLayout title="Dashboard">
 			<section className="flex flex-1 flex-col py-4 sm:py-8">
 				<Breadcrumb>
-					<BreadcrumbList className="text-[15px]">
+					<BreadcrumbList
+						className="text-[15px] p-2 rounded-md backdrop-blur-sm"
+						style={{
+							background: isDark ? "rgba(255, 255, 255, 0.03)" : "rgba(255, 255, 255, 0.2)",
+							border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.05)" : "rgba(255, 255, 255, 0.4)"}`,
+							boxShadow: `0 2px 6px ${isDark ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.02)"}`,
+						}}>
 						<BreadcrumbItem>
 							<BreadcrumbLink asChild>
-								<Link href="/">Home</Link>
+								<Link href="/" className="transition-colors hover:text-purple-500">
+									Home
+								</Link>
 							</BreadcrumbLink>
 						</BreadcrumbItem>
 						<BreadcrumbSeparator slash />
 						<BreadcrumbItem>
 							<BreadcrumbLink asChild>
-								<Link href="/dashboard">Dashboard</Link>
+								<Link href="/dashboard" className="transition-colors hover:text-purple-500">
+									Dashboard
+								</Link>
 							</BreadcrumbLink>
 						</BreadcrumbItem>
 						<BreadcrumbSeparator slash />
 						<BreadcrumbItem>
-							<BreadcrumbPage className="font-semibold">Submit</BreadcrumbPage>
+							<BreadcrumbPage
+								className="font-semibold"
+								style={{
+									fontFamily: "var(--font-playfair-display)",
+									color: isDark ? "rgba(139, 92, 246, 0.8)" : "rgba(79, 70, 229, 0.8)",
+								}}>
+								Submit
+							</BreadcrumbPage>
 						</BreadcrumbItem>
 					</BreadcrumbList>
 				</Breadcrumb>
