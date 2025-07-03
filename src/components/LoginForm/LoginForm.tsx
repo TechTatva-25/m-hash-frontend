@@ -20,6 +20,8 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input, PasswordInput } from "../ui/input";
 import ForgotPasswordDialog from "./ForgotPasswordDialog";
 
+import Turnstile from "react-turnstile";
+
 const loginFormSchema = z.object({
 	email: z.string().email(),
 	password: z
@@ -37,6 +39,7 @@ export default function LoginForm(): React.JSX.Element {
 	const [disabled, setDisabled] = useState(false);
 	const [modalOpen, setModalOpen] = useState(false);
 	const [isRedirecting, setIsRedirecting] = useState(false);
+	const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 	const form = useForm<z.infer<typeof loginFormSchema>>({
 		mode: "onChange",
 		resolver: zodResolver(loginFormSchema),
@@ -71,7 +74,12 @@ export default function LoginForm(): React.JSX.Element {
 	const onSubmit = async (data: z.infer<typeof loginFormSchema>): Promise<void> => {
 		setDisabled(true);
 		try {
-			const response = await axios.post<{ message: string }>(getEndpoint(Endpoints.LOGIN), data, {
+			if (!turnstileToken) {
+			toast.error("Please complete the CAPTCHA.");
+			setDisabled(false);
+			return;
+		}
+			const response = await axios.post<{ message: string }>(getEndpoint(Endpoints.LOGIN), { ...data, turnstileToken }, {
 				headers: {
 					"Content-Type": "application/json",
 				},
@@ -193,6 +201,15 @@ export default function LoginForm(): React.JSX.Element {
 									)}
 								/>
 
+<div className="flex justify-center my-6">
+  <Turnstile
+    sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+    onVerify={token => setTurnstileToken(token)}
+    className="rounded-md shadow-md"
+    style={{ minWidth: 200 }}
+  />
+</div>
+
 								{/* Enhanced Glassmorphic Button with Animation */}
 								<div className="mt-6 relative overflow-hidden group">
 									{/* Animated gradient background */}
@@ -205,6 +222,8 @@ export default function LoginForm(): React.JSX.Element {
 
 									{/* Glass overlay for frosted effect */}
 									<div className="absolute inset-0 backdrop-blur-md bg-white/10 rounded-lg border border-white/30"></div>
+
+
 
 									<Button
 										type="submit"

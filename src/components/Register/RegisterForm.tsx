@@ -12,6 +12,7 @@ import { isValidPhoneNumber } from "react-phone-number-input";
 import { HashLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import * as z from "zod";
+import Turnstile from "react-turnstile";
 
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -89,6 +90,7 @@ export default function RegisterForm(): React.JSX.Element {
 	const [showOTPVerification, setShowOTPVerification] = useState(false);
 	const [registrationEmail, setRegistrationEmail] = useState("");
 	const [verificationSuccessful, setVerificationSuccessful] = useState(false);
+	const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
 	const router = useRouter();
 
@@ -178,6 +180,11 @@ export default function RegisterForm(): React.JSX.Element {
 	const onSubmit = async (data: z.infer<typeof registerFormSchema>): Promise<void> => {
 		setDisabled(true);
 		try {
+			if (!turnstileToken) {
+      toast.error("Please complete the CAPTCHA.");
+      setDisabled(false);
+      return;
+    }
 			// Prepare the data to match backend requirements
 			const payload = {
 				email: data.email,
@@ -187,6 +194,7 @@ export default function RegisterForm(): React.JSX.Element {
 				collegeOther: data.college === otherCollege._id ? data.collegeOther : undefined,
 				mobile_number: data.mobile_number,
 				gender: data.gender,
+				turnstileToken,
 			};
 
 			const response = await axios.post(getEndpoint(Endpoints.REGISTER), payload);
@@ -684,6 +692,15 @@ export default function RegisterForm(): React.JSX.Element {
 										/>
 									</div>
 								</div>
+{/* Cloudflare Turnstile CAPTCHA */}
+<div className="flex justify-center my-6">
+  <Turnstile
+    sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+    onVerify={token => setTurnstileToken(token)}
+    className="rounded-md shadow-md"
+    style={{ minWidth: 200 }}
+  />
+</div>
 
 								{/* Enhanced Glassmorphic Button with SpotlightCard effect */}
 								<div className="mt-6 relative overflow-hidden group">
