@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { FaRegFilePdf } from "react-icons/fa6";
 
@@ -12,8 +14,12 @@ import { Stats } from "@/components/Home/Stats";
 import GlassmorphicButton from "@/components/ui/GlassmorphicButton";
 import ScrollToTopButton from "@/components/ui/scroll-to-top-btn";
 import Hero from "@/components/Home/Hero";
+import { useLenis } from "@/hooks/useLenis";
 
 export default function Home(): React.JSX.Element {
+	// Initialize Lenis smooth scrolling
+	useLenis();
+
 	return (
 		<div className="flex min-h-screen flex-col items-center justify-between overflow-x-hidden overflow-y-hidden">
 			<header className="relative flex w-full flex-row items-center justify-around">
