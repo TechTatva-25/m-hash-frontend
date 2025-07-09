@@ -8,10 +8,13 @@ import { motion } from "framer-motion";
 export default function About(): React.JSX.Element {
 	// Images for the stack component
 	const aboutImages = [
-		{ id: 1, img: "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=500&auto=format" },
-		{ id: 2, img: "https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=500&auto=format" },
-		{ id: 3, img: "https://images.unsplash.com/photo-1452626212852-811d58933cae?q=80&w=500&auto=format" },
-		{ id: 4, img: "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=500&auto=format" },
+		{ id: 1, img: "/assets/about/abt1.jpg" },
+		{ id: 2, img: "/assets/about/abt2.jpg" },
+		{ id: 3, img: "/assets/about/abt3.jpg" },
+		{ id: 4, img: "/assets/about/abt4.jpg" },
+		{ id: 5, img: "/assets/about/abt5.jpg" },
+		{ id: 6, img: "/assets/about/abt6.jpg" },
+		{ id: 7, img: "/assets/about/abt7.jpg" },
 	];
 
 	return (

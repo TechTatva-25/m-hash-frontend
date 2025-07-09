@@ -7,7 +7,7 @@ export default function Login(): React.JSX.Element {
 		<div
 			className="flex min-h-screen flex-col items-center justify-center overflow-hidden relative"
 			style={{
-				backgroundImage: "url('/images/hackathon-bg.png')",
+				backgroundImage: "url('/images/hackathon-bg.jpg')",
 				backgroundSize: "cover",
 				backgroundPosition: "center",
 				backgroundRepeat: "no-repeat",
