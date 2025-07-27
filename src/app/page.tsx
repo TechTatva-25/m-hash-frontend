@@ -15,6 +15,7 @@ import GlassmorphicButton from "@/components/ui/GlassmorphicButton";
 import ScrollToTopButton from "@/components/ui/scroll-to-top-btn";
 import Hero from "@/components/Home/Hero";
 import { useLenis } from "@/hooks/useLenis";
+import { motion } from "framer-motion";
 
 export default function Home(): React.JSX.Element {
 	// Initialize Lenis smooth scrolling
@@ -48,18 +49,32 @@ export default function Home(): React.JSX.Element {
 			<section id="problem-statements" className="relative flex w-full scroll-mt-20 flex-col px-4 pt-16">
 				<div className="relative inline-block mb-12 mx-auto w-fit">
 					{/* Animated heading like About Us */}
-					<h2
-						className="text-4xl md:text-5xl font-bold text-[hsl(var(--foreground))] font-playfair-display text-center"
-						style={{ fontFamily: "var(--font-playfair-display)" }}>
-						Problem Statements
-					</h2>
-					{/* Animated underline */}
-					<div
-						className="absolute -bottom-3 left-1/2 -translate-x-1/2 h-1 bg-[hsl(var(--foreground))] rounded-full"
-						style={{ width: "100%", minWidth: 120, maxWidth: 320 }}></div>
-					<div
-						className="absolute -bottom-5 left-1/2 -translate-x-1/2 h-[0.5px] bg-[hsl(var(--foreground))]/60 rounded-full"
-						style={{ width: "100%", minWidth: 120, maxWidth: 320 }}></div>
+					<motion.div
+											className="relative inline-block mb-8"
+											initial={{ opacity: 0, y: 20 }}
+											whileInView={{ opacity: 1, y: 0 }}
+											transition={{ duration: 0.5 }}
+											viewport={{ once: true }}>
+											<h2
+												className="text-4xl md:text-5xl font-bold text-[hsl(var(--foreground))]"
+												style={{ fontFamily: "var(--font-playfair-display)" }}>
+												 Problem Statements
+											</h2>
+											<motion.div
+												className="absolute -bottom-3 left-0 h-1 bg-[hsl(var(--foreground))] rounded-full"
+												initial={{ width: 0 }}
+												whileInView={{ width: "100%" }}
+												transition={{ duration: 0.8, delay: 0.5 }}
+												viewport={{ once: true }}
+											/>
+											<motion.div
+												className="absolute -bottom-5 left-0 h-[0.5px] bg-[hsl(var(--foreground))] rounded-full"
+												initial={{ width: 0 }}
+												whileInView={{ width: "100%" }}
+												transition={{ duration: 0.8, delay: 0.7 }}
+												viewport={{ once: true }}
+											/>
+										</motion.div>
 				</div>
 				<PSTabs />
 			</section>

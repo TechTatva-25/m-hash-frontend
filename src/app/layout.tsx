@@ -16,9 +16,9 @@ const playfairDisplay = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-	title: "Manipal Hackathon 2024",
+	title: "Manipal Hackathon 2025",
 	description:
-		"Get ready to dive into the future at Manipal Hackathon 2024! With the theme 'Pioneering Paradigms', this flagship event of TechTatva 2024 is where creativity and innovation come to the forefront. Join us in 36 thrilling hours of coding where you will compete with brilliant minds, tackle challenges, and transform groundbreaking ideas into reality. This isn’t just about coding — it’s about pushing boundaries, exploring new possibilities, and setting the trends others will follow. Whether you're a seasoned pro or an enthusiastic newcomer, this is your chance to shine, learn, and make a mark. Don’t miss out on the excitement, the learning, and the opportunity to be part of something extraordinary.",
+		"Get ready to dive into the future at Manipal Hackathon 2025! With the theme 'Pioneering Paradigms', this flagship event of TechTatva 2025 is where creativity and innovation come to the forefront. Join us in 36 thrilling hours of coding where you will compete with brilliant minds, tackle challenges, and transform groundbreaking ideas into reality. This isn’t just about coding — it’s about pushing boundaries, exploring new possibilities, and setting the trends others will follow. Whether you're a seasoned pro or an enthusiastic newcomer, this is your chance to shine, learn, and make a mark. Don’t miss out on the excitement, the learning, and the opportunity to be part of something extraordinary.",
 	icons: {
 		icon: "/favicon.ico",
 	},
@@ -47,9 +47,9 @@ export const metadata: Metadata = {
 	},
 	openGraph: {
 		url: process.env.NEXT_PUBLIC_BASE_URL ? new URL(String(process.env.NEXT_PUBLIC_BASE_URL)) : undefined,
-		title: "Manipal Hackathon 2024",
+		title: "Manipal Hackathon 2025",
 		description:
-			"Get ready to dive into the future at Manipal Hackathon 2024! With the theme 'Pioneering Paradigms', this flagship event of TechTatva 2024 is where creativity and innovation come to the forefront. Join us in 36 thrilling hours of coding where you will compete with brilliant minds, tackle challenges, and transform groundbreaking ideas into reality. This isn’t just about coding — it’s about pushing boundaries, exploring new possibilities, and setting the trends others will follow. Whether you're a seasoned pro or an enthusiastic newcomer, this is your chance to shine, learn, and make a mark. Don’t miss out on the excitement, the learning, and the opportunity to be part of something extraordinary.",
+			"Get ready to dive into the future at Manipal Hackathon 2025! With the theme 'Pioneering Paradigms', this flagship event of TechTatva 2025 is where creativity and innovation come to the forefront. Join us in 36 thrilling hours of coding where you will compete with brilliant minds, tackle challenges, and transform groundbreaking ideas into reality. This isn’t just about coding — it’s about pushing boundaries, exploring new possibilities, and setting the trends others will follow. Whether you're a seasoned pro or an enthusiastic newcomer, this is your chance to shine, learn, and make a mark. Don’t miss out on the excitement, the learning, and the opportunity to be part of something extraordinary.",
 	},
 };
 

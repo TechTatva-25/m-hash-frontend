@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { Calendar, Clock, Flag, Target } from "lucide-react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
+import { motion } from "framer-motion";
 
 interface TimelineStage {
 	date: string;
@@ -26,13 +27,32 @@ export function HighwayTimeline({ timeline = generalTimeLine }: { timeline?: Tim
 
 				{/* Title section */}
 				<div className="relative mb-16 text-center">
-					<h2
-						className="text-4xl md:text-5xl font-bold text-[hsl(var(--foreground))]"
-						style={{ fontFamily: "var(--font-playfair-display)" }}>
-						Event Timeline
-					</h2>
-					<div className="h-1 w-48 mx-auto mt-4 bg-[hsl(var(--foreground))] rounded-full"></div>
-					<div className="h-[0.5px] w-64 mx-auto mt-2 bg-[hsl(var(--foreground))]/60 rounded-full"></div>
+					<motion.div
+											className="relative inline-block mb-8"
+											initial={{ opacity: 0, y: 20 }}
+											whileInView={{ opacity: 1, y: 0 }}
+											transition={{ duration: 0.5 }}
+											viewport={{ once: true }}>
+											<h2
+												className="text-4xl md:text-5xl font-bold text-[hsl(var(--foreground))]"
+												style={{ fontFamily: "var(--font-playfair-display)" }}>
+												 Event Timeline
+											</h2>
+											<motion.div
+												className="absolute -bottom-3 left-0 h-1 bg-[hsl(var(--foreground))] rounded-full"
+												initial={{ width: 0 }}
+												whileInView={{ width: "100%" }}
+												transition={{ duration: 0.8, delay: 0.5 }}
+												viewport={{ once: true }}
+											/>
+											<motion.div
+												className="absolute -bottom-5 left-0 h-[0.5px] bg-[hsl(var(--foreground))] rounded-full"
+												initial={{ width: 0 }}
+												whileInView={{ width: "100%" }}
+												transition={{ duration: 0.8, delay: 0.7 }}
+												viewport={{ once: true }}
+											/>
+										</motion.div>
 				</div>
 
 				{/* Vertical timeline line - perfectly centered */}
@@ -173,7 +193,7 @@ const TimelineItem = ({ index, stage, icon, isLeft }: TimelineItemProps) => {
 								sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 							/>
 						</div>
-						<div className="flex flex-col flex-1 min-h-0 relative">
+						<div className="flex flex-col flex-1 min-h-0 relative px-4 py-2">
 							{/* Subtle background for better text readability in light mode */}{" "}
 							<div className="absolute inset-0 bg-white/25 rounded-lg -z-10"></div>
 							<h3
@@ -183,7 +203,7 @@ const TimelineItem = ({ index, stage, icon, isLeft }: TimelineItemProps) => {
 								}}>
 								{stage.badge}
 							</h3>{" "}
-							<h2 className="text-sm/[1.1] mb-1.5 py-1 rounded-md inline-block">{stage.date}</h2>{" "}
+							<h2 className="text-sm/[1.1] mb-1.5 py-1 rounded-md inline-block text-black">{stage.date}</h2>{" "}
 							{/* Description text with increased size for better readability */}
 							<div
 								className="text-sm/[1.4] overflow-y-auto flex-1 pr-1.5 scrollbar-thin scrollbar-thumb-indigo-200 scrollbar-track-transparent pb-3"
