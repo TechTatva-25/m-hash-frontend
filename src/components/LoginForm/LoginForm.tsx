@@ -15,8 +15,8 @@ import { useSession } from "@/hooks/useSession";
 import { Endpoints, getEndpoint } from "@/lib/endpoints";
 
 import { Button } from "../ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
+import { Card, CardContent, CardDescription, CardTitle } from "../ui/card";
+import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
 import { Input, PasswordInput } from "../ui/input";
 import ForgotPasswordDialog from "./ForgotPasswordDialog";
 
@@ -75,16 +75,20 @@ export default function LoginForm(): React.JSX.Element {
 		setDisabled(true);
 		try {
 			if (!turnstileToken) {
-			toast.error("Please complete the CAPTCHA.");
-			setDisabled(false);
-			return;
-		}
-			const response = await axios.post<{ message: string }>(getEndpoint(Endpoints.LOGIN), { ...data, turnstileToken }, {
-				headers: {
-					"Content-Type": "application/json",
-				},
-				withCredentials: true,
-			});
+				toast.error("Please complete the CAPTCHA.");
+				setDisabled(false);
+				return;
+			}
+			const response = await axios.post<{ message: string }>(
+				getEndpoint(Endpoints.LOGIN),
+				{ ...data, turnstileToken },
+				{
+					headers: {
+						"Content-Type": "application/json",
+					},
+					withCredentials: true,
+				}
+			);
 			toast.success(response.data.message);
 			router.push("/dashboard");
 		} catch (error) {
@@ -201,14 +205,14 @@ export default function LoginForm(): React.JSX.Element {
 									)}
 								/>
 
-<div className="flex justify-center my-6">
-  <Turnstile
-    sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-    onVerify={token => setTurnstileToken(token)}
-    className="rounded-md shadow-md"
-    style={{ minWidth: 200 }}
-  />
-</div>
+								<div className="flex justify-center my-6">
+									<Turnstile
+										sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+										onVerify={(token) => setTurnstileToken(token)}
+										className="rounded-md shadow-md"
+										style={{ minWidth: 200 }}
+									/>
+								</div>
 
 								{/* Enhanced Glassmorphic Button with Animation */}
 								<div className="mt-6 relative overflow-hidden group">
@@ -222,8 +226,6 @@ export default function LoginForm(): React.JSX.Element {
 
 									{/* Glass overlay for frosted effect */}
 									<div className="absolute inset-0 backdrop-blur-md bg-white/10 rounded-lg border border-white/30"></div>
-
-
 
 									<Button
 										type="submit"

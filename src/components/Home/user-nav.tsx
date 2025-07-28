@@ -16,7 +16,6 @@ import {
 	DropdownMenuGroup,
 	DropdownMenuItem,
 	DropdownMenuLabel,
-	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -98,7 +97,12 @@ export function UserNav(): React.JSX.Element {
 						fill="none"
 						stroke="currentColor"
 						viewBox="0 0 24 24">
-						<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+						<path
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							strokeWidth={2}
+							d="M17 8l4 4m0 0l-4 4m4-4H3"
+						/>
 					</svg>
 
 					{/* Ripple effect on click */}
@@ -118,7 +122,6 @@ export function UserNav(): React.JSX.Element {
 										<Button
 											variant="outline"
 											className="relative h-12 w-12 rounded-full cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 border-0 p-0 overflow-hidden">
-
 											{/* Outer border ring */}
 											<div className="absolute inset-0 rounded-full border-2 border-white/40 transition-all duration-300 group-hover:border-white/60"></div>
 
@@ -151,15 +154,16 @@ export function UserNav(): React.JSX.Element {
 						className="w-56 border-0 shadow-xl backdrop-blur-xl bg-white/90 dark:bg-slate-900/90 rounded-xl overflow-hidden z-[9999]"
 						align="end"
 						forceMount>
-
 						{/* Enhanced header with glassmorphic effect */}
 						<DropdownMenuLabel className="font-normal p-4 border-b border-white/20 dark:border-slate-700/50">
 							<div className="flex flex-col space-y-2">
-								<p className={`text-sm font-semibold leading-none transition-colors duration-200 hover:text-purple-600 dark:hover:text-purple-400 ${theme === "dark" ? "text-white" : "text-slate-900"}`}
-								   style={{ fontFamily: "var(--font-playfair-display)" }}>
+								<p
+									className={`text-sm font-semibold leading-none transition-colors duration-200 hover:text-purple-600 dark:hover:text-purple-400 ${theme === "dark" ? "text-white" : "text-slate-900"}`}
+									style={{ fontFamily: "var(--font-playfair-display)" }}>
 									{username}
 								</p>
-								<p className={`text-xs leading-none font-mono ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`}>
+								<p
+									className={`text-xs leading-none font-mono ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`}>
 									{userEmail}
 								</p>
 							</div>
@@ -172,7 +176,9 @@ export function UserNav(): React.JSX.Element {
 									asChild>
 									<Link href="/dashboard" className="flex items-center p-2">
 										<LayoutGrid className="mr-3 h-4 w-4 text-purple-600 dark:text-purple-400 transition-all duration-200 group-hover:scale-110" />
-										<span className={`font-medium transition-colors duration-200 ${theme === "dark" ? "text-slate-200 group-hover:text-white" : "text-slate-700 group-hover:text-slate-900"}`} style={{ fontFamily: "var(--font-playfair-display)" }}>
+										<span
+											className={`font-medium transition-colors duration-200 ${theme === "dark" ? "text-slate-200 group-hover:text-white" : "text-slate-700 group-hover:text-slate-900"}`}
+											style={{ fontFamily: "var(--font-playfair-display)" }}>
 											Dashboard
 										</span>
 									</Link>
@@ -186,7 +192,9 @@ export function UserNav(): React.JSX.Element {
 								onClick={signOut}
 								disabled={disabled}>
 								<LogOut className="mr-3 h-4 w-4 text-red-600 dark:text-red-400 transition-all duration-200 group-hover:scale-110 group-hover:rotate-12" />
-								<span className={`font-medium transition-colors duration-200 ${theme === "dark" ? "text-slate-200 group-hover:text-white" : "text-slate-700 group-hover:text-slate-900"}`} style={{ fontFamily: "var(--font-playfair-display)" }}>
+								<span
+									className={`font-medium transition-colors duration-200 ${theme === "dark" ? "text-slate-200 group-hover:text-white" : "text-slate-700 group-hover:text-slate-900"}`}
+									style={{ fontFamily: "var(--font-playfair-display)" }}>
 									{disabled ? "Signing out..." : "Sign out"}
 								</span>
 							</DropdownMenuItem>

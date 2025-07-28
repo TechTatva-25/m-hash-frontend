@@ -27,11 +27,11 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
 				(typeof child.type === "string" && child.type.toLowerCase() === "button") ||
 				(typeof child.type === "function" && child.type.name?.includes("Button"))
 			) {
-				return React.cloneElement(child, {
-					...child.props,
-					className: `spotlight-button ${child.props.className || ""}`,
+				return React.cloneElement(child as React.ReactElement<any>, {
+					...(child.props as any),
+					className: `spotlight-button ${(child.props as any)?.className || ""}`,
 					onMouseMove: (e: React.MouseEvent) => {
-						const button = e.currentTarget;
+						const button = e.currentTarget as HTMLElement;
 						const rect = button.getBoundingClientRect();
 						const x = e.clientX - rect.left;
 						const y = e.clientY - rect.top;
@@ -40,34 +40,34 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
 						button.style.setProperty("--y", `${y}px`);
 
 						// Call the original onMouseMove if it exists
-						if (child.props.onMouseMove) {
-							child.props.onMouseMove(e);
+						if ((child.props as any)?.onMouseMove) {
+							(child.props as any).onMouseMove(e);
 						}
 					},
 					onMouseEnter: (e: React.MouseEvent) => {
-						e.currentTarget.classList.add("spotlight-active");
+						(e.currentTarget as HTMLElement).classList.add("spotlight-active");
 
 						// Call the original onMouseEnter if it exists
-						if (child.props.onMouseEnter) {
-							child.props.onMouseEnter(e);
+						if ((child.props as any)?.onMouseEnter) {
+							(child.props as any).onMouseEnter(e);
 						}
 					},
 					onMouseLeave: (e: React.MouseEvent) => {
-						e.currentTarget.classList.remove("spotlight-active");
+						(e.currentTarget as HTMLElement).classList.remove("spotlight-active");
 
 						// Call the original onMouseLeave if it exists
-						if (child.props.onMouseLeave) {
-							child.props.onMouseLeave(e);
+						if ((child.props as any)?.onMouseLeave) {
+							(child.props as any).onMouseLeave(e);
 						}
 					},
 				});
 			}
 
 			// If it's not a button but has children, recursively process them
-			if (child.props && child.props.children) {
-				return React.cloneElement(child, {
-					...child.props,
-					children: enhanceChildren(child.props.children),
+			if ((child.props as any)?.children) {
+				return React.cloneElement(child as React.ReactElement<any>, {
+					...(child.props as any),
+					children: enhanceChildren((child.props as any).children),
 				});
 			}
 

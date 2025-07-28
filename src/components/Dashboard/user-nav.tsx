@@ -84,18 +84,21 @@ export function UserNav(): React.JSX.Element {
 					<div
 						className="absolute inset-0"
 						style={{
-							background: theme === "dark"
-								? "linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(79, 70, 229, 0.03))"
-								: "linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(79, 70, 229, 0.04))",
+							background:
+								theme === "dark"
+									? "linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(79, 70, 229, 0.03))"
+									: "linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(79, 70, 229, 0.04))",
 						}}></div>
 
 					<div className="relative">
 						<DropdownMenuLabel className="font-normal">
 							<div className="flex flex-col space-y-1">
-								<p className={`text-sm font-medium leading-none ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
+								<p
+									className={`text-sm font-medium leading-none ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
 									{session?.username ?? ""}
 								</p>
-								<p className={`text-xs leading-none ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`}>
+								<p
+									className={`text-xs leading-none ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`}>
 									{session?.user?.email ?? ""}
 								</p>
 							</div>
@@ -110,8 +113,11 @@ export function UserNav(): React.JSX.Element {
 								}}
 								asChild>
 								<Link href="/dashboard" className="flex items-center">
-									<LayoutGrid className={`mr-3 h-4 w-4 transition-colors duration-200 ${theme === "dark" ? "text-slate-400 group-hover:text-purple-400" : "text-slate-600 group-hover:text-purple-600"}`} />
-									<span className={`transition-colors duration-200 ${theme === "dark" ? "text-slate-200 group-hover:text-white" : "text-slate-700 group-hover:text-slate-900"}`}>
+									<LayoutGrid
+										className={`mr-3 h-4 w-4 transition-colors duration-200 ${theme === "dark" ? "text-slate-400 group-hover:text-purple-400" : "text-slate-600 group-hover:text-purple-600"}`}
+									/>
+									<span
+										className={`transition-colors duration-200 ${theme === "dark" ? "text-slate-200 group-hover:text-white" : "text-slate-700 group-hover:text-slate-900"}`}>
 										Dashboard
 									</span>
 								</Link>
@@ -125,8 +131,11 @@ export function UserNav(): React.JSX.Element {
 							}}
 							onClick={signOut}
 							disabled={disabled}>
-							<LogOut className={`mr-3 h-4 w-4 transition-colors duration-200 ${theme === "dark" ? "text-slate-400 group-hover:text-red-400" : "text-slate-600 group-hover:text-red-600"}`} />
-							<span className={`transition-colors duration-200 ${theme === "dark" ? "text-slate-200 group-hover:text-white" : "text-slate-700 group-hover:text-slate-900"}`}>
+							<LogOut
+								className={`mr-3 h-4 w-4 transition-colors duration-200 ${theme === "dark" ? "text-slate-400 group-hover:text-red-400" : "text-slate-600 group-hover:text-red-600"}`}
+							/>
+							<span
+								className={`transition-colors duration-200 ${theme === "dark" ? "text-slate-200 group-hover:text-white" : "text-slate-700 group-hover:text-slate-900"}`}>
 								{disabled ? "Signing out..." : "Sign out"}
 							</span>
 						</DropdownMenuItem>

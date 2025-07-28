@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 
 import AvatarCircles from "@/components/ui/avatar-circles";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import InfiniteScroll from "@/components/ui/infinite-scroll";
 import { Input } from "@/components/ui/input";

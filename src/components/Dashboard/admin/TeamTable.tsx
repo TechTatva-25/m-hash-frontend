@@ -406,12 +406,10 @@ const TeamTable = (): JSX.Element => {
 	const [, setTable] = useState<Table<TeamWithActions> | undefined>(undefined);
 	const { theme } = useTheme();
 	const isDark = theme === "dark";
-	const [isLoading, setIsLoading] = useState<boolean>(true);
 
 	const fetchTeams = async (reset = false): Promise<void> => {
 		try {
 			setLoading(true);
-			setIsLoading(true);
 			const teamsResponse = await axios.get<{
 				teams: Team[];
 				offset: number;
@@ -441,7 +439,6 @@ const TeamTable = (): JSX.Element => {
 			toast.error(e.response?.data.message);
 		} finally {
 			setLoading(false);
-			setIsLoading(false);
 		}
 	};
 

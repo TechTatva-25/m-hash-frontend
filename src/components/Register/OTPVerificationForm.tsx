@@ -2,7 +2,6 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios, { AxiosError } from "axios";
-import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { HashLoader } from "react-spinners";
@@ -40,7 +39,6 @@ export default function OTPVerificationForm({
 	const [isLoading, setIsLoading] = useState(false);
 	const [resendDisabled, setResendDisabled] = useState(false);
 	const [timer, setTimer] = useState(0);
-	const router = useRouter();
 
 	const form = useForm<z.infer<typeof otpFormSchema>>({
 		resolver: zodResolver(otpFormSchema),
@@ -77,7 +75,7 @@ export default function OTPVerificationForm({
 		setResendDisabled(true);
 		try {
 			// Use the sendVerificationMail endpoint to resend OTP
-			const response = await axios.post(getEndpoint(Endpoints.SEND_VERIFICATION_EMAIL), {
+			await axios.post(getEndpoint(Endpoints.SEND_VERIFICATION_EMAIL), {
 				email,
 			});
 			toast.info("A new OTP has been sent to your email");

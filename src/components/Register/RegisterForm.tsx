@@ -25,7 +25,7 @@ import { cn } from "@/lib/utils";
 import SpotlightCard from "@/components/ui/spotlight-card";
 
 import { Button } from "../ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardContent, CardDescription, CardTitle } from "../ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { Input, PasswordInput } from "../ui/input";
 import { PhoneInput } from "../ui/phone-input";
@@ -95,17 +95,17 @@ export default function RegisterForm(): React.JSX.Element {
 	const router = useRouter();
 
 	// Check authentication state
-	const { data: session, isLoading: sessionLoading } = useSession();
+	const session = useSession();
 
 	useEffect(() => {
 		// If session is loading, we can return early to avoid flickering
-		if (sessionLoading) return;
+		if (session?.loading) return;
 
 		// If user is already logged in, redirect to home
-		if (session) {
+		if (session?.userId) {
 			router.push("/");
 		}
-	}, [session, sessionLoading, router]);
+	}, [session, router]);
 
 	// Fetch colleges directly in the component
 	useEffect(() => {
@@ -137,8 +137,8 @@ export default function RegisterForm(): React.JSX.Element {
 
 				// Add dummy college data as a fallback
 				const dummyColleges = [
-					{ _id: "default", name: "Your College (Server Unavailable)" },
-					{ _id: "OTHER", name: "OTHER" },
+					{ _id: "default", name: "Your College (Server Unavailable)", state: "UNKNOWN" },
+					{ _id: "OTHER", name: "OTHER", state: "UNKNOWN" },
 				];
 				console.log("Using fallback college data:", dummyColleges);
 				setColleges(dummyColleges);
@@ -181,10 +181,10 @@ export default function RegisterForm(): React.JSX.Element {
 		setDisabled(true);
 		try {
 			if (!turnstileToken) {
-      toast.error("Please complete the CAPTCHA.");
-      setDisabled(false);
-      return;
-    }
+				toast.error("Please complete the CAPTCHA.");
+				setDisabled(false);
+				return;
+			}
 			// Prepare the data to match backend requirements
 			const payload = {
 				email: data.email,
@@ -692,15 +692,15 @@ export default function RegisterForm(): React.JSX.Element {
 										/>
 									</div>
 								</div>
-{/* Cloudflare Turnstile CAPTCHA */}
-<div className="flex justify-center my-6">
-  <Turnstile
-    sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-    onVerify={token => setTurnstileToken(token)}
-    className="rounded-md shadow-md"
-    style={{ minWidth: 200 }}
-  />
-</div>
+								{/* Cloudflare Turnstile CAPTCHA */}
+								<div className="flex justify-center my-6">
+									<Turnstile
+										sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+										onVerify={(token) => setTurnstileToken(token)}
+										className="rounded-md shadow-md"
+										style={{ minWidth: 200 }}
+									/>
+								</div>
 
 								{/* Enhanced Glassmorphic Button with SpotlightCard effect */}
 								<div className="mt-6 relative overflow-hidden group">

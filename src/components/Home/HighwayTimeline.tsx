@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import { Calendar, Clock, Flag, Target } from "lucide-react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { motion } from "framer-motion";
@@ -28,31 +28,31 @@ export function HighwayTimeline({ timeline = generalTimeLine }: { timeline?: Tim
 				{/* Title section */}
 				<div className="relative mb-16 text-center">
 					<motion.div
-											className="relative inline-block mb-8"
-											initial={{ opacity: 0, y: 20 }}
-											whileInView={{ opacity: 1, y: 0 }}
-											transition={{ duration: 0.5 }}
-											viewport={{ once: true }}>
-											<h2
-												className="text-4xl md:text-5xl font-bold text-[hsl(var(--foreground))]"
-												style={{ fontFamily: "var(--font-playfair-display)" }}>
-												 Event Timeline
-											</h2>
-											<motion.div
-												className="absolute -bottom-3 left-0 h-1 bg-[hsl(var(--foreground))] rounded-full"
-												initial={{ width: 0 }}
-												whileInView={{ width: "100%" }}
-												transition={{ duration: 0.8, delay: 0.5 }}
-												viewport={{ once: true }}
-											/>
-											<motion.div
-												className="absolute -bottom-5 left-0 h-[0.5px] bg-[hsl(var(--foreground))] rounded-full"
-												initial={{ width: 0 }}
-												whileInView={{ width: "100%" }}
-												transition={{ duration: 0.8, delay: 0.7 }}
-												viewport={{ once: true }}
-											/>
-										</motion.div>
+						className="relative inline-block mb-8"
+						initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.5 }}
+						viewport={{ once: true }}>
+						<h2
+							className="text-4xl md:text-5xl font-bold text-[hsl(var(--foreground))]"
+							style={{ fontFamily: "var(--font-playfair-display)" }}>
+							Event Timeline
+						</h2>
+						<motion.div
+							className="absolute -bottom-3 left-0 h-1 bg-[hsl(var(--foreground))] rounded-full"
+							initial={{ width: 0 }}
+							whileInView={{ width: "100%" }}
+							transition={{ duration: 0.8, delay: 0.5 }}
+							viewport={{ once: true }}
+						/>
+						<motion.div
+							className="absolute -bottom-5 left-0 h-[0.5px] bg-[hsl(var(--foreground))] rounded-full"
+							initial={{ width: 0 }}
+							whileInView={{ width: "100%" }}
+							transition={{ duration: 0.8, delay: 0.7 }}
+							viewport={{ once: true }}
+						/>
+					</motion.div>
 				</div>
 
 				{/* Vertical timeline line - perfectly centered */}
@@ -203,7 +203,9 @@ const TimelineItem = ({ index, stage, icon, isLeft }: TimelineItemProps) => {
 								}}>
 								{stage.badge}
 							</h3>{" "}
-							<h2 className="text-sm/[1.1] mb-1.5 py-1 rounded-md inline-block text-black">{stage.date}</h2>{" "}
+							<h2 className="text-sm/[1.1] mb-1.5 py-1 rounded-md inline-block text-black">
+								{stage.date}
+							</h2>{" "}
 							{/* Description text with increased size for better readability */}
 							<div
 								className="text-sm/[1.4] overflow-y-auto flex-1 pr-1.5 scrollbar-thin scrollbar-thumb-indigo-200 scrollbar-track-transparent pb-3"

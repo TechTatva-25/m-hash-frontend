@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	experimental: {
-		missingSuspenseWithCSRBailout: false,
+		// Removed missingSuspenseWithCSRBailout as it's no longer valid in Next.js 15
 	},
 	images: {
 		remotePatterns: [

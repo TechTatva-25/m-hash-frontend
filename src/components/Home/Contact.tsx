@@ -16,11 +16,9 @@ import { useTheme } from "@/components/ThemeProvider";
 
 import { Endpoints, getEndpoint } from "@/lib/endpoints";
 
-import { Button } from "../ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
-import Squares from "../ui/square";
 
 interface ContactPerson {
 	name: string;

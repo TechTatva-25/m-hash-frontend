@@ -36,7 +36,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 					${isDark ? dashboardGradient.darkVia : dashboardGradient.lightVia}, 
 					${isDark ? dashboardGradient.darkTo : dashboardGradient.lightTo})`,
 				backgroundAttachment: "fixed",
-				backgroundSize: "cover"
+				backgroundSize: "cover",
 			}}>
 			<Sidebar />
 			<main

@@ -1,6 +1,5 @@
 "use client";
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import * as React from "react";
 import { DayPicker } from "react-day-picker";
 
@@ -42,10 +41,6 @@ const Calendar = ({ className, classNames, showOutsideDays = true, ...props }: C
 				day_range_middle: "aria-selected:bg-accent aria-selected:text-accent-foreground",
 				day_hidden: "invisible",
 				...classNames,
-			}}
-			components={{
-				IconLeft: () => <ChevronLeft className="h-4 w-4" />,
-				IconRight: () => <ChevronRight className="h-4 w-4" />,
 			}}
 			{...props}
 		/>

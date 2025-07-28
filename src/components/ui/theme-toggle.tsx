@@ -16,7 +16,6 @@ export function ThemeToggle() {
 				onClick={toggleTheme}
 				aria-label="Toggle theme"
 				className="relative h-10 w-10 rounded-full cursor-pointer transition-all duration-500 ease-out hover:scale-105 active:scale-95 border-0 p-0 overflow-hidden">
-
 				{/* Outer border ring for better definition */}
 				<div className="absolute inset-0 rounded-full border-2 border-white/40 transition-all duration-300 group-hover:border-white/60"></div>
 

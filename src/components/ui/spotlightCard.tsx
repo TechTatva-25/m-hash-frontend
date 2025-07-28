@@ -11,11 +11,7 @@ interface SpotlightCardProps extends React.PropsWithChildren {
 	spotlightColor?: `rgba(${number}, ${number}, ${number}, ${number})`;
 }
 
-const SpotlightCard: React.FC<SpotlightCardProps> = ({
-	children,
-	className = "",
-	spotlightColor,
-}) => {
+const SpotlightCard: React.FC<SpotlightCardProps> = ({ children, className = "", spotlightColor }) => {
 	const { theme } = useTheme();
 	const isDark = theme === "dark";
 	const divRef = useRef<HTMLDivElement>(null);
@@ -25,9 +21,7 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
 	const [isHovered, setIsHovered] = useState<boolean>(false);
 
 	// Theme-aware spotlight color
-	const defaultSpotlightColor = isDark 
-		? "rgba(149, 128, 255, 0.15)" 
-		: "rgba(149, 128, 255, 0.08)";
+	const defaultSpotlightColor = isDark ? "rgba(149, 128, 255, 0.15)" : "rgba(149, 128, 255, 0.08)";
 	const finalSpotlightColor = spotlightColor || defaultSpotlightColor;
 
 	const handleMouseMove: React.MouseEventHandler<HTMLDivElement> = (e) => {
@@ -79,11 +73,8 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
 					   0 0 0 1px rgba(132,95,220,0.2),
 					   inset 0 1px 0 0 rgba(255,255,255,0.8)`,
 				borderRadius: "24px",
-				border: isDark
-					? "1px solid rgba(103,80,164,0.3)"
-					: "1px solid rgba(132,95,220,0.25)",
+				border: isDark ? "1px solid rgba(103,80,164,0.3)" : "1px solid rgba(132,95,220,0.25)",
 			}}>
-			
 			{/* Enhanced animated border glow on hover */}
 			<div
 				className={`absolute inset-0 rounded-3xl transition-opacity duration-500 pointer-events-none ${
@@ -121,15 +112,15 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({
 			/>
 
 			{/* Corner decorative elements */}
-			<div className={`absolute top-4 right-4 w-2 h-2 rounded-full blur-sm transition-opacity duration-500 ${isHovered ? "opacity-70" : "opacity-30"}`}
+			<div
+				className={`absolute top-4 right-4 w-2 h-2 rounded-full blur-sm transition-opacity duration-500 ${isHovered ? "opacity-70" : "opacity-30"}`}
 				style={{ background: isDark ? "rgba(149,128,255,0.6)" : "rgba(132,95,220,0.4)" }}></div>
-			<div className={`absolute bottom-4 left-4 w-1.5 h-1.5 rounded-full blur-sm transition-opacity duration-500 ${isHovered ? "opacity-70" : "opacity-30"}`}
+			<div
+				className={`absolute bottom-4 left-4 w-1.5 h-1.5 rounded-full blur-sm transition-opacity duration-500 ${isHovered ? "opacity-70" : "opacity-30"}`}
 				style={{ background: isDark ? "rgba(149,128,255,0.6)" : "rgba(132,95,220,0.4)" }}></div>
 
 			{/* Content container with padding */}
-			<div className="relative z-10 p-8">
-				{children}
-			</div>
+			<div className="relative z-10 p-8">{children}</div>
 		</div>
 	);
 };

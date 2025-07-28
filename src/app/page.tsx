@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { FaRegFilePdf } from "react-icons/fa6";
+import { motion } from "framer-motion";
 
 import { downloadRules } from "@/app/dashboard/rules/page";
 import About from "@/components/Home/About";
@@ -15,7 +15,6 @@ import GlassmorphicButton from "@/components/ui/GlassmorphicButton";
 import ScrollToTopButton from "@/components/ui/scroll-to-top-btn";
 import Hero from "@/components/Home/Hero";
 import { useLenis } from "@/hooks/useLenis";
-import { motion } from "framer-motion";
 
 export default function Home(): React.JSX.Element {
 	// Initialize Lenis smooth scrolling
@@ -50,31 +49,32 @@ export default function Home(): React.JSX.Element {
 				<div className="relative inline-block mb-12 mx-auto w-fit">
 					{/* Animated heading like About Us */}
 					<motion.div
-											className="relative inline-block mb-8"
-											initial={{ opacity: 0, y: 20 }}
-											whileInView={{ opacity: 1, y: 0 }}
-											transition={{ duration: 0.5 }}
-											viewport={{ once: true }}>
-											<h2
-												className="text-4xl md:text-5xl font-bold text-[hsl(var(--foreground))]"
-												style={{ fontFamily: "var(--font-playfair-display)" }}>
-												 Problem Statements
-											</h2>
-											<motion.div
-												className="absolute -bottom-3 left-0 h-1 bg-[hsl(var(--foreground))] rounded-full"
-												initial={{ width: 0 }}
-												whileInView={{ width: "100%" }}
-												transition={{ duration: 0.8, delay: 0.5 }}
-												viewport={{ once: true }}
-											/>
-											<motion.div
-												className="absolute -bottom-5 left-0 h-[0.5px] bg-[hsl(var(--foreground))] rounded-full"
-												initial={{ width: 0 }}
-												whileInView={{ width: "100%" }}
-												transition={{ duration: 0.8, delay: 0.7 }}
-												viewport={{ once: true }}
-											/>
-										</motion.div>
+						className="relative inline-block mb-8"
+						initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.5 }}
+						viewport={{ once: true }}>
+						<h2
+							className="text-4xl md:text-5xl font-bold text-[hsl(var(--foreground))]"
+							style={{ fontFamily: "var(--font-playfair-display)" }}>
+							Problem Statements
+						</h2>
+						<motion.div
+							className="absolute -bottom-3 left-1/2 -translate-x-1/2 h-1 bg-gradient-to-r from-[hsl(var(--foreground))] via-green-500 to-[hsl(var(--foreground))] rounded-full"
+							style={{ width: "100%", minWidth: 120, maxWidth: 320 }}
+							initial={{ scaleX: 0 }}
+							whileInView={{ scaleX: 1 }}
+							transition={{ duration: 0.8, delay: 0.5 }}
+							viewport={{ once: true }}
+						/>
+						<motion.div
+							className="absolute -bottom-5 left-0 h-[0.5px] bg-[hsl(var(--foreground))] rounded-full"
+							initial={{ width: 0 }}
+							whileInView={{ width: "100%" }}
+							transition={{ duration: 0.8, delay: 0.7 }}
+							viewport={{ once: true }}
+						/>
+					</motion.div>
 				</div>
 				<PSTabs />
 			</section>
@@ -85,7 +85,8 @@ export default function Home(): React.JSX.Element {
 					size="lg"
 					// icon={<FaRegFilePdf className="h-7 w-7 text-purple-500 drop-shadow-lg" />}
 					onClick={downloadRules}
-				/>
+					className="green-glow"
+					/>
 			</div>
 			<section
 				id="contact-us"

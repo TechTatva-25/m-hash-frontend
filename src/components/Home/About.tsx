@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-import GradientBg from "../ui/gradientBg";
 import Stack from "../ui/stack";
 import { motion } from "framer-motion";
 

@@ -83,7 +83,7 @@ export const LeaveTeamCard: React.FC<{
 								<Button
 									className="w-full sm:w-20"
 									variant={"destructive"}
-									disabled={disabled || team.team_leader._id === team.user_id}>
+									disabled={disabled}>
 									Leave
 								</Button>
 							</div>

@@ -169,35 +169,35 @@ export function SubmitForm({
 	};
 
 	return (
-		<Card 
+		<Card
 			className="relative shadow-md dark:shadow-none"
 			style={{
-				background: `${isDark ? 'rgba(30, 30, 40, 0.5)' : 'rgba(255, 255, 255, 0.5)'}`,
+				background: `${isDark ? "rgba(30, 30, 40, 0.5)" : "rgba(255, 255, 255, 0.5)"}`,
 				backdropFilter: "blur(10px)",
-				border: `1px solid ${isDark ? 'rgba(103, 80, 164, 0.3)' : 'rgba(132, 95, 220, 0.3)'}`,
-				boxShadow: `0 4px 24px ${isDark ? 'rgba(0, 0, 0, 0.2)' : 'rgba(103, 80, 164, 0.1)'}`
+				border: `1px solid ${isDark ? "rgba(103, 80, 164, 0.3)" : "rgba(132, 95, 220, 0.3)"}`,
+				boxShadow: `0 4px 24px ${isDark ? "rgba(0, 0, 0, 0.2)" : "rgba(103, 80, 164, 0.1)"}`,
 			}}>
-			<CardHeader 
+			<CardHeader
 				className="space-y-1 px-4 sm:px-6"
 				style={{
-					borderBottom: `1px solid ${isDark ? 'rgba(103, 80, 164, 0.2)' : 'rgba(132, 95, 220, 0.2)'}`
+					borderBottom: `1px solid ${isDark ? "rgba(103, 80, 164, 0.2)" : "rgba(132, 95, 220, 0.2)"}`,
 				}}>
-				<CardTitle 
+				<CardTitle
 					className="text-2xl"
-					style={{ color: `${isDark ? 'rgba(220, 200, 255, 0.9)' : 'rgba(103, 80, 164, 0.9)'}` }}>
+					style={{ color: `${isDark ? "rgba(220, 200, 255, 0.9)" : "rgba(103, 80, 164, 0.9)"}` }}>
 					Make a submission
 				</CardTitle>
 				<CardDescription
-					style={{ color: `${isDark ? 'rgba(200, 180, 240, 0.7)' : 'rgba(103, 80, 164, 0.7)'}` }}>
+					style={{ color: `${isDark ? "rgba(200, 180, 240, 0.7)" : "rgba(103, 80, 164, 0.7)"}` }}>
 					Submit your problem statement, presentation and video below. ProblemStatementID is the
 					two-character-long code before the problem statement.
 				</CardDescription>
-				{fakeTeamId && 
+				{fakeTeamId && (
 					<CardDescription
-						style={{ color: `${isDark ? 'rgba(200, 180, 240, 0.7)' : 'rgba(103, 80, 164, 0.7)'}` }}>
+						style={{ color: `${isDark ? "rgba(200, 180, 240, 0.7)" : "rgba(103, 80, 164, 0.7)"}` }}>
 						Team ID: {fakeTeamId}
 					</CardDescription>
-				}
+				)}
 			</CardHeader>
 			<CardContent className="grid gap-4 px-4 pb-6 sm:px-6">
 				<Form {...form}>
@@ -215,24 +215,24 @@ export function SubmitForm({
 												onValueChange={field.onChange}
 												value={field.value}
 												defaultValue={field.value}>
-												<SelectTrigger 
+												<SelectTrigger
 													className="h-14 py-6 text-start cursor-pointer"
 													style={{
-														background: `${isDark ? 'rgba(40, 40, 50, 0.3)' : 'rgba(250, 250, 255, 0.3)'}`,
+														background: `${isDark ? "rgba(40, 40, 50, 0.3)" : "rgba(250, 250, 255, 0.3)"}`,
 														backdropFilter: "blur(8px)",
-														border: `1px solid ${isDark ? 'rgba(103, 80, 164, 0.3)' : 'rgba(132, 95, 220, 0.3)'}`,
-														boxShadow: `0 2px 10px ${isDark ? 'rgba(0, 0, 0, 0.2)' : 'rgba(103, 80, 164, 0.1)'}`,
-														color: `${isDark ? 'rgba(220, 200, 255, 0.9)' : 'rgba(103, 80, 164, 0.9)'}`
+														border: `1px solid ${isDark ? "rgba(103, 80, 164, 0.3)" : "rgba(132, 95, 220, 0.3)"}`,
+														boxShadow: `0 2px 10px ${isDark ? "rgba(0, 0, 0, 0.2)" : "rgba(103, 80, 164, 0.1)"}`,
+														color: `${isDark ? "rgba(220, 200, 255, 0.9)" : "rgba(103, 80, 164, 0.9)"}`,
 													}}>
 													<SelectValue placeholder="Select your problem statement" />
 												</SelectTrigger>
-												<SelectContent 
+												<SelectContent
 													className="max-h-[320px] w-[--radix-select-trigger-width]"
 													style={{
-														background: `${isDark ? 'rgba(40, 40, 50, 0.7)' : 'rgba(250, 250, 255, 0.7)'}`,
+														background: `${isDark ? "rgba(40, 40, 50, 0.7)" : "rgba(250, 250, 255, 0.7)"}`,
 														backdropFilter: "blur(10px)",
-														border: `1px solid ${isDark ? 'rgba(103, 80, 164, 0.3)' : 'rgba(132, 95, 220, 0.3)'}`,
-														boxShadow: `0 4px 20px ${isDark ? 'rgba(0, 0, 0, 0.3)' : 'rgba(103, 80, 164, 0.2)'}`
+														border: `1px solid ${isDark ? "rgba(103, 80, 164, 0.3)" : "rgba(132, 95, 220, 0.3)"}`,
+														boxShadow: `0 4px 20px ${isDark ? "rgba(0, 0, 0, 0.3)" : "rgba(103, 80, 164, 0.2)"}`,
 													}}>
 													{Object.entries(statementGroups).map(([type, statements]) => (
 														<SelectGroup key={type}>
@@ -244,7 +244,7 @@ export function SubmitForm({
 																		focus:bg-transparent focus:ring-0 
 																		data-[highlighted]:bg-transparent data-[highlighted]:ring-0 
 																		transition-all duration-200
-																		hover:${isDark ? 'bg-purple-800/20' : 'bg-purple-300/20'}
+																		hover:${isDark ? "bg-purple-800/20" : "bg-purple-300/20"}
 																	`}
 																	style={{
 																		background: "transparent",
@@ -252,18 +252,17 @@ export function SubmitForm({
 																	}}
 																	key={statement._id}
 																	value={statement._id.toString()}>
-																	<SelectLabel 
-																		className="flex flex-row items-center overflow-hidden truncate text-ellipsis p-0 py-1.5">
+																	<SelectLabel className="flex flex-row items-center overflow-hidden truncate text-ellipsis p-0 py-1.5">
 																		{statement.icon ? (
 																			<div
 																				className="flex items-center justify-center rounded-full p-1"
 																				style={{
-																					background: `${isDark ? 'rgba(103, 80, 164, 0.2)' : 'rgba(132, 95, 220, 0.1)'}`,
+																					background: `${isDark ? "rgba(103, 80, 164, 0.2)" : "rgba(132, 95, 220, 0.1)"}`,
 																				}}>
-																				<statement.icon 
-																					className="h-4 w-4" 
+																				<statement.icon
+																					className="h-4 w-4"
 																					style={{
-																						color: `${isDark ? 'rgba(220, 200, 255, 0.9)' : 'rgba(103, 80, 164, 0.9)'}`
+																						color: `${isDark ? "rgba(220, 200, 255, 0.9)" : "rgba(103, 80, 164, 0.9)"}`,
 																					}}
 																				/>
 																			</div>
@@ -271,15 +270,16 @@ export function SubmitForm({
 																			<div className="h-4 w-4" />
 																		)}
 																		<div className="ml-4 flex max-w-[95%] flex-col">
-																			<span style={{
-																				color: `${isDark ? 'rgba(220, 200, 255, 0.9)' : 'rgba(103, 80, 164, 0.9)'}`
-																			}}>
+																			<span
+																				style={{
+																					color: `${isDark ? "rgba(220, 200, 255, 0.9)" : "rgba(103, 80, 164, 0.9)"}`,
+																				}}>
 																				{statement.title}
 																			</span>
-																			<span 
+																			<span
 																				className="line-clamp-1 text-xs"
 																				style={{
-																					color: `${isDark ? 'rgba(200, 180, 240, 0.7)' : 'rgba(103, 80, 164, 0.7)'}`
+																					color: `${isDark ? "rgba(200, 180, 240, 0.7)" : "rgba(103, 80, 164, 0.7)"}`,
 																				}}>
 																				{statement.description}
 																			</span>
@@ -375,11 +375,11 @@ export function SubmitForm({
 												disabled={isUploading}
 												className="h-11 py-6"
 												style={{
-													background: `${isDark ? 'rgba(40, 40, 50, 0.3)' : 'rgba(250, 250, 255, 0.3)'}`,
+													background: `${isDark ? "rgba(40, 40, 50, 0.3)" : "rgba(250, 250, 255, 0.3)"}`,
 													backdropFilter: "blur(8px)",
-													border: `1px solid ${isDark ? 'rgba(103, 80, 164, 0.3)' : 'rgba(132, 95, 220, 0.3)'}`,
-													boxShadow: `0 2px 10px ${isDark ? 'rgba(0, 0, 0, 0.2)' : 'rgba(103, 80, 164, 0.1)'}`,
-													color: `${isDark ? 'rgba(220, 200, 255, 0.9)' : 'rgba(103, 80, 164, 0.9)'}`
+													border: `1px solid ${isDark ? "rgba(103, 80, 164, 0.3)" : "rgba(132, 95, 220, 0.3)"}`,
+													boxShadow: `0 2px 10px ${isDark ? "rgba(0, 0, 0, 0.2)" : "rgba(103, 80, 164, 0.1)"}`,
+													color: `${isDark ? "rgba(220, 200, 255, 0.9)" : "rgba(103, 80, 164, 0.9)"}`,
 												}}
 											/>
 										</FormControl>
@@ -388,15 +388,15 @@ export function SubmitForm({
 								</div>
 							)}
 						/>
-						<Button 
-							className="w-full cursor-pointer transition-opacity hover:opacity-90" 
-							disabled={loading} 
+						<Button
+							className="w-full cursor-pointer transition-opacity hover:opacity-90"
+							disabled={loading}
 							type="submit"
 							style={{
-								background: `${isDark ? 'rgba(103, 80, 164, 0.8)' : 'rgba(132, 95, 220, 0.8)'}`,
-								color: `${isDark ? 'rgba(240, 240, 255, 0.95)' : 'rgba(255, 255, 255, 0.95)'}`,
-								border: `1px solid ${isDark ? 'rgba(140, 110, 200, 0.5)' : 'rgba(150, 120, 230, 0.5)'}`,
-								boxShadow: `0 4px 12px ${isDark ? 'rgba(40, 40, 50, 0.4)' : 'rgba(103, 80, 164, 0.3)'}`
+								background: `${isDark ? "rgba(103, 80, 164, 0.8)" : "rgba(132, 95, 220, 0.8)"}`,
+								color: `${isDark ? "rgba(240, 240, 255, 0.95)" : "rgba(255, 255, 255, 0.95)"}`,
+								border: `1px solid ${isDark ? "rgba(140, 110, 200, 0.5)" : "rgba(150, 120, 230, 0.5)"}`,
+								boxShadow: `0 4px 12px ${isDark ? "rgba(40, 40, 50, 0.4)" : "rgba(103, 80, 164, 0.3)"}`,
 							}}>
 							Submit
 						</Button>
