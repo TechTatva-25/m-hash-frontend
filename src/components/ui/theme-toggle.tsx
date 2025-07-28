@@ -6,41 +6,41 @@ import { Button } from "@/components/ui/button";
 
 export function ThemeToggle() {
 	const { theme, toggleTheme } = useTheme();
-	const isDark = theme === "dark";
 
 	return (
-		<Button
-			type="button"
-			variant="ghost"
-			size="icon"
-			onClick={toggleTheme}
-			aria-label="Toggle theme"
-			className={
-				`relative h-10 w-10 rounded-full cursor-pointer transition-all duration-300 hover:scale-105 group ` +
-				(isDark
-					? "bg-[rgba(30,30,40,0.6)] border-[rgba(103,80,164,0.3)] text-[rgba(220,200,255,0.9)] hover:bg-[rgba(103,80,164,0.15)] hover:text-[rgba(220,200,255,0.95)]"
-					: "bg-[rgba(255,255,255,0.8)] border-[rgba(132,95,220,0.3)] text-[rgba(103,80,164,0.9)] hover:bg-[rgba(132,95,220,0.08)] hover:text-[rgba(103,80,164,0.95)]")
-			}
-			style={{
-				backdropFilter: "blur(12px)",
-				boxShadow: isDark
-					? "0 4px 15px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.1), inset 0 1px 0 rgba(255,255,255,0.1)"
-					: "0 4px 15px rgba(103,80,164,0.1), 0 0 0 1px rgba(255,255,255,0.7), inset 0 1px 0 rgba(255,255,255,0.8)",
-				border: isDark ? "1px solid rgba(103,80,164,0.3)" : "1px solid rgba(132,95,220,0.3)",
-			}}>
-			{/* Hover glow effect */}
-			<div
-				className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-full"
-				style={{
-					background: isDark
-						? "radial-gradient(circle at center, rgba(149,128,255,0.15) 0%, transparent 70%)"
-						: "radial-gradient(circle at center, rgba(149,128,255,0.08) 0%, transparent 70%)",
-				}}></div>
-			
-			{/* Icon with smooth transition */}
-			<div className="relative z-10 transition-transform duration-300 group-hover:scale-110">
-				{theme === "light" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
-			</div>
-		</Button>
+		<div className="group relative">
+			<Button
+				type="button"
+				variant="ghost"
+				size="icon"
+				onClick={toggleTheme}
+				aria-label="Toggle theme"
+				className="relative h-10 w-10 rounded-full cursor-pointer transition-all duration-500 ease-out hover:scale-105 active:scale-95 border-0 p-0 overflow-hidden">
+
+				{/* Outer border ring for better definition */}
+				<div className="absolute inset-0 rounded-full border-2 border-white/40 transition-all duration-300 group-hover:border-white/60"></div>
+
+				{/* Glow effect */}
+				<div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400/20 to-purple-400/20 blur-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+
+				{/* Enhanced glassmorphic background */}
+				<div className="absolute inset-1 rounded-full bg-white/15 backdrop-blur-lg border border-white/30 shadow-2xl transition-all duration-300 group-hover:bg-white/20 group-hover:border-white/40 group-hover:shadow-3xl"></div>
+
+				{/* Inner highlight */}
+				<div className="absolute inset-2 rounded-full bg-gradient-to-b from-white/20 to-transparent opacity-60"></div>
+
+				{/* Icon with smooth transition */}
+				<div className="relative z-10 transition-all duration-300 group-hover:scale-110 text-white">
+					{theme === "light" ? (
+						<Moon className="h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
+					) : (
+						<Sun className="h-5 w-5 transition-transform duration-300 group-hover:rotate-12" />
+					)}
+				</div>
+
+				{/* Ripple effect on click */}
+				<div className="absolute inset-0 rounded-full opacity-0 group-active:opacity-100 group-active:animate-ping bg-white/30 pointer-events-none"></div>
+			</Button>
+		</div>
 	);
 }

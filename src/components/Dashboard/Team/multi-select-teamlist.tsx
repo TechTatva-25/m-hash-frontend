@@ -85,7 +85,7 @@ export default function MultiSelectTeamList({
 	};
 
 	return (
-		<div className={className}>
+		<div className={className} style={{ position: "relative", zIndex: 50 }}>
 			<div
 				style={{
 					display: "flex",
@@ -97,6 +97,7 @@ export default function MultiSelectTeamList({
 					border: `1px solid ${isDark ? "rgba(51, 65, 85, 0.7)" : "rgba(226, 232, 240, 0.7)"}`,
 					boxShadow: `0 4px 20px ${isDark ? "rgba(0, 0, 0, 0.2)" : "rgba(0, 0, 0, 0.05)"}`,
 					backdropFilter: "blur(12px)",
+					zIndex: 50,
 				}}>
 				{/* Subtle purple accent overlay */}
 				<div
@@ -177,116 +178,118 @@ export default function MultiSelectTeamList({
 				<div
 					style={{
 						position: "relative",
-						zIndex: 10,
+						zIndex: 100,
 						display: "flex",
 						flexGrow: 1,
 						flexDirection: "column",
 						alignItems: "center",
 						padding: "0 1.5rem 1.5rem",
 					}}>
-					<MultipleSelector
-						ref={selectRef}
-						disabled={disabled}
-						className="max-h-96 w-full"
-						delay={250}
-						maxSelected={5 - team.members.length}
-						hidePlaceholderWhenSelected
-						hideClearAllButton
-						badgeClassName="rounded-md bg-transparent text-foreground border border-accent py-1.5"
-						triggerSearchOnFocus
-						inputProps={{
-							className: "border-0 focus:ring-0 focus:border-0",
-							style: {
-								color: `${isDark ? "rgba(255, 255, 255, 0.9)" : "rgba(15, 23, 42, 0.9)"}`,
-							},
-						}}
-						commandProps={{
-							className: "relative",
-						}}
-						optionNode={(option): React.JSX.Element => (
-							<div
-								key={option.value}
-								data-fixed={option.fixed}
-								data-disabled={option.disable ?? undefined}
-								className="flex w-full flex-row items-center justify-between p-2"
-								style={{
-									transition: "all 0.2s ease",
-									backgroundColor: `${isDark ? "rgba(30, 41, 59, 0.4)" : "rgba(255, 255, 255, 0.4)"}`,
-									backdropFilter: "blur(8px)",
-									margin: "4px 0",
-									borderRadius: "8px",
-									border: `1px solid ${isDark ? "rgba(51, 65, 85, 0.5)" : "rgba(226, 232, 240, 0.5)"}`,
-								}}>
-								<Avatar className="h-10 w-10">
-									<BoringAvatar
-										name={usersMap.get(option.value)?.username ?? ""}
-										variant="beam"
-										size={40}
-										colors={generateColorPalette(option.value)}
-									/>
-								</Avatar>
-								<div className="ml-2 flex w-full flex-row items-center justify-between">
-									<div className="flex flex-col items-start justify-center text-start">
-										<p
-											className="text-sm font-semibold"
-											style={{
-												color: `${isDark ? "rgba(255, 255, 255, 0.95)" : "rgba(15, 23, 42, 0.95)"}`,
-											}}>
-											{usersMap.get(option.value)?.username}
-										</p>
-										<p
-											className="text-xs"
-											style={{
-												color: `${isDark ? "rgba(148, 163, 184, 1)" : "rgba(100, 116, 139, 1)"}`,
-											}}>
-											{usersMap.get(option.value)?.email}
-										</p>
-									</div>
-									<Button
-										disabled={disabled}
-										variant={"ghost"}
-										className="border-none p-0 hover:bg-transparent"
-										style={{
-											color: `${isDark ? "rgba(139, 92, 246, 0.9)" : "rgba(139, 92, 246, 0.8)"}`,
-											transition: "all 0.2s ease",
-										}}>
-										<IoMdAdd className="h-5 w-5" />
-									</Button>
-								</div>
-							</div>
-						)}
-						onSearch={(search: string): Promise<Option[]> => fetchUsers(search)}
-						placeholder="Search for a user..."
-						loadingIndicator={
-							<div className="my-10 flex items-center justify-center text-center">
-								<BeatLoader color="#a457f7" size={12} />
-							</div>
-						}
-						emptyIndicator={
-							<div
-								className="my-5 flex w-full items-center justify-center"
-								style={{
-									padding: "1rem",
-									borderRadius: "8px",
-									backgroundColor: `${isDark ? "rgba(30, 41, 59, 0.3)" : "rgba(255, 255, 255, 0.3)"}`,
-									backdropFilter: "blur(8px)",
-									border: `1px solid ${isDark ? "rgba(51, 65, 85, 0.5)" : "rgba(226, 232, 240, 0.5)"}`,
-									color: `${isDark ? "rgba(148, 163, 184, 1)" : "rgba(100, 116, 139, 1)"}`,
-								}}>
-								<FaUsers
-									className="mr-2 h-5 w-5"
+					<div style={{ position: "relative", width: "100%", marginBottom: "30px" }}>
+						<MultipleSelector
+							ref={selectRef}
+							disabled={disabled}
+							className="max-h-96 w-full"
+							delay={250}
+							maxSelected={5 - team.members.length}
+							hidePlaceholderWhenSelected={true}
+							hideClearAllButton={true}
+							badgeClassName="rounded-md bg-transparent text-foreground border border-accent py-1.5"
+							triggerSearchOnFocus={true}
+							inputProps={{
+								className: "border-0 focus:ring-0 focus:border-0",
+								style: {
+									color: `${isDark ? "rgba(255, 255, 255, 0.9)" : "rgba(15, 23, 42, 0.9)"}`,
+								},
+							}}
+							commandProps={{
+								className: "z-[9999]",
+							}}
+							optionNode={(option): React.JSX.Element => (
+								<div
+									key={option.value}
+									data-fixed={option.fixed}
+									data-disabled={option.disable ?? undefined}
+									className="flex w-full flex-row items-center justify-between p-2"
 									style={{
-										color: `${isDark ? "rgba(139, 92, 246, 0.8)" : "rgba(139, 92, 246, 0.7)"}`,
-									}}
-								/>
-								<p className="text-center font-semibold">No users found</p>
-							</div>
-						}
-					/>
+										transition: "all 0.2s ease",
+										backgroundColor: `${isDark ? "rgba(30, 41, 59, 0.4)" : "rgba(255, 255, 255, 0.4)"}`,
+										backdropFilter: "blur(8px)",
+										margin: "4px 0",
+										borderRadius: "8px",
+										border: `1px solid ${isDark ? "rgba(51, 65, 85, 0.5)" : "rgba(226, 232, 240, 0.5)"}`,
+									}}>
+									<Avatar className="h-10 w-10">
+										<BoringAvatar
+											name={usersMap.get(option.value)?.username ?? ""}
+											variant="beam"
+											size={40}
+											colors={generateColorPalette(option.value)}
+										/>
+									</Avatar>
+									<div className="ml-2 flex w-full flex-row items-center justify-between">
+										<div className="flex flex-col items-start justify-center text-start">
+											<p
+												className="text-sm font-semibold"
+												style={{
+													color: `${isDark ? "rgba(255, 255, 255, 0.95)" : "rgba(15, 23, 42, 0.95)"}`,
+												}}>
+												{usersMap.get(option.value)?.username}
+											</p>
+											<p
+												className="text-xs"
+												style={{
+													color: `${isDark ? "rgba(148, 163, 184, 1)" : "rgba(100, 116, 139, 1)"}`,
+												}}>
+												{usersMap.get(option.value)?.email}
+											</p>
+										</div>
+										<Button
+											disabled={disabled}
+											variant={"ghost"}
+											className="border-none p-0 hover:bg-transparent"
+											style={{
+												color: `${isDark ? "rgba(139, 92, 246, 0.9)" : "rgba(139, 92, 246, 0.8)"}`,
+												transition: "all 0.2s ease",
+											}}>
+											<IoMdAdd className="h-5 w-5" />
+										</Button>
+									</div>
+								</div>
+							)}
+							onSearch={(search: string): Promise<Option[]> => fetchUsers(search)}
+							placeholder="Search for a user..."
+							loadingIndicator={
+								<div className="my-10 flex items-center justify-center text-center">
+									<BeatLoader color="#a457f7" size={12} />
+								</div>
+							}
+							emptyIndicator={
+								<div
+									className="my-5 flex w-full items-center justify-center"
+									style={{
+										padding: "1rem",
+										borderRadius: "8px",
+										backgroundColor: `${isDark ? "rgba(30, 41, 59, 0.3)" : "rgba(255, 255, 255, 0.3)"}`,
+										backdropFilter: "blur(8px)",
+										border: `1px solid ${isDark ? "rgba(51, 65, 85, 0.5)" : "rgba(226, 232, 240, 0.5)"}`,
+										color: `${isDark ? "rgba(148, 163, 184, 1)" : "rgba(100, 116, 139, 1)"}`,
+									}}>
+									<FaUsers
+										className="mr-2 h-5 w-5"
+										style={{
+											color: `${isDark ? "rgba(139, 92, 246, 0.8)" : "rgba(139, 92, 246, 0.7)"}`,
+										}}
+									/>
+									<p className="text-center font-semibold">No users found</p>
+								</div>
+							}
+						/>
+					</div>
 					<Button
 						onClick={handleSendRequest}
 						disabled={disabled}
-						className="mt-4 w-full disabled:cursor-not-allowed disabled:opacity-60"
+						className="w-full disabled:cursor-not-allowed disabled:opacity-60"
 						style={{
 							backgroundImage: `linear-gradient(to right, ${isDark ? "rgba(124, 58, 237, 0.8)" : "rgba(124, 58, 237, 0.9)"}, ${isDark ? "rgba(79, 70, 229, 0.8)" : "rgba(79, 70, 229, 0.9)"})`,
 							boxShadow: `0 4px 15px ${isDark ? "rgba(124, 58, 237, 0.3)" : "rgba(124, 58, 237, 0.2)"}`,

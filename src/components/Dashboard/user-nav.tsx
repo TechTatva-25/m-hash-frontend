@@ -9,7 +9,6 @@ import { useTheme } from "@/components/ThemeProvider";
 import React from "react";
 import { toast } from "react-toastify";
 
-import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
 	DropdownMenu,
@@ -46,97 +45,90 @@ export function UserNav(): React.JSX.Element {
 			setDisabled(false);
 		}
 	};
+
 	return (
 		<div className="relative h-10 w-10">
 			<DropdownMenu>
 				<DropdownMenuTrigger asChild>
 					<Button
 						variant="outline"
-						className="h-10 w-10 rounded-full transition-all duration-300 hover:scale-105 focus:scale-105 p-0"
+						className="h-10 w-10 rounded-full transition-all duration-300 hover:scale-105 focus:scale-105 p-0 border-0 overflow-hidden"
 						style={{
 							background: theme === "dark" ? "rgba(255, 255, 255, 0.05)" : "rgba(255, 255, 255, 0.3)",
 							border: `1px solid ${theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.4)"}`,
 							boxShadow: `0 2px 8px ${theme === "dark" ? "rgba(0, 0, 0, 0.2)" : "rgba(0, 0, 0, 0.03)"}`,
 						}}>
-						<div className="relative h-9 w-9 rounded-full overflow-hidden cursor-pointer">
-							{" "}
-							<Avatar className="h-9 w-9">
-								<BoringAvatar
-									name={session?.username ?? ""}
-									variant="beam"
-									size={36}
-									colors={generateColorPalette(session?.userId ?? "")}
-								/>
-							</Avatar>
-							<div
-								className="absolute inset-0 backdrop-blur-sm"
-								style={{
-									background:
-										theme === "dark" ? "rgba(139, 92, 246, 0.05)" : "rgba(139, 92, 246, 0.03)",
-									mixBlendMode: "overlay",
-								}}></div>
+						{/* ONLY BEAM VARIANT - No Avatar wrapper */}
+						<div className="h-9 w-9 rounded-full overflow-hidden">
+							<BoringAvatar
+								name={session?.username ?? ""}
+								variant="beam"
+								size={36}
+								colors={generateColorPalette(session?.userId ?? "")}
+							/>
 						</div>
 						<span className="sr-only">Open user menu</span>
 					</Button>
 				</DropdownMenuTrigger>
 
 				<DropdownMenuContent
-					className="w-56 overflow-hidden backdrop-blur-md border transition-all duration-300"
+					className="w-56 overflow-hidden backdrop-blur-md border transition-all duration-300 z-[9999]"
 					align="end"
 					style={{
 						background: theme === "dark" ? "rgba(30, 41, 59, 0.8)" : "rgba(255, 255, 255, 0.8)",
 						borderColor: theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(203, 213, 225, 0.5)",
 						boxShadow: `0 4px 20px ${theme === "dark" ? "rgba(0, 0, 0, 0.3)" : "rgba(0, 0, 0, 0.1)"}`,
+						zIndex: 9999,
 					}}>
 					{/* Subtle purple accent overlay */}
 					<div
 						className="absolute inset-0"
 						style={{
-							background:
-								theme === "dark"
-									? "linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(79, 70, 229, 0.03))"
-									: "linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(79, 70, 229, 0.04))",
+							background: theme === "dark"
+								? "linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(79, 70, 229, 0.03))"
+								: "linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(79, 70, 229, 0.04))",
 						}}></div>
 
 					<div className="relative">
 						<DropdownMenuLabel className="font-normal">
 							<div className="flex flex-col space-y-1">
-								<p className="text-sm font-medium leading-none">{session?.username ?? ""}</p>
-								<p className="text-xs leading-none text-muted-foreground">
+								<p className={`text-sm font-medium leading-none ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
+									{session?.username ?? ""}
+								</p>
+								<p className={`text-xs leading-none ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`}>
 									{session?.user?.email ?? ""}
 								</p>
 							</div>
 						</DropdownMenuLabel>
 						<DropdownMenuSeparator />
 						<DropdownMenuGroup>
-							{" "}
 							<DropdownMenuItem
-								className={`hover:cursor-pointer my-1 transition-all duration-300 rounded-md hover:bg-opacity-10 ${
-									theme === "dark" ? "hover:bg-purple-500" : "hover:bg-purple-500"
-								}`}
+								className="hover:cursor-pointer my-1 transition-all duration-300 rounded-md group"
 								style={{
 									borderRadius: "6px",
 									background: "transparent",
 								}}
 								asChild>
 								<Link href="/dashboard" className="flex items-center">
-									<LayoutGrid className="mr-3 h-4 w-4 text-muted-foreground" />
-									Dashboard
+									<LayoutGrid className={`mr-3 h-4 w-4 transition-colors duration-200 ${theme === "dark" ? "text-slate-400 group-hover:text-purple-400" : "text-slate-600 group-hover:text-purple-600"}`} />
+									<span className={`transition-colors duration-200 ${theme === "dark" ? "text-slate-200 group-hover:text-white" : "text-slate-700 group-hover:text-slate-900"}`}>
+										Dashboard
+									</span>
 								</Link>
 							</DropdownMenuItem>
 						</DropdownMenuGroup>
-						<DropdownMenuSeparator />{" "}
+						<DropdownMenuSeparator />
 						<DropdownMenuItem
-							className={`hover:cursor-pointer my-1 disabled:cursor-not-allowed transition-all duration-300 rounded-md hover:bg-opacity-10 ${
-								theme === "dark" ? "hover:bg-red-500" : "hover:bg-red-500"
-							}`}
+							className="hover:cursor-pointer my-1 disabled:cursor-not-allowed transition-all duration-300 rounded-md group"
 							style={{
 								borderRadius: "6px",
 							}}
 							onClick={signOut}
 							disabled={disabled}>
-							<LogOut className="mr-3 h-4 w-4 text-muted-foreground" />
-							Sign out
+							<LogOut className={`mr-3 h-4 w-4 transition-colors duration-200 ${theme === "dark" ? "text-slate-400 group-hover:text-red-400" : "text-slate-600 group-hover:text-red-600"}`} />
+							<span className={`transition-colors duration-200 ${theme === "dark" ? "text-slate-200 group-hover:text-white" : "text-slate-700 group-hover:text-slate-900"}`}>
+								{disabled ? "Signing out..." : "Sign out"}
+							</span>
 						</DropdownMenuItem>
 					</div>
 				</DropdownMenuContent>
