@@ -86,7 +86,7 @@ export default function Home(): React.JSX.Element {
 					// icon={<FaRegFilePdf className="h-7 w-7 text-purple-500 drop-shadow-lg" />}
 					onClick={downloadRules}
 					className="green-glow"
-					/>
+				/>
 			</div>
 			<section
 				id="contact-us"

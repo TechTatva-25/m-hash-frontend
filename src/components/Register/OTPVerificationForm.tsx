@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios, { AxiosError } from "axios";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { HashLoader } from "react-spinners";
@@ -33,12 +34,12 @@ interface OTPVerificationFormProps {
 
 export default function OTPVerificationForm({
 	email,
-	onVerificationSuccess,
 	onCancel,
 }: OTPVerificationFormProps): React.JSX.Element {
-	const [isLoading, setIsLoading] = useState(false);
+	const router = useRouter();
 	const [resendDisabled, setResendDisabled] = useState(false);
 	const [timer, setTimer] = useState(0);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const form = useForm<z.infer<typeof otpFormSchema>>({
 		resolver: zodResolver(otpFormSchema),
@@ -53,12 +54,25 @@ export default function OTPVerificationForm({
 			const response = await axios.post(getEndpoint(Endpoints.VERIFY_EMAIL), {
 				email,
 				otp: data.otp,
+			}, {
+				withCredentials: true, // Ensure cookies are sent with the request
 			});
 
 			toast.success(response.data.message);
-			// If verification was successful and user was created
+
+			// If verification was successful, redirect to login page
 			if (response.data.verified) {
-				onVerificationSuccess();
+				// Small delay to show success message before redirect
+				setTimeout(() => {
+					// Try router.push first
+					try {
+						router.push("/login");
+					} catch (error) {
+						// Fallback to window.location if router fails
+						console.error("Router push failed, using window.location:", error);
+						window.location.href = "/login";
+					}
+				}, 1500); // Allow time for success message to be seen
 			}
 		} catch (error) {
 			if (axios.isAxiosError(error)) {

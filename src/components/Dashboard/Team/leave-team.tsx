@@ -80,10 +80,7 @@ export const LeaveTeamCard: React.FC<{
 					<AlertDialog>
 						<AlertDialogTrigger asChild>
 							<div className="flex w-full items-center justify-end">
-								<Button
-									className="w-full sm:w-20"
-									variant={"destructive"}
-									disabled={disabled}>
+								<Button className="w-full sm:w-20" variant={"destructive"} disabled={disabled}>
 									Leave
 								</Button>
 							</div>

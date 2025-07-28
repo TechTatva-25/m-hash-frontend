@@ -102,9 +102,9 @@ export default function VerifyEmailForm(): React.JSX.Element {
 						<Button
 							className="mt-4 w-full"
 							onClick={(): void => {
-								router.push("/login");
+								router.push("/dashboard");
 							}}>
-							Log in
+							Go to Dashboard
 						</Button>
 					</>
 				) : valid ? (

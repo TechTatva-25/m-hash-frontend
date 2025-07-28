@@ -32,6 +32,7 @@ export function NavbarSheet(): React.JSX.Element {
 	const session = useSession();
 	const router = useRouter();
 	const [disabled, setDisabled] = React.useState(false);
+	const isDark = theme === "dark";
 
 	const signOut = async (): Promise<void> => {
 		setDisabled(true);
@@ -53,7 +54,6 @@ export function NavbarSheet(): React.JSX.Element {
 	const user = session?.user ?? null;
 	const username = user?.username ?? "";
 	const userEmail = user?.email ?? "";
-	// const userId = user?.userId ?? "";
 	let content;
 
 	if (isLoading) {
@@ -66,7 +66,26 @@ export function NavbarSheet(): React.JSX.Element {
 		content = (
 			<Sheet>
 				<SheetTrigger className="px-1 xs:px-4 md:px-8" asChild>
-					<Button variant="nav">
+					<Button
+						variant="outline"
+						className="relative overflow-hidden transition-all duration-300"
+						style={{
+							background: isDark
+								? "linear-gradient(135deg, rgba(30,30,45,0.7) 0%, rgba(35,35,60,0.5) 100%)"
+								: "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(240,240,255,0.7) 100%)",
+							backdropFilter: "blur(16px)",
+							boxShadow: isDark
+								? `0 4px 15px rgba(0,0,0,0.3), 
+								   0 0 0 1px rgba(103,80,164,0.2),
+								   inset 0 1px 0 0 rgba(255,255,255,0.05)`
+								: `0 4px 15px rgba(103,80,164,0.15), 
+								   0 0 0 1px rgba(132,95,220,0.2),
+								   inset 0 1px 0 0 rgba(255,255,255,0.8)`,
+							border: isDark
+								? "1px solid rgba(103,80,164,0.3)"
+								: "1px solid rgba(132,95,220,0.25)",
+							color: isDark ? "rgba(230,210,255,0.9)" : "rgba(103,80,164,0.9)",
+						}}>
 						<svg
 							className="h-5 w-5"
 							aria-hidden="true"
@@ -83,76 +102,131 @@ export function NavbarSheet(): React.JSX.Element {
 						</svg>
 					</Button>
 				</SheetTrigger>
-				<SheetContent>
+				<SheetContent
+					className="z-[200]"
+					style={{
+						background: isDark
+							? "linear-gradient(135deg, rgba(25,25,35,0.85) 0%, rgba(35,35,50,0.85) 100%)"
+							: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(245,245,255,0.95) 100%)",
+						backdropFilter: "blur(20px)",
+						boxShadow: isDark
+							? `0 20px 60px -10px rgba(0,0,0,0.5), 
+							   0 0 0 1px rgba(103,80,164,0.3),
+							   inset 0 1px 0 0 rgba(255,255,255,0.05)`
+							: `0 20px 60px -10px rgba(103,80,164,0.2), 
+							   0 0 0 1px rgba(132,95,220,0.2),
+							   inset 0 1px 0 0 rgba(255,255,255,0.8)`,
+						border: isDark
+							? "1px solid rgba(103,80,164,0.4)"
+							: "1px solid rgba(132,95,220,0.3)",
+						zIndex: 200,
+					}}>
 					<div className="grid gap-3 py-4">
-						<SheetClose asChild>
-							<a
-								href="/#"
-								className="block rounded px-3 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">
-								Home
-							</a>
-						</SheetClose>
-						<SheetClose asChild>
-							<a
-								href="/#about"
-								className="block rounded px-3 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">
-								About Us
-							</a>
-						</SheetClose>
-						<SheetClose asChild>
-							<a
-								href="/#timeline"
-								className="block rounded px-3 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">
-								Timeline
-							</a>
-						</SheetClose>
-						<SheetClose asChild>
-							<a
-								href="/#problem-statements"
-								className="block rounded px-3 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800">
-								Problem Statements
-							</a>
-						</SheetClose>
-						{/* <SheetClose asChild>
-                            <a
-                                href="/leaderboard"
-                                className="block rounded px-3 py-2 text-[hsl(var(--foreground))] hover:bg-[hsl(var(--card))] dark:text-[hsl(var(--primary-foreground))]">
-                                Bug Round Leaderboard
-                            </a>
-                        </SheetClose> */}
-						<SheetClose asChild>
-							<Button
-								onClick={(): void => {
-									window.location.href = "/login";
-								}}
-								variant="outline"
-								className="flex w-full items-center cursor-pointer space-x-2 text-gray-800 dark:text-gray-200 md:w-auto">
-								Login
-							</Button>
-						</SheetClose>
-						<SheetClose asChild>
-							<Button
-								onClick={(): void => {
-									window.location.href = "/register";
-								}}
-								variant="outline"
-								className="flex w-full items-center space-x-2 text-gray-800 dark:text-gray-200 md:w-auto">
-								Register
-							</Button>
-						</SheetClose>
-						<SheetClose asChild>
-							<Button
-								onClick={toggleTheme}
-								variant="outline"
-								className="flex items-center space-x-2 text-gray-800 dark:text-gray-200">
-								{theme === "dark" ? (
-									<RiSunFill className="mr-2" />
-								) : (
-									<RiMoonClearFill className="mr-2" />
-								)}
-								<span>{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
-							</Button>
-						</SheetClose>
+						{[
+							{ href: "/#", label: "Home" },
+							{ href: "/#about", label: "About Us" },
+							{ href: "/#timeline", label: "Timeline" },
+							{ href: "/#problem-statements", label: "Problem Statements" },
+						].map((link) => (
+							<SheetClose key={link.href} asChild>
+								<a
+									href={link.href}
+									className="block rounded-xl px-4 py-3 transition-all duration-300 backdrop-blur-sm border border-transparent"
+									style={{
+										color: isDark ? "rgba(230,210,255,0.95)" : "rgba(50,50,70,0.95)",
+										backdropFilter: "blur(8px)",
+									}}
+									onMouseEnter={(e) => {
+										e.currentTarget.style.background = isDark
+											? "rgba(103,80,164,0.2)"
+											: "rgba(132,95,220,0.15)";
+										e.currentTarget.style.borderColor = isDark
+											? "rgba(103,80,164,0.4)"
+											: "rgba(132,95,220,0.3)";
+									}}
+									onMouseLeave={(e) => {
+										e.currentTarget.style.background = "transparent";
+										e.currentTarget.style.borderColor = "transparent";
+									}}>
+									{link.label}
+								</a>
+							</SheetClose>
+						))}
+
+						<div className="mt-4 space-y-3">
+							<SheetClose asChild>
+								<Button
+									onClick={(): void => {
+										window.location.href = "/login";
+									}}
+									className="w-full text-white shadow-lg hover:shadow-xl transition-all duration-300"
+									style={{
+										background: "linear-gradient(135deg, rgba(103,80,164,0.8) 0%, rgba(132,95,220,0.9) 100%)",
+										boxShadow: `0 4px 15px rgba(103,80,164,0.3),
+												   inset 0 1px 0 rgba(255,255,255,0.2)`,
+										border: "1px solid rgba(103,80,164,0.4)",
+									}}>
+									Login
+								</Button>
+							</SheetClose>
+							<SheetClose asChild>
+								<Button
+									onClick={(): void => {
+										window.location.href = "/register";
+									}}
+									variant="outline"
+									className="w-full transition-all duration-300"
+									style={{
+										background: isDark
+											? "linear-gradient(135deg, rgba(30,30,45,0.7) 0%, rgba(35,35,60,0.5) 100%)"
+											: "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(240,240,255,0.7) 100%)",
+										backdropFilter: "blur(16px)",
+										boxShadow: isDark
+											? `0 4px 15px rgba(0,0,0,0.3), 
+											   0 0 0 1px rgba(103,80,164,0.2),
+											   inset 0 1px 0 0 rgba(255,255,255,0.05)`
+											: `0 4px 15px rgba(103,80,164,0.15), 
+											   0 0 0 1px rgba(132,95,220,0.2),
+											   inset 0 1px 0 0 rgba(255,255,255,0.8)`,
+										border: isDark
+											? "1px solid rgba(103,80,164,0.3)"
+											: "1px solid rgba(132,95,220,0.25)",
+										color: isDark ? "rgba(230,210,255,0.9)" : "rgba(103,80,164,0.9)",
+									}}>
+									Register
+								</Button>
+							</SheetClose>
+							<SheetClose asChild>
+								<Button
+									onClick={toggleTheme}
+									variant="outline"
+									className="w-full transition-all duration-300"
+									style={{
+										background: isDark
+											? "linear-gradient(135deg, rgba(30,30,45,0.7) 0%, rgba(35,35,60,0.5) 100%)"
+											: "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(240,240,255,0.7) 100%)",
+										backdropFilter: "blur(16px)",
+										boxShadow: isDark
+											? `0 4px 15px rgba(0,0,0,0.3), 
+											   0 0 0 1px rgba(103,80,164,0.2),
+											   inset 0 1px 0 0 rgba(255,255,255,0.05)`
+											: `0 4px 15px rgba(103,80,164,0.15), 
+											   0 0 0 1px rgba(132,95,220,0.2),
+											   inset 0 1px 0 0 rgba(255,255,255,0.8)`,
+										border: isDark
+											? "1px solid rgba(103,80,164,0.3)"
+											: "1px solid rgba(132,95,220,0.25)",
+										color: isDark ? "rgba(230,210,255,0.9)" : "rgba(103,80,164,0.9)",
+									}}>
+									{theme === "dark" ? (
+										<RiSunFill className="mr-2" />
+									) : (
+										<RiMoonClearFill className="mr-2" />
+									)}
+									<span>{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
+								</Button>
+							</SheetClose>
+						</div>
 					</div>
 				</SheetContent>
 			</Sheet>
@@ -165,9 +239,26 @@ export function NavbarSheet(): React.JSX.Element {
 						<Tooltip delayDuration={100}>
 							<TooltipTrigger asChild>
 								<DropdownMenuTrigger asChild>
-									<Button variant="outline" className="relative h-10 w-10 rounded-full">
-										<Avatar className="h-10 w-10">
-											{" "}
+									<Button
+										variant="outline"
+										className="relative h-10 w-10 rounded-full transition-all duration-300 group"
+										style={{
+											background: isDark
+												? "linear-gradient(135deg, rgba(30,30,45,0.7) 0%, rgba(35,35,60,0.5) 100%)"
+												: "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(240,240,255,0.7) 100%)",
+											backdropFilter: "blur(16px)",
+											boxShadow: isDark
+												? `0 4px 15px rgba(0,0,0,0.3), 
+												   0 0 0 1px rgba(103,80,164,0.2),
+												   inset 0 1px 0 0 rgba(255,255,255,0.05)`
+												: `0 4px 15px rgba(103,80,164,0.15), 
+												   0 0 0 1px rgba(132,95,220,0.2),
+												   inset 0 1px 0 0 rgba(255,255,255,0.8)`,
+											border: isDark
+												? "1px solid rgba(103,80,164,0.3)"
+												: "1px solid rgba(132,95,220,0.25)",
+										}}>
+										<Avatar className="h-10 w-10 transition-transform duration-300 group-hover:scale-105">
 											<BoringAvatar
 												name={username}
 												variant="beam"
@@ -175,46 +266,144 @@ export function NavbarSheet(): React.JSX.Element {
 												colors={generateColorPalette(username)}
 											/>
 										</Avatar>
+										{/* Subtle glow effect */}
+										<div
+											className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm -z-10"
+											style={{
+												background: "linear-gradient(135deg, rgba(103,80,164,0.4) 0%, rgba(132,95,220,0.4) 100%)",
+											}}></div>
 									</Button>
 								</DropdownMenuTrigger>
 							</TooltipTrigger>
-							<TooltipContent className="mr-6" side="bottom">
+							<TooltipContent
+								className="mr-6"
+								side="bottom"
+								style={{
+									background: isDark
+										? "linear-gradient(135deg, rgba(25,25,35,0.9) 0%, rgba(35,35,50,0.9) 100%)"
+										: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(245,245,255,0.95) 100%)",
+									backdropFilter: "blur(16px)",
+									boxShadow: isDark
+										? `0 8px 25px rgba(0,0,0,0.4), 
+										   0 0 0 1px rgba(103,80,164,0.3),
+										   inset 0 1px 0 0 rgba(255,255,255,0.05)`
+										: `0 8px 25px rgba(103,80,164,0.15), 
+										   0 0 0 1px rgba(132,95,220,0.2),
+										   inset 0 1px 0 0 rgba(255,255,255,0.8)`,
+									border: isDark
+										? "1px solid rgba(103,80,164,0.4)"
+										: "1px solid rgba(132,95,220,0.3)",
+									color: isDark ? "rgba(230,210,255,0.95)" : "rgba(50,50,70,0.95)",
+								}}>
 								Profile
 							</TooltipContent>
 						</Tooltip>
 					</TooltipProvider>
 
-					<DropdownMenuContent className="w-56" align="end" forceMount>
-						<DropdownMenuLabel className="font-normal">
+					<DropdownMenuContent
+						className="w-56"
+						align="end"
+						forceMount
+						style={{
+							background: isDark
+								? "linear-gradient(135deg, rgba(25,25,35,0.9) 0%, rgba(35,35,50,0.9) 100%)"
+								: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(245,245,255,0.95) 100%)",
+							backdropFilter: "blur(20px)",
+							boxShadow: isDark
+								? `0 20px 60px -10px rgba(0,0,0,0.5), 
+								   0 0 0 1px rgba(103,80,164,0.3),
+								   inset 0 1px 0 0 rgba(255,255,255,0.05)`
+								: `0 20px 60px -10px rgba(103,80,164,0.2), 
+								   0 0 0 1px rgba(132,95,220,0.2),
+								   inset 0 1px 0 0 rgba(255,255,255,0.8)`,
+							border: isDark
+								? "1px solid rgba(103,80,164,0.4)"
+								: "1px solid rgba(132,95,220,0.3)",
+						}}>
+						<DropdownMenuLabel className="font-normal p-4">
 							<div className="flex flex-col space-y-1">
-								<p className="text-sm font-medium leading-none">{username}</p>
-								<p className="text-xs leading-none text-muted-foreground">{userEmail}</p>
+								<p
+									className="text-sm font-medium leading-none"
+									style={{
+										color: isDark ? "rgba(240,225,255,1)" : "rgba(103,80,164,1)",
+									}}>
+									{username}
+								</p>
+								<p
+									className="text-xs leading-none"
+									style={{
+										color: isDark ? "rgba(230,210,255,0.8)" : "rgba(50,50,70,0.8)",
+									}}>
+									{userEmail}
+								</p>
 							</div>
 						</DropdownMenuLabel>
-						<DropdownMenuSeparator />
-						<DropdownMenuGroup>
-							<DropdownMenuItem className="hover:cursor-pointer" asChild>
-								<Link href="/dashboard" className="flex items-center">
-									<LayoutGrid className="mr-3 h-4 w-4 text-muted-foreground" />
-									Dashboard
+						<DropdownMenuSeparator
+							style={{
+								background: isDark ? "rgba(103,80,164,0.3)" : "rgba(132,95,220,0.2)",
+							}}
+						/>
+						<DropdownMenuGroup className="p-1">
+							<DropdownMenuItem
+								className="hover:cursor-pointer rounded-lg transition-all duration-200 backdrop-blur-sm"
+								style={{
+									color: isDark ? "rgba(230,210,255,0.95)" : "rgba(50,50,70,0.95)",
+								}}
+								onMouseEnter={(e) => {
+									e.currentTarget.style.background = isDark
+										? "rgba(103,80,164,0.2)"
+										: "rgba(132,95,220,0.15)";
+								}}
+								onMouseLeave={(e) => {
+									e.currentTarget.style.background = "transparent";
+								}}
+								asChild>
+								<Link href="/dashboard" className="flex items-center p-3">
+									<LayoutGrid className="mr-3 h-4 w-4 text-indigo-500 dark:text-indigo-400" />
+									<span>Dashboard</span>
 								</Link>
 							</DropdownMenuItem>
-							<DropdownMenuItem className="hover:cursor-pointer" onClick={toggleTheme}>
+							<DropdownMenuItem
+								className="hover:cursor-pointer rounded-lg transition-all duration-200 backdrop-blur-sm p-3"
+								style={{
+									color: isDark ? "rgba(230,210,255,0.95)" : "rgba(50,50,70,0.95)",
+								}}
+								onMouseEnter={(e) => {
+									e.currentTarget.style.background = isDark
+										? "rgba(103,80,164,0.2)"
+										: "rgba(132,95,220,0.15)";
+								}}
+								onMouseLeave={(e) => {
+									e.currentTarget.style.background = "transparent";
+								}}
+								onClick={toggleTheme}>
 								{theme === "dark" ? (
-									<RiSunFill className="mr-3 h-4 w-4 text-muted-foreground" />
+									<RiSunFill className="mr-3 h-4 w-4 text-yellow-500" />
 								) : (
-									<RiMoonClearFill className="mr-3 h-4 w-4 text-muted-foreground" />
+									<RiMoonClearFill className="mr-3 h-4 w-4 text-indigo-500" />
 								)}
-								{theme === "dark" ? "Light" : "Dark"} Mode
+								<span>
+									{theme === "dark" ? "Light" : "Dark"} Mode
+								</span>
 							</DropdownMenuItem>
 						</DropdownMenuGroup>
-						<DropdownMenuSeparator />
+						<DropdownMenuSeparator
+							style={{
+								background: isDark ? "rgba(103,80,164,0.3)" : "rgba(132,95,220,0.2)",
+							}}
+						/>
 						<DropdownMenuItem
-							className="hover:cursor-pointer disabled:cursor-not-allowed"
+							className="hover:cursor-pointer disabled:cursor-not-allowed rounded-lg transition-all duration-200 backdrop-blur-sm p-3 text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300"
+							onMouseEnter={(e) => {
+								e.currentTarget.style.background = "rgba(239,68,68,0.1)";
+							}}
+							onMouseLeave={(e) => {
+								e.currentTarget.style.background = "transparent";
+							}}
 							onClick={signOut}
 							disabled={disabled}>
-							<LogOut className="mr-3 h-4 w-4 text-muted-foreground" />
-							Sign out
+							<LogOut className="mr-3 h-4 w-4" />
+							<span>Sign out</span>
 						</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>
