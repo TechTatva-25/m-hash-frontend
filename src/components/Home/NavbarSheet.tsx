@@ -75,16 +75,14 @@ export function NavbarSheet(): React.JSX.Element {
 								: "linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 255, 245, 0.7) 100%)",
 							backdropFilter: "blur(16px)",
 							boxShadow: isDark
-								? `0 4px 15px rgba(0, 0, 0, 0.3), 
-								   0 0 0 1px rgba(46, 204, 113, 0.2),
-								   inset 0 1px 0 0 rgba(46, 204, 113, 0.05)`
-								: `0 4px 15px rgba(16, 109, 32, 0.15), 
-								   0 0 0 1px rgba(16, 109, 32, 0.2),
-								   inset 0 1px 0 0 rgba(255, 255, 255, 0.8)`,
-							border: isDark
-								? "1px solid rgba(46, 204, 113, 0.3)"
-								: "1px solid rgba(16, 109, 32, 0.25)",
-							color: isDark ? "rgba(200, 240, 200, 0.9)" : "rgba(16, 109, 32, 0.9)",
+								? `0 4px 15px rgba(0,0,0,0.3), 
+								   0 0 0 1px rgba(103,80,164,0.2),
+								   inset 0 1px 0 0 rgba(255,255,255,0.05)`
+								: `0 4px 15px rgba(103,80,164,0.15), 
+								   0 0 0 1px rgba(132,95,220,0.2),
+								   inset 0 1px 0 0 rgba(255,255,255,0.8)`,
+							border: isDark ? "1px solid rgba(103,80,164,0.3)" : "1px solid rgba(132,95,220,0.25)",
+							color: isDark ? "rgba(230,210,255,0.9)" : "rgba(103,80,164,0.9)",
 						}}>
 						<svg
 							className="h-5 w-5"
@@ -110,15 +108,13 @@ export function NavbarSheet(): React.JSX.Element {
 							: "linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 255, 250, 0.95) 100%)",
 						backdropFilter: "blur(20px)",
 						boxShadow: isDark
-							? `0 20px 60px -10px rgba(0, 0, 0, 0.5), 
-							   0 0 0 1px rgba(46, 204, 113, 0.3),
-							   inset 0 1px 0 0 rgba(46, 204, 113, 0.05)`
-							: `0 20px 60px -10px rgba(16, 109, 32, 0.2), 
-							   0 0 0 1px rgba(16, 109, 32, 0.2),
-							   inset 0 1px 0 0 rgba(255, 255, 255, 0.8)`,
-						border: isDark
-							? "1px solid rgba(46, 204, 113, 0.4)"
-							: "1px solid rgba(16, 109, 32, 0.3)",
+							? `0 20px 60px -10px rgba(0,0,0,0.5), 
+							   0 0 0 1px rgba(103,80,164,0.3),
+							   inset 0 1px 0 0 rgba(255,255,255,0.05)`
+							: `0 20px 60px -10px rgba(103,80,164,0.2), 
+							   0 0 0 1px rgba(132,95,220,0.2),
+							   inset 0 1px 0 0 rgba(255,255,255,0.8)`,
+						border: isDark ? "1px solid rgba(103,80,164,0.4)" : "1px solid rgba(132,95,220,0.3)",
 						zIndex: 200,
 					}}>
 					<div className="grid gap-3 py-4">
@@ -161,15 +157,11 @@ export function NavbarSheet(): React.JSX.Element {
 									}}
 									className="w-full text-white shadow-lg hover:shadow-xl transition-all duration-300"
 									style={{
-										background: isDark
-											? "linear-gradient(135deg, rgba(46, 204, 113, 0.8) 0%, rgba(34, 197, 94, 0.9) 100%)"
-											: "linear-gradient(135deg, rgba(16, 109, 32, 0.8) 0%, rgba(34, 139, 34, 0.9) 100%)",
-										boxShadow: isDark
-											? `0 4px 15px rgba(46, 204, 113, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)`
-											: `0 4px 15px rgba(16, 109, 32, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)`,
-										border: isDark
-											? "1px solid rgba(46, 204, 113, 0.4)"
-											: "1px solid rgba(16, 109, 32, 0.4)",
+										background:
+											"linear-gradient(135deg, rgba(103,80,164,0.8) 0%, rgba(132,95,220,0.9) 100%)",
+										boxShadow: `0 4px 15px rgba(103,80,164,0.3),
+												   inset 0 1px 0 rgba(255,255,255,0.2)`,
+										border: "1px solid rgba(103,80,164,0.4)",
 									}}>
 									Login
 								</Button>
@@ -275,9 +267,8 @@ export function NavbarSheet(): React.JSX.Element {
 										<div
 											className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm -z-10"
 											style={{
-												background: isDark
-													? "linear-gradient(135deg, rgba(46, 204, 113, 0.4) 0%, rgba(34, 197, 94, 0.4) 100%)"
-													: "linear-gradient(135deg, rgba(16, 109, 32, 0.4) 0%, rgba(34, 139, 34, 0.4) 100%)",
+												background:
+													"linear-gradient(135deg, rgba(103,80,164,0.4) 0%, rgba(132,95,220,0.4) 100%)",
 											}}></div>
 									</Button>
 								</DropdownMenuTrigger>
@@ -317,15 +308,13 @@ export function NavbarSheet(): React.JSX.Element {
 								: "linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 255, 250, 0.95) 100%)",
 							backdropFilter: "blur(20px)",
 							boxShadow: isDark
-								? `0 20px 60px -10px rgba(0, 0, 0, 0.5), 
-								   0 0 0 1px rgba(46, 204, 113, 0.3),
-								   inset 0 1px 0 0 rgba(46, 204, 113, 0.05)`
-								: `0 20px 60px -10px rgba(16, 109, 32, 0.2), 
-								   0 0 0 1px rgba(16, 109, 32, 0.2),
-								   inset 0 1px 0 0 rgba(255, 255, 255, 0.8)`,
-							border: isDark
-								? "1px solid rgba(46, 204, 113, 0.4)"
-								: "1px solid rgba(16, 109, 32, 0.3)",
+								? `0 20px 60px -10px rgba(0,0,0,0.5), 
+								   0 0 0 1px rgba(103,80,164,0.3),
+								   inset 0 1px 0 0 rgba(255,255,255,0.05)`
+								: `0 20px 60px -10px rgba(103,80,164,0.2), 
+								   0 0 0 1px rgba(132,95,220,0.2),
+								   inset 0 1px 0 0 rgba(255,255,255,0.8)`,
+							border: isDark ? "1px solid rgba(103,80,164,0.4)" : "1px solid rgba(132,95,220,0.3)",
 						}}>
 						<DropdownMenuLabel className="font-normal p-4">
 							<div className="flex flex-col space-y-1">

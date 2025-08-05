@@ -144,9 +144,7 @@ export default function About(): React.JSX.Element {
 								<motion.div
 									className="absolute -bottom-3 left-0 right-0 h-1 rounded-full"
 									style={{
-										background: isDark
-											? "linear-gradient(to right, rgba(46, 204, 113, 0.8), rgba(34, 197, 94, 0.6), rgba(46, 204, 113, 0.8))"
-											: "#005050",
+										background: isDark ? "rgba(46, 204, 113, 0.8)" : "rgba(16, 109, 32, 0.8)",
 									}}
 									initial={{ scaleX: 0 }}
 									whileInView={{ scaleX: 1 }}
@@ -156,9 +154,7 @@ export default function About(): React.JSX.Element {
 								<motion.div
 									className="absolute -bottom-5 left-0 w-4/5 h-[0.5px] rounded-full"
 									style={{
-										background: isDark
-											? "linear-gradient(to right, rgba(46, 204, 113, 0.6), rgba(34, 197, 94, 0.4), rgba(46, 204, 113, 0.6))"
-											: "linear-gradient(to right, rgba(16, 109, 32, 0.6), rgba(34, 139, 34, 0.4), rgba(16, 109, 32, 0.6))",
+										background: isDark ? "rgba(46, 204, 113, 0.6)" : "rgba(16, 109, 32, 0.6)",
 									}}
 									initial={{ scaleX: 0 }}
 									whileInView={{ scaleX: 1, width:"100%" }}
