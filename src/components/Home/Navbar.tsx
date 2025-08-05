@@ -50,8 +50,7 @@ export default function Navbar(): React.JSX.Element {
 									background: isDark
 										? "linear-gradient(to right, rgba(34,102,68,0.2), rgba(72,187,120,0.2))"
 										: "linear-gradient(to right, rgba(52,168,83,0.2), rgba(134,239,172,0.2))",
-								}}
-							></div>
+								}}></div>
 						</div>
 					</a>
 
@@ -59,8 +58,7 @@ export default function Navbar(): React.JSX.Element {
 					<a
 						href="https://manipal.edu/mit.html"
 						target="_blank"
-						className="ml-2 mr-1 hidden items-center sm:flex md:ml-4 md:mr-2 group"
-					>
+						className="ml-2 mr-1 hidden items-center sm:flex md:ml-4 md:mr-2 group">
 						<div className="relative overflow-hidden rounded-lg">
 							<Image
 								unoptimized
@@ -78,8 +76,7 @@ export default function Navbar(): React.JSX.Element {
 					<a
 						href="https://manipal.edu/mit.html"
 						target="_blank"
-						className="ml-2 mr-1 items-center xs:ml-4 xs:mr-2 sm:hidden group"
-					>
+						className="ml-2 mr-1 items-center xs:ml-4 xs:mr-2 sm:hidden group">
 						<div className="relative overflow-hidden rounded-lg">
 							<Image
 								unoptimized
@@ -94,12 +91,7 @@ export default function Navbar(): React.JSX.Element {
 					</a>
 
 					{/* Enhanced IIC logo with micro-interaction */}
-					<a
-						href="https://iic.mic.gov.in/"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="group"
-					>
+					<a href="https://iic.mic.gov.in/" target="_blank" rel="noopener noreferrer" className="group">
 						<div className="relative overflow-hidden rounded-lg">
 							<Image
 								unoptimized
@@ -130,8 +122,7 @@ export default function Navbar(): React.JSX.Element {
 									background: isDark
 										? "linear-gradient(to top right, rgba(34,102,68,0.15), rgba(72,187,120,0.15))"
 										: "linear-gradient(to top right, rgba(52,168,83,0.15), rgba(134,239,172,0.15))",
-								}}
-							></div>
+								}}></div>
 						</div>
 					</div>
 				</div>
@@ -153,8 +144,7 @@ export default function Navbar(): React.JSX.Element {
 
 				<div
 					className="hidden w-full items-center justify-between xl:order-1 xl:flex xl:w-auto"
-					id="navbar-sticky"
-				>
+					id="navbar-sticky">
 					<ul className="mt-4 flex flex-col rounded-lg border border-[hsl(var(--border))] p-4 font-medium md:mt-0 md:flex-row md:space-x-6 md:border-0 md:bg-transparent md:p-0 rtl:space-x-reverse">
 						{/* Enhanced nav links with clean green underline animation */}
 						<li>
@@ -164,8 +154,7 @@ export default function Navbar(): React.JSX.Element {
 								style={{
 									color: isDark ? "rgba(240,255,240,0.9)" : "rgba(34,102,68,0.9)",
 								}}
-								aria-current="page"
-							>
+								aria-current="page">
 								{/* Text with enhanced styling */}
 								<span
 									className="relative font-bold transition-all duration-300 group-hover:scale-105"
@@ -173,8 +162,7 @@ export default function Navbar(): React.JSX.Element {
 										fontFamily: "var(--font-playfair-display)",
 										letterSpacing: "0.16em",
 										color: isDark ? "rgba(240,255,240,1)" : "rgba(34,102,68,1)",
-									}}
-								>
+									}}>
 									About
 								</span>
 
@@ -183,8 +171,7 @@ export default function Navbar(): React.JSX.Element {
 									className="absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-500 ease-out group-hover:w-full md:block hidden"
 									style={{
 										background: isDark ? "rgba(72,187,120,0.8)" : "rgba(34,102,68,0.8)",
-									}}
-								></div>
+									}}></div>
 							</a>
 						</li>
 
@@ -195,16 +182,14 @@ export default function Navbar(): React.JSX.Element {
 								style={{
 									color: isDark ? "rgba(240,255,240,0.9)" : "rgba(34,102,68,0.9)",
 								}}
-								aria-current="page"
-							>
+								aria-current="page">
 								<span
 									className="relative font-bold transition-all duration-300 group-hover:scale-105"
 									style={{
 										fontFamily: "var(--font-playfair-display)",
 										letterSpacing: "0.16em",
 										color: isDark ? "rgba(240,255,240,1)" : "rgba(34,102,68,1)",
-									}}
-								>
+									}}>
 									Timeline
 								</span>
 
@@ -212,8 +197,7 @@ export default function Navbar(): React.JSX.Element {
 									className="absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-500 ease-out group-hover:w-full md:block hidden"
 									style={{
 										background: isDark ? "rgba(72,187,120,0.8)" : "rgba(34,102,68,0.8)",
-									}}
-								></div>
+									}}></div>
 							</a>
 						</li>
 
@@ -224,16 +208,14 @@ export default function Navbar(): React.JSX.Element {
 								style={{
 									color: isDark ? "rgba(240,255,240,0.9)" : "rgba(34,102,68,0.9)",
 								}}
-								aria-current="page"
-							>
+								aria-current="page">
 								<span
 									className="relative font-bold transition-all duration-300 group-hover:scale-105"
 									style={{
 										fontFamily: "var(--font-playfair-display)",
 										letterSpacing: "0.16em",
 										color: isDark ? "rgba(240,255,240,1)" : "rgba(34,102,68,1)",
-									}}
-								>
+									}}>
 									Problem Statements
 								</span>
 
@@ -241,8 +223,7 @@ export default function Navbar(): React.JSX.Element {
 									className="absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-500 ease-out group-hover:w-full md:block hidden"
 									style={{
 										background: isDark ? "rgba(72,187,120,0.8)" : "rgba(34,102,68,0.8)",
-									}}
-								></div>
+									}}></div>
 							</a>
 						</li>
 
@@ -253,16 +234,14 @@ export default function Navbar(): React.JSX.Element {
 								style={{
 									color: isDark ? "rgba(240,255,240,0.9)" : "rgba(34,102,68,0.9)",
 								}}
-								aria-current="page"
-							>
+								aria-current="page">
 								<span
 									className="relative font-bold transition-all duration-300 group-hover:scale-105"
 									style={{
 										fontFamily: "var(--font-playfair-display)",
 										letterSpacing: "0.16em",
 										color: isDark ? "rgba(240,255,240,1)" : "rgba(34,102,68,1)",
-									}}
-								>
+									}}>
 									Contact Us
 								</span>
 
@@ -270,8 +249,7 @@ export default function Navbar(): React.JSX.Element {
 									className="absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-500 ease-out group-hover:w-full md:block hidden"
 									style={{
 										background: isDark ? "rgba(72,187,120,0.8)" : "rgba(34,102,68,0.8)",
-									}}
-								></div>
+									}}></div>
 							</a>
 						</li>
 					</ul>

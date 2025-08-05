@@ -1,5 +1,6 @@
 import { Renderer, Program, Mesh, Triangle } from "ogl";
 import { useEffect, useRef } from "react";
+import { useTheme } from "@/components/ThemeProvider";
 
 const vertexShader = `
 attribute vec2 uv;
@@ -44,29 +45,38 @@ void main() {
   
   uv += (uMouse - vec2(0.5)) * uAmplitude;
   
-  // Create the flowing iridescence effect
+  // Enhanced flowing iridescence effect for royal green theme
   float d = -uTime * 0.5 * uSpeed;
   float a = 0.0;
-  for (float i = 0.0; i < 8.0; ++i) {
-    a += cos(i - d - a * uv.x);
-    d += sin(uv.y * i + a);
+  for (float i = 0.0; i < 10.0; ++i) {
+    a += cos(i - d - a * uv.x * 1.2);
+    d += sin(uv.y * i + a * 0.8);
   }
   d += uTime * 0.5 * uSpeed;
   
-  // Create base gradient that preserves your colors
-  float gradientT = 1.0 - vUv.y;
+  // Create enhanced gradient with more depth
+  float gradientT = smoothstep(0.0, 1.0, 1.0 - vUv.y);
   vec3 baseColor = mixColors(uColor1, uColor2, uColor3, gradientT);
   
-  // Create subtle iridescence overlay instead of multiplication
-  float iridescenceIntensity = sin(d + a) * 0.15 + 1.0;
+  // Enhanced glassmorphism iridescence with royal green undertones
+  float iridescenceIntensity = sin(d + a) * 0.25 + 1.0;
   vec3 iridescenceShift = vec3(
-    cos(d) * 0.05,
-    cos(a) * 0.05,
-    cos(d + a) * 0.05
+    cos(d * 0.8) * 0.08,
+    cos(a * 1.2) * 0.12,
+    cos(d + a * 0.6) * 0.10
   );
   
-  // Apply iridescence as additive color shift rather than multiplication
-  vec3 finalColor = baseColor * iridescenceIntensity + iridescenceShift;
+  // Add depth and glassy effect
+  float depthFactor = 1.0 + sin(d * 0.3 + a * 0.4) * 0.1;
+  vec3 glassEffect = baseColor * depthFactor;
+  
+  // Apply royal green iridescence as additive overlay
+  vec3 finalColor = glassEffect * iridescenceIntensity + iridescenceShift;
+  
+  // Add subtle edge enhancement for glassmorphism
+  float edgeGlow = smoothstep(0.0, 0.1, vUv.x) * smoothstep(0.0, 0.1, 1.0 - vUv.x) *
+                   smoothstep(0.0, 0.1, vUv.y) * smoothstep(0.0, 0.1, 1.0 - vUv.y);
+  finalColor += edgeGlow * 0.05;
   
   gl_FragColor = vec4(finalColor, 1.0);
 }
@@ -79,26 +89,47 @@ interface IridescenceProps {
 	topColor?: [number, number, number];
 	middleColor?: [number, number, number];
 	bottomColor?: [number, number, number];
+	darkTopColor?: [number, number, number];
+	darkMiddleColor?: [number, number, number];
+	darkBottomColor?: [number, number, number];
 }
 
 export default function Iridescence({
 	speed = 0.8,
 	amplitude = 0.15,
 	mouseReact = true,
+	// Light mode colors - Original
 	topColor = [0.941, 1.0, 0.961], // Light green #F0FDF5
 	middleColor = [0.863, 0.988, 0.906], // Soft green cream #DCF9E7
 	bottomColor = [0.565, 0.859, 0.651], // Royal green #90DBA6
+	// Dark mode colors - Deep Royal Green theme
+	darkTopColor = [0.008, 0.071, 0.016], // Very dark green #021204
+	darkMiddleColor = [0.012, 0.125, 0.129], // Dark royal green #032021
+	darkBottomColor = [0.180, 0.800, 0.443], // Bright royal green #2ECC71
 	...rest
 }: IridescenceProps) {
+	const { theme } = useTheme();
+	const isDark = theme === "dark";
 	const ctnDom = useRef<HTMLDivElement>(null);
 	const mousePos = useRef({ x: 0.5, y: 0.5 });
+
+	// Select colors based on theme
+	const currentTopColor = isDark ? darkTopColor : topColor;
+	const currentMiddleColor = isDark ? darkMiddleColor : middleColor;
+	const currentBottomColor = isDark ? darkBottomColor : bottomColor;
 
 	useEffect(() => {
 		if (!ctnDom.current) return;
 		const ctn = ctnDom.current;
 		const renderer = new Renderer();
 		const gl = renderer.gl;
-		gl.clearColor(1, 1, 1, 1);
+		
+		// Set clear color based on theme
+		if (isDark) {
+			gl.clearColor(0.0, 0.196, 0.129, 1); // Deep green #003221
+		} else {
+			gl.clearColor(1, 1, 1, 1); // White
+		}
 
 		let program: Program;
 
@@ -120,9 +151,9 @@ export default function Iridescence({
 				fragment: fragmentShader,
 				uniforms: {
 					uTime: { value: 0 },
-					uColor1: { value: [topColor[0], topColor[1], topColor[2]] },
-					uColor2: { value: [middleColor[0], middleColor[1], middleColor[2]] },
-					uColor3: { value: [bottomColor[0], bottomColor[1], bottomColor[2]] },
+					uColor1: { value: [currentTopColor[0], currentTopColor[1], currentTopColor[2]] },
+					uColor2: { value: [currentMiddleColor[0], currentMiddleColor[1], currentMiddleColor[2]] },
+					uColor3: { value: [currentBottomColor[0], currentBottomColor[1], currentBottomColor[2]] },
 					uResolution: { value: [gl.canvas.width, gl.canvas.height] },
 					uMouse: { value: [mousePos.current.x, mousePos.current.y] },
 					uAmplitude: { value: amplitude },
@@ -169,7 +200,7 @@ export default function Iridescence({
 			}
 			gl.getExtension("WEBGL_lose_context")?.loseContext();
 		};
-	}, [speed, amplitude, mouseReact, topColor, middleColor, bottomColor]);
+	}, [speed, amplitude, mouseReact, currentTopColor, currentMiddleColor, currentBottomColor, isDark]);
 
 	return <div ref={ctnDom} className="w-full h-full" {...rest} />;
 }

@@ -62,11 +62,7 @@ export function CollapseMenuButton({
 								: "hover:bg-green-500/8"
 					)}
 					style={{
-						background: active
-							? isDark
-								? "rgba(34,102,68,0.15)"
-								: "rgba(52,168,83,0.1)"
-							: "transparent",
+						background: active ? (isDark ? "rgba(34,102,68,0.15)" : "rgba(52,168,83,0.1)") : "transparent",
 						border: active
 							? `1px solid ${isDark ? "rgba(46,204,113,0.25)" : "rgba(52,168,83,0.2)"}`
 							: undefined,

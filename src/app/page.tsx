@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { useTheme } from "@/components/ThemeProvider";
 
 import { downloadRules } from "@/app/dashboard/rules/page";
 import About from "@/components/Home/About";
@@ -19,9 +20,11 @@ import { useLenis } from "@/hooks/useLenis";
 export default function Home(): React.JSX.Element {
 	// Initialize Lenis smooth scrolling
 	useLenis();
+	const { theme } = useTheme();
+	const isDark = theme === "dark";
 
 	return (
-		<div className="flex min-h-screen flex-col items-center justify-between overflow-x-hidden overflow-y-hidden">
+		<div className="flex min-h-screen flex-col items-center justify-between overflow-x-hidden overflow-y-hidden bg-background">
 			<header className="relative flex w-full flex-row items-center justify-around">
 				<Navbar />
 			</header>
@@ -47,7 +50,7 @@ export default function Home(): React.JSX.Element {
 			</section>
 			<section id="problem-statements" className="relative flex w-full scroll-mt-20 flex-col px-4 pt-16">
 				<div className="relative inline-block mb-12 mx-auto w-fit">
-					{/* Animated heading like About Us */}
+					{/* Animated heading matching About Us and Stats styling */}
 					<motion.div
 						className="relative inline-block mb-8"
 						initial={{ opacity: 0, y: 20 }}
@@ -55,22 +58,39 @@ export default function Home(): React.JSX.Element {
 						transition={{ duration: 0.5 }}
 						viewport={{ once: true }}>
 						<h2
-							className="text-4xl md:text-5xl font-bold text-[hsl(var(--foreground))]"
-							style={{ fontFamily: "var(--font-playfair-display)" }}>
+							className="text-4xl md:text-5xl font-bold relative"
+							style={{
+								fontFamily: "var(--font-playfair-display)",
+								color: theme === "dark" ? "rgba(200, 240, 200, 0.95)" : "#005050",
+								textShadow: theme === "dark" 
+									? "0 2px 8px rgba(46, 204, 113, 0.2)" 
+									: "0 2px 8px rgba(16, 109, 32, 0.15)",
+							}}>
 							Problem Statements
 						</h2>
+
+						{/* Royal Green decorative lines - heading width only */}
 						<motion.div
-							className="absolute -bottom-3 left-1/2 -translate-x-1/2 h-1 bg-gradient-to-r from-[hsl(var(--foreground))] via-green-500 to-[hsl(var(--foreground))] rounded-full"
-							style={{ width: "100%", minWidth: 120, maxWidth: 320 }}
+							className="absolute -bottom-3 left-0 right-0 h-1 rounded-full"
+							style={{
+								background: theme === "dark"
+									? "linear-gradient(to right, rgba(46, 204, 113, 0.8), rgba(34, 197, 94, 0.6), rgba(46, 204, 113, 0.8))"
+									: "#005050",
+							}}
 							initial={{ scaleX: 0 }}
 							whileInView={{ scaleX: 1 }}
 							transition={{ duration: 0.8, delay: 0.5 }}
 							viewport={{ once: true }}
 						/>
 						<motion.div
-							className="absolute -bottom-5 left-0 h-[0.5px] bg-[hsl(var(--foreground))] rounded-full"
-							initial={{ width: 0 }}
-							whileInView={{ width: "100%" }}
+							className="absolute -bottom-5 left-0 w-4/5 h-[0.5px] rounded-full"
+							style={{
+								background: theme === "dark"
+									? "linear-gradient(to right, rgba(46, 204, 113, 0.6), rgba(34, 197, 94, 0.4), rgba(46, 204, 113, 0.6))"
+									: "linear-gradient(to right, rgba(16, 109, 32, 0.6), rgba(34, 139, 34, 0.4), rgba(16, 109, 32, 0.6))",
+							}}
+							initial={{ scaleX: 0 }}
+							whileInView={{ scaleX: 1 }}
 							transition={{ duration: 0.8, delay: 0.7 }}
 							viewport={{ once: true }}
 						/>

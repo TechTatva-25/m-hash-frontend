@@ -32,10 +32,7 @@ interface OTPVerificationFormProps {
 	onCancel: () => void;
 }
 
-export default function OTPVerificationForm({
-	email,
-	onCancel,
-}: OTPVerificationFormProps): React.JSX.Element {
+export default function OTPVerificationForm({ email, onCancel }: OTPVerificationFormProps): React.JSX.Element {
 	const router = useRouter();
 	const [resendDisabled, setResendDisabled] = useState(false);
 	const [timer, setTimer] = useState(0);
@@ -51,12 +48,16 @@ export default function OTPVerificationForm({
 	const onSubmit = async (data: z.infer<typeof otpFormSchema>): Promise<void> => {
 		setIsLoading(true);
 		try {
-			const response = await axios.post(getEndpoint(Endpoints.VERIFY_EMAIL), {
-				email,
-				otp: data.otp,
-			}, {
-				withCredentials: true, // Ensure cookies are sent with the request
-			});
+			const response = await axios.post(
+				getEndpoint(Endpoints.VERIFY_EMAIL),
+				{
+					email,
+					otp: data.otp,
+				},
+				{
+					withCredentials: true, // Ensure cookies are sent with the request
+				}
+			);
 
 			toast.success(response.data.message);
 

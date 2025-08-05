@@ -72,8 +72,14 @@ export function UserNav(): React.JSX.Element {
 					{/* Outer border ring for better definition */}
 					<div className="absolute inset-0 rounded-full border-2 border-white/40 transition-all duration-300 group-hover:border-white/60"></div>
 
-					{/* Glow effect */}
-					<div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400/20 to-purple-400/20 blur-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+					{/* Royal green glow effect */}
+					<div
+						className="absolute inset-0 rounded-full blur-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+						style={{
+							background: theme === "dark"
+								? "linear-gradient(to right, rgba(46, 204, 113, 0.2), rgba(34, 197, 94, 0.2))"
+								: "linear-gradient(to right, rgba(16, 109, 32, 0.2), rgba(34, 139, 34, 0.2))",
+						}}></div>
 
 					{/* Enhanced glassmorphic background */}
 					<div className="absolute inset-1 rounded-full bg-white/15 backdrop-blur-lg border border-white/30 shadow-2xl transition-all duration-300 group-hover:bg-white/20 group-hover:border-white/40 group-hover:shadow-3xl"></div>
@@ -128,8 +134,14 @@ export function UserNav(): React.JSX.Element {
 											{/* Glassmorphic background */}
 											<div className="absolute inset-1 rounded-full bg-white/15 backdrop-blur-lg border border-white/30 transition-all duration-300 group-hover:bg-white/20 group-hover:border-white/40"></div>
 
-											{/* Glow effect */}
-											<div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-400/0 to-blue-400/0 transition-all duration-300 group-hover:from-purple-400/20 group-hover:to-blue-400/20 blur-lg"></div>
+											{/* Glow effect with royal green */}
+											<div
+												className="absolute inset-0 rounded-full transition-all duration-300 blur-lg"
+												style={{
+													background: theme === "dark"
+														? "linear-gradient(to right, rgba(46, 204, 113, 0), rgba(34, 197, 94, 0)) group-hover:linear-gradient(to right, rgba(46, 204, 113, 0.2), rgba(34, 197, 94, 0.2))"
+														: "linear-gradient(to right, rgba(16, 109, 32, 0), rgba(34, 139, 34, 0)) group-hover:linear-gradient(to right, rgba(16, 109, 32, 0.2), rgba(34, 139, 34, 0.2))",
+												}}></div>
 
 											{/* Avatar with enhanced styling - ONLY BEAM VARIANT */}
 											<div className="h-10 w-10 relative z-10 transition-all duration-300 group-hover:scale-105 rounded-full overflow-hidden">
@@ -151,19 +163,40 @@ export function UserNav(): React.JSX.Element {
 					</TooltipProvider>
 
 					<DropdownMenuContent
-						className="w-56 border-0 shadow-xl backdrop-blur-xl bg-white/90 dark:bg-slate-900/90 rounded-xl overflow-hidden z-[9999]"
+						className="w-56 border-0 shadow-xl backdrop-blur-xl rounded-xl overflow-hidden z-[9999]"
+						style={{
+							background: theme === "dark"
+								? "rgba(0, 40, 25, 0.9)"
+								: "rgba(255, 255, 255, 0.9)",
+						}}
 						align="end"
 						forceMount>
 						{/* Enhanced header with glassmorphic effect */}
-						<DropdownMenuLabel className="font-normal p-4 border-b border-white/20 dark:border-slate-700/50">
+						<DropdownMenuLabel
+							className="font-normal p-4"
+							style={{
+								borderBottom: theme === "dark"
+									? "1px solid rgba(46, 204, 113, 0.2)"
+									: "1px solid rgba(16, 109, 32, 0.2)",
+							}}>
 							<div className="flex flex-col space-y-2">
 								<p
-									className={`text-sm font-semibold leading-none transition-colors duration-200 hover:text-purple-600 dark:hover:text-purple-400 ${theme === "dark" ? "text-white" : "text-slate-900"}`}
-									style={{ fontFamily: "var(--font-playfair-display)" }}>
+									className="text-sm font-semibold leading-none transition-colors duration-200"
+									style={{
+										fontFamily: "var(--font-playfair-display)",
+										color: theme === "dark"
+											? "rgba(200, 240, 200, 0.95)"
+											: "rgba(16, 109, 32, 0.9)",
+									}}>
 									{username}
 								</p>
 								<p
-									className={`text-xs leading-none font-mono ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`}>
+									className="text-xs leading-none font-mono"
+									style={{
+										color: theme === "dark"
+											? "rgba(200, 240, 200, 0.7)"
+											: "rgba(16, 109, 32, 0.7)",
+									}}>
 									{userEmail}
 								</p>
 							</div>
@@ -172,29 +205,83 @@ export function UserNav(): React.JSX.Element {
 						<div className="p-1">
 							<DropdownMenuGroup>
 								<DropdownMenuItem
-									className="hover:cursor-pointer transition-all duration-200 hover:bg-purple-50 dark:hover:bg-purple-900/30 rounded-lg m-1 group"
+									className="hover:cursor-pointer transition-all duration-200 rounded-lg m-1 group"
+									style={{
+										backgroundColor: "transparent",
+									}}
+									onMouseEnter={(e) => {
+										e.currentTarget.style.backgroundColor = theme === "dark"
+											? "rgba(46, 204, 113, 0.1)"
+											: "rgba(16, 109, 32, 0.1)";
+									}}
+									onMouseLeave={(e) => {
+										e.currentTarget.style.backgroundColor = "transparent";
+									}}
 									asChild>
 									<Link href="/dashboard" className="flex items-center p-2">
-										<LayoutGrid className="mr-3 h-4 w-4 text-purple-600 dark:text-purple-400 transition-all duration-200 group-hover:scale-110" />
+										<LayoutGrid
+											className="mr-3 h-4 w-4 transition-all duration-200 group-hover:scale-110"
+											style={{
+												color: theme === "dark"
+													? "rgba(46, 204, 113, 0.8)"
+													: "rgba(16, 109, 32, 0.8)",
+											}}
+										/>
 										<span
-											className={`font-medium transition-colors duration-200 ${theme === "dark" ? "text-slate-200 group-hover:text-white" : "text-slate-700 group-hover:text-slate-900"}`}
-											style={{ fontFamily: "var(--font-playfair-display)" }}>
+											className="font-medium transition-colors duration-200"
+											style={{
+												fontFamily: "var(--font-playfair-display)",
+												color: theme === "dark"
+													? "rgba(200, 240, 200, 0.9)"
+													: "rgba(16, 109, 32, 0.9)",
+											}}>
 											Dashboard
 										</span>
 									</Link>
 								</DropdownMenuItem>
 							</DropdownMenuGroup>
 
-							<div className="my-1 h-px bg-gradient-to-r from-transparent via-purple-300 dark:via-purple-600 to-transparent"></div>
+							<div
+								className="my-1 h-px"
+								style={{
+									background: theme === "dark"
+										? "linear-gradient(to right, transparent, rgba(46, 204, 113, 0.3), transparent)"
+										: "linear-gradient(to right, transparent, rgba(16, 109, 32, 0.3), transparent)",
+								}}></div>
 
 							<DropdownMenuItem
-								className="hover:cursor-pointer disabled:cursor-not-allowed transition-all duration-200 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg m-1 group"
+								className="hover:cursor-pointer disabled:cursor-not-allowed transition-all duration-200 rounded-lg m-1 group"
+								style={{
+									backgroundColor: "transparent",
+								}}
+								onMouseEnter={(e) => {
+									if (!disabled) {
+										e.currentTarget.style.backgroundColor = theme === "dark"
+											? "rgba(220, 38, 38, 0.1)"
+											: "rgba(239, 68, 68, 0.1)";
+									}
+								}}
+								onMouseLeave={(e) => {
+									e.currentTarget.style.backgroundColor = "transparent";
+								}}
 								onClick={signOut}
 								disabled={disabled}>
-								<LogOut className="mr-3 h-4 w-4 text-red-600 dark:text-red-400 transition-all duration-200 group-hover:scale-110 group-hover:rotate-12" />
+								<LogOut
+									className="mr-3 h-4 w-4 transition-all duration-200 group-hover:scale-110 group-hover:rotate-12"
+									style={{
+										color: theme === "dark"
+											? "rgba(220, 38, 38, 0.8)"
+											: "rgba(239, 68, 68, 0.8)",
+									}}
+								/>
 								<span
-									className={`font-medium transition-colors duration-200 ${theme === "dark" ? "text-slate-200 group-hover:text-white" : "text-slate-700 group-hover:text-slate-900"}`}
-									style={{ fontFamily: "var(--font-playfair-display)" }}>
+									className="font-medium transition-colors duration-200"
+									style={{
+										fontFamily: "var(--font-playfair-display)",
+										color: theme === "dark"
+											? "rgba(200, 240, 200, 0.9)"
+											: "rgba(16, 109, 32, 0.9)",
+									}}>
 									{disabled ? "Signing out..." : "Sign out"}
 								</span>
 							</DropdownMenuItem>

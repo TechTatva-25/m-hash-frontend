@@ -20,7 +20,7 @@ export function ThemeToggle() {
 				<div className="absolute inset-0 rounded-full border-2 border-white/40 transition-all duration-300 group-hover:border-white/60"></div>
 
 				{/* Glow effect */}
-				<div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400/20 to-purple-400/20 blur-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+				<div className="absolute inset-0 rounded-full bg-gradient-to-r from-green-400/20 to-emerald-400/20 blur-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
 
 				{/* Enhanced glassmorphic background */}
 				<div className="absolute inset-1 rounded-full bg-white/15 backdrop-blur-lg border border-white/30 shadow-2xl transition-all duration-300 group-hover:bg-white/20 group-hover:border-white/40 group-hover:shadow-3xl"></div>

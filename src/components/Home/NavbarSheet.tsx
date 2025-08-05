@@ -71,20 +71,20 @@ export function NavbarSheet(): React.JSX.Element {
 						className="relative overflow-hidden transition-all duration-300"
 						style={{
 							background: isDark
-								? "linear-gradient(135deg, rgba(30,30,45,0.7) 0%, rgba(35,35,60,0.5) 100%)"
-								: "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(240,240,255,0.7) 100%)",
+								? "linear-gradient(135deg, rgba(0, 30, 20, 0.7) 0%, rgba(0, 40, 25, 0.5) 100%)"
+								: "linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 255, 245, 0.7) 100%)",
 							backdropFilter: "blur(16px)",
 							boxShadow: isDark
-								? `0 4px 15px rgba(0,0,0,0.3), 
-								   0 0 0 1px rgba(103,80,164,0.2),
-								   inset 0 1px 0 0 rgba(255,255,255,0.05)`
-								: `0 4px 15px rgba(103,80,164,0.15), 
-								   0 0 0 1px rgba(132,95,220,0.2),
-								   inset 0 1px 0 0 rgba(255,255,255,0.8)`,
+								? `0 4px 15px rgba(0, 0, 0, 0.3), 
+								   0 0 0 1px rgba(46, 204, 113, 0.2),
+								   inset 0 1px 0 0 rgba(46, 204, 113, 0.05)`
+								: `0 4px 15px rgba(16, 109, 32, 0.15), 
+								   0 0 0 1px rgba(16, 109, 32, 0.2),
+								   inset 0 1px 0 0 rgba(255, 255, 255, 0.8)`,
 							border: isDark
-								? "1px solid rgba(103,80,164,0.3)"
-								: "1px solid rgba(132,95,220,0.25)",
-							color: isDark ? "rgba(230,210,255,0.9)" : "rgba(103,80,164,0.9)",
+								? "1px solid rgba(46, 204, 113, 0.3)"
+								: "1px solid rgba(16, 109, 32, 0.25)",
+							color: isDark ? "rgba(200, 240, 200, 0.9)" : "rgba(16, 109, 32, 0.9)",
 						}}>
 						<svg
 							className="h-5 w-5"
@@ -106,19 +106,19 @@ export function NavbarSheet(): React.JSX.Element {
 					className="z-[200]"
 					style={{
 						background: isDark
-							? "linear-gradient(135deg, rgba(25,25,35,0.85) 0%, rgba(35,35,50,0.85) 100%)"
-							: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(245,245,255,0.95) 100%)",
+							? "linear-gradient(135deg, rgba(0, 25, 15, 0.85) 0%, rgba(0, 35, 20, 0.85) 100%)"
+							: "linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 255, 250, 0.95) 100%)",
 						backdropFilter: "blur(20px)",
 						boxShadow: isDark
-							? `0 20px 60px -10px rgba(0,0,0,0.5), 
-							   0 0 0 1px rgba(103,80,164,0.3),
-							   inset 0 1px 0 0 rgba(255,255,255,0.05)`
-							: `0 20px 60px -10px rgba(103,80,164,0.2), 
-							   0 0 0 1px rgba(132,95,220,0.2),
-							   inset 0 1px 0 0 rgba(255,255,255,0.8)`,
+							? `0 20px 60px -10px rgba(0, 0, 0, 0.5), 
+							   0 0 0 1px rgba(46, 204, 113, 0.3),
+							   inset 0 1px 0 0 rgba(46, 204, 113, 0.05)`
+							: `0 20px 60px -10px rgba(16, 109, 32, 0.2), 
+							   0 0 0 1px rgba(16, 109, 32, 0.2),
+							   inset 0 1px 0 0 rgba(255, 255, 255, 0.8)`,
 						border: isDark
-							? "1px solid rgba(103,80,164,0.4)"
-							: "1px solid rgba(132,95,220,0.3)",
+							? "1px solid rgba(46, 204, 113, 0.4)"
+							: "1px solid rgba(16, 109, 32, 0.3)",
 						zIndex: 200,
 					}}>
 					<div className="grid gap-3 py-4">
@@ -133,16 +133,16 @@ export function NavbarSheet(): React.JSX.Element {
 									href={link.href}
 									className="block rounded-xl px-4 py-3 transition-all duration-300 backdrop-blur-sm border border-transparent"
 									style={{
-										color: isDark ? "rgba(230,210,255,0.95)" : "rgba(50,50,70,0.95)",
+										color: isDark ? "rgba(200, 240, 200, 0.95)" : "rgba(16, 109, 32, 0.95)",
 										backdropFilter: "blur(8px)",
 									}}
 									onMouseEnter={(e) => {
 										e.currentTarget.style.background = isDark
-											? "rgba(103,80,164,0.2)"
-											: "rgba(132,95,220,0.15)";
+											? "rgba(46, 204, 113, 0.2)"
+											: "rgba(16, 109, 32, 0.15)";
 										e.currentTarget.style.borderColor = isDark
-											? "rgba(103,80,164,0.4)"
-											: "rgba(132,95,220,0.3)";
+											? "rgba(46, 204, 113, 0.4)"
+											: "rgba(16, 109, 32, 0.3)";
 									}}
 									onMouseLeave={(e) => {
 										e.currentTarget.style.background = "transparent";
@@ -161,10 +161,15 @@ export function NavbarSheet(): React.JSX.Element {
 									}}
 									className="w-full text-white shadow-lg hover:shadow-xl transition-all duration-300"
 									style={{
-										background: "linear-gradient(135deg, rgba(103,80,164,0.8) 0%, rgba(132,95,220,0.9) 100%)",
-										boxShadow: `0 4px 15px rgba(103,80,164,0.3),
-												   inset 0 1px 0 rgba(255,255,255,0.2)`,
-										border: "1px solid rgba(103,80,164,0.4)",
+										background: isDark
+											? "linear-gradient(135deg, rgba(46, 204, 113, 0.8) 0%, rgba(34, 197, 94, 0.9) 100%)"
+											: "linear-gradient(135deg, rgba(16, 109, 32, 0.8) 0%, rgba(34, 139, 34, 0.9) 100%)",
+										boxShadow: isDark
+											? `0 4px 15px rgba(46, 204, 113, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)`
+											: `0 4px 15px rgba(16, 109, 32, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)`,
+										border: isDark
+											? "1px solid rgba(46, 204, 113, 0.4)"
+											: "1px solid rgba(16, 109, 32, 0.4)",
 									}}>
 									Login
 								</Button>
@@ -178,20 +183,20 @@ export function NavbarSheet(): React.JSX.Element {
 									className="w-full transition-all duration-300"
 									style={{
 										background: isDark
-											? "linear-gradient(135deg, rgba(30,30,45,0.7) 0%, rgba(35,35,60,0.5) 100%)"
-											: "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(240,240,255,0.7) 100%)",
+											? "linear-gradient(135deg, rgba(0, 30, 20, 0.7) 0%, rgba(0, 40, 25, 0.5) 100%)"
+											: "linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 255, 245, 0.7) 100%)",
 										backdropFilter: "blur(16px)",
 										boxShadow: isDark
-											? `0 4px 15px rgba(0,0,0,0.3), 
-											   0 0 0 1px rgba(103,80,164,0.2),
-											   inset 0 1px 0 0 rgba(255,255,255,0.05)`
-											: `0 4px 15px rgba(103,80,164,0.15), 
-											   0 0 0 1px rgba(132,95,220,0.2),
-											   inset 0 1px 0 0 rgba(255,255,255,0.8)`,
+											? `0 4px 15px rgba(0, 0, 0, 0.3), 
+											   0 0 0 1px rgba(46, 204, 113, 0.2),
+											   inset 0 1px 0 0 rgba(46, 204, 113, 0.05)`
+											: `0 4px 15px rgba(16, 109, 32, 0.15), 
+											   0 0 0 1px rgba(16, 109, 32, 0.2),
+											   inset 0 1px 0 0 rgba(255, 255, 255, 0.8)`,
 										border: isDark
-											? "1px solid rgba(103,80,164,0.3)"
-											: "1px solid rgba(132,95,220,0.25)",
-										color: isDark ? "rgba(230,210,255,0.9)" : "rgba(103,80,164,0.9)",
+											? "1px solid rgba(46, 204, 113, 0.3)"
+											: "1px solid rgba(16, 109, 32, 0.25)",
+										color: isDark ? "rgba(200, 240, 200, 0.9)" : "rgba(16, 109, 32, 0.9)",
 									}}>
 									Register
 								</Button>
@@ -203,20 +208,20 @@ export function NavbarSheet(): React.JSX.Element {
 									className="w-full transition-all duration-300"
 									style={{
 										background: isDark
-											? "linear-gradient(135deg, rgba(30,30,45,0.7) 0%, rgba(35,35,60,0.5) 100%)"
-											: "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(240,240,255,0.7) 100%)",
+											? "linear-gradient(135deg, rgba(0, 30, 20, 0.7) 0%, rgba(0, 40, 25, 0.5) 100%)"
+											: "linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 255, 245, 0.7) 100%)",
 										backdropFilter: "blur(16px)",
 										boxShadow: isDark
-											? `0 4px 15px rgba(0,0,0,0.3), 
-											   0 0 0 1px rgba(103,80,164,0.2),
-											   inset 0 1px 0 0 rgba(255,255,255,0.05)`
-											: `0 4px 15px rgba(103,80,164,0.15), 
-											   0 0 0 1px rgba(132,95,220,0.2),
-											   inset 0 1px 0 0 rgba(255,255,255,0.8)`,
+											? `0 4px 15px rgba(0, 0, 0, 0.3), 
+											   0 0 0 1px rgba(46, 204, 113, 0.2),
+											   inset 0 1px 0 0 rgba(46, 204, 113, 0.05)`
+											: `0 4px 15px rgba(16, 109, 32, 0.15), 
+											   0 0 0 1px rgba(16, 109, 32, 0.2),
+											   inset 0 1px 0 0 rgba(255, 255, 255, 0.8)`,
 										border: isDark
-											? "1px solid rgba(103,80,164,0.3)"
-											: "1px solid rgba(132,95,220,0.25)",
-										color: isDark ? "rgba(230,210,255,0.9)" : "rgba(103,80,164,0.9)",
+											? "1px solid rgba(46, 204, 113, 0.3)"
+											: "1px solid rgba(16, 109, 32, 0.25)",
+										color: isDark ? "rgba(200, 240, 200, 0.9)" : "rgba(16, 109, 32, 0.9)",
 									}}>
 									{theme === "dark" ? (
 										<RiSunFill className="mr-2" />
@@ -244,19 +249,19 @@ export function NavbarSheet(): React.JSX.Element {
 										className="relative h-10 w-10 rounded-full transition-all duration-300 group"
 										style={{
 											background: isDark
-												? "linear-gradient(135deg, rgba(30,30,45,0.7) 0%, rgba(35,35,60,0.5) 100%)"
-												: "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(240,240,255,0.7) 100%)",
+												? "linear-gradient(135deg, rgba(0, 30, 20, 0.7) 0%, rgba(0, 40, 25, 0.5) 100%)"
+												: "linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 255, 245, 0.7) 100%)",
 											backdropFilter: "blur(16px)",
 											boxShadow: isDark
-												? `0 4px 15px rgba(0,0,0,0.3), 
-												   0 0 0 1px rgba(103,80,164,0.2),
-												   inset 0 1px 0 0 rgba(255,255,255,0.05)`
-												: `0 4px 15px rgba(103,80,164,0.15), 
-												   0 0 0 1px rgba(132,95,220,0.2),
-												   inset 0 1px 0 0 rgba(255,255,255,0.8)`,
+												? `0 4px 15px rgba(0, 0, 0, 0.3), 
+												   0 0 0 1px rgba(46, 204, 113, 0.2),
+												   inset 0 1px 0 0 rgba(46, 204, 113, 0.05)`
+												: `0 4px 15px rgba(16, 109, 32, 0.15), 
+												   0 0 0 1px rgba(16, 109, 32, 0.2),
+												   inset 0 1px 0 0 rgba(255, 255, 255, 0.8)`,
 											border: isDark
-												? "1px solid rgba(103,80,164,0.3)"
-												: "1px solid rgba(132,95,220,0.25)",
+												? "1px solid rgba(46, 204, 113, 0.3)"
+												: "1px solid rgba(16, 109, 32, 0.25)",
 										}}>
 										<Avatar className="h-10 w-10 transition-transform duration-300 group-hover:scale-105">
 											<BoringAvatar
@@ -270,7 +275,9 @@ export function NavbarSheet(): React.JSX.Element {
 										<div
 											className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm -z-10"
 											style={{
-												background: "linear-gradient(135deg, rgba(103,80,164,0.4) 0%, rgba(132,95,220,0.4) 100%)",
+												background: isDark
+													? "linear-gradient(135deg, rgba(46, 204, 113, 0.4) 0%, rgba(34, 197, 94, 0.4) 100%)"
+													: "linear-gradient(135deg, rgba(16, 109, 32, 0.4) 0%, rgba(34, 139, 34, 0.4) 100%)",
 											}}></div>
 									</Button>
 								</DropdownMenuTrigger>
@@ -280,20 +287,20 @@ export function NavbarSheet(): React.JSX.Element {
 								side="bottom"
 								style={{
 									background: isDark
-										? "linear-gradient(135deg, rgba(25,25,35,0.9) 0%, rgba(35,35,50,0.9) 100%)"
-										: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(245,245,255,0.95) 100%)",
+										? "linear-gradient(135deg, rgba(0, 25, 15, 0.9) 0%, rgba(0, 35, 20, 0.9) 100%)"
+										: "linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 255, 250, 0.95) 100%)",
 									backdropFilter: "blur(16px)",
 									boxShadow: isDark
-										? `0 8px 25px rgba(0,0,0,0.4), 
-										   0 0 0 1px rgba(103,80,164,0.3),
-										   inset 0 1px 0 0 rgba(255,255,255,0.05)`
-										: `0 8px 25px rgba(103,80,164,0.15), 
-										   0 0 0 1px rgba(132,95,220,0.2),
-										   inset 0 1px 0 0 rgba(255,255,255,0.8)`,
+										? `0 8px 25px rgba(0, 0, 0, 0.4), 
+										   0 0 0 1px rgba(46, 204, 113, 0.3),
+										   inset 0 1px 0 0 rgba(46, 204, 113, 0.05)`
+										: `0 8px 25px rgba(16, 109, 32, 0.15), 
+										   0 0 0 1px rgba(16, 109, 32, 0.2),
+										   inset 0 1px 0 0 rgba(255, 255, 255, 0.8)`,
 									border: isDark
-										? "1px solid rgba(103,80,164,0.4)"
-										: "1px solid rgba(132,95,220,0.3)",
-									color: isDark ? "rgba(230,210,255,0.95)" : "rgba(50,50,70,0.95)",
+										? "1px solid rgba(46, 204, 113, 0.4)"
+										: "1px solid rgba(16, 109, 32, 0.3)",
+									color: isDark ? "rgba(200, 240, 200, 0.95)" : "rgba(16, 109, 32, 0.95)",
 								}}>
 								Profile
 							</TooltipContent>
@@ -306,33 +313,33 @@ export function NavbarSheet(): React.JSX.Element {
 						forceMount
 						style={{
 							background: isDark
-								? "linear-gradient(135deg, rgba(25,25,35,0.9) 0%, rgba(35,35,50,0.9) 100%)"
-								: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(245,245,255,0.95) 100%)",
+								? "linear-gradient(135deg, rgba(0, 25, 15, 0.9) 0%, rgba(0, 35, 20, 0.9) 100%)"
+								: "linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 255, 250, 0.95) 100%)",
 							backdropFilter: "blur(20px)",
 							boxShadow: isDark
-								? `0 20px 60px -10px rgba(0,0,0,0.5), 
-								   0 0 0 1px rgba(103,80,164,0.3),
-								   inset 0 1px 0 0 rgba(255,255,255,0.05)`
-								: `0 20px 60px -10px rgba(103,80,164,0.2), 
-								   0 0 0 1px rgba(132,95,220,0.2),
-								   inset 0 1px 0 0 rgba(255,255,255,0.8)`,
+								? `0 20px 60px -10px rgba(0, 0, 0, 0.5), 
+								   0 0 0 1px rgba(46, 204, 113, 0.3),
+								   inset 0 1px 0 0 rgba(46, 204, 113, 0.05)`
+								: `0 20px 60px -10px rgba(16, 109, 32, 0.2), 
+								   0 0 0 1px rgba(16, 109, 32, 0.2),
+								   inset 0 1px 0 0 rgba(255, 255, 255, 0.8)`,
 							border: isDark
-								? "1px solid rgba(103,80,164,0.4)"
-								: "1px solid rgba(132,95,220,0.3)",
+								? "1px solid rgba(46, 204, 113, 0.4)"
+								: "1px solid rgba(16, 109, 32, 0.3)",
 						}}>
 						<DropdownMenuLabel className="font-normal p-4">
 							<div className="flex flex-col space-y-1">
 								<p
 									className="text-sm font-medium leading-none"
 									style={{
-										color: isDark ? "rgba(240,225,255,1)" : "rgba(103,80,164,1)",
+										color: isDark ? "rgba(200, 240, 200, 0.95)" : "rgba(16, 109, 32, 0.9)",
 									}}>
 									{username}
 								</p>
 								<p
 									className="text-xs leading-none"
 									style={{
-										color: isDark ? "rgba(230,210,255,0.8)" : "rgba(50,50,70,0.8)",
+										color: isDark ? "rgba(200, 240, 200, 0.7)" : "rgba(16, 109, 32, 0.7)",
 									}}>
 									{userEmail}
 								</p>
@@ -340,69 +347,88 @@ export function NavbarSheet(): React.JSX.Element {
 						</DropdownMenuLabel>
 						<DropdownMenuSeparator
 							style={{
-								background: isDark ? "rgba(103,80,164,0.3)" : "rgba(132,95,220,0.2)",
+								background: isDark ? "rgba(46, 204, 113, 0.3)" : "rgba(16, 109, 32, 0.2)",
 							}}
 						/>
 						<DropdownMenuGroup className="p-1">
 							<DropdownMenuItem
 								className="hover:cursor-pointer rounded-lg transition-all duration-200 backdrop-blur-sm"
 								style={{
-									color: isDark ? "rgba(230,210,255,0.95)" : "rgba(50,50,70,0.95)",
+									color: isDark ? "rgba(200, 240, 200, 0.95)" : "rgba(16, 109, 32, 0.95)",
 								}}
 								onMouseEnter={(e) => {
 									e.currentTarget.style.background = isDark
-										? "rgba(103,80,164,0.2)"
-										: "rgba(132,95,220,0.15)";
+										? "rgba(46, 204, 113, 0.2)"
+										: "rgba(16, 109, 32, 0.15)";
 								}}
 								onMouseLeave={(e) => {
 									e.currentTarget.style.background = "transparent";
 								}}
 								asChild>
 								<Link href="/dashboard" className="flex items-center p-3">
-									<LayoutGrid className="mr-3 h-4 w-4 text-indigo-500 dark:text-indigo-400" />
+									<LayoutGrid
+										className="mr-3 h-4 w-4 transition-all duration-200"
+										style={{
+											color: isDark ? "rgba(46, 204, 113, 0.8)" : "rgba(16, 109, 32, 0.8)",
+										}}
+									/>
 									<span>Dashboard</span>
 								</Link>
 							</DropdownMenuItem>
 							<DropdownMenuItem
 								className="hover:cursor-pointer rounded-lg transition-all duration-200 backdrop-blur-sm p-3"
 								style={{
-									color: isDark ? "rgba(230,210,255,0.95)" : "rgba(50,50,70,0.95)",
+									color: isDark ? "rgba(200, 240, 200, 0.95)" : "rgba(16, 109, 32, 0.95)",
 								}}
 								onMouseEnter={(e) => {
 									e.currentTarget.style.background = isDark
-										? "rgba(103,80,164,0.2)"
-										: "rgba(132,95,220,0.15)";
+										? "rgba(46, 204, 113, 0.2)"
+										: "rgba(16, 109, 32, 0.15)";
 								}}
 								onMouseLeave={(e) => {
 									e.currentTarget.style.background = "transparent";
 								}}
 								onClick={toggleTheme}>
 								{theme === "dark" ? (
-									<RiSunFill className="mr-3 h-4 w-4 text-yellow-500" />
+									<RiSunFill
+										className="mr-3 h-4 w-4"
+										style={{ color: "rgba(251, 191, 36, 1)" }}
+									/>
 								) : (
-									<RiMoonClearFill className="mr-3 h-4 w-4 text-indigo-500" />
+									<RiMoonClearFill
+										className="mr-3 h-4 w-4"
+										style={{ color: isDark ? "rgba(46, 204, 113, 0.8)" : "rgba(16, 109, 32, 0.8)" }}
+									/>
 								)}
-								<span>
-									{theme === "dark" ? "Light" : "Dark"} Mode
-								</span>
+								<span>{theme === "dark" ? "Light" : "Dark"} Mode</span>
 							</DropdownMenuItem>
 						</DropdownMenuGroup>
 						<DropdownMenuSeparator
 							style={{
-								background: isDark ? "rgba(103,80,164,0.3)" : "rgba(132,95,220,0.2)",
+								background: isDark ? "rgba(46, 204, 113, 0.3)" : "rgba(16, 109, 32, 0.2)",
 							}}
 						/>
 						<DropdownMenuItem
-							className="hover:cursor-pointer disabled:cursor-not-allowed rounded-lg transition-all duration-200 backdrop-blur-sm p-3 text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300"
+							className="hover:cursor-pointer disabled:cursor-not-allowed rounded-lg transition-all duration-200 backdrop-blur-sm p-3"
+							style={{
+								color: isDark ? "rgba(200, 240, 200, 0.95)" : "rgba(16, 109, 32, 0.95)",
+							}}
 							onMouseEnter={(e) => {
 								e.currentTarget.style.background = "rgba(239,68,68,0.1)";
+								e.currentTarget.style.color = isDark ? "rgba(239, 68, 68, 0.9)" : "rgba(220, 38, 38, 0.9)";
 							}}
 							onMouseLeave={(e) => {
 								e.currentTarget.style.background = "transparent";
+								e.currentTarget.style.color = isDark ? "rgba(200, 240, 200, 0.95)" : "rgba(16, 109, 32, 0.95)";
 							}}
 							onClick={signOut}
 							disabled={disabled}>
-							<LogOut className="mr-3 h-4 w-4" />
+							<LogOut
+								className="mr-3 h-4 w-4 transition-all duration-200"
+								style={{
+									color: isDark ? "rgba(239, 68, 68, 0.9)" : "rgba(220, 38, 38, 0.9)",
+								}}
+							/>
 							<span>Sign out</span>
 						</DropdownMenuItem>
 					</DropdownMenuContent>
