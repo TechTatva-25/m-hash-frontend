@@ -197,6 +197,7 @@ export function Stats(): React.JSX.Element {
 										className="text-2xl md:text-3xl font-bold mb-2"
 										style={{
 											color: isDark ? "rgba(200, 240, 200, 0.95)" : "#005050",
+											fontFamily: "var(--font-playfair-display)"
 										}}>
 										{typeof item.value === "number"
 											? stats.loading
@@ -208,6 +209,7 @@ export function Stats(): React.JSX.Element {
 										className="text-lg font-semibold mb-2"
 										style={{
 											color: isDark ? "rgba(200, 220, 200, 0.9)" : "rgba(40, 60, 40, 0.9)",
+											fontFamily: "var(--font-playfair-display)"
 										}}>
 										{item.title}
 									</p>
