@@ -105,12 +105,9 @@ export function HighwayTimeline({ timeline = generalTimeLine }: { timeline?: Tim
 							<div
 								className="hidden md:block absolute top-12 w-5 h-5 rounded-full z-20 left-1/2 transform -translate-x-1/2"
 								style={{
-									background: isDark
-										? "linear-gradient(135deg, rgba(0, 50, 33, 0.8), rgba(2, 18, 4, 0.9))"
-										: "linear-gradient(135deg, rgba(240, 255, 245, 0.8), rgba(220, 252, 231, 0.9))",
-									border: isDark
-										? "1px solid rgba(46, 204, 113, 0.4)"
-										: "1px solid #005050",
+									background:
+										"linear-gradient(135deg, rgba(240, 255, 245, 0.8), rgba(220, 252, 231, 0.9))",
+									border: "1px solid rgba(16, 109, 32, 0.3)",
 									backdropFilter: "blur(8px)",
 									boxShadow: isDark
 										? "0 4px 12px rgba(46, 204, 113, 0.2)"
@@ -184,17 +181,15 @@ const TimelineItem = ({ index, stage, icon, isLeft }: TimelineItemProps) => {
 						: "linear-gradient(135deg, rgba(240, 255, 245, 0.85) 0%, rgba(220, 252, 231, 0.7) 100%)",
 					borderColor: isDark ? "rgba(46, 204, 113, 0.25)" : "rgba(16, 109, 32, 0.25)",
 					backdropFilter: "blur(16px)",
-					boxShadow: isDark
-						? "0 16px 32px -8px rgba(46, 204, 113, 0.12), 0 0 0 1px rgba(46, 204, 113, 0.1), inset 0 1px 0 rgba(46, 204, 113, 0.2)"
-						: "0 16px 32px -8px rgba(16, 109, 32, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
+					boxShadow:
+						"0 16px 32px -8px rgba(16, 109, 32, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
 				}}>
 				{/* Enhanced animated border glow on hover with royal green */}
 				<div
 					className="absolute inset-0 rounded-2xl transition-opacity duration-500 pointer-events-none opacity-0 group-hover:opacity-100"
 					style={{
-						background: isDark
-							? "linear-gradient(135deg, rgba(46, 204, 113, 0.4) 0%, rgba(34, 197, 94, 0.25) 50%, rgba(46, 204, 113, 0.4) 100%)"
-							: "linear-gradient(135deg, rgba(16, 109, 32, 0.3) 0%, rgba(34, 197, 94, 0.15) 50%, rgba(16, 109, 32, 0.3) 100%)",
+						background:
+							"linear-gradient(135deg, rgba(16, 109, 32, 0.3) 0%, rgba(34, 197, 94, 0.15) 50%, rgba(16, 109, 32, 0.3) 100%)",
 						mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
 						maskComposite: "xor",
 						padding: "1px",
@@ -253,13 +248,10 @@ const TimelineItem = ({ index, stage, icon, isLeft }: TimelineItemProps) => {
 							<div
 								className="w-fit rounded-lg border p-2 backdrop-blur-sm"
 								style={{
-									background: isDark
-										? "rgba(0, 50, 33, 0.6)"
-										: "rgba(255, 255, 255, 0.6)",
-									borderColor: isDark ? "rgba(46, 204, 113, 0.2)" : "rgba(16, 109, 32, 0.2)",
-									boxShadow: isDark
-										? "0 4px 12px rgba(46, 204, 113, 0.05), inset 0 1px 0 rgba(46, 204, 113, 0.2)"
-										: "0 4px 12px rgba(16, 109, 32, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
+									background: "rgba(255, 255, 255, 0.6)",
+									borderColor: "rgba(16, 109, 32, 0.2)",
+									boxShadow:
+										"0 4px 12px rgba(16, 109, 32, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
 								}}>
 								{icon}
 							</div>
@@ -273,12 +265,9 @@ const TimelineItem = ({ index, stage, icon, isLeft }: TimelineItemProps) => {
 										? "rgba(200, 240, 200, 0.9)"
 										: "rgba(16, 109, 32, 0.9)",
 									backdropFilter: "blur(8px)",
-									border: isDark
-										? "1px solid rgba(46, 204, 113, 0.3)"
-										: "1px solid rgba(255, 255, 255, 0.6)",
-									boxShadow: isDark
-										? "0 2px 8px rgba(46, 204, 113, 0.05), inset 0 1px 0 rgba(46, 204, 113, 0.2)"
-										: "0 2px 8px rgba(16, 109, 32, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
+									border: "1px solid rgba(255, 255, 255, 0.6)",
+									boxShadow:
+										"0 2px 8px rgba(16, 109, 32, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
 								}}>
 								Step {index + 1}
 							</span>

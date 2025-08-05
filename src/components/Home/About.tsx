@@ -10,16 +10,18 @@ export default function About(): React.JSX.Element {
 
 	return (
 		<section id="about" className="py-16 md:py-24 relative">
-			{/* Royal Green Glassmorphic Background - Only in light mode */}
-			{!isDark && (
-				<div className="absolute inset-0 overflow-hidden">
-					<div className="absolute -top-40 -right-40 w-96 h-96 rounded-full blur-3xl bg-green-400/6 animate-pulse-slow"></div>
-					<div
-						className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full blur-3xl bg-emerald-400/5 animate-pulse-slow"
-						style={{ animationDelay: "3s" }}
-					></div>
-				</div>
-			)}
+			{/* Royal Green Glassmorphic Background */}
+			<div className="absolute inset-0 overflow-hidden">
+				<div
+					className={`absolute -top-40 -right-40 w-96 h-96 rounded-full blur-3xl ${
+						isDark ? "bg-emerald-400/8" : "bg-green-400/6"
+					} animate-pulse-slow`}></div>
+				<div
+					className={`absolute -bottom-40 -left-40 w-96 h-96 rounded-full blur-3xl ${
+						isDark ? "bg-green-400/6" : "bg-emerald-400/5"
+					} animate-pulse-slow`}
+					style={{ animationDelay: "3s" }}></div>
+			</div>
 
 			<div className="container mx-auto px-4 relative z-10">
 				{/* Enhanced Royal Green Glassmorphic Card */}
@@ -144,9 +146,7 @@ export default function About(): React.JSX.Element {
 								<motion.div
 									className="absolute -bottom-3 left-0 right-0 h-1 rounded-full"
 									style={{
-										background: isDark
-											? "linear-gradient(to right, rgba(46, 204, 113, 0.8), rgba(34, 197, 94, 0.6), rgba(46, 204, 113, 0.8))"
-											: "#005050",
+										background: isDark ? "rgba(46, 204, 113, 0.8)" : "rgba(16, 109, 32, 0.8)",
 									}}
 									initial={{ scaleX: 0 }}
 									whileInView={{ scaleX: 1 }}
@@ -156,9 +156,7 @@ export default function About(): React.JSX.Element {
 								<motion.div
 									className="absolute -bottom-5 left-0 w-4/5 h-[0.5px] rounded-full"
 									style={{
-										background: isDark
-											? "linear-gradient(to right, rgba(46, 204, 113, 0.6), rgba(34, 197, 94, 0.4), rgba(46, 204, 113, 0.6))"
-											: "linear-gradient(to right, rgba(16, 109, 32, 0.6), rgba(34, 139, 34, 0.4), rgba(16, 109, 32, 0.6))",
+										background: isDark ? "rgba(46, 204, 113, 0.6)" : "rgba(16, 109, 32, 0.6)",
 									}}
 									initial={{ scaleX: 0 }}
 									whileInView={{ scaleX: 1 }}

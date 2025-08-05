@@ -1,163 +1,182 @@
 .meetTheCCSection {
-  padding: 3rem 1rem;
-  background: linear-gradient(135deg, rgba(34,197,94,0.07) 0%, rgba(16,109,32,0.04) 100%);
-  color: var(--foreground, #222);
-  text-align: center;
-  border-radius: 1.5rem;
-  box-shadow: 0 4px 32px rgba(34,197,94,0.08);
-  margin: 2rem auto;
-  max-width: 1400px; /* Increased width */
+	padding: 3rem 1rem;
+	background: linear-gradient(135deg, rgba(34, 197, 94, 0.07) 0%, rgba(16, 109, 32, 0.04) 100%);
+	color: var(--foreground, #222);
+	text-align: center;
+	border-radius: 1.5rem;
+	box-shadow: 0 4px 32px rgba(34, 197, 94, 0.08);
+	margin: 2rem auto;
+	max-width: 1400px; /* Increased width */
 }
 
 .heading {
-  font-size: 2.8rem;
-  margin-bottom: 2.5rem;
-  font-weight: 900;
-  letter-spacing: -1px;
-  color: #005050;
-  text-shadow:
-    0 2px 12px #e8f6ef,
-    0 1px 0 #fff,
-    0 0 2px #fff;
-  /* No background, just bright text */
+	font-size: 2.8rem;
+	margin-bottom: 2.5rem;
+	font-weight: 900;
+	letter-spacing: -1px;
+	color: #005050;
+	text-shadow:
+		0 2px 12px #e8f6ef,
+		0 1px 0 #fff,
+		0 0 2px #fff;
+	/* No background, just bright text */
 }
 
 .membersGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Always 3 per row on desktop */
-  gap: 2.5rem;
-  justify-items: center;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr); /* Always 3 per row on desktop */
+	gap: 2.5rem;
+	justify-items: center;
 }
 
 @media (max-width: 1100px) {
-  .membersGrid {
-    grid-template-columns: repeat(2, 1fr); /* 2 per row on tablets */
-  }
+	.membersGrid {
+		grid-template-columns: repeat(2, 1fr); /* 2 per row on tablets */
+	}
 }
 
 @media (max-width: 700px) {
-  .membersGrid {
-    grid-template-columns: 1fr; /* 1 per row on mobile */
-  }
+	.membersGrid {
+		grid-template-columns: 1fr; /* 1 per row on mobile */
+	}
 }
 
 .memberCard {
-  background: linear-gradient(135deg, #e8f6ef 60%, #f0fdf4 100%);
-  border-radius: 1.25rem;
-  box-shadow: 0 2px 12px rgba(34,197,94,0.07);
-  padding: 2rem 1.5rem;
-  max-width: 260px;
-  min-width: 220px;
-  transition: transform 0.2s, box-shadow 0.2s;
-  border: 1.5px solid #005050;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	background: linear-gradient(135deg, #e8f6ef 60%, #f0fdf4 100%);
+	border-radius: 1.25rem;
+	box-shadow: 0 2px 12px rgba(34, 197, 94, 0.07);
+	padding: 2rem 1.5rem;
+	max-width: 260px;
+	min-width: 220px;
+	transition:
+		transform 0.2s,
+		box-shadow 0.2s;
+	border: 1.5px solid #005050;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .memberCard:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 8px 32px rgba(34,197,94,0.13);
+	transform: translateY(-8px) scale(1.03);
+	box-shadow: 0 8px 32px rgba(34, 197, 94, 0.13);
 }
 
 .memberImage {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 1rem;
-  border: 3px solid #a7f3d0;
-  background: #f0fdf4;
+	width: 96px;
+	height: 96px;
+	border-radius: 50%;
+	object-fit: cover;
+	margin-bottom: 1rem;
+	border: 3px solid #a7f3d0;
+	background: #f0fdf4;
 }
 
 .memberName {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin: 0.5rem 0 0.25rem 0;
-  color: #005050; /* Logo color */
+	font-size: 1.25rem;
+	font-weight: 600;
+	margin: 0.5rem 0 0.25rem 0;
+	color: #005050; /* Logo color */
 }
 
 .memberRole {
-  color: #22c55e;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
+	color: #22c55e;
+	font-weight: 500;
+	margin-bottom: 0.5rem;
 }
 
 .memberBio {
-  font-size: 0.97rem;
-  color: #555;
+	font-size: 0.97rem;
+	color: #555;
 }
 
 .socials {
-  display: flex;
-  gap: 1.2rem;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
+	display: flex;
+	gap: 1.2rem;
+	justify-content: center;
+	align-items: center;
+	margin-top: 1rem;
 }
 
 .socialIcon {
-  color: #005050;
-  font-size: 1.4rem;
-  transition: color 0.2s, background 0.2s, transform 0.2s;
-  background: #e8f6ef;
-  border-radius: 50%;
-  padding: 0.45rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	color: #005050;
+	font-size: 1.4rem;
+	transition:
+		color 0.2s,
+		background 0.2s,
+		transform 0.2s;
+	background: #e8f6ef;
+	border-radius: 50%;
+	padding: 0.45rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .socialIcon:hover {
-  color: #fff;
-  background: #22c55e;
-  transform: scale(1.15);
+	color: #fff;
+	background: #22c55e;
+	transform: scale(1.15);
 }
 
 /* Cool fade-in animation */
 @keyframes fadeSlideUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px) scale(0.97);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+	0% {
+		opacity: 0;
+		transform: translateY(20px) scale(0.97);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
 }
 
 .memberCard {
-  animation: fadeSlideUp 0.6s ease forwards;
-  opacity: 0;
+	animation: fadeSlideUp 0.6s ease forwards;
+	opacity: 0;
 }
 
 /* Add a delay for each child (optional fancy spice) */
-.membersGrid > .memberCard:nth-child(1) { animation-delay: 0.1s; }
-.membersGrid > .memberCard:nth-child(2) { animation-delay: 0.2s; }
-.membersGrid > .memberCard:nth-child(3) { animation-delay: 0.3s; }
-.membersGrid > .memberCard:nth-child(4) { animation-delay: 0.4s; }
-.membersGrid > .memberCard:nth-child(5) { animation-delay: 0.5s; }
-.membersGrid > .memberCard:nth-child(6) { animation-delay: 0.6s; }
+.membersGrid > .memberCard:nth-child(1) {
+	animation-delay: 0.1s;
+}
+.membersGrid > .memberCard:nth-child(2) {
+	animation-delay: 0.2s;
+}
+.membersGrid > .memberCard:nth-child(3) {
+	animation-delay: 0.3s;
+}
+.membersGrid > .memberCard:nth-child(4) {
+	animation-delay: 0.4s;
+}
+.membersGrid > .memberCard:nth-child(5) {
+	animation-delay: 0.5s;
+}
+.membersGrid > .memberCard:nth-child(6) {
+	animation-delay: 0.6s;
+}
 
 /* Add zoom + ring on hover */
 .memberImage {
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+	transition:
+		transform 0.25s ease,
+		box-shadow 0.25s ease;
 }
 .memberCard:hover .memberImage {
-  transform: scale(1.08);
-  box-shadow: 0 0 0 4px #a7f3d0;
+	transform: scale(1.08);
+	box-shadow: 0 0 0 4px #a7f3d0;
 }
 
 /* The "role" line styling */
 .memberRole {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #22c55e;
-  background-color: rgba(34, 197, 94, 0.1);
-  padding: 0.25rem 0.6rem;
-  border-radius: 999px;
-  display: inline-block;
-  margin-bottom: 0.4rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: #22c55e;
+	background-color: rgba(34, 197, 94, 0.1);
+	padding: 0.25rem 0.6rem;
+	border-radius: 999px;
+	display: inline-block;
+	margin-bottom: 0.4rem;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
 }

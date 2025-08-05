@@ -11,8 +11,7 @@ export default function Footer(): React.JSX.Element {
 				{/* Meet the Team button on the right */}
 				<Link
 					href="/meet-the-team"
-					className="absolute right-0 top-1/2 -translate-y-1/2 text-sm font-medium px-4 py-2 border border-primary text-primary rounded-md hover:bg-primary hover:text-white transition duration-200"
-				>
+					className="absolute right-0 top-1/2 -translate-y-1/2 text-sm font-medium px-4 py-2 border border-primary text-primary rounded-md hover:bg-primary hover:text-white transition duration-200">
 					Meet the Team
 				</Link>
 
@@ -22,32 +21,28 @@ export default function Footer(): React.JSX.Element {
 						href="https://www.facebook.com/MITtechtatva/"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="text-xl text-muted-foreground hover:text-primary transition-colors duration-200"
-					>
+						className="text-xl text-muted-foreground hover:text-primary transition-colors duration-200">
 						<FaFacebookF />
 					</a>
 					<a
 						href="https://x.com/mittechtatva"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="text-xl text-muted-foreground hover:text-primary transition-colors duration-200"
-					>
+						className="text-xl text-muted-foreground hover:text-primary transition-colors duration-200">
 						<FaXTwitter />
 					</a>
 					<a
 						href="https://www.instagram.com/techtatvamit/"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="text-xl text-muted-foreground hover:text-primary transition-colors duration-200"
-					>
+						className="text-xl text-muted-foreground hover:text-primary transition-colors duration-200">
 						<FaInstagram />
 					</a>
 					<a
 						href="https://www.linkedin.com/company/mittechtatva"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="text-xl text-muted-foreground hover:text-primary transition-colors duration-200"
-					>
+						className="text-xl text-muted-foreground hover:text-primary transition-colors duration-200">
 						<FaLinkedinIn />
 					</a>
 				</div>
@@ -59,4 +54,3 @@ export default function Footer(): React.JSX.Element {
 		</footer>
 	);
 }
-
