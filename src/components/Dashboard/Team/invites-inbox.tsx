@@ -94,25 +94,25 @@ export const InvitesInbox: React.FC<{
 		<Card
 			className="backdrop-blur-md relative overflow-hidden"
 			style={{
-				background: isDark ? "rgba(30, 41, 59, 0.3)" : "rgba(255, 255, 255, 0.2)",
-				border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.05)" : "rgba(255, 255, 255, 0.5)"}`,
-				boxShadow: `0 4px 20px ${isDark ? "rgba(0, 0, 0, 0.2)" : "rgba(0, 0, 0, 0.05)"}`,
+				background: isDark ? "rgba(15,25,15,0.3)" : "rgba(240,255,245,0.2)",
+				border: `1px solid ${isDark ? "rgba(46,204,113,0.1)" : "rgba(52,168,83,0.3)"}`,
+				boxShadow: `0 4px 20px ${isDark ? "rgba(34,102,68,0.2)" : "rgba(16,109,32,0.08)"}`,
 				borderRadius: "16px",
 			}}>
-			{/* Subtle purple accent overlay */}
+			{/* Subtle green accent overlay */}
 			<div
 				className="absolute inset-0"
 				style={{
 					background: isDark
-						? "linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(79, 70, 229, 0.02))"
-						: "linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(79, 70, 229, 0.04))",
+						? "linear-gradient(135deg, rgba(34,102,68,0.08), rgba(22,78,51,0.04))"
+						: "linear-gradient(135deg, rgba(52,168,83,0.12), rgba(72,187,120,0.06))",
 				}}></div>
 
-			{/* Enhanced inner glow with subtle highlights */}
+			{/* Enhanced inner glow with green highlights */}
 			<div
 				className="absolute inset-0"
 				style={{
-					background: `linear-gradient(135deg, ${isDark ? "rgba(255, 255, 255, 0.02)" : "rgba(255, 255, 255, 0.1)"}, transparent)`,
+					background: `linear-gradient(135deg, ${isDark ? "rgba(46,204,113,0.05)" : "rgba(52,168,83,0.1)"}, transparent)`,
 					mixBlendMode: "overlay",
 				}}></div>
 
@@ -126,8 +126,8 @@ export const InvitesInbox: React.FC<{
 					<TabsList
 						className="flex w-fit flex-row items-center justify-center bg-transparent mb-4"
 						style={{
-							background: isDark ? "rgba(30, 41, 59, 0.7)" : "rgba(255, 255, 255, 0.4)",
-							border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.05)" : "rgba(255, 255, 255, 0.5)"}`,
+							background: isDark ? "rgba(15,25,15,0.7)" : "rgba(240,255,245,0.4)",
+							border: `1px solid ${isDark ? "rgba(46,204,113,0.2)" : "rgba(52,168,83,0.3)"}`,
 							backdropFilter: "blur(10px)",
 						}}>
 						<TabsTrigger
@@ -136,7 +136,7 @@ export const InvitesInbox: React.FC<{
 							style={{
 								fontFamily: "var(--font-playfair-display)",
 								fontWeight: 500,
-								color: isDark ? "rgba(255, 255, 255, 0.8)" : "rgba(30, 41, 59, 0.8)",
+								color: isDark ? "rgba(144,238,144,0.8)" : "rgba(22,78,51,0.8)",
 							}}>
 							Incoming Invites
 						</TabsTrigger>
@@ -146,7 +146,7 @@ export const InvitesInbox: React.FC<{
 							style={{
 								fontFamily: "var(--font-playfair-display)",
 								fontWeight: 500,
-								color: isDark ? "rgba(255, 255, 255, 0.8)" : "rgba(30, 41, 59, 0.8)",
+								color: isDark ? "rgba(144,238,144,0.8)" : "rgba(22,78,51,0.8)",
 							}}>
 							Outgoing Join Requests
 						</TabsTrigger>

@@ -25,7 +25,7 @@ export default function MarkdownArticle({ content }: { content: string }): React
 						<h1
 							style={{
 								fontFamily: "var(--font-playfair-display)",
-								color: isDark ? "rgba(139, 92, 246, 0.9)" : "rgba(79, 70, 229, 0.9)",
+								color: isDark ? "rgba(34, 197, 94, 0.9)" : "rgba(22, 163, 74, 0.9)",
 							}}
 							{...props}
 						/>
@@ -34,7 +34,7 @@ export default function MarkdownArticle({ content }: { content: string }): React
 						<h2
 							style={{
 								fontFamily: "var(--font-playfair-display)",
-								color: isDark ? "rgba(139, 92, 246, 0.9)" : "rgba(79, 70, 229, 0.9)",
+								color: isDark ? "rgba(34, 197, 94, 0.9)" : "rgba(22, 163, 74, 0.9)",
 							}}
 							{...props}
 						/>
@@ -43,7 +43,7 @@ export default function MarkdownArticle({ content }: { content: string }): React
 						<h3
 							style={{
 								fontFamily: "var(--font-playfair-display)",
-								color: isDark ? "rgba(139, 92, 246, 0.8)" : "rgba(79, 70, 229, 0.8)",
+								color: isDark ? "rgba(34, 197, 94, 0.8)" : "rgba(22, 163, 74, 0.8)",
 							}}
 							{...props}
 						/>
@@ -51,7 +51,7 @@ export default function MarkdownArticle({ content }: { content: string }): React
 					a: ({ node, ...props }) => (
 						<a
 							style={{
-								color: isDark ? "#a78bfa" : "#7c3aed",
+								color: isDark ? "#4ade80" : "#16a34a",
 								textDecoration: "none",
 								borderBottom: "1px dotted",
 							}}
@@ -85,7 +85,7 @@ export default function MarkdownArticle({ content }: { content: string }): React
 					blockquote: ({ node, ...props }) => (
 						<blockquote
 							style={{
-								borderLeftColor: isDark ? "rgba(139, 92, 246, 0.5)" : "rgba(79, 70, 229, 0.5)",
+								borderLeftColor: isDark ? "rgba(34, 197, 94, 0.5)" : "rgba(22, 163, 74, 0.5)",
 								color: isDark ? "rgba(255, 255, 255, 0.7)" : "rgba(15, 23, 42, 0.7)",
 							}}
 							{...props}

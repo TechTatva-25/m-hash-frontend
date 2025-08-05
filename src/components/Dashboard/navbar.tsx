@@ -16,26 +16,26 @@ export function Navbar({ title }: NavbarProps): React.JSX.Element {
 			className="sticky top-0 z-10 w-full backdrop-blur-xl transition-all duration-200"
 			style={{
 				background: isDark
-					? "linear-gradient(to right, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.9))"
-					: "linear-gradient(to right, rgba(245, 245, 252, 0.8), rgba(238, 238, 249, 0.85))",
-				boxShadow: `0 4px 20px ${isDark ? "rgba(0, 0, 0, 0.25)" : "rgba(0, 0, 0, 0.05)"}`,
-				borderBottom: `1px solid ${isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(203, 213, 225, 0.5)"}`,
+					? "linear-gradient(to right, rgba(34,102,68,0.85), rgba(22,78,51,0.9))"
+					: "linear-gradient(to right, rgba(240,255,245,0.8), rgba(220,252,231,0.85))",
+				boxShadow: `0 4px 20px ${isDark ? "rgba(34,102,68,0.25)" : "rgba(16,109,32,0.1)"}`,
+				borderBottom: `1px solid ${isDark ? "rgba(46,204,113,0.2)" : "rgba(52,168,83,0.3)"}`,
 			}}>
-			{/* Enhanced inner glow with subtle highlights */}
+			{/* Enhanced inner glow with green highlights */}
 			<div
 				className="absolute inset-0"
 				style={{
-					background: `linear-gradient(135deg, ${isDark ? "rgba(255, 255, 255, 0.03)" : "rgba(255, 255, 255, 0.15)"}, transparent)`,
+					background: `linear-gradient(135deg, ${isDark ? "rgba(46,204,113,0.08)" : "rgba(52,168,83,0.15)"}, transparent)`,
 					mixBlendMode: "overlay",
 				}}></div>
 
-			{/* Subtle purple accent overlay */}
+			{/* Green accent overlay */}
 			<div
 				className="absolute inset-0"
 				style={{
 					background: isDark
-						? "linear-gradient(to right, rgba(139, 92, 246, 0.05), rgba(79, 70, 229, 0.03))"
-						: "linear-gradient(to right, rgba(139, 92, 246, 0.08), rgba(79, 70, 229, 0.04))",
+						? "linear-gradient(to right, rgba(34,102,68,0.1), rgba(46,204,113,0.05))"
+						: "linear-gradient(to right, rgba(52,168,83,0.12), rgba(72,187,120,0.08))",
 				}}></div>
 
 			<div className="relative flex h-16 items-center justify-between px-4 sm:px-6">

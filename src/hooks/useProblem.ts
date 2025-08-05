@@ -34,7 +34,7 @@ export const sdgColorMap: Record<number, string> = {
 	3: "bg-emerald-500",
 	4: "bg-sky-500",
 	8: "bg-amber-500",
-	9: "bg-violet-500",
+	9: "bg-green-500",
 };
 
 export const getProblems = async (): Promise<Problem[]> => {

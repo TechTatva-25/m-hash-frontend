@@ -233,23 +233,23 @@ export function Menu({ isOpen }: MenuProps): React.JSX.Element {
 															"mb-1 h-10 w-full justify-start backdrop-blur-sm transition-all duration-300",
 															active
 																? isDark
-																	? "hover:bg-purple-500/15"
-																	: "hover:bg-purple-500/10"
+																	? "hover:bg-green-600/20"
+																	: "hover:bg-green-500/15"
 																: isDark
-																	? "hover:bg-slate-300/5"
-																	: "hover:bg-slate-300/30"
+																	? "hover:bg-green-500/10"
+																	: "hover:bg-green-500/8"
 														)}
 														style={{
 															background: active
 																? isDark
-																	? "rgba(139, 92, 246, 0.1)"
-																	: "rgba(139, 92, 246, 0.05)"
+																	? "rgba(34,102,68,0.15)"
+																	: "rgba(52,168,83,0.1)"
 																: "transparent",
 															border: active
-																? `1px solid ${isDark ? "rgba(168, 85, 247, 0.15)" : "rgba(168, 85, 247, 0.1)"}`
+																? `1px solid ${isDark ? "rgba(46,204,113,0.25)" : "rgba(52,168,83,0.2)"}`
 																: undefined,
 															boxShadow: active
-																? `0 2px 4px ${isDark ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.03)"}`
+																? `0 2px 4px ${isDark ? "rgba(34,102,68,0.15)" : "rgba(16,109,32,0.08)"}`
 																: undefined,
 														}}
 														asChild>
@@ -296,8 +296,8 @@ export function Menu({ isOpen }: MenuProps): React.JSX.Element {
 									<Button
 										className={`h-10 w-full justify-center backdrop-blur-sm transition-all duration-300 disabled:cursor-not-allowed disabled:opacity-60 ${isDark ? "hover:bg-red-500/10" : "hover:bg-red-500/5"}`}
 										style={{
-											border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(203, 213, 225, 0.5)"}`,
-											boxShadow: `0 2px 4px ${isDark ? "rgba(0, 0, 0, 0.05)" : "rgba(0, 0, 0, 0.02)"}`,
+											border: `1px solid ${isDark ? "rgba(46,204,113,0.15)" : "rgba(52,168,83,0.2)"}`,
+											boxShadow: `0 2px 4px ${isDark ? "rgba(34,102,68,0.1)" : "rgba(16,109,32,0.05)"}`,
 										}}
 										onClick={signOut}
 										disabled={disabled}>

@@ -3,32 +3,71 @@ import Image from "next/image";
 import React from "react";
 
 import { TracingBeam } from "@/components/ui/tracing-beam";
+import { useTheme } from "@/components/ThemeProvider";
 
 export function GeneralTime(): React.JSX.Element {
+	const { theme } = useTheme();
+	const isDark = theme === "dark";
+
 	return (
 		<TracingBeam className="pl-8 sm:px-6">
 			<div className="relative mx-auto max-w-2xl pt-4 antialiased">
 				{generalTimeLine.map((item, index) => (
 					<div
 						key={`content-${index}`}
-						className="my-10 rounded-md bg-card p-4 shadow-md dark:bg-secondary dark:shadow-none sm:p-6">
-						<h2 className="mb-2 w-fit rounded-full text-3xl font-bold">{item.badge}</h2>
+						className="my-10 rounded-xl overflow-hidden backdrop-blur-xl border transition-all duration-300 hover:scale-[1.01] hover:shadow-xl group"
+						style={{
+							background: isDark
+								? "rgba(0, 0, 0, 0.5)"
+								: "rgba(255, 255, 255, 0.8)",
+							borderColor: isDark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.1)",
+							boxShadow: isDark
+								? "0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)"
+								: "0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)",
+						}}>
 
-						<p className="mb-4 text-lg text-muted-foreground">{item.date}</p>
+						<div className="relative p-4 sm:p-6 z-10">
+							<h2
+								className="mb-2 w-fit rounded-full text-3xl font-bold"
+								style={{
+									color: isDark ? "rgba(255, 255, 255, 0.95)" : "rgba(0, 0, 0, 0.9)",
+								}}>
+								{item.badge}
+							</h2>
 
-						<div className="flex w-full flex-col">
-							{item.image && (
-								<Image
-									src={item.image}
-									alt="blog thumbnail"
-									height="650"
-									width="650"
-									className="mb-6 rounded-lg object-cover"
-								/>
-							)}
-							<span className="w-full text-balance text-sm tracking-wide opacity-80">
-								{item.description}
-							</span>
+							<p className="mb-4 text-lg font-medium opacity-90"
+								style={{
+									color: isDark ? "rgba(255, 255, 255, 0.8)" : "rgba(0, 0, 0, 0.7)",
+								}}>
+								{item.date}
+							</p>
+
+							<div className="flex w-full flex-col">
+								{item.image && (
+									<div className="relative mb-6 rounded-lg overflow-hidden border transition-colors duration-300"
+										style={{
+											borderColor: isDark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.1)",
+										}}>
+										<Image
+											src={item.image}
+											alt="blog thumbnail"
+											height="650"
+											width="650"
+											className="w-full h-auto object-cover"
+										/>
+										{/* Subtle overlay for better integration */}
+										<div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent"></div>
+									</div>
+								)}
+								<div
+									className="w-full text-balance text-sm tracking-wide leading-relaxed"
+									style={{
+										color: isDark ? "rgba(200, 220, 200, 0.9)" : "rgba(60, 60, 80, 0.9)",
+										lineHeight: "1.6"
+									}}>
+									{item.description}
+								</div>
+							</div>
 						</div>
 					</div>
 				))}

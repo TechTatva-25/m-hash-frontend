@@ -15,11 +15,11 @@ export function SheetMenu(): React.JSX.Element {
 		<Sheet>
 			<SheetTrigger className="lg:hidden" asChild>
 				<Button
-					className="h-8 transition-all duration-300 backdrop-blur-md"
+					className="h-8 transition-all duration-300 backdrop-blur-md hover:scale-110"
 					style={{
-						background: isDark ? "rgba(255, 255, 255, 0.05)" : "rgba(255, 255, 255, 0.3)",
-						border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.4)"}`,
-						boxShadow: `0 2px 8px ${isDark ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.03)"}`,
+						background: isDark ? "rgba(34,102,68,0.15)" : "rgba(240,255,245,0.6)",
+						border: `1px solid ${isDark ? "rgba(46,204,113,0.3)" : "rgba(52,168,83,0.4)"}`,
+						boxShadow: `0 2px 8px ${isDark ? "rgba(34,102,68,0.2)" : "rgba(16,109,32,0.1)"}`,
 					}}
 					size="icon">
 					<MenuIcon size={20} />
@@ -29,60 +29,60 @@ export function SheetMenu(): React.JSX.Element {
 				className="flex h-full flex-col px-3 backdrop-blur-xl"
 				style={{
 					background: isDark
-						? "linear-gradient(to bottom, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.9))"
-						: "linear-gradient(to bottom, rgba(245, 245, 252, 0.8), rgba(238, 238, 249, 0.85))",
-					borderRight: `1px solid ${isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.7)"}`,
-					boxShadow: `0 4px 20px ${isDark ? "rgba(0, 0, 0, 0.5)" : "rgba(0, 0, 0, 0.08)"}`,
+						? "linear-gradient(to bottom, rgba(15,25,15,0.85), rgba(10,26,15,0.9))"
+						: "linear-gradient(to bottom, rgba(240,255,245,0.8), rgba(220,252,231,0.85))",
+					borderRight: `1px solid ${isDark ? "rgba(46,204,113,0.2)" : "rgba(52,168,83,0.3)"}`,
+					boxShadow: `0 4px 20px ${isDark ? "rgba(34,102,68,0.3)" : "rgba(16,109,32,0.1)"}`,
 				}}
 				side="left">
-				{/* Subtle background gradient effect */}
+				{/* Subtle green gradient effect */}
 				<div
 					className="absolute inset-0 -z-10"
 					style={{
 						background: isDark
-							? "linear-gradient(to bottom, rgba(139, 92, 246, 0.05), rgba(79, 70, 229, 0.03))"
-							: "linear-gradient(to bottom, rgba(139, 92, 246, 0.1), rgba(79, 70, 229, 0.05))",
+							? "linear-gradient(to bottom, rgba(34,102,68,0.1), rgba(22,78,51,0.05))"
+							: "linear-gradient(to bottom, rgba(52,168,83,0.15), rgba(72,187,120,0.08))",
 					}}></div>
 
-				{/* Enhanced inner glow with subtle highlights */}
+				{/* Enhanced inner glow with green highlights */}
 				<div
 					className="absolute inset-0"
 					style={{
-						background: `linear-gradient(135deg, ${isDark ? "rgba(255, 255, 255, 0.03)" : "rgba(255, 255, 255, 0.15)"}, transparent)`,
+						background: `linear-gradient(135deg, ${isDark ? "rgba(46,204,113,0.05)" : "rgba(52,168,83,0.12)"}, transparent)`,
 						mixBlendMode: "overlay",
 					}}></div>
 
-				<SheetHeader>
+				<SheetHeader className="flex flex-row items-center justify-center p-0">
 					<Button
-						className="flex items-center justify-center pb-2 pt-1 transition-all duration-300"
+						className="flex h-fit w-fit items-center justify-center rounded-md p-0 transition-all duration-300 hover:scale-105"
 						style={{
-							background: "transparent",
-							border: "none",
+							background: isDark ? "rgba(34,102,68,0.15)" : "rgba(240,255,245,0.6)",
+							border: `1px solid ${isDark ? "rgba(46,204,113,0.3)" : "rgba(52,168,83,0.4)"}`,
+							boxShadow: `0 2px 8px ${isDark ? "rgba(34,102,68,0.2)" : "rgba(16,109,32,0.1)"}`,
 						}}
-						variant="link"
 						asChild>
-						<Link href="/dashboard" className="flex items-center gap-2">
+						<Link href="/dashboard" className="flex items-center gap-2 px-3 py-2">
 							<div className="relative">
 								<Image
 									src="/M-Hash-Logo.png"
 									alt="Manipal Hackathon Logo"
-									width={60}
-									height={60}
+									width={30}
+									height={30}
 									className="relative z-10"
 								/>
 								<div
 									className="absolute inset-0 blur-sm opacity-50"
 									style={{
-										background: isDark ? "rgba(139, 92, 246, 0.3)" : "rgba(139, 92, 246, 0.15)",
+										background: isDark ? "rgba(46,204,113,0.4)" : "rgba(52,168,83,0.3)",
 									}}></div>
 							</div>
 							<h1
 								className="text-lg font-bold"
 								style={{
 									fontFamily: "var(--font-playfair-display)",
-									color: isDark ? "white" : "#1e293b",
+									color: isDark ? "rgba(144,238,144,0.95)" : "rgba(22,78,51,0.9)",
 								}}>
-								Hackathon 2024
+								Hackathon 2025
 							</h1>
 						</Link>
 					</Button>

@@ -30,34 +30,33 @@ export function Sidebar(): React.JSX.Element {
 			style={{
 				background:
 					theme === "dark"
-						? "linear-gradient(to bottom, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.9))"
-						: "linear-gradient(to bottom, rgba(245, 245, 252, 0.8), rgba(238, 238, 249, 0.85))",
-				borderRight: `1px solid ${theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.7)"}`,
-				boxShadow: `0 4px 20px ${theme === "dark" ? "rgba(0, 0, 0, 0.5)" : "rgba(0, 0, 0, 0.08)"}`,
+						? "linear-gradient(to bottom, rgba(15,25,15,0.85), rgba(10,26,15,0.9))"
+						: "linear-gradient(to bottom, rgba(240,255,245,0.8), rgba(220,252,231,0.85))",
+				borderRight: `1px solid ${theme === "dark" ? "rgba(46,204,113,0.2)" : "rgba(52,168,83,0.3)"}`,
+				boxShadow: `0 4px 20px ${theme === "dark" ? "rgba(34,102,68,0.3)" : "rgba(16,109,32,0.1)"}`,
 			}}>
 			{" "}
 			<SidebarToggle />
 			<div className="relative flex h-full flex-col overflow-hidden px-3 py-4 scrollbar-hide">
-				{/* Subtle background gradient effect */}
+				{/* Subtle green gradient effect */}
 				<div
 					className="absolute inset-0 -z-10"
 					style={{
-						background:
-							theme === "dark"
-								? "linear-gradient(to bottom, rgba(139, 92, 246, 0.05), rgba(79, 70, 229, 0.03))"
-								: "linear-gradient(to bottom, rgba(139, 92, 246, 0.1), rgba(79, 70, 229, 0.05))",
+						background: theme === "dark"
+							? "linear-gradient(to bottom, rgba(34,102,68,0.1), rgba(22,78,51,0.05))"
+							: "linear-gradient(to bottom, rgba(52,168,83,0.15), rgba(72,187,120,0.08))",
 					}}></div>
-				{/* Accent edge */}
+				{/* Green accent edge */}
 				<div
 					className="absolute right-0 top-0 bottom-0 w-[1px]"
 					style={{
-						background: `linear-gradient(to bottom, transparent, ${theme === "dark" ? "rgba(139, 92, 246, 0.3)" : "rgba(139, 92, 246, 0.5)"}, transparent)`,
+						background: `linear-gradient(to bottom, transparent, ${theme === "dark" ? "rgba(46,204,113,0.4)" : "rgba(52,168,83,0.6)"}, transparent)`,
 					}}></div>
-				{/* Enhanced inner glow with subtle highlights */}
+				{/* Enhanced inner glow with green highlights */}
 				<div
 					className="absolute inset-0"
 					style={{
-						background: `linear-gradient(135deg, ${theme === "dark" ? "rgba(255, 255, 255, 0.03)" : "rgba(255, 255, 255, 0.15)"}, transparent)`,
+						background: `linear-gradient(135deg, ${theme === "dark" ? "rgba(46,204,113,0.05)" : "rgba(52,168,83,0.12)"}, transparent)`,
 						mixBlendMode: "overlay",
 					}}></div>{" "}
 				<div className="flex justify-between items-center mb-4 relative z-10">
@@ -68,9 +67,9 @@ export function Sidebar(): React.JSX.Element {
 							sidebarOpen ? "translate-x-0" : "justify-center"
 						)}
 						style={{
-							background: theme === "dark" ? "rgba(255, 255, 255, 0.05)" : "rgba(255, 255, 255, 0.3)",
-							border: `1px solid ${theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.4)"}`,
-							boxShadow: `0 2px 8px ${theme === "dark" ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.03)"}`,
+							background: theme === "dark" ? "rgba(34,102,68,0.15)" : "rgba(240,255,245,0.6)",
+							border: `1px solid ${theme === "dark" ? "rgba(46,204,113,0.3)" : "rgba(52,168,83,0.4)"}`,
+							boxShadow: `0 2px 8px ${theme === "dark" ? "rgba(34,102,68,0.2)" : "rgba(16,109,32,0.1)"}`,
 						}}>
 						<div className="relative">
 							<Image
@@ -84,7 +83,7 @@ export function Sidebar(): React.JSX.Element {
 								className="absolute inset-0 blur-sm opacity-50"
 								style={{
 									background:
-										theme === "dark" ? "rgba(139, 92, 246, 0.3)" : "rgba(139, 92, 246, 0.15)",
+										theme === "dark" ? "rgba(46,204,113,0.4)" : "rgba(52,168,83,0.3)",
 								}}></div>
 						</div>
 						<h1
@@ -94,31 +93,50 @@ export function Sidebar(): React.JSX.Element {
 							)}
 							style={{
 								fontFamily: "var(--font-playfair-display)",
-								color: theme === "dark" ? "white" : "#1e293b",
+								color: theme === "dark" ? "rgba(144,238,144,0.95)" : "rgba(22,78,51,0.9)",
 							}}>
-							Hackathon 2024
+							Hackathon 2025
 						</h1>
 					</Link>
 					{/* Theme toggle button */}
 					<button
 						onClick={toggleTheme}
 						className={cn(
-							"rounded-full p-2 transition-all duration-300 backdrop-blur-md hover:opacity-90 active:scale-95",
-							sidebarOpen ? "" : "absolute right-1/2 transform translate-x-1/2 top-16"
+							"flex h-[38px] w-[38px] items-center justify-center rounded-lg transition-all duration-300 hover:scale-110 group",
+							sidebarOpen ? "translate-x-0" : "hidden"
 						)}
 						style={{
-							background: theme === "dark" ? "rgba(139, 92, 246, 0.15)" : "rgba(139, 92, 246, 0.2)",
-							border: `1px solid ${theme === "dark" ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.4)"}`,
-							boxShadow: `0 2px 8px ${theme === "dark" ? "rgba(0, 0, 0, 0.2)" : "rgba(139, 92, 246, 0.1)"}`,
+							background: theme === "dark"
+								? "linear-gradient(135deg, rgba(15,25,15,0.8), rgba(10,26,15,0.9))"
+								: "linear-gradient(135deg, rgba(240,255,245,0.8), rgba(220,252,231,0.9))",
+							border: theme === "dark" ? "1px solid rgba(46,204,113,0.3)" : "1px solid rgba(52,168,83,0.4)",
+							backdropFilter: "blur(8px)",
+							boxShadow: theme === "dark"
+								? "0 4px 12px rgba(46,204,113,0.1), inset 0 1px 0 rgba(255,255,255,0.1)"
+								: "0 4px 12px rgba(16,109,32,0.08), inset 0 1px 0 rgba(255,255,255,0.3)",
 						}}>
 						{theme === "dark" ? (
-							<RiSunFill className="h-5 w-5 text-white" />
+							<RiSunFill
+								size={16}
+								className="transition-all duration-300 group-hover:rotate-180"
+								style={{
+									color: "rgba(144,238,144,0.95)",
+									filter: "drop-shadow(0 0 4px rgba(46,204,113,0.3))",
+								}}
+							/>
 						) : (
-							<RiMoonClearFill className="h-5 w-5 text-gray-800" />
+							<RiMoonClearFill
+								size={16}
+								className="transition-all duration-300 group-hover:-rotate-12"
+								style={{
+									color: "rgba(22,78,51,0.9)",
+									filter: "drop-shadow(0 0 4px rgba(16,109,32,0.2))",
+								}}
+							/>
 						)}
 					</button>
 				</div>
-				<div className={cn(sidebarOpen ? "" : "mt-16")}>
+				<div className="flex-1 overflow-auto">
 					<Menu isOpen={sidebarOpen} />
 				</div>
 			</div>

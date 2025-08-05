@@ -20,20 +20,20 @@ export function ContentLayout({ title, children }: ContentLayoutProps): React.JS
 				className="min-h-[calc(100vh-64px)] w-full overflow-x-hidden px-4 sm:px-8 relative"
 				style={{
 					background: isDark
-						? "linear-gradient(to bottom, rgba(15, 23, 42, 1), rgba(23, 33, 52, 1))"
-						: "linear-gradient(to bottom, rgba(245, 245, 252, 1), rgba(234, 234, 247, 1))",
+						? "linear-gradient(to bottom, rgba(10,26,15,1), rgba(15,25,15,1))"
+						: "linear-gradient(to bottom, rgba(240,255,245,1), rgba(220,252,231,1))",
 					backgroundAttachment: "fixed",
 					backgroundSize: "cover",
 					backgroundRepeat: "no-repeat",
 					minHeight: "100%",
 				}}>
-				{/* Subtle purple gradient overlay */}
+				{/* Subtle green gradient overlay */}
 				<div
 					className="absolute inset-0 pointer-events-none"
 					style={{
 						background: isDark
-							? "linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(79, 70, 229, 0.03))"
-							: "linear-gradient(135deg, rgba(139, 92, 246, 0.07), rgba(79, 70, 229, 0.05))",
+							? "linear-gradient(135deg, rgba(34,102,68,0.08), rgba(22,78,51,0.05))"
+							: "linear-gradient(135deg, rgba(52,168,83,0.12), rgba(72,187,120,0.08))",
 						backgroundAttachment: "fixed",
 						backgroundSize: "cover",
 						backgroundRepeat: "no-repeat",

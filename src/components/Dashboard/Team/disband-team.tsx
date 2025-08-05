@@ -53,14 +53,14 @@ export default function DeleteTeamCard({
 		<Card
 			className="w-full rounded-md px-4 py-6"
 			style={{
-				background: `${isDark ? "rgba(60, 20, 20, 0.5)" : "rgba(255, 240, 240, 0.5)"}`,
+				background: `${isDark ? "rgba(20, 40, 20, 0.5)" : "rgba(240, 255, 240, 0.5)"}`,
 				backdropFilter: "blur(10px)",
-				border: `1px solid ${isDark ? "rgba(180, 30, 30, 0.4)" : "rgba(220, 50, 50, 0.4)"}`,
-				boxShadow: `0 4px 24px ${isDark ? "rgba(180, 30, 30, 0.2)" : "rgba(220, 50, 50, 0.1)"}`,
+				border: `1px solid ${isDark ? "rgba(46,204,113, 0.3)" : "rgba(52,168,83, 0.4)"}`,
+				boxShadow: `0 4px 24px ${isDark ? "rgba(34,102,68, 0.2)" : "rgba(16,109,32, 0.1)"}`,
 			}}>
 			<CardTitle
 				className="text-xl font-semibold"
-				style={{ color: `${isDark ? "rgba(255, 200, 200, 0.9)" : "rgba(180, 30, 30, 0.9)"}` }}>
+				style={{ color: `${isDark ? "rgba(144,238,144, 0.9)" : "rgba(22,78,51, 0.9)"}` }}>
 				Delete Team
 			</CardTitle>
 			<CardDescription className="mb-4 mt-1">
@@ -80,14 +80,14 @@ export default function DeleteTeamCard({
 						<div className="flex flex-col">
 							<p
 								className="text-lg font-medium"
-								style={{ color: `${isDark ? "rgba(255, 200, 200, 0.9)" : "rgba(180, 30, 30, 0.9)"}` }}>
+								style={{ color: `${isDark ? "rgba(144,238,144, 0.9)" : "rgba(22,78,51, 0.9)"}` }}>
 								{team.name}
 							</p>
 							<p className="text-sm text-muted-foreground">
 								<span
 									className="font-semibold"
 									style={{
-										color: `${isDark ? "rgba(255, 200, 200, 0.8)" : "rgba(180, 30, 30, 0.8)"}`,
+										color: `${isDark ? "rgba(144,238,144, 0.8)" : "rgba(22,78,51, 0.8)"}`,
 									}}>
 									Leader:
 								</span>{" "}
@@ -97,14 +97,14 @@ export default function DeleteTeamCard({
 								<span
 									className="font-semibold"
 									style={{
-										color: `${isDark ? "rgba(255, 200, 200, 0.8)" : "rgba(180, 30, 30, 0.8)"}`,
+										color: `${isDark ? "rgba(144,238,144, 0.8)" : "rgba(22,78,51, 0.8)"}`,
 									}}>
 									Members:
 								</span>
 								<FaUsers
 									className="h-4 w-4"
 									style={{
-										color: `${isDark ? "rgba(255, 200, 200, 0.7)" : "rgba(180, 30, 30, 0.7)"}`,
+										color: `${isDark ? "rgba(144,238,144, 0.7)" : "rgba(22,78,51, 0.7)"}`,
 									}}
 								/>
 								<span>{team.members.length}/5</span>
@@ -117,8 +117,8 @@ export default function DeleteTeamCard({
 								<Button
 									className="w-full cursor-pointer transition-opacity hover:opacity-80 sm:w-20"
 									style={{
-										background: `${isDark ? "rgba(180, 30, 30, 0.9)" : "rgba(220, 50, 50, 0.9)"}`,
-										border: `1px solid ${isDark ? "rgba(180, 30, 30, 0.3)" : "rgba(220, 50, 50, 0.3)"}`,
+										background: `${isDark ? "rgba(46,204,113, 0.9)" : "rgba(52,168,83, 0.9)"}`,
+										border: `1px solid ${isDark ? "rgba(46,204,113, 0.3)" : "rgba(52,168,83, 0.3)"}`,
 									}}
 									variant="destructive"
 									disabled={disabled}>
@@ -130,13 +130,13 @@ export default function DeleteTeamCard({
 							style={{
 								background: `${isDark ? "rgba(30, 30, 40, 0.9)" : "rgba(255, 255, 255, 0.9)"}`,
 								backdropFilter: "blur(10px)",
-								border: `1px solid ${isDark ? "rgba(180, 30, 30, 0.4)" : "rgba(220, 50, 50, 0.4)"}`,
-								boxShadow: `0 4px 24px ${isDark ? "rgba(0, 0, 0, 0.2)" : "rgba(180, 30, 30, 0.1)"}`,
+								border: `1px solid ${isDark ? "rgba(46,204,113, 0.4)" : "rgba(52,168,83, 0.4)"}`,
+								boxShadow: `0 4px 24px ${isDark ? "rgba(0, 0, 0, 0.2)" : "rgba(34,102,68, 0.1)"}`,
 							}}>
 							<AlertDialogHeader>
 								<AlertDialogTitle
 									style={{
-										color: `${isDark ? "rgba(255, 200, 200, 0.9)" : "rgba(180, 30, 30, 0.9)"}`,
+										color: `${isDark ? "rgba(144,238,144, 0.9)" : "rgba(22,78,51, 0.9)"}`,
 									}}>
 									Are you absolutely sure?
 								</AlertDialogTitle>
@@ -150,15 +150,15 @@ export default function DeleteTeamCard({
 									className="cursor-pointer transition-opacity hover:opacity-80"
 									style={{
 										background: `${isDark ? "rgba(30, 30, 40, 0.5)" : "rgba(240, 240, 240, 0.5)"}`,
-										border: `1px solid ${isDark ? "rgba(180, 30, 30, 0.3)" : "rgba(220, 50, 50, 0.3)"}`,
+										border: `1px solid ${isDark ? "rgba(46,204,113, 0.3)" : "rgba(52,168,83, 0.3)"}`,
 									}}>
 									Cancel
 								</AlertDialogCancel>
 								<AlertDialogAction
 									className="cursor-pointer transition-opacity hover:opacity-80"
 									style={{
-										background: `${isDark ? "rgba(180, 30, 30, 0.9)" : "rgba(220, 50, 50, 0.9)"}`,
-										border: `1px solid ${isDark ? "rgba(180, 30, 30, 0.3)" : "rgba(220, 50, 50, 0.3)"}`,
+										background: `${isDark ? "rgba(46,204,113, 0.9)" : "rgba(52,168,83, 0.9)"}`,
+										border: `1px solid ${isDark ? "rgba(46,204,113, 0.3)" : "rgba(52,168,83, 0.3)"}`,
 									}}
 									onClick={handleDeleteTeam}>
 									Delete

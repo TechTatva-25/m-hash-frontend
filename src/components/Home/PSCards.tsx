@@ -68,23 +68,47 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 	return (
 		<div className="relative py-8">
 			{/* Enhanced decorative background elements */}
-			<div className="absolute -top-20 -left-20 w-96 h-96 bg-purple-300/10 dark:bg-purple-600/10 rounded-full blur-3xl pointer-events-none animate-pulse-slow"></div>
 			<div
-				className="absolute -bottom-20 -right-20 w-96 h-96 bg-purple-400/10 dark:bg-purple-700/10 rounded-full blur-3xl pointer-events-none animate-pulse-slow"
-				style={{ animationDelay: "1s" }}></div>
-			<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-64 bg-purple-500/5 dark:bg-purple-800/5 rounded-full blur-3xl pointer-events-none"></div>
+				className="absolute -top-20 -left-20 w-96 h-96 rounded-full blur-3xl pointer-events-none animate-pulse-slow"
+				style={{
+					background: isDark ? "rgba(34,102,68,0.1)" : "rgba(72,187,120,0.1)",
+				}}></div>
+			<div
+				className="absolute -bottom-20 -right-20 w-96 h-96 rounded-full blur-3xl pointer-events-none animate-pulse-slow"
+				style={{
+					animationDelay: "1s",
+					background: isDark ? "rgba(52,168,83,0.1)" : "rgba(134,239,172,0.1)",
+				}}></div>
+			<div
+				className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-64 rounded-full blur-3xl pointer-events-none"
+				style={{
+					background: isDark ? "rgba(34,102,68,0.05)" : "rgba(72,187,120,0.05)",
+				}}></div>
 
 			{/* Gradient line accent */}
-			<div className="absolute left-0 right-0 h-[1px] top-0 bg-gradient-to-r from-transparent via-purple-300/40 dark:via-purple-500/40 to-transparent"></div>
-			<div className="absolute left-0 right-0 h-[1px] bottom-0 bg-gradient-to-r from-transparent via-purple-300/30 dark:via-purple-500/30 to-transparent"></div>
+			<div
+				className="absolute left-0 right-0 h-[1px] top-0"
+				style={{
+					background: isDark
+						? "linear-gradient(to right, transparent, rgba(34,102,68,0.4), transparent)"
+						: "linear-gradient(to right, transparent, rgba(72,187,120,0.4), transparent)",
+				}}></div>
+			<div
+				className="absolute left-0 right-0 h-[1px] bottom-0"
+				style={{
+					background: isDark
+						? "linear-gradient(to right, transparent, rgba(34,102,68,0.3), transparent)"
+						: "linear-gradient(to right, transparent, rgba(72,187,120,0.3), transparent)",
+				}}></div>
 
 			{/* Floating particles (decorative) */}
 			<div className="absolute inset-0 overflow-hidden pointer-events-none">
 				{[...Array(8)].map((_, i) => (
 					<div
 						key={i}
-						className="absolute w-1.5 h-1.5 rounded-full bg-purple-400/20 dark:bg-purple-600/20 animate-float-slow"
+						className="absolute w-1.5 h-1.5 rounded-full animate-float-slow"
 						style={{
+							background: isDark ? "rgba(34,102,68,0.2)" : "rgba(72,187,120,0.2)",
 							top: `${Math.random() * 100}%`,
 							left: `${Math.random() * 100}%`,
 							animationDuration: `${Math.floor(Math.random() * 8) + 5}s`,
@@ -121,20 +145,20 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 										}`}
 										style={{
 											background: isDark
-												? "linear-gradient(135deg, rgba(30,30,45,0.7) 0%, rgba(35,35,60,0.5) 100%)"
-												: "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(240,240,255,0.7) 100%)",
+												? "linear-gradient(135deg, rgba(20,40,30,0.7) 0%, rgba(25,50,35,0.5) 100%)"
+												: "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(240,255,240,0.7) 100%)",
 											backdropFilter: "blur(16px)",
 											boxShadow: isDark
 												? `0 10px 30px -5px rgba(0,0,0,0.3), 
-												   0 0 0 1px rgba(103,80,164,0.2),
+												   0 0 0 1px rgba(34,102,68,0.2),
 												   inset 0 1px 0 0 rgba(255,255,255,0.05)`
-												: `0 10px 30px -5px rgba(103,80,164,0.15), 
-												   0 0 0 1px rgba(132,95,220,0.2),
+												: `0 10px 30px -5px rgba(34,102,68,0.15), 
+												   0 0 0 1px rgba(52,168,83,0.2),
 												   inset 0 1px 0 0 rgba(255,255,255,0.8)`,
 											borderRadius: "16px",
 											border: isDark
-												? "1px solid rgba(103,80,164,0.3)"
-												: "1px solid rgba(132,95,220,0.25)",
+												? "1px solid rgba(34,102,68,0.3)"
+												: "1px solid rgba(52,168,83,0.25)",
 										}}>
 										{/* Enhanced animated border glow on hover */}
 										<div
@@ -143,8 +167,8 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 											}`}
 											style={{
 												background: isDark
-													? "linear-gradient(135deg, rgba(103,80,164,0.4) 0%, rgba(149,128,255,0.2) 50%, rgba(103,80,164,0.4) 100%)"
-													: "linear-gradient(135deg, rgba(132,95,220,0.3) 0%, rgba(180,160,255,0.15) 50%, rgba(132,95,220,0.3) 100%)",
+													? "linear-gradient(135deg, rgba(34,102,68,0.4) 0%, rgba(72,187,120,0.2) 50%, rgba(34,102,68,0.4) 100%)"
+													: "linear-gradient(135deg, rgba(52,168,83,0.3) 0%, rgba(134,239,172,0.15) 50%, rgba(52,168,83,0.3) 100%)",
 												mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
 												maskComposite: "xor",
 												padding: "1px",
@@ -163,7 +187,7 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 											<SparklesIcon
 												className="h-4 w-4"
 												style={{
-													color: isDark ? "rgba(180,160,255,0.8)" : "rgba(132,95,220,0.6)",
+													color: isDark ? "rgba(134,239,172,0.8)" : "rgba(52,168,83,0.6)",
 												}}
 											/>
 										</div>
@@ -172,7 +196,7 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 											<SparklesIcon
 												className="h-4 w-4"
 												style={{
-													color: isDark ? "rgba(180,160,255,0.8)" : "rgba(132,95,220,0.6)",
+													color: isDark ? "rgba(134,239,172,0.8)" : "rgba(52,168,83,0.6)",
 												}}
 											/>
 										</div>
@@ -184,7 +208,7 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 												style={{
 													boxShadow: isDark
 														? "0 4px 20px rgba(0,0,0,0.2)"
-														: "0 4px 20px rgba(103,80,164,0.15)",
+														: "0 4px 20px rgba(34,102,68,0.15)",
 												}}>
 												<Image
 													src={
@@ -201,8 +225,8 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 													className="absolute inset-0 opacity-30 transition-opacity duration-500 group-hover:opacity-20"
 													style={{
 														background: isDark
-															? "linear-gradient(to top, rgba(103,80,164,0.6) 0%, rgba(103,80,164,0) 60%)"
-															: "linear-gradient(to top, rgba(132,95,220,0.4) 0%, rgba(132,95,220,0) 60%)",
+															? "linear-gradient(to top, rgba(34,102,68,0.6) 0%, rgba(34,102,68,0) 60%)"
+															: "linear-gradient(to top, rgba(52,168,83,0.4) 0%, rgba(52,168,83,0) 60%)",
 													}}></div>
 
 												{/* Animated highlight on hover */}
@@ -210,8 +234,8 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 													className={`absolute inset-0 opacity-0 ${hoveredCard === index ? "group-hover:opacity-10" : ""} transition-opacity duration-500`}
 													style={{
 														background: isDark
-															? "radial-gradient(circle at center, rgba(180,160,255,0.8) 0%, transparent 70%)"
-															: "radial-gradient(circle at center, rgba(180,160,255,0.6) 0%, transparent 70%)",
+															? "radial-gradient(circle at center, rgba(134,239,172,0.8) 0%, transparent 70%)"
+															: "radial-gradient(circle at center, rgba(134,239,172,0.6) 0%, transparent 70%)",
 													}}></div>
 
 												{/* Animated corner shine on hover */}
@@ -231,7 +255,7 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 												style={{
 													boxShadow: isDark
 														? "0 4px 12px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.1)"
-														: "0 4px 12px rgba(103,80,164,0.2), 0 0 0 1px rgba(255,255,255,0.8)",
+														: "0 4px 12px rgba(34,102,68,0.2), 0 0 0 1px rgba(255,255,255,0.8)",
 												}}
 												variant="default">
 												{sdgIcon(ps.sdg_id)}
@@ -239,17 +263,17 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 											</Badge>
 
 											<div
-												className={`text-center w-full ${isDark ? "text-[rgba(230,210,255,0.95)]" : "text-[rgba(50,50,70,0.95)]"}`}>
+												className={`text-center w-full ${isDark ? "text-[rgba(220,255,220,0.95)]" : "text-[rgba(20,50,30,0.95)]"}`}>
 												<h3
 													className={`text-lg font-semibold mb-4 tracking-wide ${
 														isDark
-															? "text-[rgba(240,225,255,1)]"
-															: "text-[rgba(103,80,164,1)]"
+															? "text-[rgba(240,255,240,1)]"
+															: "text-[rgba(34,102,68,1)]"
 													}`}
 													style={{
 														textShadow: isDark
 															? "0 2px 4px rgba(0,0,0,0.2)"
-															: "0 1px 2px rgba(103,80,164,0.1)",
+															: "0 1px 2px rgba(34,102,68,0.1)",
 														fontSize: "clamp(1rem, 2vw, 1.125rem)",
 														minHeight: "2.5rem",
 													}}>
@@ -278,14 +302,14 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 															variant="secondary"
 															className={`w-full cursor-pointer relative overflow-hidden group-hover:shadow-md transition-all duration-500 flex items-center justify-center gap-2 ${
 																isDark
-																	? "bg-gradient-to-r from-[rgba(103,80,164,0.3)] to-[rgba(132,95,220,0.4)] text-[rgba(240,225,255,0.95)] hover:from-[rgba(103,80,164,0.4)] hover:to-[rgba(132,95,220,0.5)]"
-																	: "bg-gradient-to-r from-[rgba(132,95,220,0.15)] to-[rgba(149,128,255,0.25)] text-[rgba(103,80,164,0.95)] hover:from-[rgba(132,95,220,0.2)] hover:to-[rgba(149,128,255,0.3)]"
+																	? "bg-gradient-to-r from-[rgba(34,102,68,0.3)] to-[rgba(52,168,83,0.4)] text-[rgba(240,255,240,0.95)] hover:from-[rgba(34,102,68,0.4)] hover:to-[rgba(52,168,83,0.5)]"
+																	: "bg-gradient-to-r from-[rgba(52,168,83,0.15)] to-[rgba(72,187,120,0.25)] text-[rgba(34,102,68,0.95)] hover:from-[rgba(52,168,83,0.2)] hover:to-[rgba(72,187,120,0.3)]"
 															}`}
 															style={{
 																borderRadius: "8px",
 																border: isDark
-																	? "1px solid rgba(103,80,164,0.4)"
-																	: "1px solid rgba(132,95,220,0.3)",
+																	? "1px solid rgba(34,102,68,0.4)"
+																	: "1px solid rgba(52,168,83,0.3)",
 																height: "42px",
 															}}>
 															<span className="relative z-10">Explore Details</span>
@@ -296,8 +320,8 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 																className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000"
 																style={{
 																	background: isDark
-																		? "radial-gradient(circle at center, rgba(149,128,255,0.4) 0%, transparent 70%)"
-																		: "radial-gradient(circle at center, rgba(149,128,255,0.2) 0%, transparent 70%)",
+																		? "radial-gradient(circle at center, rgba(72,187,120,0.4) 0%, transparent 70%)"
+																		: "radial-gradient(circle at center, rgba(72,187,120,0.2) 0%, transparent 70%)",
 																}}></div>
 														</Button>
 													</DialogTrigger>
@@ -310,20 +334,20 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 																	width: "90%",
 																	maxWidth: "700px",
 																	background: isDark
-																		? "linear-gradient(135deg, rgba(25,25,35,0.85) 0%, rgba(35,35,50,0.85) 100%)"
-																		: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(245,245,255,0.95) 100%)",
+																		? "linear-gradient(135deg, rgba(15,30,20,0.85) 0%, rgba(25,40,30,0.85) 100%)"
+																		: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(245,255,245,0.95) 100%)",
 																	backdropFilter: "blur(16px)",
 																	boxShadow: isDark
 																		? `0 20px 60px -10px rgba(0,0,0,0.5), 
-																		0 0 0 1px rgba(103,80,164,0.3),
+																		0 0 0 1px rgba(34,102,68,0.3),
 																		inset 0 1px 0 0 rgba(255,255,255,0.05)`
-																		: `0 20px 60px -10px rgba(103,80,164,0.2), 
-																		0 0 0 1px rgba(132,95,220,0.2),
+																		: `0 20px 60px -10px rgba(34,102,68,0.2), 
+																		0 0 0 1px rgba(52,168,83,0.2),
 																		inset 0 1px 0 0 rgba(255,255,255,0.8)`,
 																	borderRadius: "16px",
 																	border: isDark
-																		? "1px solid rgba(103,80,164,0.4)"
-																		: "1px solid rgba(132,95,220,0.3)",
+																		? "1px solid rgba(34,102,68,0.4)"
+																		: "1px solid rgba(52,168,83,0.3)",
 																}}>
 																{/* Animated dialog elements */}
 																<motion.div
@@ -333,8 +357,16 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 																	transition={{ duration: 0.3 }}
 																	className="absolute inset-0 pointer-events-none">
 																	{/* Dialog decorative elements */}
-																	<div className="absolute -top-40 -left-40 w-80 h-80 bg-purple-300/10 dark:bg-purple-600/10 rounded-full blur-3xl"></div>
-																	<div className="absolute -bottom-40 -right-40 w-80 h-80 bg-purple-400/10 dark:bg-purple-700/10 rounded-full blur-3xl"></div>
+																	<div
+																		className="absolute -top-40 -left-40 w-80 h-80 rounded-full blur-3xl"
+																		style={{
+																			background: isDark ? "rgba(34,102,68,0.1)" : "rgba(72,187,120,0.1)",
+																		}}></div>
+																	<div
+																		className="absolute -bottom-40 -right-40 w-80 h-80 rounded-full blur-3xl"
+																		style={{
+																			background: isDark ? "rgba(52,168,83,0.1)" : "rgba(134,239,172,0.1)",
+																		}}></div>
 
 																	{/* Shimmering header accent */}
 																	<div className="absolute top-0 left-0 right-0 h-[60px] overflow-hidden">
@@ -342,8 +374,8 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 																			className="absolute inset-0 opacity-10"
 																			style={{
 																				background: isDark
-																					? "linear-gradient(to bottom, rgba(103,80,164,0.8) 0%, transparent 100%)"
-																					: "linear-gradient(to bottom, rgba(132,95,220,0.4) 0%, transparent 100%)",
+																					? "linear-gradient(to bottom, rgba(34,102,68,0.8) 0%, transparent 100%)"
+																					: "linear-gradient(to bottom, rgba(52,168,83,0.4) 0%, transparent 100%)",
 																			}}></div>
 																		<div
 																			className="absolute top-0 left-0 w-[200%] h-full bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer"
@@ -356,8 +388,9 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 																	{[...Array(6)].map((_, i) => (
 																		<div
 																			key={i}
-																			className="absolute w-1 h-1 rounded-full bg-purple-400/30 dark:bg-purple-600/30 animate-float-slow"
+																			className="absolute w-1 h-1 rounded-full animate-float-slow"
 																			style={{
+																				background: isDark ? "rgba(34,102,68,0.3)" : "rgba(72,187,120,0.3)",
 																				top: `${Math.random() * 100}%`,
 																				left: `${Math.random() * 100}%`,
 																				animationDuration: `${Math.floor(Math.random() * 8) + 5}s`,
@@ -374,13 +407,13 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 																		<DialogTitle
 																			className={`text-center text-xl font-bold tracking-wide ${
 																				isDark
-																					? "text-[rgba(240,225,255,1)]"
-																					: "text-[rgba(103,80,164,1)]"
+																					? "text-[rgba(240,255,240,1)]"
+																					: "text-[rgba(34,102,68,1)]"
 																			}`}
 																			style={{
 																				textShadow: isDark
 																					? "0 2px 4px rgba(0,0,0,0.2)"
-																					: "0 1px 2px rgba(103,80,164,0.1)",
+																					: "0 1px 2px rgba(34,102,68,0.1)",
 																			}}>
 																			{ps.title}
 																		</DialogTitle>
@@ -391,8 +424,8 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 																	<DialogDescription
 																		className={`text-justify ${
 																			isDark
-																				? "text-[rgba(230,210,255,0.95)]"
-																				: "text-[rgba(50,50,70,0.95)]"
+																				? "text-[rgba(220,255,220,0.95)]"
+																				: "text-[rgba(20,50,30,0.95)]"
 																		}`}>
 																		<motion.div
 																			initial={{ opacity: 0, y: 20 }}
@@ -401,11 +434,11 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 																			className="flex flex-col md:flex-row items-center md:items-start justify-between space-y-4 md:space-y-0 md:space-x-6 mb-6 p-4 rounded-lg"
 																			style={{
 																				background: isDark
-																					? "rgba(103,80,164,0.15)"
-																					: "rgba(132,95,220,0.08)",
+																					? "rgba(34,102,68,0.15)"
+																					: "rgba(52,168,83,0.08)",
 																				border: isDark
-																					? "1px solid rgba(103,80,164,0.3)"
-																					: "1px solid rgba(132,95,220,0.2)",
+																					? "1px solid rgba(34,102,68,0.3)"
+																					: "1px solid rgba(52,168,83,0.2)",
 																				boxShadow:
 																					"inset 0 1px 0 0 rgba(255,255,255,0.05)",
 																			}}>
@@ -413,16 +446,16 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 																				<DialogTitle
 																					className={`mb-3 text-lg font-semibold ${
 																						isDark
-																							? "text-[rgba(240,225,255,1)]"
-																							: "text-[rgba(103,80,164,1)]"
+																							? "text-[rgba(240,255,240,1)]"
+																							: "text-[rgba(34,102,68,1)]"
 																					}`}>
 																					Sustainable Development Goal
 																				</DialogTitle>
 																				<span
 																					className={`text-2xl font-bold ${
 																						isDark
-																							? "text-[rgba(230,210,255,0.95)]"
-																							: "text-[rgba(103,80,164,0.9)]"
+																							? "text-[rgba(220,255,220,0.95)]"
+																							: "text-[rgba(34,102,68,0.9)]"
 																					}`}>
 																					{ps.sdg_id}
 																				</span>
@@ -438,7 +471,7 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 																				style={{
 																					boxShadow: isDark
 																						? "0 8px 30px rgba(0,0,0,0.3)"
-																						: "0 8px 30px rgba(103,80,164,0.2)",
+																						: "0 8px 30px rgba(34,102,68,0.2)",
 																				}}>
 																				<Image
 																					src={`/assets/sdg_${ps.sdg_id}.png`}
@@ -464,17 +497,17 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 																			className="mb-6 p-4 rounded-lg"
 																			style={{
 																				background: isDark
-																					? "rgba(30,30,40,0.3)"
-																					: "rgba(245,245,255,0.5)",
+																					? "rgba(20,40,30,0.3)"
+																					: "rgba(245,255,245,0.5)",
 																				border: isDark
-																					? "1px solid rgba(103,80,164,0.2)"
-																					: "1px solid rgba(132,95,220,0.15)",
+																					? "1px solid rgba(34,102,68,0.2)"
+																					: "1px solid rgba(52,168,83,0.15)",
 																			}}>
 																			<DialogTitle
 																				className={`mb-3 text-lg font-semibold ${
 																					isDark
-																						? "text-[rgba(240,225,255,1)]"
-																						: "text-[rgba(103,80,164,1)]"
+																						? "text-[rgba(240,255,240,1)]"
+																						: "text-[rgba(34,102,68,1)]"
 																				}`}>
 																				Problem
 																			</DialogTitle>
@@ -490,17 +523,17 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 																			className="p-4 rounded-lg"
 																			style={{
 																				background: isDark
-																					? "rgba(30,30,40,0.3)"
-																					: "rgba(245,245,255,0.5)",
+																					? "rgba(20,40,30,0.3)"
+																					: "rgba(245,255,245,0.5)",
 																				border: isDark
-																					? "1px solid rgba(103,80,164,0.2)"
-																					: "1px solid rgba(132,95,220,0.15)",
+																					? "1px solid rgba(34,102,68,0.2)"
+																					: "1px solid rgba(52,168,83,0.15)",
 																			}}>
 																			<DialogTitle
 																				className={`mb-3 text-lg font-semibold ${
 																					isDark
-																						? "text-[rgba(240,225,255,1)]"
-																						: "text-[rgba(103,80,164,1)]"
+																						? "text-[rgba(240,255,240,1)]"
+																						: "text-[rgba(34,102,68,1)]"
 																				}`}>
 																				Features Expected
 																			</DialogTitle>
@@ -539,16 +572,16 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 					className="cursor-pointer absolute left-0 sm:left-2 md:left-4 lg:left-8 z-30 transition-all duration-300 hover:scale-110"
 					style={{
 						background: isDark
-							? "linear-gradient(135deg, rgba(30,30,45,0.8) 0%, rgba(35,35,60,0.7) 100%)"
-							: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(240,240,255,0.9) 100%)",
+							? "linear-gradient(135deg, rgba(20,40,30,0.8) 0%, rgba(25,50,35,0.7) 100%)"
+							: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(240,255,240,0.9) 100%)",
 						backdropFilter: "blur(10px)",
 						boxShadow: isDark
 							? `0 4px 20px rgba(0,0,0,0.3), 
-							   0 0 0 1px rgba(103,80,164,0.3)`
-							: `0 4px 20px rgba(103,80,164,0.1), 
-							   0 0 0 1px rgba(132,95,220,0.2)`,
-						border: isDark ? "1px solid rgba(103,80,164,0.4)" : "1px solid rgba(132,95,220,0.3)",
-						color: isDark ? "rgba(230,210,255,0.9)" : "rgba(103,80,164,0.9)",
+							   0 0 0 1px rgba(34,102,68,0.3)`
+							: `0 4px 20px rgba(34,102,68,0.1), 
+							   0 0 0 1px rgba(52,168,83,0.2)`,
+						border: isDark ? "1px solid rgba(34,102,68,0.4)" : "1px solid rgba(52,168,83,0.3)",
+						color: isDark ? "rgba(220,255,220,0.9)" : "rgba(34,102,68,0.9)",
 					}}>
 					<ArrowLeftIcon className="h-4 w-4" />
 					<span className="sr-only">Previous slide</span>
@@ -558,16 +591,16 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 					className="cursor-pointer absolute right-0 sm:right-2 md:right-4 lg:right-8 z-30 transition-all duration-300 hover:scale-110"
 					style={{
 						background: isDark
-							? "linear-gradient(135deg, rgba(30,30,45,0.8) 0%, rgba(35,35,60,0.7) 100%)"
-							: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(240,240,255,0.9) 100%)",
+							? "linear-gradient(135deg, rgba(20,40,30,0.8) 0%, rgba(25,50,35,0.7) 100%)"
+							: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(240,255,240,0.9) 100%)",
 						backdropFilter: "blur(10px)",
 						boxShadow: isDark
 							? `0 4px 20px rgba(0,0,0,0.3), 
-							   0 0 0 1px rgba(103,80,164,0.3)`
-							: `0 4px 20px rgba(103,80,164,0.1), 
-							   0 0 0 1px rgba(132,95,220,0.2)`,
-						border: isDark ? "1px solid rgba(103,80,164,0.4)" : "1px solid rgba(132,95,220,0.3)",
-						color: isDark ? "rgba(230,210,255,0.9)" : "rgba(103,80,164,0.9)",
+							   0 0 0 1px rgba(34,102,68,0.3)`
+							: `0 4px 20px rgba(34,102,68,0.1), 
+							   0 0 0 1px rgba(52,168,83,0.2)`,
+						border: isDark ? "1px solid rgba(34,102,68,0.4)" : "1px solid rgba(52,168,83,0.3)",
+						color: isDark ? "rgba(220,255,220,0.9)" : "rgba(34,102,68,0.9)",
 					}}>
 					<ArrowRightIcon className="h-4 w-4" />
 					<span className="sr-only">Next slide</span>

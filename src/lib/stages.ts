@@ -33,10 +33,10 @@ export const stageItems: Record<string, StageItem> = {
 	},
 	qualifiers: {
 		icon: PiCertificate,
-		bg_color: "bg-violet-600",
+		bg_color: "bg-green-600",
 		line_color: {
-			up: "bg-gradient-to-b from-violet-600 to-background",
-			down: "bg-gradient-to-t from-violet-600 to-background",
+			up: "bg-gradient-to-b from-green-600 to-background",
+			down: "bg-gradient-to-t from-green-600 to-background",
 		},
 	},
 	finals: {

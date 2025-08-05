@@ -22,7 +22,7 @@ export interface Stats {
 const getLoader = function (): React.JSX.Element {
 	return (
 		<div className="flex items-center justify-start">
-			<Spinner className="text-[hsl(var(--foreground))]" size="medium" />
+			<Spinner className="text-primary" size="medium" />
 		</div>
 	);
 };
@@ -32,18 +32,20 @@ export function Stats(): React.JSX.Element {
 	const { theme } = useTheme();
 	const isDark = theme === "dark";
 
-	const spotlightColor = isDark ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.03)";
+	const spotlightColor = isDark ? "rgba(46, 204, 113, 0.08)" : "rgba(16, 109, 32, 0.05)";
 
 	const statItems = [
 		{
-			title: "Participants",
+			title: "Registrations",
 			value: stats.users,
 			icon: (
 				<IoPerson
 					size={28}
-					className="text-[hsl(var(--foreground))]"
+					className={isDark ? "text-[rgba(144,238,144,0.95)]" : "text-[rgba(16,109,32,0.9)]"}
 					style={{
-						filter: "drop-shadow(0 0 4px rgba(255, 215, 0, 0.15))",
+						filter: isDark
+							? "drop-shadow(0 0 8px rgba(46, 204, 113, 0.3))"
+							: "drop-shadow(0 0 6px rgba(16, 109, 32, 0.25))",
 					}}
 				/>
 			),
@@ -55,9 +57,11 @@ export function Stats(): React.JSX.Element {
 			icon: (
 				<RiTeamFill
 					size={28}
-					className="text-[hsl(var(--foreground))]"
+					className={isDark ? "text-[rgba(144,238,144,0.95)]" : "text-[rgba(16,109,32,0.9)]"}
 					style={{
-						filter: "drop-shadow(0 0 4px rgba(255, 215, 0, 0.15))",
+						filter: isDark
+							? "drop-shadow(0 0 8px rgba(46, 204, 113, 0.3))"
+							: "drop-shadow(0 0 6px rgba(16, 109, 32, 0.25))",
 					}}
 				/>
 			),
@@ -69,9 +73,11 @@ export function Stats(): React.JSX.Element {
 			icon: (
 				<FaBuildingColumns
 					size={28}
-					className="text-[hsl(var(--foreground))]"
+					className={isDark ? "text-[rgba(144,238,144,0.95)]" : "text-[rgba(16,109,32,0.9)]"}
 					style={{
-						filter: "drop-shadow(0 0 4px rgba(255, 215, 0, 0.15))",
+						filter: isDark
+							? "drop-shadow(0 0 8px rgba(46, 204, 113, 0.3))"
+							: "drop-shadow(0 0 6px rgba(16, 109, 32, 0.25))",
 					}}
 				/>
 			),
@@ -83,9 +89,11 @@ export function Stats(): React.JSX.Element {
 			icon: (
 				<LuTrophy
 					size={28}
-					className="text-[hsl(var(--foreground))]"
+					className={isDark ? "text-[rgba(144,238,144,0.95)]" : "text-[rgba(16,109,32,0.9)]"}
 					style={{
-						filter: "drop-shadow(0 0 4px rgba(255, 215, 0, 0.15))",
+						filter: isDark
+							? "drop-shadow(0 0 8px rgba(46, 204, 113, 0.3))"
+							: "drop-shadow(0 0 6px rgba(16, 109, 32, 0.25))",
 					}}
 				/>
 			),
@@ -113,74 +121,73 @@ export function Stats(): React.JSX.Element {
 	};
 
 	return (
-		<section id="stats" className="py-20">
-			<div className="container mx-auto px-4">
-				<div className="text-center mb-12">
-					<motion.div
-						className="relative inline-block mb-8"
-						initial={{ opacity: 0, y: 20 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.5 }}
-						viewport={{ once: true }}>
-						<h2
-							className="text-4xl md:text-5xl font-bold text-[hsl(var(--foreground))]"
-							style={{ fontFamily: "var(--font-playfair-display)" }}>
-							Hackathon by Numbers
-						</h2>
-						<motion.div
-							className="absolute -bottom-3 left-0 h-1 bg-[hsl(var(--foreground))] rounded-full"
-							initial={{ width: 0 }}
-							whileInView={{ width: "100%" }}
-							transition={{ duration: 0.8, delay: 0.5 }}
-							viewport={{ once: true }}
-						/>
-						<motion.div
-							className="absolute -bottom-5 left-0 h-[0.5px] bg-[hsl(var(--foreground))] rounded-full"
-							initial={{ width: 0 }}
-							whileInView={{ width: "100%" }}
-							transition={{ duration: 0.8, delay: 0.7 }}
-							viewport={{ once: true }}
-						/>
-					</motion.div>
-					<motion.p
-						className="text-lg text-[hsl(var(--foreground))]/80 max-w-2xl mx-auto opacity-80"
-						initial={{ opacity: 0 }}
-						whileInView={{ opacity: 0.8 }}
-						transition={{ duration: 0.5, delay: 0.3 }}
-						viewport={{ once: true }}>
-						Take a look at the impact and scale of Manipal Hackathon 2025, one of India's premier student
-						hackathons
-					</motion.p>
-				</div>
-
+		<section id="stats" className="py-20 relative">
+			<div className="container mx-auto px-4 relative z-10">
+				{/* Section Title */}
 				<motion.div
-					className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+					className="text-center mb-16"
+					initial={{ opacity: 0, y: 20 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.6 }}
+					viewport={{ once: true }}>
+					<h2
+						className="text-4xl md:text-5xl font-bold mb-4"
+						style={{
+							fontFamily: "var(--font-playfair-display)",
+							color: isDark ? "rgba(255, 255, 255, 0.95)" : "rgba(0, 0, 0, 0.9)",
+						}}>
+						Hackathon by Numbers
+					</h2>
+					<p
+						className="text-lg opacity-80 max-w-2xl mx-auto"
+						style={{
+							color: isDark ? "rgba(255, 255, 255, 0.8)" : "rgba(0, 0, 0, 0.7)",
+						}}>
+						Join thousands of innovators in India's premier student hackathon
+					</p>
+				</motion.div>
+
+				{/* Stats Grid */}
+				<motion.div
+					className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
 					variants={containerVariants}
 					initial="hidden"
 					whileInView="visible"
 					viewport={{ once: true }}>
 					{statItems.map((item, index) => (
 						<motion.div key={index} variants={itemVariants}>
-							<SpotlightCard
-								className="h-full bg-white/5 dark:bg-black/5 border-gray-300/40 dark:border-gray-600/40 backdrop-blur-xl"
-								spotlightColor={spotlightColor}>
-								<div className="flex flex-col h-full">
-									<div className="flex items-center justify-between mb-4">
-										<h3 className="text-lg font-medium text-[hsl(var(--foreground))]">
-											{item.title}
-										</h3>
-										{item.icon}
-									</div>
-									<div className="flex-grow">
-										<div
-											className="text-4xl font-bold mb-2 text-[hsl(var(--foreground))]"
-											style={{ fontFamily: "var(--font-playfair-display)" }}>
-											{stats.loading && typeof item.value === "number" ? getLoader() : item.value}
-										</div>
-										<p className="text-sm opacity-70 text-[hsl(var(--foreground))]">
-											{item.description}
-										</p>
-									</div>
+							<SpotlightCard spotlightColor={spotlightColor}>
+								<div className="p-6 text-center">
+									<div className="flex justify-center mb-4">{item.icon}</div>
+									<h3
+										className="text-2xl md:text-3xl font-bold mb-2"
+										style={{
+											color: isDark ? "rgba(255, 255, 255, 0.95)" : "rgba(0, 0, 0, 0.9)",
+										}}>
+										{typeof item.value === "number" ? (
+											stats.loading ? (
+												getLoader()
+											) : (
+												item.value.toLocaleString()
+											)
+										) : (
+											item.value
+										)}
+									</h3>
+									<p
+										className="text-lg font-semibold mb-2"
+										style={{
+											color: isDark ? "rgba(255, 255, 255, 0.8)" : "rgba(0, 0, 0, 0.7)",
+										}}>
+										{item.title}
+									</p>
+									<p
+										className="text-sm opacity-70"
+										style={{
+											color: isDark ? "rgba(255, 255, 255, 0.6)" : "rgba(0, 0, 0, 0.6)",
+										}}>
+										{item.description}
+									</p>
 								</div>
 							</SpotlightCard>
 						</motion.div>

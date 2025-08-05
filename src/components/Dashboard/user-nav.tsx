@@ -80,14 +80,14 @@ export function UserNav(): React.JSX.Element {
 						boxShadow: `0 4px 20px ${theme === "dark" ? "rgba(0, 0, 0, 0.3)" : "rgba(0, 0, 0, 0.1)"}`,
 						zIndex: 9999,
 					}}>
-					{/* Subtle purple accent overlay */}
+					{/* Subtle green accent overlay */}
 					<div
 						className="absolute inset-0"
 						style={{
 							background:
 								theme === "dark"
-									? "linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(79, 70, 229, 0.03))"
-									: "linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(79, 70, 229, 0.04))",
+									? "linear-gradient(135deg, rgba(34, 197, 94, 0.05), rgba(22, 163, 74, 0.03))"
+									: "linear-gradient(135deg, rgba(34, 197, 94, 0.08), rgba(22, 163, 74, 0.04))",
 						}}></div>
 
 					<div className="relative">
@@ -114,7 +114,7 @@ export function UserNav(): React.JSX.Element {
 								asChild>
 								<Link href="/dashboard" className="flex items-center">
 									<LayoutGrid
-										className={`mr-3 h-4 w-4 transition-colors duration-200 ${theme === "dark" ? "text-slate-400 group-hover:text-purple-400" : "text-slate-600 group-hover:text-purple-600"}`}
+										className={`mr-3 h-4 w-4 transition-colors duration-200 ${theme === "dark" ? "text-slate-400 group-hover:text-green-400" : "text-slate-600 group-hover:text-green-600"}`}
 									/>
 									<span
 										className={`transition-colors duration-200 ${theme === "dark" ? "text-slate-200 group-hover:text-white" : "text-slate-700 group-hover:text-slate-900"}`}>

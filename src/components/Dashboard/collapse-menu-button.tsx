@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
+import { useTheme } from "@/components/ThemeProvider";
 
 interface Submenu {
 	href: string;
@@ -42,11 +43,37 @@ export function CollapseMenuButton({
 }: CollapseMenuButtonProps): React.JSX.Element {
 	const isSubmenuActive = submenus.some((submenu) => submenu.active);
 	const [isCollapsed, setIsCollapsed] = useState<boolean>(isSubmenuActive);
+	const { theme } = useTheme();
+	const isDark = theme === "dark";
 
 	return isOpen ? (
 		<Collapsible open={isCollapsed} onOpenChange={setIsCollapsed} className="w-full">
 			<CollapsibleTrigger className="mb-1 [&[data-state=open]>div>div>svg]:rotate-180" asChild>
-				<Button variant={active ? "secondary" : "ghost"} className="h-10 w-full justify-start">
+				<Button
+					variant={active ? "secondary" : "ghost"}
+					className={cn(
+						"h-10 w-full justify-start backdrop-blur-sm transition-all duration-300",
+						active
+							? isDark
+								? "hover:bg-green-600/20"
+								: "hover:bg-green-500/15"
+							: isDark
+								? "hover:bg-green-500/10"
+								: "hover:bg-green-500/8"
+					)}
+					style={{
+						background: active
+							? isDark
+								? "rgba(34,102,68,0.15)"
+								: "rgba(52,168,83,0.1)"
+							: "transparent",
+						border: active
+							? `1px solid ${isDark ? "rgba(46,204,113,0.25)" : "rgba(52,168,83,0.2)"}`
+							: undefined,
+						boxShadow: active
+							? `0 2px 4px ${isDark ? "rgba(34,102,68,0.15)" : "rgba(16,109,32,0.08)"}`
+							: undefined,
+					}}>
 					<div className="flex w-full items-center justify-between">
 						<div className="flex items-center">
 							<span className="mr-4">
@@ -75,7 +102,29 @@ export function CollapseMenuButton({
 					<Button
 						key={index}
 						variant={active ? "secondary" : "ghost"}
-						className="mb-1 h-10 w-full justify-start"
+						className={cn(
+							"mb-1 h-10 w-full justify-start backdrop-blur-sm transition-all duration-300",
+							active
+								? isDark
+									? "hover:bg-green-600/20"
+									: "hover:bg-green-500/15"
+								: isDark
+									? "hover:bg-green-500/10"
+									: "hover:bg-green-500/8"
+						)}
+						style={{
+							background: active
+								? isDark
+									? "rgba(34,102,68,0.15)"
+									: "rgba(52,168,83,0.1)"
+								: "transparent",
+							border: active
+								? `1px solid ${isDark ? "rgba(46,204,113,0.25)" : "rgba(52,168,83,0.2)"}`
+								: undefined,
+							boxShadow: active
+								? `0 2px 4px ${isDark ? "rgba(34,102,68,0.15)" : "rgba(16,109,32,0.08)"}`
+								: undefined,
+						}}
 						asChild>
 						<Link href={href}>
 							<span className="ml-2 mr-4">
@@ -99,7 +148,31 @@ export function CollapseMenuButton({
 				<Tooltip delayDuration={100}>
 					<TooltipTrigger asChild>
 						<DropdownMenuTrigger asChild>
-							<Button variant={active ? "secondary" : "ghost"} className="mb-1 h-10 w-full justify-start">
+							<Button
+								variant={active ? "secondary" : "ghost"}
+								className={cn(
+									"mb-1 h-10 w-full justify-start backdrop-blur-sm transition-all duration-300",
+									active
+										? isDark
+											? "hover:bg-green-600/20"
+											: "hover:bg-green-500/15"
+										: isDark
+											? "hover:bg-green-500/10"
+											: "hover:bg-green-500/8"
+								)}
+								style={{
+									background: active
+										? isDark
+											? "rgba(34,102,68,0.15)"
+											: "rgba(52,168,83,0.1)"
+										: "transparent",
+									border: active
+										? `1px solid ${isDark ? "rgba(46,204,113,0.25)" : "rgba(52,168,83,0.2)"}`
+										: undefined,
+									boxShadow: active
+										? `0 2px 4px ${isDark ? "rgba(34,102,68,0.15)" : "rgba(16,109,32,0.08)"}`
+										: undefined,
+								}}>
 								<div className="flex w-full items-center justify-between">
 									<div className="flex items-center">
 										<span className={cn(isOpen === false ? "" : "mr-4")}>

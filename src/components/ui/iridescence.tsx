@@ -85,9 +85,9 @@ export default function Iridescence({
 	speed = 0.8,
 	amplitude = 0.15,
 	mouseReact = true,
-	topColor = [0.831, 0.847, 0.953], // Light lavender #D4D8F3
-	middleColor = [0.976, 0.973, 0.988], // Soft cream #F9F8FC
-	bottomColor = [0.576, 0.651, 0.89], // Periwinkle #93A6E3
+	topColor = [0.941, 1.0, 0.961], // Light green #F0FDF5
+	middleColor = [0.863, 0.988, 0.906], // Soft green cream #DCF9E7
+	bottomColor = [0.565, 0.859, 0.651], // Royal green #90DBA6
 	...rest
 }: IridescenceProps) {
 	const ctnDom = useRef<HTMLDivElement>(null);

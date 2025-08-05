@@ -1,16 +1,34 @@
 "use client";
 import Image from "next/image";
 import React from "react";
+import { useTheme } from "@/components/ThemeProvider";
 
 import { NavbarSheet } from "@/components/Home/NavbarSheet";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { UserNav } from "../Home/user-nav";
 
 export default function Navbar(): React.JSX.Element {
+	const { theme } = useTheme();
+	const isDark = theme === "dark";
+
 	return (
 		<nav className="fixed start-0 top-0 z-100 w-full">
 			{/* Enhanced Glassmorphism Background with micro-animations */}
-			<div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 via-violet-800/15 to-purple-900/20 backdrop-blur-xl border-b border-purple-500/20 transition-all duration-500 hover:border-purple-500/30" />
+			<div
+				className="absolute inset-0 backdrop-blur-xl border-b transition-all duration-500"
+				style={{
+					background: isDark
+						? "linear-gradient(to right, rgba(34,102,68,0.2), rgba(52,168,83,0.15), rgba(34,102,68,0.2))"
+						: "linear-gradient(to right, rgba(72,187,120,0.2), rgba(134,239,172,0.15), rgba(72,187,120,0.2))",
+					borderBottomColor: isDark ? "rgba(34,102,68,0.2)" : "rgba(52,168,83,0.2)",
+				}}
+				onMouseEnter={(e) => {
+					e.currentTarget.style.borderBottomColor = isDark ? "rgba(34,102,68,0.3)" : "rgba(52,168,83,0.3)";
+				}}
+				onMouseLeave={(e) => {
+					e.currentTarget.style.borderBottomColor = isDark ? "rgba(34,102,68,0.2)" : "rgba(52,168,83,0.2)";
+				}}
+			/>
 
 			<div className="relative mx-auto flex max-w-screen-2xl flex-wrap items-center justify-between px-8 py-2">
 				<div className="flex flex-wrap items-center justify-between xs:pl-4 lg:max-w-screen-xl">
@@ -26,7 +44,14 @@ export default function Navbar(): React.JSX.Element {
 								height={74}
 							/>
 							{/* Subtle glow effect on hover */}
-							<div className="absolute inset-0 bg-gradient-to-r from-purple-400/0 to-blue-400/0 transition-all duration-300 group-hover:from-purple-400/20 group-hover:to-blue-400/20 rounded-xl"></div>
+							<div
+								className="absolute inset-0 transition-all duration-300 rounded-xl opacity-0 group-hover:opacity-100"
+								style={{
+									background: isDark
+										? "linear-gradient(to right, rgba(34,102,68,0.2), rgba(72,187,120,0.2))"
+										: "linear-gradient(to right, rgba(52,168,83,0.2), rgba(134,239,172,0.2))",
+								}}
+							></div>
 						</div>
 					</a>
 
@@ -34,7 +59,8 @@ export default function Navbar(): React.JSX.Element {
 					<a
 						href="https://manipal.edu/mit.html"
 						target="_blank"
-						className="ml-2 mr-1 hidden items-center sm:flex md:ml-4 md:mr-2 group">
+						className="ml-2 mr-1 hidden items-center sm:flex md:ml-4 md:mr-2 group"
+					>
 						<div className="relative overflow-hidden rounded-lg">
 							<Image
 								unoptimized
@@ -52,7 +78,8 @@ export default function Navbar(): React.JSX.Element {
 					<a
 						href="https://manipal.edu/mit.html"
 						target="_blank"
-						className="ml-2 mr-1 items-center xs:ml-4 xs:mr-2 sm:hidden group">
+						className="ml-2 mr-1 items-center xs:ml-4 xs:mr-2 sm:hidden group"
+					>
 						<div className="relative overflow-hidden rounded-lg">
 							<Image
 								unoptimized
@@ -67,7 +94,12 @@ export default function Navbar(): React.JSX.Element {
 					</a>
 
 					{/* Enhanced IIC logo with micro-interaction */}
-					<a href="https://iic.mic.gov.in/" target="_blank" rel="noopener noreferrer" className="group">
+					<a
+						href="https://iic.mic.gov.in/"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="group"
+					>
 						<div className="relative overflow-hidden rounded-lg">
 							<Image
 								unoptimized
@@ -92,7 +124,14 @@ export default function Navbar(): React.JSX.Element {
 								width={64}
 								height={64}
 							/>
-							<div className="absolute inset-0 bg-gradient-to-tr from-green-400/0 to-blue-400/0 transition-all duration-300 group-hover:from-green-400/15 group-hover:to-blue-400/15 rounded-lg"></div>
+							<div
+								className="absolute inset-0 transition-all duration-300 rounded-lg opacity-0 group-hover:opacity-100"
+								style={{
+									background: isDark
+										? "linear-gradient(to top right, rgba(34,102,68,0.15), rgba(72,187,120,0.15))"
+										: "linear-gradient(to top right, rgba(52,168,83,0.15), rgba(134,239,172,0.15))",
+								}}
+							></div>
 						</div>
 					</div>
 				</div>
@@ -114,76 +153,125 @@ export default function Navbar(): React.JSX.Element {
 
 				<div
 					className="hidden w-full items-center justify-between xl:order-1 xl:flex xl:w-auto"
-					id="navbar-sticky">
+					id="navbar-sticky"
+				>
 					<ul className="mt-4 flex flex-col rounded-lg border border-[hsl(var(--border))] p-4 font-medium md:mt-0 md:flex-row md:space-x-6 md:border-0 md:bg-transparent md:p-0 rtl:space-x-reverse">
-						{/* Enhanced nav links with clean purple underline animation */}
+						{/* Enhanced nav links with clean green underline animation */}
 						<li>
 							<a
 								href="/#about"
-								className="group relative block rounded-xl px-4 py-3 text-[hsl(var(--foreground))] hover:bg-[hsl(var(--card))] dark:text-[hsl(var(--primary-foreground))] md:p-0 md:hover:bg-transparent md:hover:text-[hsl(var(--primary))] transition-all duration-300"
-								aria-current="page">
+								className="group relative block rounded-xl px-4 py-3 text-[hsl(var(--foreground))] hover:bg-[hsl(var(--card))] md:p-0 md:hover:bg-transparent transition-all duration-300"
+								style={{
+									color: isDark ? "rgba(240,255,240,0.9)" : "rgba(34,102,68,0.9)",
+								}}
+								aria-current="page"
+							>
 								{/* Text with enhanced styling */}
 								<span
-									className="relative font-bold transition-all duration-300 group-hover:scale-105 green-accent-hover"
-									style={{ fontFamily: "var(--font-playfair-display)", letterSpacing: "0.16em" }}>
+									className="relative font-bold transition-all duration-300 group-hover:scale-105"
+									style={{
+										fontFamily: "var(--font-playfair-display)",
+										letterSpacing: "0.16em",
+										color: isDark ? "rgba(240,255,240,1)" : "rgba(34,102,68,1)",
+									}}
+								>
 									About
 								</span>
 
-								{/* Clean purple underline animation */}
+								{/* Clean green underline animation */}
 								<div
 									className="absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-500 ease-out group-hover:w-full md:block hidden"
-									style={{ background: "rgb(103, 80, 164)" }}></div>
+									style={{
+										background: isDark ? "rgba(72,187,120,0.8)" : "rgba(34,102,68,0.8)",
+									}}
+								></div>
 							</a>
 						</li>
 
 						<li>
 							<a
 								href="/#timeline"
-								className="group relative block rounded-xl px-4 py-3 text-[hsl(var(--foreground))] hover:bg-[hsl(var(--card))] dark:text-[hsl(var(--primary-foreground))] md:p-0 md:hover:bg-transparent md:hover:text-[hsl(var(--primary))] transition-all duration-300"
-								aria-current="page">
+								className="group relative block rounded-xl px-4 py-3 text-[hsl(var(--foreground))] hover:bg-[hsl(var(--card))] md:p-0 md:hover:bg-transparent transition-all duration-300"
+								style={{
+									color: isDark ? "rgba(240,255,240,0.9)" : "rgba(34,102,68,0.9)",
+								}}
+								aria-current="page"
+							>
 								<span
-									className="relative font-bold transition-all duration-300 group-hover:scale-105 green-accent-hover"
-									style={{ fontFamily: "var(--font-playfair-display)", letterSpacing: "0.16em" }}>
+									className="relative font-bold transition-all duration-300 group-hover:scale-105"
+									style={{
+										fontFamily: "var(--font-playfair-display)",
+										letterSpacing: "0.16em",
+										color: isDark ? "rgba(240,255,240,1)" : "rgba(34,102,68,1)",
+									}}
+								>
 									Timeline
 								</span>
 
 								<div
 									className="absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-500 ease-out group-hover:w-full md:block hidden"
-									style={{ background: "rgb(103, 80, 164)" }}></div>
+									style={{
+										background: isDark ? "rgba(72,187,120,0.8)" : "rgba(34,102,68,0.8)",
+									}}
+								></div>
 							</a>
 						</li>
 
 						<li>
 							<a
 								href="/#problem-statements"
-								className="group relative block rounded-xl px-4 py-3 text-[hsl(var(--foreground))] hover:bg-[hsl(var(--card))] dark:text-[hsl(var(--primary-foreground))] md:p-0 md:hover:bg-transparent md:hover:text-[hsl(var(--primary))] transition-all duration-300"
-								aria-current="page">
+								className="group relative block rounded-xl px-4 py-3 text-[hsl(var(--foreground))] hover:bg-[hsl(var(--card))] md:p-0 md:hover:bg-transparent transition-all duration-300"
+								style={{
+									color: isDark ? "rgba(240,255,240,0.9)" : "rgba(34,102,68,0.9)",
+								}}
+								aria-current="page"
+							>
 								<span
-									className="relative font-bold transition-all duration-300 group-hover:scale-105 green-accent-hover"
-									style={{ fontFamily: "var(--font-playfair-display)", letterSpacing: "0.16em" }}>
+									className="relative font-bold transition-all duration-300 group-hover:scale-105"
+									style={{
+										fontFamily: "var(--font-playfair-display)",
+										letterSpacing: "0.16em",
+										color: isDark ? "rgba(240,255,240,1)" : "rgba(34,102,68,1)",
+									}}
+								>
 									Problem Statements
 								</span>
 
 								<div
 									className="absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-500 ease-out group-hover:w-full md:block hidden"
-									style={{ background: "rgb(103, 80, 164)" }}></div>
+									style={{
+										background: isDark ? "rgba(72,187,120,0.8)" : "rgba(34,102,68,0.8)",
+									}}
+								></div>
 							</a>
 						</li>
 
 						<li>
 							<a
 								href="/#contact-us"
-								className="group relative block rounded-xl px-4 py-3 text-[hsl(var(--foreground))] hover:bg-[hsl(var(--card))] dark:text-[hsl(var(--primary-foreground))] md:p-0 md:hover:bg-transparent md:hover:text-[hsl(var(--primary))] transition-all duration-300"
-								aria-current="page">
+								className="group relative block rounded-xl px-4 py-3 text-[hsl(var(--foreground))] hover:bg-[hsl(var(--card))] md:p-0 md:hover:bg-transparent transition-all duration-300"
+								style={{
+									color: isDark ? "rgba(240,255,240,0.9)" : "rgba(34,102,68,0.9)",
+								}}
+								aria-current="page"
+							>
 								<span
-									className="relative font-bold transition-all duration-300 group-hover:scale-105 green-accent-hover"
-									style={{ fontFamily: "var(--font-playfair-display)", letterSpacing: "0.16em" }}>
+									className="relative font-bold transition-all duration-300 group-hover:scale-105"
+									style={{
+										fontFamily: "var(--font-playfair-display)",
+										letterSpacing: "0.16em",
+										color: isDark ? "rgba(240,255,240,1)" : "rgba(34,102,68,1)",
+									}}
+								>
 									Contact Us
 								</span>
 
 								<div
 									className="absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-500 ease-out group-hover:w-full md:block hidden"
-									style={{ background: "rgb(103, 80, 164)" }}></div>
+									style={{
+										background: isDark ? "rgba(72,187,120,0.8)" : "rgba(34,102,68,0.8)",
+									}}
+								></div>
 							</a>
 						</li>
 					</ul>

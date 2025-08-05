@@ -4,15 +4,71 @@
 	:root {
 		--background: 0 0% 100%;
 		--foreground: 222.2 84% 4.9%;
+		--card: 0 0% 100%;
+		--card-foreground: 222.2 84% 4.9%;
+		--popover: 0 0% 100%;
+		--popover-foreground: 222.2 84% 4.9%;
+		--primary: 145 85% 25%;
+		--primary-foreground: 144 100% 98%;
+		--secondary: 210 40% 96%;
+		--secondary-foreground: 222.2 84% 4.9%;
+		--muted: 210 40% 96%;
+		--muted-foreground: 215.4 16.3% 46.9%;
+		--accent: 145 85% 25%;
+		--accent-foreground: 222.2 84% 4.9%;
+		--destructive: 0 84.2% 60.2%;
+		--destructive-foreground: 210 40% 98%;
+		--border: 214.3 31.8% 91.4%;
+		--input: 214.3 31.8% 91.4%;
+		--ring: 145 85% 25%;
+		--chart-1: 145 85% 25%;
+		--chart-2: 158 85% 30%;
+		--chart-3: 132 85% 20%;
+		--chart-4: 165 100% 15%;
+		--chart-5: 140 85% 95%;
+		--radius: 0.5rem;
 
-		/* Add other light theme variables here */
+		/* Royal Green Glassmorphism Variables */
+		--glass-bg-light: rgba(240, 255, 245, 0.8);
+		--glass-border-light: rgba(34, 139, 34, 0.2);
+		--glass-shadow-light: 0 8px 32px rgba(34, 139, 34, 0.12);
+		--royal-green-light: rgba(16, 109, 32, 0.9);
+		--royal-green-accent-light: rgba(34, 139, 34, 0.15);
 	}
 
 	.dark {
 		--background: 222.2 84% 4.9%;
 		--foreground: 210 40% 98%;
+		--card: 222.2 84% 4.9%;
+		--card-foreground: 210 40% 98%;
+		--popover: 222.2 84% 4.9%;
+		--popover-foreground: 210 40% 98%;
+		--primary: 145 100% 35%;
+		--primary-foreground: 222.2 84% 4.9%;
+		--secondary: 217.2 32.6% 17.5%;
+		--secondary-foreground: 210 40% 98%;
+		--muted: 217.2 32.6% 17.5%;
+		--muted-foreground: 215 20.2% 65.1%;
+		--accent: 145 100% 35%;
+		--accent-foreground: 210 40% 98%;
+		--destructive: 0 62.8% 30.6%;
+		--destructive-foreground: 210 40% 98%;
+		--border: 217.2 32.6% 17.5%;
+		--input: 217.2 32.6% 17.5%;
+		--ring: 145 100% 35%;
+		--chart-1: 145 100% 35%;
+		--chart-2: 158 100% 40%;
+		--chart-3: 132 100% 30%;
+		--chart-4: 165 100% 25%;
+		--chart-5: 140 100% 10%;
+		--radius: 0.5rem;
 
-		/* Add other dark theme variables here */
+		/* Royal Green Glassmorphism Variables - Dark */
+		--glass-bg-dark: rgba(15, 25, 15, 0.7);
+		--glass-border-dark: rgba(46, 204, 113, 0.3);
+		--glass-shadow-dark: 0 8px 32px rgba(46, 204, 113, 0.15);
+		--royal-green-dark: rgba(46, 204, 113, 0.95);
+		--royal-green-accent-dark: rgba(46, 204, 113, 0.2);
 	}
 }
 
@@ -60,22 +116,22 @@ html.dark .dark-overlay {
 }
 
 ::-webkit-scrollbar-thumb {
-	background: linear-gradient(to bottom, rgba(139, 92, 246, 0.5), rgba(79, 70, 229, 0.5));
+	background: linear-gradient(to bottom, rgba(34, 197, 94, 0.5), rgba(22, 163, 74, 0.5));
 	border-radius: 10px;
 	border: 1px solid rgba(255, 255, 255, 0.1);
-	box-shadow: 0 0 8px rgba(139, 92, 246, 0.3);
+	box-shadow: 0 0 8px rgba(34, 197, 94, 0.3);
 	backdrop-filter: blur(4px);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background: linear-gradient(to bottom, rgba(139, 92, 246, 0.7), rgba(79, 70, 229, 0.7));
-	box-shadow: 0 0 12px rgba(139, 92, 246, 0.5);
+	background: linear-gradient(to bottom, rgba(34, 197, 94, 0.7), rgba(22, 163, 74, 0.7));
+	box-shadow: 0 0 12px rgba(34, 197, 94, 0.5);
 }
 
 /* For Firefox */
 * {
 	scrollbar-width: thin;
-	scrollbar-color: rgba(139, 92, 246, 0.5) rgba(255, 255, 255, 0.03);
+	scrollbar-color: rgba(34, 197, 94, 0.5) rgba(255, 255, 255, 0.03);
 }
 
 /* Custom class for neon scrollbar container */
@@ -89,12 +145,12 @@ html.dark ::-webkit-scrollbar-track {
 }
 
 html.dark ::-webkit-scrollbar-thumb {
-	background: linear-gradient(to bottom, rgba(139, 92, 246, 0.4), rgba(79, 70, 229, 0.4));
+	background: linear-gradient(to bottom, rgba(34, 197, 94, 0.4), rgba(22, 163, 74, 0.4));
 	border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 html.dark ::-webkit-scrollbar-thumb:hover {
-	background: linear-gradient(to bottom, rgba(139, 92, 246, 0.6), rgba(79, 70, 229, 0.6));
+	background: linear-gradient(to bottom, rgba(34, 197, 94, 0.6), rgba(22, 163, 74, 0.6));
 }
 
 /* Animations for PSCards component */
@@ -147,4 +203,27 @@ html.dark ::-webkit-scrollbar-thumb:hover {
 
 .animate-shimmer {
 	animation: shimmer 2.5s infinite;
+}
+
+/* Royal Green Glassmorphism Classes */
+.glass-royal-green {
+	background: var(--glass-bg-light);
+	border: 1px solid var(--glass-border-light);
+	box-shadow: var(--glass-shadow-light);
+	backdrop-filter: blur(16px);
+	-webkit-backdrop-filter: blur(16px);
+}
+
+.dark .glass-royal-green {
+	background: var(--glass-bg-dark);
+	border: 1px solid var(--glass-border-dark);
+	box-shadow: var(--glass-shadow-dark);
+}
+
+.royal-green-glow {
+	box-shadow: 0 0 20px var(--royal-green-accent-light);
+}
+
+.dark .royal-green-glow {
+	box-shadow: 0 0 20px var(--royal-green-accent-dark);
 }

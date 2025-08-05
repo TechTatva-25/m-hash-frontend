@@ -13,12 +13,12 @@ interface GradientBgProps {
 
 const GradientBg: React.FC<GradientBgProps> = ({
 	children,
-	lightFrom = "#DFDFF5", // Light purple shade
+	lightFrom = "#F0FDF4", // Light green shade
 	lightVia = "#F7F8FA", // Light whitish shade
-	lightTo = "#8DA3E0", // Light blue shade
-	darkFrom = "#1F2039", // Dark purple shade
-	darkVia = "#2A2E50", // Mid-dark shade
-	darkTo = "#151B33", // Dark blue shade
+	lightTo = "#DCFCE7", // Light green shade
+	darkFrom = "#0F1419", // Dark background
+	darkVia = "#1A2332", // Mid-dark shade with green tint
+	darkTo = "#0D1B0F", // Dark green shade
 }) => {
 	const { theme } = useTheme();
 	const isDark = theme === "dark";

@@ -93,19 +93,19 @@ export default function ContactForm(): React.JSX.Element {
 						transition={{ duration: 0.5 }}
 						viewport={{ once: true }}>
 						<h2
-							className="text-4xl md:text-5xl font-bold text-[hsl(var(--foreground))]"
+							className="text-4xl md:text-5xl font-bold text-foreground"
 							style={{ fontFamily: "var(--font-playfair-display)" }}>
 							Get In Touch
 						</h2>
 						<motion.div
-							className="absolute -bottom-3 left-0 h-1 bg-[hsl(var(--foreground))] rounded-full"
+							className="absolute -bottom-3 left-0 h-1 bg-primary rounded-full"
 							initial={{ width: 0 }}
 							whileInView={{ width: "100%" }}
 							transition={{ duration: 0.8, delay: 0.5 }}
 							viewport={{ once: true }}
 						/>
 						<motion.div
-							className="absolute -bottom-5 left-0 h-[0.5px] bg-[hsl(var(--foreground))]/60 rounded-full"
+							className="absolute -bottom-5 left-0 h-[0.5px] bg-primary/60 rounded-full"
 							initial={{ width: 0 }}
 							whileInView={{ width: "80%" }}
 							transition={{ duration: 0.8, delay: 0.7 }}
@@ -113,9 +113,9 @@ export default function ContactForm(): React.JSX.Element {
 						/>
 					</motion.div>
 					<motion.p
-						className="text-lg text-[hsl(var(--foreground))] max-w-2xl mx-auto opacity-80"
+						className="text-lg text-muted-foreground max-w-2xl mx-auto"
 						initial={{ opacity: 0 }}
-						whileInView={{ opacity: 0.8 }}
+						whileInView={{ opacity: 1 }}
 						transition={{ duration: 0.5, delay: 0.3 }}
 						viewport={{ once: true }}>
 						Have questions or want to learn more about Manipal Hackathon? We're here to help!
@@ -124,29 +124,30 @@ export default function ContactForm(): React.JSX.Element {
 
 				<div className="max-w-5xl mx-auto">
 					<motion.div
-						className={`group relative rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 hover:shadow-3xl border border-white/30 dark:border-white/10 p-0 md:p-1 ${isDark ? "bg-gradient-to-br from-[#1a102a]/80 via-[#23233a]/80 to-[#2a1a3a]/90" : "bg-gradient-to-br from-white/60 via-purple-100/40 to-white/10"}`}
+						className={`group relative rounded-3xl shadow-2xl overflow-hidden transition-all duration-500 hover:shadow-3xl border border-white/30 dark:border-white/10 p-0 md:p-1 ${isDark ? "bg-gradient-to-br from-[#0a1a0f]/80 via-[#0f2715]/80 to-[#0d1f12]/90" : "bg-gradient-to-br from-white/60 via-green-50/40 to-white/10"}`}
 						initial={{ opacity: 0, y: 50 }}
 						whileInView={{ opacity: 1, y: 0 }}
 						transition={{ duration: 0.8 }}
 						viewport={{ once: true }}
 						style={{
-							boxShadow: `0 32px 64px -12px rgba(103,80,164,0.13), 0 1.5px 0 0 rgba(255,255,255,0.10)`,
+							boxShadow: `0 32px 64px -12px rgba(16,109,32,0.13), 0 1.5px 0 0 rgba(255,255,255,0.10)`,
 						}}>
-						{/* Glassmorphic overlay and glow */}
+						{/* Sophisticated glassmorphic overlay and royal green glow */}
 						<div
-							className={`absolute inset-0 rounded-3xl pointer-events-none z-0 ${isDark ? "bg-gradient-to-br from-purple-900/30 via-indigo-900/20 to-transparent" : "bg-gradient-to-br from-white/40 via-purple-100/30 to-transparent"}`}></div>
+							className={`absolute inset-0 rounded-3xl pointer-events-none z-0 ${isDark ? "bg-gradient-to-br from-emerald-900/30 via-green-900/20 to-transparent" : "bg-gradient-to-br from-white/40 via-green-100/30 to-transparent"}`}></div>
 						<div
-							className={`absolute inset-0 rounded-3xl pointer-events-none z-0 ${isDark ? "bg-gradient-to-tl from-blue-900/20 via-transparent to-purple-900/20" : "bg-gradient-to-tl from-blue-200/10 via-transparent to-purple-200/10"}`}></div>
+							className={`absolute inset-0 rounded-3xl pointer-events-none z-0 ${isDark ? "bg-gradient-to-tl from-green-900/20 via-transparent to-emerald-900/20" : "bg-gradient-to-tl from-green-200/10 via-transparent to-emerald-200/10"}`}></div>
 						<div className="absolute inset-0 rounded-3xl pointer-events-none z-0 backdrop-blur-2xl" />
 
-						{/* Subtle border highlight */}
+						{/* Elegant border highlight */}
 						<div className="absolute inset-0 rounded-3xl border border-white/20 dark:border-white/10 pointer-events-none z-10" />
 
-						{/* Corner accents */}
+						{/* Sophisticated corner accents with royal green */}
 						<div
-							className={`absolute top-4 right-4 w-8 h-8 rounded-full blur-xl z-10 ${isDark ? "bg-gradient-to-br from-purple-800/30 to-indigo-900/20" : "bg-gradient-to-br from-indigo-300/20 to-purple-400/10"}`}></div>
+							className={`absolute top-4 right-4 w-8 h-8 rounded-full blur-xl z-10 ${isDark ? "bg-gradient-to-br from-emerald-800/30 to-green-900/20" : "bg-gradient-to-br from-green-300/20 to-emerald-400/10"}`}></div>
 						<div
-							className={`absolute bottom-4 left-4 w-6 h-6 rounded-full blur-xl z-10 ${isDark ? "bg-gradient-to-tl from-purple-900/20 to-indigo-900/30" : "bg-gradient-to-tl from-purple-400/15 to-indigo-300/20"}`}></div>
+							className={`absolute bottom-4 left-4 w-6 h-6 rounded-full blur-xl z-10 ${isDark ? "bg-gradient-to-tl from-green-900/20 to-emerald-900/30" : "bg-gradient-to-tl from-emerald-400/15 to-green-300/20"}`}></div>
+
 						<div className="flex flex-col lg:flex-row">
 							{/* Contact Form */}
 							<div className="lg:w-1/2 p-8 relative z-10 flex items-center justify-center">
@@ -157,7 +158,7 @@ export default function ContactForm(): React.JSX.Element {
 									viewport={{ once: true }}
 									className="w-full flex flex-col justify-center">
 									<h3
-										className={`text-2xl font-bold mb-6 text-center ${isDark ? "text-[rgba(230,210,255,0.95)]" : "text-[rgba(103,80,164,0.9)]"}`}
+										className={`text-2xl font-bold mb-6 text-center ${isDark ? "text-[rgba(144,238,144,0.95)]" : "text-[rgba(16,109,32,0.9)]"}`}
 										style={{ fontFamily: "var(--font-playfair-display)" }}>
 										Send Us a Message
 									</h3>
@@ -169,7 +170,7 @@ export default function ContactForm(): React.JSX.Element {
 												name="email"
 												render={({ field }): React.JSX.Element => (
 													<FormItem>
-														<FormLabel className="text-[hsl(var(--foreground))]">
+														<FormLabel className="text-foreground">
 															Email
 														</FormLabel>
 														<FormControl>
@@ -178,7 +179,7 @@ export default function ContactForm(): React.JSX.Element {
 																	{...field}
 																	type="email"
 																	placeholder="Enter your email"
-																	className="pl-10 bg-white/30 border-0 shadow-inner focus:ring-1 focus:ring-white/50 focus:shadow-[0_0_10px_rgba(255,255,255,0.2)] text-gray-800 placeholder:text-gray-500/70 rounded-lg backdrop-blur-sm"
+																	className="pl-10 bg-white/30 border-0 shadow-inner focus:ring-1 focus:ring-white/50 focus:shadow-[0_0_10px_rgba(16,109,32,0.2)] text-gray-800 placeholder:text-gray-500/70 rounded-lg backdrop-blur-sm"
 																/>
 																<HiOutlineMail className="absolute left-3 top-3 text-gray-600" />
 															</div>
@@ -192,14 +193,14 @@ export default function ContactForm(): React.JSX.Element {
 												name="message"
 												render={({ field }): React.JSX.Element => (
 													<FormItem>
-														<FormLabel className="text-[hsl(var(--foreground))]">
+														<FormLabel className="text-foreground">
 															Message
 														</FormLabel>
 														<FormControl>
 															<Textarea
 																{...field}
 																placeholder="Enter your message"
-																className="min-h-[150px] bg-white/30 border-0 shadow-inner focus:ring-1 focus:ring-white/50 focus:shadow-[0_0_10px_rgba(255,255,255,0.2)] text-gray-800 placeholder:text-gray-500/70 rounded-lg backdrop-blur-sm"
+																className="min-h-[150px] bg-white/30 border-0 shadow-inner focus:ring-1 focus:ring-white/50 focus:shadow-[0_0_10px_rgba(16,109,32,0.2)] text-gray-800 placeholder:text-gray-500/70 rounded-lg backdrop-blur-sm"
 															/>
 														</FormControl>
 														<FormMessage />
@@ -207,7 +208,7 @@ export default function ContactForm(): React.JSX.Element {
 												)}
 											/>
 
-											{/* Glassmorphic Button */}
+											{/* Royal Green Glassmorphic Button */}
 											<div className="mt-8 relative group">
 												<button
 													type="submit"
@@ -216,8 +217,8 @@ export default function ContactForm(): React.JSX.Element {
 													{/* Outer border ring */}
 													<div className="absolute inset-0 rounded-full border-2 border-white/20 transition-all duration-300 group-hover:border-white/40"></div>
 
-													{/* Glow effect */}
-													<div className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-400/20 to-purple-400/20 blur-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+													{/* Royal green glow effect */}
+													<div className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-400/20 to-green-400/20 blur-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
 
 													{/* Enhanced glassmorphic background */}
 													<div className="absolute inset-1 rounded-full bg-white/15 backdrop-blur-lg shadow-2xl transition-all duration-300 group-hover:bg-white/20"></div>
@@ -250,10 +251,10 @@ export default function ContactForm(): React.JSX.Element {
 								</motion.div>
 							</div>
 
-							{/* Vertical Divider */}
+							{/* Elegant Vertical Divider */}
 							<div className="hidden lg:block absolute left-1/2 top-[15%] bottom-[15%] w-[1px] bg-gradient-to-b from-white/5 via-white/20 to-white/5 transform -translate-x-1/2">
-								{/* Glow effect */}
-								<div className="absolute inset-0 blur-sm bg-gradient-to-b from-indigo-300/10 via-white/20 to-purple-300/10"></div>
+								{/* Royal green glow effect */}
+								<div className="absolute inset-0 blur-sm bg-gradient-to-b from-emerald-300/10 via-white/20 to-green-300/10"></div>
 								{/* Accent dots */}
 								<div className="absolute w-1.5 h-1.5 bg-white/40 rounded-full left-1/2 top-0 transform -translate-x-1/2 -translate-y-1/2 blur-[1px]"></div>
 								<div className="absolute w-1.5 h-1.5 bg-white/40 rounded-full left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2 blur-[1px]"></div>
@@ -268,7 +269,7 @@ export default function ContactForm(): React.JSX.Element {
 									viewport={{ once: true }}
 									className="w-full flex flex-col justify-center">
 									<h3
-										className={`text-2xl font-bold mb-6 text-center ${isDark ? "text-[rgba(230,210,255,0.95)]" : "text-[rgba(103,80,164,0.9)]"}`}
+										className={`text-2xl font-bold mb-6 text-center ${isDark ? "text-[rgba(144,238,144,0.95)]" : "text-[rgba(16,109,32,0.9)]"}`}
 										style={{ fontFamily: "var(--font-playfair-display)" }}>
 										Contact Persons
 									</h3>
@@ -277,7 +278,7 @@ export default function ContactForm(): React.JSX.Element {
 										{Object.entries(contactGroups).map(([role, contacts], index) => (
 											<div key={index}>
 												<h4
-													className={`text-xl font-medium mb-4 text-center ${isDark ? "text-[rgba(230,210,255,0.95)]" : "text-[rgba(103,80,164,0.9)]"}`}>
+													className={`text-xl font-medium mb-4 text-center ${isDark ? "text-[rgba(144,238,144,0.95)]" : "text-[rgba(16,109,32,0.9)]"}`}>
 													{role}
 												</h4>
 												<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -292,12 +293,12 @@ export default function ContactForm(): React.JSX.Element {
 															className={`backdrop-blur-lg bg-white/40 rounded-xl p-4 transition-all hover:bg-white/50 w-full ${contacts.length % 2 !== 0 && idx === contacts.length - 1 ? "md:col-span-2 md:w-[calc(50%-0.5rem)] md:mx-auto" : ""}`}
 															style={{
 																boxShadow:
-																	"0 10px 30px -10px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.4)",
+																	"0 10px 30px -10px rgba(16, 109, 32, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.4)",
 															}}>
 															<p className="font-bold text-gray-800">{contact.name}</p>
 															<Link
 																href={`tel:${contact.phone}`}
-																className="flex items-center mt-2 text-indigo-600 hover:text-indigo-500 transition-colors">
+																className="flex items-center mt-2 text-green-600 hover:text-green-500 transition-colors">
 																<BsTelephone className="mr-2" />
 																{contact.phone}
 															</Link>

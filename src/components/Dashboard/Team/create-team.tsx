@@ -167,38 +167,38 @@ export default function CreateTeam({
 			className="group relative backdrop-blur-xl rounded-xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl hover:scale-[1.01]"
 			style={{
 				background: isDark
-					? "linear-gradient(to bottom right, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.8))"
-					: "linear-gradient(to bottom right, rgba(255, 255, 255, 0.8), rgba(241, 245, 249, 0.9))",
+					? "linear-gradient(to bottom right, rgba(15,25,15,0.7), rgba(10,26,15,0.8))"
+					: "linear-gradient(to bottom right, rgba(240,255,245,0.8), rgba(220,252,231,0.9))",
 				boxShadow: `
-					0 10px 30px ${isDark ? "rgba(0, 0, 0, 0.3)" : "rgba(0, 0, 0, 0.08)"}, 
-					0 0 0 1px ${isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.5)"}
+					0 10px 30px ${isDark ? "rgba(34,102,68,0.2)" : "rgba(16,109,32,0.08)"}, 
+					0 0 0 1px ${isDark ? "rgba(46,204,113,0.2)" : "rgba(52,168,83,0.3)"}
 				`,
-				border: `1px solid ${isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(255, 255, 255, 0.6)"}`,
+				border: `1px solid ${isDark ? "rgba(46,204,113,0.2)" : "rgba(52,168,83,0.4)"}`,
 			}}>
-			{/* Subtle background gradient effect similar to HighwayTimeline */}
+			{/* Subtle green gradient effect */}
 			<div
 				className="absolute inset-0 rounded-xl -z-10"
 				style={{
 					background: isDark
-						? "linear-gradient(to bottom right, rgba(139, 92, 246, 0.05), rgba(79, 70, 229, 0.03))"
-						: "linear-gradient(to bottom right, rgba(139, 92, 246, 0.1), rgba(79, 70, 229, 0.05))",
+						? "linear-gradient(to bottom right, rgba(34,102,68,0.08), rgba(22,78,51,0.05))"
+						: "linear-gradient(to bottom right, rgba(52,168,83,0.12), rgba(72,187,120,0.08))",
 				}}></div>
 
-			{/* Accent edge */}
+			{/* Green accent edge */}
 			<div className="absolute inset-0 rounded-xl overflow-hidden">
 				<div
 					className="absolute top-0 left-0 right-0 h-[1px]"
 					style={{
-						background: `linear-gradient(to right, transparent, ${isDark ? "rgba(139, 92, 246, 0.3)" : "rgba(139, 92, 246, 0.5)"}, transparent)`,
+						background: `linear-gradient(to right, transparent, ${isDark ? "rgba(46,204,113,0.4)" : "rgba(52,168,83,0.6)"}, transparent)`,
 					}}></div>
 				<div
 					className="absolute bottom-0 left-0 right-0 h-[1px]"
 					style={{
-						background: `linear-gradient(to right, transparent, ${isDark ? "rgba(79, 70, 229, 0.2)" : "rgba(79, 70, 229, 0.4)"}, transparent)`,
+						background: `linear-gradient(to right, transparent, ${isDark ? "rgba(34,102,68,0.3)" : "rgba(72,187,120,0.5)"}, transparent)`,
 					}}></div>
 			</div>
 
-			{/* Enhanced inner glow with subtle highlights */}
+			{/* Enhanced inner glow with green highlights */}
 			<div
 				className="absolute inset-0 rounded-xl"
 				style={{
