@@ -37,38 +37,38 @@
 	}
 
 	.dark {
-		--background: 222.2 84% 4.9%;
-		--foreground: 210 40% 98%;
-		--card: 222.2 84% 4.9%;
-		--card-foreground: 210 40% 98%;
-		--popover: 222.2 84% 4.9%;
-		--popover-foreground: 210 40% 98%;
-		--primary: 145 100% 35%;
-		--primary-foreground: 222.2 84% 4.9%;
-		--secondary: 217.2 32.6% 17.5%;
-		--secondary-foreground: 210 40% 98%;
-		--muted: 217.2 32.6% 17.5%;
-		--muted-foreground: 215 20.2% 65.1%;
-		--accent: 145 100% 35%;
-		--accent-foreground: 210 40% 98%;
+		--background: 145 60% 3%; /* Proper deep green background */
+		--foreground: 145 50% 95%;
+		--card: 145 60% 4%;
+		--card-foreground: 145 50% 95%;
+		--popover: 145 60% 4%;
+		--popover-foreground: 145 50% 95%;
+		--primary: 145 80% 45%;
+		--primary-foreground: 145 60% 3%;
+		--secondary: 145 40% 8%;
+		--secondary-foreground: 145 50% 90%;
+		--muted: 145 40% 8%;
+		--muted-foreground: 145 30% 65%;
+		--accent: 145 80% 45%;
+		--accent-foreground: 145 50% 95%;
 		--destructive: 0 62.8% 30.6%;
 		--destructive-foreground: 210 40% 98%;
-		--border: 217.2 32.6% 17.5%;
-		--input: 217.2 32.6% 17.5%;
-		--ring: 145 100% 35%;
-		--chart-1: 145 100% 35%;
-		--chart-2: 158 100% 40%;
-		--chart-3: 132 100% 30%;
-		--chart-4: 165 100% 25%;
-		--chart-5: 140 100% 10%;
+		--border: 145 40% 12%;
+		--input: 145 40% 12%;
+		--ring: 145 80% 45%;
+		--chart-1: 145 80% 45%;
+		--chart-2: 158 80% 50%;
+		--chart-3: 132 80% 40%;
+		--chart-4: 165 80% 35%;
+		--chart-5: 140 80% 15%;
 		--radius: 0.5rem;
 
 		/* Royal Green Glassmorphism Variables - Dark */
-		--glass-bg-dark: rgba(15, 25, 15, 0.7);
-		--glass-border-dark: rgba(46, 204, 113, 0.3);
-		--glass-shadow-dark: 0 8px 32px rgba(46, 204, 113, 0.15);
+		--glass-bg-dark: rgba(0, 50, 33, 0.8); /* #003221 based */
+		--glass-border-dark: rgba(46, 204, 113, 0.4);
+		--glass-shadow-dark: 0 8px 32px rgba(46, 204, 113, 0.2);
 		--royal-green-dark: rgba(46, 204, 113, 0.95);
-		--royal-green-accent-dark: rgba(46, 204, 113, 0.2);
+		--royal-green-accent-dark: rgba(46, 204, 113, 0.25);
 	}
 }
 
@@ -226,4 +226,59 @@ html.dark ::-webkit-scrollbar-thumb:hover {
 
 .dark .royal-green-glow {
 	box-shadow: 0 0 20px var(--royal-green-accent-dark);
+}
+
+/* Enhanced glassmorphism for royal green theme */
+.glass-royal-green-enhanced {
+	background: linear-gradient(135deg, 
+		rgba(240, 255, 245, 0.1) 0%, 
+		rgba(185, 240, 201, 0.2) 50%, 
+		rgba(16, 109, 32, 0.3) 100%);
+	border: 1px solid rgba(46, 204, 113, 0.3);
+	box-shadow: 
+		0 8px 32px rgba(46, 204, 113, 0.12),
+		inset 0 1px 0 rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+}
+
+.dark .glass-royal-green-enhanced {
+	background: linear-gradient(135deg, 
+		rgba(0, 50, 33, 0.4) 0%, /* #003221 */
+		rgba(2, 18, 4, 0.5) 50%, /* #021204 */
+		rgba(46, 204, 113, 0.2) 100%);
+	border: 1px solid rgba(46, 204, 113, 0.4);
+	box-shadow: 
+		0 8px 32px rgba(46, 204, 113, 0.25),
+		inset 0 1px 0 rgba(46, 204, 113, 0.2);
+}
+
+/* Body background gradients */
+body {
+	background: linear-gradient(135deg, 
+		hsl(var(--background)) 0%,
+		rgba(240, 255, 245, 0.8) 50%,
+		rgba(185, 240, 201, 0.6) 100%) !important;
+	min-height: 100vh;
+}
+
+.dark body {
+	background: linear-gradient(135deg, 
+		rgb(4, 20, 8) 0%, /* Very dark green base */
+		rgba(0, 50, 33, 0.95) 30%, /* #003221 */
+		rgba(2, 18, 4, 0.9) 70%, /* #021204 */
+		rgba(0, 25, 16, 0.85) 100%) !important; /* Darker green variation */
+}
+
+/* Additional override for dark theme */
+html.dark {
+	background-color: rgb(4, 20, 8) !important;
+}
+
+html.dark body {
+	background: linear-gradient(135deg, 
+		rgb(4, 20, 8) 0%, /* Very dark green base */
+		rgba(0, 50, 33, 0.95) 30%, /* #003221 */
+		rgba(2, 18, 4, 0.9) 70%, /* #021204 */
+		rgba(0, 25, 16, 0.85) 100%) !important; /* Darker green variation */
 }

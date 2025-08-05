@@ -69,7 +69,7 @@ export default function VerifyEmailForm(): React.JSX.Element {
 
 	if (!token) {
 		return (
-			<div className="flex min-h-screen flex-col items-center justify-center overflow-hidden bg-dot-violet-500/[0.5] dark:bg-dot-white/[0.2]">
+			<div className="flex min-h-screen flex-col items-center justify-center overflow-hidden bg-dot-green-500/[0.5] dark:bg-dot-white/[0.2]">
 				<Card className="relative border-none shadow-md dark:shadow-none sm:mx-auto sm:w-[420px]">
 					<BorderBeam size={250} duration={12} delay={9} />
 					<CardHeader className="space-y-1">

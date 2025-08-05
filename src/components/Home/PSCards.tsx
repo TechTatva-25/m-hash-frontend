@@ -328,7 +328,7 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 													<AnimatePresence>
 														{isDialogOpen && selectedCard === index && (
 															<DialogContent
-																className="rounded-xl overflow-hidden border-0 flex flex-col"
+																className="rounded-xl overflow-hidden z-100 border-0 flex flex-col"
 																style={{
 																	height: "90vh",
 																	width: "90%",

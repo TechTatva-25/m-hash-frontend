@@ -18,14 +18,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 		const handleToggle = () => setSidebarOpen((prev) => !prev);
 		window.addEventListener("toggle-sidebar", handleToggle);
 		return () => window.removeEventListener("toggle-sidebar", handleToggle);
-	}, []); // Dashboard-specific gradient colors
+	}, []); // Dashboard-specific gradient colors - Royal Green Theme
 	const dashboardGradient = {
-		lightFrom: "#f5f5fc", // Very light lavender
-		lightVia: "#eeeef9", // Light lavender
-		lightTo: "#e6e6f5", // Slightly deeper lavender
-		darkFrom: "#2d3748", // Dark slate blue-gray
-		darkVia: "#1e2a3b", // Darker blue-gray
-		darkTo: "#171e29", // Very dark blue-gray
+		lightFrom: "#f0fdf4", // Very light green
+		lightVia: "#dcfce7", // Light green
+		lightTo: "#bbf7d0", // Slightly deeper green
+		darkFrom: "#021204", // Very dark green #021204
+		darkVia: "#003221", // Royal dark green #003221
+		darkTo: "#052e16", // Deep dark green
 	};
 	return (
 		<div

@@ -10,20 +10,16 @@ export default function About(): React.JSX.Element {
 
 	return (
 		<section id="about" className="py-16 md:py-24 relative">
-			{/* Royal Green Glassmorphic Background */}
-			<div className="absolute inset-0 overflow-hidden">
-				<div
-					className={`absolute -top-40 -right-40 w-96 h-96 rounded-full blur-3xl ${
-						isDark ? "bg-emerald-400/8" : "bg-green-400/6"
-					} animate-pulse-slow`}
-				></div>
-				<div
-					className={`absolute -bottom-40 -left-40 w-96 h-96 rounded-full blur-3xl ${
-						isDark ? "bg-green-400/6" : "bg-emerald-400/5"
-					} animate-pulse-slow`}
-					style={{ animationDelay: "3s" }}
-				></div>
-			</div>
+			{/* Royal Green Glassmorphic Background - Only in light mode */}
+			{!isDark && (
+				<div className="absolute inset-0 overflow-hidden">
+					<div className="absolute -top-40 -right-40 w-96 h-96 rounded-full blur-3xl bg-green-400/6 animate-pulse-slow"></div>
+					<div
+						className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full blur-3xl bg-emerald-400/5 animate-pulse-slow"
+						style={{ animationDelay: "3s" }}
+					></div>
+				</div>
+			)}
 
 			<div className="container mx-auto px-4 relative z-10">
 				{/* Enhanced Royal Green Glassmorphic Card */}
@@ -128,10 +124,10 @@ export default function About(): React.JSX.Element {
 							<div className="relative inline-block mb-8">
 								{/* Royal Green title */}
 								<motion.h2
-									className="text-4xl md:text-5xl font-bold"
+									className="text-4xl md:text-5xl font-bold relative"
 									style={{
 										fontFamily: "var(--font-playfair-display)",
-										color: isDark ? "rgba(144, 238, 144, 0.95)" : "rgba(16, 109, 32, 0.9)",
+										color: isDark ? "rgba(200, 240, 200, 0.95)" : "#005050",
 										textShadow: isDark
 											? "0 2px 8px rgba(46, 204, 113, 0.2)"
 											: "0 2px 8px rgba(16, 109, 32, 0.15)",
@@ -143,28 +139,28 @@ export default function About(): React.JSX.Element {
 									About Us
 								</motion.h2>
 
-								{/* Royal Green decorative lines */}
+								{/* Royal Green decorative lines - heading width only */}
 								<motion.div
-									className="absolute -bottom-3 left-0 h-1 rounded-full"
+									className="absolute -bottom-3 left-0 right-0 h-1 rounded-full"
 									style={{
 										background: isDark
-											? "rgba(46, 204, 113, 0.8)"
-											: "rgba(16, 109, 32, 0.8)",
+											? "linear-gradient(to right, rgba(46, 204, 113, 0.8), rgba(34, 197, 94, 0.6), rgba(46, 204, 113, 0.8))"
+											: "#005050",
 									}}
-									initial={{ width: 0 }}
-									whileInView={{ width: "100%" }}
+									initial={{ scaleX: 0 }}
+									whileInView={{ scaleX: 1 }}
 									transition={{ duration: 0.8, delay: 0.5 }}
 									viewport={{ once: true }}
 								/>
 								<motion.div
-									className="absolute -bottom-5 left-0 h-[0.5px] rounded-full"
+									className="absolute -bottom-5 left-0 w-4/5 h-[0.5px] rounded-full"
 									style={{
 										background: isDark
-											? "rgba(46, 204, 113, 0.6)"
-											: "rgba(16, 109, 32, 0.6)",
+											? "linear-gradient(to right, rgba(46, 204, 113, 0.6), rgba(34, 197, 94, 0.4), rgba(46, 204, 113, 0.6))"
+											: "linear-gradient(to right, rgba(16, 109, 32, 0.6), rgba(34, 139, 34, 0.4), rgba(16, 109, 32, 0.6))",
 									}}
-									initial={{ width: 0 }}
-									whileInView={{ width: "80%" }}
+									initial={{ scaleX: 0 }}
+									whileInView={{ scaleX: 1 }}
 									transition={{ duration: 0.8, delay: 0.7 }}
 									viewport={{ once: true }}
 								/>
@@ -173,7 +169,7 @@ export default function About(): React.JSX.Element {
 							<motion.div
 								className="space-y-6 text-base leading-relaxed"
 								style={{
-									color: isDark ? "rgba(200, 220, 200, 0.9)" : "rgba(60, 80, 60, 0.9)",
+									color: isDark ? "rgba(200, 220, 200, 0.9)" : "rgba(40, 60, 40, 0.95)",
 								}}
 								initial={{ opacity: 0, x: 20 }}
 								whileInView={{ opacity: 1, x: 0 }}
