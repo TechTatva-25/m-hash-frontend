@@ -55,8 +55,7 @@ export const LeaveTeamCard: React.FC<{
 				backdropFilter: "blur(10px)",
 				border: `1px solid rgba(46,204,113, 0.3)`,
 				boxShadow: `0 4px 24px rgba(34,102,68, 0.2)`,
-			}}
-		>
+			}}>
 			<CardTitle className="text-xl font-semibold">Leave Team</CardTitle>
 			<CardDescription className="mb-4 mt-1">
 				You can leave this team, but remember, if you are the team leader, you will need to transfer leadership

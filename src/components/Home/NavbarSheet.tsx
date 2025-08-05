@@ -400,9 +400,7 @@ export function NavbarSheet(): React.JSX.Element {
 										style={{ color: isDark ? "rgba(46, 204, 113, 0.8)" : "rgba(16, 109, 32, 0.8)" }}
 									/>
 								)}
-								<span>
-									{theme === "dark" ? "Light" : "Dark"} Mode
-								</span>
+								<span>{theme === "dark" ? "Light" : "Dark"} Mode</span>
 							</DropdownMenuItem>
 						</DropdownMenuGroup>
 						<DropdownMenuSeparator

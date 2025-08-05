@@ -38,16 +38,12 @@ export default function About(): React.JSX.Element {
 					whileInView={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.8 }}
 					viewport={{ once: true }}>
-
 					{/* Royal green rim accent */}
 					<div
 						className="absolute inset-0 rounded-3xl border pointer-events-none"
 						style={{
-							borderColor: isDark
-								? "rgba(46, 204, 113, 0.2)"
-								: "rgba(16, 109, 32, 0.2)",
-						}}
-					></div>
+							borderColor: isDark ? "rgba(46, 204, 113, 0.2)" : "rgba(16, 109, 32, 0.2)",
+						}}></div>
 
 					{/* Enhanced Royal Green Light Beam Effect */}
 					<div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-1500 ease-out">
@@ -58,27 +54,30 @@ export default function About(): React.JSX.Element {
 
 					{/* Enhanced inner glow with royal green highlights */}
 					<div className="absolute inset-0 bg-gradient-to-br from-white/25 via-white/5 to-transparent rounded-3xl"></div>
-					<div className={`absolute inset-0 rounded-3xl ${
-						isDark
-							? "bg-gradient-to-tl from-emerald-500/8 via-transparent to-green-500/5"
-							: "bg-gradient-to-tl from-green-500/5 via-transparent to-emerald-500/3"
-					}`}></div>
-					<div className={`absolute inset-0 rounded-3xl ${
-						isDark
-							? "bg-gradient-to-br from-emerald-300/8 via-transparent to-green-400/5"
-							: "bg-gradient-to-br from-green-300/5 via-transparent to-emerald-400/3"
-					}`}></div>
+					<div
+						className={`absolute inset-0 rounded-3xl ${
+							isDark
+								? "bg-gradient-to-tl from-emerald-500/8 via-transparent to-green-500/5"
+								: "bg-gradient-to-tl from-green-500/5 via-transparent to-emerald-500/3"
+						}`}></div>
+					<div
+						className={`absolute inset-0 rounded-3xl ${
+							isDark
+								? "bg-gradient-to-br from-emerald-300/8 via-transparent to-green-400/5"
+								: "bg-gradient-to-br from-green-300/5 via-transparent to-emerald-400/3"
+						}`}></div>
 
 					<div className="flex flex-col md:flex-row p-6 md:p-10 gap-10 relative z-10">
 						{/* Left side - M-Hash Logo */}
 						<div className="md:w-2/5 flex justify-center items-center">
 							<div className="w-full h-full flex justify-center items-center relative">
 								{/* Royal green accent behind logo */}
-								<div className={`absolute inset-0 rounded-2xl blur-sm ${
-									isDark
-										? "bg-gradient-to-br from-emerald-100/8 to-green-100/5"
-										: "bg-gradient-to-br from-green-100/10 to-emerald-100/5"
-								}`}></div>
+								<div
+									className={`absolute inset-0 rounded-2xl blur-sm ${
+										isDark
+											? "bg-gradient-to-br from-emerald-100/8 to-green-100/5"
+											: "bg-gradient-to-br from-green-100/10 to-emerald-100/5"
+									}`}></div>
 
 								{/* M-Hash Logo */}
 								<motion.div
@@ -86,25 +85,27 @@ export default function About(): React.JSX.Element {
 									initial={{ opacity: 0, scale: 0.8 }}
 									whileInView={{ opacity: 1, scale: 1 }}
 									transition={{ duration: 0.8, delay: 0.2 }}
-									viewport={{ once: true }}
-								>
+									viewport={{ once: true }}>
 									<div className="relative group">
 										{/* Glow effect behind logo */}
-										<div className={`absolute inset-0 rounded-2xl blur-lg transition-all duration-500 group-hover:blur-xl ${
-											isDark
-												? "bg-gradient-to-br from-emerald-400/20 to-green-400/10"
-												: "bg-gradient-to-br from-green-400/15 to-emerald-400/8"
-										}`}></div>
+										<div
+											className={`absolute inset-0 rounded-2xl blur-lg transition-all duration-500 group-hover:blur-xl ${
+												isDark
+													? "bg-gradient-to-br from-emerald-400/20 to-green-400/10"
+													: "bg-gradient-to-br from-green-400/15 to-emerald-400/8"
+											}`}></div>
 
 										{/* Logo container */}
-										<div className="relative p-8 rounded-2xl backdrop-blur-sm border transition-all duration-500 hover:scale-105"
+										<div
+											className="relative p-8 rounded-2xl backdrop-blur-sm border transition-all duration-500 hover:scale-105"
 											style={{
 												background: isDark
 													? "linear-gradient(to bottom right, rgba(15, 25, 15, 0.6), rgba(10, 26, 15, 0.8))"
 													: "linear-gradient(to bottom right, rgba(240, 255, 245, 0.6), rgba(220, 252, 231, 0.8))",
-												borderColor: isDark ? "rgba(46, 204, 113, 0.2)" : "rgba(16, 109, 32, 0.2)",
-											}}
-										>
+												borderColor: isDark
+													? "rgba(46, 204, 113, 0.2)"
+													: "rgba(16, 109, 32, 0.2)",
+											}}>
 											<Image
 												src="/M-Hash-Logo.png"
 												alt="M-Hash Logo"
@@ -175,20 +176,22 @@ export default function About(): React.JSX.Element {
 								whileInView={{ opacity: 1, x: 0 }}
 								transition={{ duration: 0.5, delay: 0.4 }}
 								viewport={{ once: true }}>
-
 								<p>
-									Manipal Hackathon (M-Hash) is one of India's premier student hackathons, bringing together
-									brilliant minds from across the nation to solve real-world challenges through innovative technology solutions.
+									Manipal Hackathon (M-Hash) is one of India's premier student hackathons, bringing
+									together brilliant minds from across the nation to solve real-world challenges
+									through innovative technology solutions.
 								</p>
 
 								<p>
-									Our hackathon provides a platform for students to showcase their creativity, technical skills, and
-									problem-solving abilities while working on projects that can make a meaningful impact on society.
+									Our hackathon provides a platform for students to showcase their creativity,
+									technical skills, and problem-solving abilities while working on projects that can
+									make a meaningful impact on society.
 								</p>
 
 								<p>
-									With a focus on collaboration, innovation, and excellence, M-Hash continues to be a catalyst for
-									technological advancement and a launching pad for the next generation of tech leaders.
+									With a focus on collaboration, innovation, and excellence, M-Hash continues to be a
+									catalyst for technological advancement and a launching pad for the next generation
+									of tech leaders.
 								</p>
 							</motion.div>
 						</div>

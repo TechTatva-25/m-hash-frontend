@@ -51,6 +51,7 @@ export enum Endpoints {
 	ADMIN_REJECT = "/api/admin/admin-reject",
 	ADMIN_TEAM = "/api/admin/team",
 	ADMIN_PROB = "/api/admin/prob",
+	SEND_ADMIN_MESSAGE = "/api/admin/send-message",
 	GET_COLLEGES = "/api/college/list",
 	GET_HOMEPAGE_STATS = "/api/auth/stats",
 	GET_ADMIN_STATS = "/api/admin/stats",

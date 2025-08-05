@@ -199,15 +199,11 @@ export function Stats(): React.JSX.Element {
 										style={{
 											color: isDark ? "rgba(200, 240, 200, 0.95)" : "#005050",
 										}}>
-										{typeof item.value === "number" ? (
-											stats.loading ? (
-												getLoader()
-											) : (
-												item.value.toLocaleString()
-											)
-										) : (
-											item.value
-										)}
+										{typeof item.value === "number"
+											? stats.loading
+												? getLoader()
+												: item.value.toLocaleString()
+											: item.value}
 									</h3>
 									<p
 										className="text-lg font-semibold mb-2"

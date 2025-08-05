@@ -56,12 +56,8 @@ const GlassmorphicButton: React.FC<GlassmorphicButtonProps> = ({
 			<div
 				className="absolute inset-1 rounded-full backdrop-blur-lg border shadow-2xl transition-all duration-300 group-hover:shadow-3xl"
 				style={{
-					background: isDark
-						? "rgba(15, 25, 15, 0.8)"
-						: "rgba(240, 255, 245, 0.85)",
-					borderColor: isDark
-						? "rgba(46, 204, 113, 0.4)"
-						: "rgba(16, 109, 32, 0.3)",
+					background: isDark ? "rgba(15, 25, 15, 0.8)" : "rgba(240, 255, 245, 0.85)",
+					borderColor: isDark ? "rgba(46, 204, 113, 0.4)" : "rgba(16, 109, 32, 0.3)",
 					boxShadow: isDark
 						? "0 8px 32px rgba(46, 204, 113, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)"
 						: "0 8px 32px rgba(16, 109, 32, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
@@ -82,9 +78,7 @@ const GlassmorphicButton: React.FC<GlassmorphicButtonProps> = ({
 				style={{
 					fontFamily: "var(--font-playfair-display)",
 					color: isDark ? "rgba(144, 238, 144, 0.95)" : "rgba(16, 109, 32, 0.9)",
-					textShadow: isDark
-						? "0 2px 8px rgba(46, 204, 113, 0.3)"
-						: "0 2px 8px rgba(16, 109, 32, 0.2)",
+					textShadow: isDark ? "0 2px 8px rgba(46, 204, 113, 0.3)" : "0 2px 8px rgba(16, 109, 32, 0.2)",
 				}}>
 				{text}
 			</span>
