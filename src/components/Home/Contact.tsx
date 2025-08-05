@@ -84,7 +84,7 @@ export default function ContactForm(): React.JSX.Element {
 	};
 
 	return (
-		<section id="contact" className="pb-20 relative min-h-screen">
+		<div className="relative">
 			<div className="container mx-auto px-4 relative z-10">
 				<div className="text-center mb-16">
 					<motion.div
@@ -415,9 +415,9 @@ export default function ContactForm(): React.JSX.Element {
 															initial={{ opacity: 0, y: 10 }}
 															whileInView={{ opacity: 1, y: 0 }}
 															transition={{ duration: 0.3, delay: 0.1 * idx }}
-															viewport={{ once: true }}
+															viewport={{ once: true, margin: "-50px" }}
 															whileHover={{ scale: 1.03 }}
-															className={`backdrop-blur-lg rounded-xl p-4 transition-all w-full ${contacts.length % 2 !== 0 && idx === contacts.length - 1 ? "md:col-span-2 md:w-[calc(50%-0.5rem)] md:mx-auto" : ""}`}
+															className={`backdrop-blur-lg rounded-xl p-4 w-full ${contacts.length % 2 !== 0 && idx === contacts.length - 1 ? "md:col-span-2 md:w-[calc(50%-0.5rem)] md:mx-auto" : ""}`}
 															style={{
 																background: isDark 
 																	? "rgba(0, 40, 25, 0.6)" 
@@ -490,6 +490,6 @@ export default function ContactForm(): React.JSX.Element {
 					</motion.div>
 				</div>
 			</div>
-		</section>
+		</div>
 	);
 }

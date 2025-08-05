@@ -9,7 +9,7 @@ export default function About(): React.JSX.Element {
 	const isDark = theme === "dark";
 
 	return (
-		<section id="about" className="py-16 md:py-24 relative">
+		<div className="relative">
 			{/* Royal Green Glassmorphic Background - Only in light mode */}
 			{!isDark && (
 				<div className="absolute inset-0 overflow-hidden">
@@ -161,7 +161,7 @@ export default function About(): React.JSX.Element {
 											: "linear-gradient(to right, rgba(16, 109, 32, 0.6), rgba(34, 139, 34, 0.4), rgba(16, 109, 32, 0.6))",
 									}}
 									initial={{ scaleX: 0 }}
-									whileInView={{ scaleX: 1 }}
+									whileInView={{ scaleX: 1, width:"100%" }}
 									transition={{ duration: 0.8, delay: 0.7 }}
 									viewport={{ once: true }}
 								/>
@@ -198,6 +198,6 @@ export default function About(): React.JSX.Element {
 					</div>
 				</motion.div>
 			</div>
-		</section>
+		</div>
 	);
 }
