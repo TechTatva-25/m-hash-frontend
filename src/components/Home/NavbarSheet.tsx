@@ -81,9 +81,7 @@ export function NavbarSheet(): React.JSX.Element {
 								: `0 4px 15px rgba(103,80,164,0.15), 
 								   0 0 0 1px rgba(132,95,220,0.2),
 								   inset 0 1px 0 0 rgba(255,255,255,0.8)`,
-							border: isDark
-								? "1px solid rgba(103,80,164,0.3)"
-								: "1px solid rgba(132,95,220,0.25)",
+							border: isDark ? "1px solid rgba(103,80,164,0.3)" : "1px solid rgba(132,95,220,0.25)",
 							color: isDark ? "rgba(230,210,255,0.9)" : "rgba(103,80,164,0.9)",
 						}}>
 						<svg
@@ -116,9 +114,7 @@ export function NavbarSheet(): React.JSX.Element {
 							: `0 20px 60px -10px rgba(103,80,164,0.2), 
 							   0 0 0 1px rgba(132,95,220,0.2),
 							   inset 0 1px 0 0 rgba(255,255,255,0.8)`,
-						border: isDark
-							? "1px solid rgba(103,80,164,0.4)"
-							: "1px solid rgba(132,95,220,0.3)",
+						border: isDark ? "1px solid rgba(103,80,164,0.4)" : "1px solid rgba(132,95,220,0.3)",
 						zIndex: 200,
 					}}>
 					<div className="grid gap-3 py-4">
@@ -161,7 +157,8 @@ export function NavbarSheet(): React.JSX.Element {
 									}}
 									className="w-full text-white shadow-lg hover:shadow-xl transition-all duration-300"
 									style={{
-										background: "linear-gradient(135deg, rgba(103,80,164,0.8) 0%, rgba(132,95,220,0.9) 100%)",
+										background:
+											"linear-gradient(135deg, rgba(103,80,164,0.8) 0%, rgba(132,95,220,0.9) 100%)",
 										boxShadow: `0 4px 15px rgba(103,80,164,0.3),
 												   inset 0 1px 0 rgba(255,255,255,0.2)`,
 										border: "1px solid rgba(103,80,164,0.4)",
@@ -270,7 +267,8 @@ export function NavbarSheet(): React.JSX.Element {
 										<div
 											className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm -z-10"
 											style={{
-												background: "linear-gradient(135deg, rgba(103,80,164,0.4) 0%, rgba(132,95,220,0.4) 100%)",
+												background:
+													"linear-gradient(135deg, rgba(103,80,164,0.4) 0%, rgba(132,95,220,0.4) 100%)",
 											}}></div>
 									</Button>
 								</DropdownMenuTrigger>
@@ -316,9 +314,7 @@ export function NavbarSheet(): React.JSX.Element {
 								: `0 20px 60px -10px rgba(103,80,164,0.2), 
 								   0 0 0 1px rgba(132,95,220,0.2),
 								   inset 0 1px 0 0 rgba(255,255,255,0.8)`,
-							border: isDark
-								? "1px solid rgba(103,80,164,0.4)"
-								: "1px solid rgba(132,95,220,0.3)",
+							border: isDark ? "1px solid rgba(103,80,164,0.4)" : "1px solid rgba(132,95,220,0.3)",
 						}}>
 						<DropdownMenuLabel className="font-normal p-4">
 							<div className="flex flex-col space-y-1">
@@ -382,9 +378,7 @@ export function NavbarSheet(): React.JSX.Element {
 								) : (
 									<RiMoonClearFill className="mr-3 h-4 w-4 text-indigo-500" />
 								)}
-								<span>
-									{theme === "dark" ? "Light" : "Dark"} Mode
-								</span>
+								<span>{theme === "dark" ? "Light" : "Dark"} Mode</span>
 							</DropdownMenuItem>
 						</DropdownMenuGroup>
 						<DropdownMenuSeparator

@@ -360,12 +360,16 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 																	<div
 																		className="absolute -top-40 -left-40 w-80 h-80 rounded-full blur-3xl"
 																		style={{
-																			background: isDark ? "rgba(34,102,68,0.1)" : "rgba(72,187,120,0.1)",
+																			background: isDark
+																				? "rgba(34,102,68,0.1)"
+																				: "rgba(72,187,120,0.1)",
 																		}}></div>
 																	<div
 																		className="absolute -bottom-40 -right-40 w-80 h-80 rounded-full blur-3xl"
 																		style={{
-																			background: isDark ? "rgba(52,168,83,0.1)" : "rgba(134,239,172,0.1)",
+																			background: isDark
+																				? "rgba(52,168,83,0.1)"
+																				: "rgba(134,239,172,0.1)",
 																		}}></div>
 
 																	{/* Shimmering header accent */}
@@ -390,7 +394,9 @@ export function PSCards({ filter, problems }: PSCardsProps): React.JSX.Element {
 																			key={i}
 																			className="absolute w-1 h-1 rounded-full animate-float-slow"
 																			style={{
-																				background: isDark ? "rgba(34,102,68,0.3)" : "rgba(72,187,120,0.3)",
+																				background: isDark
+																					? "rgba(34,102,68,0.3)"
+																					: "rgba(72,187,120,0.3)",
 																				top: `${Math.random() * 100}%`,
 																				left: `${Math.random() * 100}%`,
 																				animationDuration: `${Math.floor(Math.random() * 8) + 5}s`,

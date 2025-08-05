@@ -42,9 +42,10 @@ export function Sidebar(): React.JSX.Element {
 				<div
 					className="absolute inset-0 -z-10"
 					style={{
-						background: theme === "dark"
-							? "linear-gradient(to bottom, rgba(34,102,68,0.1), rgba(22,78,51,0.05))"
-							: "linear-gradient(to bottom, rgba(52,168,83,0.15), rgba(72,187,120,0.08))",
+						background:
+							theme === "dark"
+								? "linear-gradient(to bottom, rgba(34,102,68,0.1), rgba(22,78,51,0.05))"
+								: "linear-gradient(to bottom, rgba(52,168,83,0.15), rgba(72,187,120,0.08))",
 					}}></div>
 				{/* Green accent edge */}
 				<div
@@ -82,8 +83,7 @@ export function Sidebar(): React.JSX.Element {
 							<div
 								className="absolute inset-0 blur-sm opacity-50"
 								style={{
-									background:
-										theme === "dark" ? "rgba(46,204,113,0.4)" : "rgba(52,168,83,0.3)",
+									background: theme === "dark" ? "rgba(46,204,113,0.4)" : "rgba(52,168,83,0.3)",
 								}}></div>
 						</div>
 						<h1
@@ -106,14 +106,17 @@ export function Sidebar(): React.JSX.Element {
 							sidebarOpen ? "translate-x-0" : "hidden"
 						)}
 						style={{
-							background: theme === "dark"
-								? "linear-gradient(135deg, rgba(15,25,15,0.8), rgba(10,26,15,0.9))"
-								: "linear-gradient(135deg, rgba(240,255,245,0.8), rgba(220,252,231,0.9))",
-							border: theme === "dark" ? "1px solid rgba(46,204,113,0.3)" : "1px solid rgba(52,168,83,0.4)",
+							background:
+								theme === "dark"
+									? "linear-gradient(135deg, rgba(15,25,15,0.8), rgba(10,26,15,0.9))"
+									: "linear-gradient(135deg, rgba(240,255,245,0.8), rgba(220,252,231,0.9))",
+							border:
+								theme === "dark" ? "1px solid rgba(46,204,113,0.3)" : "1px solid rgba(52,168,83,0.4)",
 							backdropFilter: "blur(8px)",
-							boxShadow: theme === "dark"
-								? "0 4px 12px rgba(46,204,113,0.1), inset 0 1px 0 rgba(255,255,255,0.1)"
-								: "0 4px 12px rgba(16,109,32,0.08), inset 0 1px 0 rgba(255,255,255,0.3)",
+							boxShadow:
+								theme === "dark"
+									? "0 4px 12px rgba(46,204,113,0.1), inset 0 1px 0 rgba(255,255,255,0.1)"
+									: "0 4px 12px rgba(16,109,32,0.08), inset 0 1px 0 rgba(255,255,255,0.3)",
 						}}>
 						{theme === "dark" ? (
 							<RiSunFill

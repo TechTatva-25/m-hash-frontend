@@ -170,9 +170,7 @@ export default function ContactForm(): React.JSX.Element {
 												name="email"
 												render={({ field }): React.JSX.Element => (
 													<FormItem>
-														<FormLabel className="text-foreground">
-															Email
-														</FormLabel>
+														<FormLabel className="text-foreground">Email</FormLabel>
 														<FormControl>
 															<div className="relative">
 																<Input
@@ -193,9 +191,7 @@ export default function ContactForm(): React.JSX.Element {
 												name="message"
 												render={({ field }): React.JSX.Element => (
 													<FormItem>
-														<FormLabel className="text-foreground">
-															Message
-														</FormLabel>
+														<FormLabel className="text-foreground">Message</FormLabel>
 														<FormControl>
 															<Textarea
 																{...field}

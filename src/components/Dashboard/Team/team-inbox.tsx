@@ -162,9 +162,7 @@ export default function TeamInbox({
 														}}>
 														{invite.user.username}
 													</p>
-													<p className="text-sm text-muted-foreground">
-														{invite.user.email}
-													</p>
+													<p className="text-sm text-muted-foreground">{invite.user.email}</p>
 												</div>
 											</div>
 											<div className="flex w-full items-center justify-center gap-4 md:w-auto">

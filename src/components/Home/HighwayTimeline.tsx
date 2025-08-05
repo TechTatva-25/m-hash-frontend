@@ -24,7 +24,9 @@ export function HighwayTimeline({ timeline = generalTimeLine }: { timeline?: Tim
 			{/* Royal Green Glassmorphic Background */}
 			<div className="absolute inset-0 overflow-hidden">
 				<div className="absolute -top-20 -left-20 w-96 h-96 rounded-full bg-emerald-400/8 dark:bg-emerald-400/12 blur-3xl animate-pulse-slow"></div>
-				<div className="absolute -bottom-20 -right-20 w-96 h-96 rounded-full bg-green-400/6 dark:bg-green-400/10 blur-3xl animate-pulse-slow" style={{ animationDelay: "2s" }}></div>
+				<div
+					className="absolute -bottom-20 -right-20 w-96 h-96 rounded-full bg-green-400/6 dark:bg-green-400/10 blur-3xl animate-pulse-slow"
+					style={{ animationDelay: "2s" }}></div>
 				<div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-64 rounded-full bg-emerald-500/4 dark:bg-emerald-500/8 blur-3xl"></div>
 			</div>
 
@@ -77,7 +79,8 @@ export function HighwayTimeline({ timeline = generalTimeLine }: { timeline?: Tim
 							<div
 								className="hidden md:block absolute top-12 w-5 h-5 rounded-full z-20 left-1/2 transform -translate-x-1/2"
 								style={{
-									background: "linear-gradient(135deg, rgba(240, 255, 245, 0.8), rgba(220, 252, 231, 0.9))",
+									background:
+										"linear-gradient(135deg, rgba(240, 255, 245, 0.8), rgba(220, 252, 231, 0.9))",
 									border: "1px solid rgba(16, 109, 32, 0.3)",
 									backdropFilter: "blur(8px)",
 									boxShadow: "0 4px 12px rgba(16, 109, 32, 0.15)",
@@ -128,13 +131,15 @@ const TimelineItem = ({ index, stage, icon, isLeft }: TimelineItemProps) => {
 					background: "linear-gradient(135deg, rgba(240, 255, 245, 0.85) 0%, rgba(220, 252, 231, 0.7) 100%)",
 					borderColor: "rgba(16, 109, 32, 0.25)",
 					backdropFilter: "blur(16px)",
-					boxShadow: "0 16px 32px -8px rgba(16, 109, 32, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
+					boxShadow:
+						"0 16px 32px -8px rgba(16, 109, 32, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
 				}}>
 				{/* Enhanced animated border glow on hover with royal green */}
 				<div
 					className="absolute inset-0 rounded-2xl transition-opacity duration-500 pointer-events-none opacity-0 group-hover:opacity-100"
 					style={{
-						background: "linear-gradient(135deg, rgba(16, 109, 32, 0.3) 0%, rgba(34, 197, 94, 0.15) 50%, rgba(16, 109, 32, 0.3) 100%)",
+						background:
+							"linear-gradient(135deg, rgba(16, 109, 32, 0.3) 0%, rgba(34, 197, 94, 0.15) 50%, rgba(16, 109, 32, 0.3) 100%)",
 						mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
 						maskComposite: "xor",
 						padding: "1px",
@@ -173,7 +178,8 @@ const TimelineItem = ({ index, stage, icon, isLeft }: TimelineItemProps) => {
 								style={{
 									background: "rgba(255, 255, 255, 0.6)",
 									borderColor: "rgba(16, 109, 32, 0.2)",
-									boxShadow: "0 4px 12px rgba(16, 109, 32, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
+									boxShadow:
+										"0 4px 12px rgba(16, 109, 32, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
 								}}>
 								{icon}
 							</div>
@@ -184,13 +190,15 @@ const TimelineItem = ({ index, stage, icon, isLeft }: TimelineItemProps) => {
 									color: "rgba(16, 109, 32, 0.9)",
 									backdropFilter: "blur(8px)",
 									border: "1px solid rgba(255, 255, 255, 0.6)",
-									boxShadow: "0 2px 8px rgba(16, 109, 32, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
+									boxShadow:
+										"0 2px 8px rgba(16, 109, 32, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
 								}}>
 								Step {index + 1}
 							</span>
 						</div>
 						{/* Image section with fixed dimensions */}
-						<div className={`relative ${imageHeight} w-full mb-2 overflow-hidden rounded-lg flex-shrink-0 group-hover:shadow-xl transition-all duration-500`}>
+						<div
+							className={`relative ${imageHeight} w-full mb-2 overflow-hidden rounded-lg flex-shrink-0 group-hover:shadow-xl transition-all duration-500`}>
 							{/* Elegant gradient overlay that works in both light and dark modes */}
 							<div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-black/5 z-10"></div>
 							{/* Additional subtle royal green overlay for visual interest */}

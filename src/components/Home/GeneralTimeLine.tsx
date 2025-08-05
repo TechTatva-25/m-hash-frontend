@@ -17,15 +17,12 @@ export function GeneralTime(): React.JSX.Element {
 						key={`content-${index}`}
 						className="my-10 rounded-xl overflow-hidden backdrop-blur-xl border transition-all duration-300 hover:scale-[1.01] hover:shadow-xl group"
 						style={{
-							background: isDark
-								? "rgba(0, 0, 0, 0.5)"
-								: "rgba(255, 255, 255, 0.8)",
+							background: isDark ? "rgba(0, 0, 0, 0.5)" : "rgba(255, 255, 255, 0.8)",
 							borderColor: isDark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.1)",
 							boxShadow: isDark
 								? "0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)"
 								: "0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)",
 						}}>
-
 						<div className="relative p-4 sm:p-6 z-10">
 							<h2
 								className="mb-2 w-fit rounded-full text-3xl font-bold"
@@ -35,7 +32,8 @@ export function GeneralTime(): React.JSX.Element {
 								{item.badge}
 							</h2>
 
-							<p className="mb-4 text-lg font-medium opacity-90"
+							<p
+								className="mb-4 text-lg font-medium opacity-90"
 								style={{
 									color: isDark ? "rgba(255, 255, 255, 0.8)" : "rgba(0, 0, 0, 0.7)",
 								}}>
@@ -44,7 +42,8 @@ export function GeneralTime(): React.JSX.Element {
 
 							<div className="flex w-full flex-col">
 								{item.image && (
-									<div className="relative mb-6 rounded-lg overflow-hidden border transition-colors duration-300"
+									<div
+										className="relative mb-6 rounded-lg overflow-hidden border transition-colors duration-300"
 										style={{
 											borderColor: isDark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.1)",
 										}}>
@@ -63,7 +62,7 @@ export function GeneralTime(): React.JSX.Element {
 									className="w-full text-balance text-sm tracking-wide leading-relaxed"
 									style={{
 										color: isDark ? "rgba(200, 220, 200, 0.9)" : "rgba(60, 60, 80, 0.9)",
-										lineHeight: "1.6"
+										lineHeight: "1.6",
 									}}>
 									{item.description}
 								</div>
