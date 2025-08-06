@@ -55,7 +55,7 @@ interface ExportCSVButtonProps {
 	teams: ExportTeam[];
 }
 
-export const ExportCSVButton: FC<ExportCSVButtonProps> = ({ teams }) => {
+const ExportCSVButton: FC<ExportCSVButtonProps> = ({ teams }) => {
 	const csvData = teams.map((team) => ({
 		team_name: team.name || "",
 		sdgId: team.sdg_id,

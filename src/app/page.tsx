@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "@/components/ThemeProvider";
 
-import { downloadRules } from "@/app/dashboard/rules/page";
+import { downloadRules } from "@/lib/download-utils";
 import About from "@/components/Home/About";
 import ContactForm from "@/components/Home/Contact";
 import Footer from "@/components/Home/Footer";
