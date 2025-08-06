@@ -395,7 +395,7 @@ const columns: ColumnDef<TeamWithActions>[] = [
 	},
 ];
 
-const TeamTable = (): JSX.Element => {
+const TeamTable = (): React.JSX.Element => {
 	const [fetchProps, setFetchProps] = useState<TeamFetchParams>({
 		offset: 0,
 		search: "",

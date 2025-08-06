@@ -63,7 +63,7 @@ import { generateColorPalette } from "@/lib/utils";
 //  lastSubmission: string;
 // }
 
-// const BugDetail = ({ bug }: { bug: Bug }): JSX.Element => {
+// const BugDetail = ({ bug }: { bug: Bug }): React.JSX.Element => {
 //     const severityColors: Record<string, string> = {
 //         Low: "bg-green-500",
 //         Medium: "bg-amber-500",
@@ -124,7 +124,7 @@ const getLoader = function (): React.JSX.Element {
 	);
 };
 
-export default function Leaderboard(): JSX.Element {
+export default function Leaderboard(): React.JSX.Element {
 	// const mockTeams: Team[] = React.useMemo(() => {
 	//  return Array.from({ length: 50 }, (_, i) => ({
 	//      id: i + 1,
