@@ -28,33 +28,37 @@ export default function Home(): React.JSX.Element {
 			<header className="relative flex w-full flex-row items-center justify-around">
 				<Navbar />
 			</header>
-			
+
 			{/* Hero Section */}
 			<main className="flex w-full flex-1 flex-col items-center justify-center text-center">
 				<div className="w-full">
 					<Hero />
 				</div>
 			</main>
-			
+
 			{/* About Section */}
 			<section id="about" className="relative flex w-full scroll-mt-20 flex-col py-16 md:py-24">
 				<About />
 			</section>
-			
+
 			{/* Statistics Section */}
 			<section id="statistics" className="relative flex w-full scroll-mt-20 flex-col py-16 md:py-24">
 				<Stats />
 			</section>
-			
+
 			{/* Timeline Section */}
-			<section id="timeline" className="relative flex w-full scroll-mt-20 flex-col py-16 md:py-24 overflow-hidden">
+			<section
+				id="timeline"
+				className="relative flex w-full scroll-mt-20 flex-col py-16 md:py-24 overflow-hidden">
 				<div className="w-[95%] max-w-[1800px] mx-auto">
 					<HighwayTimeline />
 				</div>
 			</section>
-			
+
 			{/* Problem Statements Section */}
-			<section id="problem-statements" className="relative flex w-full scroll-mt-20 flex-col py-16 pb-6 md:py-24 md:pb-8 z-10">
+			<section
+				id="problem-statements"
+				className="relative flex w-full scroll-mt-20 flex-col py-16 pb-6 md:py-24 md:pb-8 z-10">
 				<div className="container mx-auto px-4 relative z-20">
 					{/* Animated heading matching About Us and Stats styling */}
 					<div className="text-center mb-16">
@@ -69,9 +73,10 @@ export default function Home(): React.JSX.Element {
 								style={{
 									fontFamily: "var(--font-playfair-display)",
 									color: theme === "dark" ? "rgba(200, 240, 200, 0.95)" : "#005050",
-									textShadow: theme === "dark" 
-										? "0 2px 8px rgba(46, 204, 113, 0.2)" 
-										: "0 2px 8px rgba(16, 109, 32, 0.15)",
+									textShadow:
+										theme === "dark"
+											? "0 2px 8px rgba(46, 204, 113, 0.2)"
+											: "0 2px 8px rgba(16, 109, 32, 0.15)",
 								}}>
 								Problem Statements
 							</h2>
@@ -80,9 +85,10 @@ export default function Home(): React.JSX.Element {
 							<motion.div
 								className="absolute -bottom-3 left-0 right-0 h-1 rounded-full"
 								style={{
-									background: theme === "dark"
-										? "linear-gradient(to right, rgba(46, 204, 113, 0.8), rgba(34, 197, 94, 0.6), rgba(46, 204, 113, 0.8))"
-										: "#005050",
+									background:
+										theme === "dark"
+											? "linear-gradient(to right, rgba(46, 204, 113, 0.8), rgba(34, 197, 94, 0.6), rgba(46, 204, 113, 0.8))"
+											: "#005050",
 								}}
 								initial={{ scaleX: 0 }}
 								whileInView={{ scaleX: 1 }}
@@ -92,12 +98,13 @@ export default function Home(): React.JSX.Element {
 							<motion.div
 								className="absolute -bottom-5 left-0 w-4/5 h-[0.5px] rounded-full"
 								style={{
-									background: theme === "dark"
-										? "linear-gradient(to right, rgba(46, 204, 113, 0.6), rgba(34, 197, 94, 0.4), rgba(46, 204, 113, 0.6))"
-										: "linear-gradient(to right, rgba(16, 109, 32, 0.6), rgba(34, 139, 34, 0.4), rgba(16, 109, 32, 0.6))",
+									background:
+										theme === "dark"
+											? "linear-gradient(to right, rgba(46, 204, 113, 0.6), rgba(34, 197, 94, 0.4), rgba(46, 204, 113, 0.6))"
+											: "linear-gradient(to right, rgba(16, 109, 32, 0.6), rgba(34, 139, 34, 0.4), rgba(16, 109, 32, 0.6))",
 								}}
 								initial={{ scaleX: 0 }}
-								whileInView={{ scaleX: 1, width:"100%" }}
+								whileInView={{ scaleX: 1, width: "100%" }}
 								transition={{ duration: 0.8, delay: 0.7 }}
 								viewport={{ once: true }}
 							/>
@@ -130,12 +137,12 @@ export default function Home(): React.JSX.Element {
 					<ContactForm />
 				</div>
 			</section>
-			
+
 			{/* Footer */}
 			<footer className="flex w-full scroll-mt-20 flex-col items-center justify-center text-center py-8">
 				<Footer />
 			</footer>
-			
+
 			<ScrollToTopButton />
 		</div>
 	);

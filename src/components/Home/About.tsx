@@ -16,8 +16,7 @@ export default function About(): React.JSX.Element {
 					<div className="absolute -top-40 -right-40 w-96 h-96 rounded-full blur-3xl bg-green-400/6 animate-pulse-slow"></div>
 					<div
 						className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full blur-3xl bg-emerald-400/5 animate-pulse-slow"
-						style={{ animationDelay: "3s" }}
-					></div>
+						style={{ animationDelay: "3s" }}></div>
 				</div>
 			)}
 
@@ -157,7 +156,7 @@ export default function About(): React.JSX.Element {
 										background: isDark ? "rgba(46, 204, 113, 0.6)" : "rgba(16, 109, 32, 0.6)",
 									}}
 									initial={{ scaleX: 0 }}
-									whileInView={{ scaleX: 1, width:"100%" }}
+									whileInView={{ scaleX: 1, width: "100%" }}
 									transition={{ duration: 0.8, delay: 0.7 }}
 									viewport={{ once: true }}
 								/>

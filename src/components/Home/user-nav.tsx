@@ -76,29 +76,32 @@ export function UserNav(): React.JSX.Element {
 					<div
 						className="absolute inset-0 rounded-full blur-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
 						style={{
-							background: theme === "dark"
-								? "linear-gradient(to right, rgba(46, 204, 113, 0.3), rgba(34, 197, 94, 0.2))"
-								: "linear-gradient(to right, rgba(16, 109, 32, 0.25), rgba(34, 139, 34, 0.2))",
+							background:
+								theme === "dark"
+									? "linear-gradient(to right, rgba(46, 204, 113, 0.3), rgba(34, 197, 94, 0.2))"
+									: "linear-gradient(to right, rgba(16, 109, 32, 0.25), rgba(34, 139, 34, 0.2))",
 						}}></div>
 
 					{/* Enhanced glassmorphic background with royal green tint */}
-					<div 
+					<div
 						className="absolute inset-1 rounded-full backdrop-blur-lg border shadow-2xl transition-all duration-300 group-hover:shadow-3xl"
 						style={{
 							background: theme === "dark" ? "rgba(15, 25, 15, 0.8)" : "rgba(240, 255, 245, 0.85)",
 							borderColor: theme === "dark" ? "rgba(46, 204, 113, 0.4)" : "rgba(16, 109, 32, 0.3)",
-							boxShadow: theme === "dark"
-								? "0 8px 32px rgba(46, 204, 113, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)"
-								: "0 8px 32px rgba(16, 109, 32, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
+							boxShadow:
+								theme === "dark"
+									? "0 8px 32px rgba(46, 204, 113, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)"
+									: "0 8px 32px rgba(16, 109, 32, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
 						}}></div>
 
 					{/* Inner highlight with royal green accent */}
 					<div
 						className="absolute inset-2 rounded-full opacity-60"
 						style={{
-							background: theme === "dark"
-								? "linear-gradient(to bottom, rgba(46, 204, 113, 0.15) 0%, transparent 100%)"
-								: "linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 0%, rgba(16, 109, 32, 0.05) 100%)",
+							background:
+								theme === "dark"
+									? "linear-gradient(to bottom, rgba(46, 204, 113, 0.15) 0%, transparent 100%)"
+									: "linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 0%, rgba(16, 109, 32, 0.05) 100%)",
 						}}></div>
 
 					{/* Button text with enhanced styling */}
@@ -107,7 +110,10 @@ export function UserNav(): React.JSX.Element {
 						style={{
 							fontFamily: "var(--font-playfair-display)",
 							color: theme === "dark" ? "rgba(144, 238, 144, 0.95)" : "rgba(16, 109, 32, 0.9)",
-							textShadow: theme === "dark" ? "0 2px 8px rgba(46, 204, 113, 0.3)" : "0 2px 8px rgba(16, 109, 32, 0.2)",
+							textShadow:
+								theme === "dark"
+									? "0 2px 8px rgba(46, 204, 113, 0.3)"
+									: "0 2px 8px rgba(16, 109, 32, 0.2)",
 						}}>
 						Login
 					</span>
@@ -120,9 +126,10 @@ export function UserNav(): React.JSX.Element {
 						viewBox="0 0 24 24"
 						style={{
 							color: theme === "dark" ? "rgba(144, 238, 144, 0.95)" : "rgba(16, 109, 32, 0.9)",
-							filter: theme === "dark"
-								? "drop-shadow(0 0 4px rgba(46, 204, 113, 0.3))"
-								: "drop-shadow(0 0 4px rgba(16, 109, 32, 0.2))",
+							filter:
+								theme === "dark"
+									? "drop-shadow(0 0 4px rgba(46, 204, 113, 0.3))"
+									: "drop-shadow(0 0 4px rgba(16, 109, 32, 0.2))",
 						}}>
 						<path
 							strokeLinecap="round"
@@ -159,9 +166,10 @@ export function UserNav(): React.JSX.Element {
 											<div
 												className="absolute inset-0 rounded-full transition-all duration-300 blur-lg"
 												style={{
-													background: theme === "dark"
-														? "linear-gradient(to right, rgba(46, 204, 113, 0), rgba(34, 197, 94, 0)) group-hover:linear-gradient(to right, rgba(46, 204, 113, 0.2), rgba(34, 197, 94, 0.2))"
-														: "linear-gradient(to right, rgba(16, 109, 32, 0), rgba(34, 139, 34, 0)) group-hover:linear-gradient(to right, rgba(16, 109, 32, 0.2), rgba(34, 139, 34, 0.2))",
+													background:
+														theme === "dark"
+															? "linear-gradient(to right, rgba(46, 204, 113, 0), rgba(34, 197, 94, 0)) group-hover:linear-gradient(to right, rgba(46, 204, 113, 0.2), rgba(34, 197, 94, 0.2))"
+															: "linear-gradient(to right, rgba(16, 109, 32, 0), rgba(34, 139, 34, 0)) group-hover:linear-gradient(to right, rgba(16, 109, 32, 0.2), rgba(34, 139, 34, 0.2))",
 												}}></div>
 
 											{/* Avatar with enhanced styling - ONLY BEAM VARIANT */}
@@ -186,9 +194,7 @@ export function UserNav(): React.JSX.Element {
 					<DropdownMenuContent
 						className="w-56 border-0 shadow-xl backdrop-blur-xl rounded-xl overflow-hidden z-[9999]"
 						style={{
-							background: theme === "dark"
-								? "rgba(0, 40, 25, 0.9)"
-								: "rgba(255, 255, 255, 0.9)",
+							background: theme === "dark" ? "rgba(0, 40, 25, 0.9)" : "rgba(255, 255, 255, 0.9)",
 						}}
 						align="end"
 						forceMount>
@@ -196,27 +202,25 @@ export function UserNav(): React.JSX.Element {
 						<DropdownMenuLabel
 							className="font-normal p-4"
 							style={{
-								borderBottom: theme === "dark"
-									? "1px solid rgba(46, 204, 113, 0.2)"
-									: "1px solid rgba(16, 109, 32, 0.2)",
+								borderBottom:
+									theme === "dark"
+										? "1px solid rgba(46, 204, 113, 0.2)"
+										: "1px solid rgba(16, 109, 32, 0.2)",
 							}}>
 							<div className="flex flex-col space-y-2">
 								<p
 									className="text-sm font-semibold leading-none transition-colors duration-200"
 									style={{
 										fontFamily: "var(--font-playfair-display)",
-										color: theme === "dark"
-											? "rgba(200, 240, 200, 0.95)"
-											: "rgba(16, 109, 32, 0.9)",
+										color:
+											theme === "dark" ? "rgba(200, 240, 200, 0.95)" : "rgba(16, 109, 32, 0.9)",
 									}}>
 									{username}
 								</p>
 								<p
 									className="text-xs leading-none font-mono"
 									style={{
-										color: theme === "dark"
-											? "rgba(200, 240, 200, 0.7)"
-											: "rgba(16, 109, 32, 0.7)",
+										color: theme === "dark" ? "rgba(200, 240, 200, 0.7)" : "rgba(16, 109, 32, 0.7)",
 									}}>
 									{userEmail}
 								</p>
@@ -231,9 +235,8 @@ export function UserNav(): React.JSX.Element {
 										backgroundColor: "transparent",
 									}}
 									onMouseEnter={(e) => {
-										e.currentTarget.style.backgroundColor = theme === "dark"
-											? "rgba(46, 204, 113, 0.1)"
-											: "rgba(16, 109, 32, 0.1)";
+										e.currentTarget.style.backgroundColor =
+											theme === "dark" ? "rgba(46, 204, 113, 0.1)" : "rgba(16, 109, 32, 0.1)";
 									}}
 									onMouseLeave={(e) => {
 										e.currentTarget.style.backgroundColor = "transparent";
@@ -243,18 +246,20 @@ export function UserNav(): React.JSX.Element {
 										<LayoutGrid
 											className="mr-3 h-4 w-4 transition-all duration-200 group-hover:scale-110"
 											style={{
-												color: theme === "dark"
-													? "rgba(46, 204, 113, 0.8)"
-													: "rgba(16, 109, 32, 0.8)",
+												color:
+													theme === "dark"
+														? "rgba(46, 204, 113, 0.8)"
+														: "rgba(16, 109, 32, 0.8)",
 											}}
 										/>
 										<span
 											className="font-medium transition-colors duration-200"
 											style={{
 												fontFamily: "var(--font-playfair-display)",
-												color: theme === "dark"
-													? "rgba(200, 240, 200, 0.9)"
-													: "rgba(16, 109, 32, 0.9)",
+												color:
+													theme === "dark"
+														? "rgba(200, 240, 200, 0.9)"
+														: "rgba(16, 109, 32, 0.9)",
 											}}>
 											Dashboard
 										</span>
@@ -265,9 +270,10 @@ export function UserNav(): React.JSX.Element {
 							<div
 								className="my-1 h-px"
 								style={{
-									background: theme === "dark"
-										? "linear-gradient(to right, transparent, rgba(46, 204, 113, 0.3), transparent)"
-										: "linear-gradient(to right, transparent, rgba(16, 109, 32, 0.3), transparent)",
+									background:
+										theme === "dark"
+											? "linear-gradient(to right, transparent, rgba(46, 204, 113, 0.3), transparent)"
+											: "linear-gradient(to right, transparent, rgba(16, 109, 32, 0.3), transparent)",
 								}}></div>
 
 							<DropdownMenuItem
@@ -277,9 +283,8 @@ export function UserNav(): React.JSX.Element {
 								}}
 								onMouseEnter={(e) => {
 									if (!disabled) {
-										e.currentTarget.style.backgroundColor = theme === "dark"
-											? "rgba(220, 38, 38, 0.1)"
-											: "rgba(239, 68, 68, 0.1)";
+										e.currentTarget.style.backgroundColor =
+											theme === "dark" ? "rgba(220, 38, 38, 0.1)" : "rgba(239, 68, 68, 0.1)";
 									}
 								}}
 								onMouseLeave={(e) => {
@@ -290,18 +295,14 @@ export function UserNav(): React.JSX.Element {
 								<LogOut
 									className="mr-3 h-4 w-4 transition-all duration-200 group-hover:scale-110 group-hover:rotate-12"
 									style={{
-										color: theme === "dark"
-											? "rgba(220, 38, 38, 0.8)"
-											: "rgba(239, 68, 68, 0.8)",
+										color: theme === "dark" ? "rgba(220, 38, 38, 0.8)" : "rgba(239, 68, 68, 0.8)",
 									}}
 								/>
 								<span
 									className="font-medium transition-colors duration-200"
 									style={{
 										fontFamily: "var(--font-playfair-display)",
-										color: theme === "dark"
-											? "rgba(200, 240, 200, 0.9)"
-											: "rgba(16, 109, 32, 0.9)",
+										color: theme === "dark" ? "rgba(200, 240, 200, 0.9)" : "rgba(16, 109, 32, 0.9)",
 									}}>
 									{disabled ? "Signing out..." : "Sign out"}
 								</span>

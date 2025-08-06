@@ -219,12 +219,12 @@ export function TicketsTable(): JSX.Element {
 	};
 
 	const formatDate = (date: Date): string => {
-		return new Date(date).toLocaleString('en-US', {
-			year: 'numeric',
-			month: 'short',
-			day: 'numeric',
-			hour: '2-digit',
-			minute: '2-digit',
+		return new Date(date).toLocaleString("en-US", {
+			year: "numeric",
+			month: "short",
+			day: "numeric",
+			hour: "2-digit",
+			minute: "2-digit",
 		});
 	};
 
@@ -244,9 +244,10 @@ export function TicketsTable(): JSX.Element {
 
 		// Filter by search term
 		if (searchTerm) {
-			filtered = filtered.filter((ticket) =>
-				ticket.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-				ticket.message.toLowerCase().includes(searchTerm.toLowerCase())
+			filtered = filtered.filter(
+				(ticket) =>
+					ticket.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+					ticket.message.toLowerCase().includes(searchTerm.toLowerCase())
 			);
 		}
 
@@ -255,7 +256,7 @@ export function TicketsTable(): JSX.Element {
 			if (sortBy === "date") {
 				return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
 			} else if (sortBy === "status") {
-				return (a.resolved === b.resolved) ? 0 : a.resolved ? 1 : -1;
+				return a.resolved === b.resolved ? 0 : a.resolved ? 1 : -1;
 			} else if (sortBy === "email") {
 				return a.email.localeCompare(b.email);
 			}
@@ -269,10 +270,8 @@ export function TicketsTable(): JSX.Element {
 		<div className="my-7 flex w-full flex-col items-center justify-start py-4">
 			<div className="mb-8 flex items-center justify-between w-full">
 				<div className="flex items-center space-x-3">
-					<MessageSquare className={`h-8 w-8 ${isDark ? 'text-green-400' : 'text-green-600'}`} />
-					<h1 className="text-3xl font-bold royal-green-text">
-						Support Tickets
-					</h1>
+					<MessageSquare className={`h-8 w-8 ${isDark ? "text-green-400" : "text-green-600"}`} />
+					<h1 className="text-3xl font-bold royal-green-text">Support Tickets</h1>
 				</div>
 				<Badge variant="secondary" className="text-sm px-3 py-1 glass-button">
 					{tickets.length} Total Tickets
@@ -285,8 +284,7 @@ export function TicketsTable(): JSX.Element {
 						<div className="flex space-x-4">
 							<Select
 								value={statusFilter}
-								onValueChange={(value) => setStatusFilter(value as "all" | "open" | "resolved")}
-							>
+								onValueChange={(value) => setStatusFilter(value as "all" | "open" | "resolved")}>
 								<SelectTrigger className="w-[150px] glass-royal-green">
 									<SelectValue placeholder="All Statuses" />
 								</SelectTrigger>
@@ -299,8 +297,7 @@ export function TicketsTable(): JSX.Element {
 
 							<Select
 								value={sortBy}
-								onValueChange={(value) => setSortBy(value as "date" | "status" | "email")}
-							>
+								onValueChange={(value) => setSortBy(value as "date" | "status" | "email")}>
 								<SelectTrigger className="w-[150px] glass-royal-green">
 									<SelectValue placeholder="Sort By" />
 								</SelectTrigger>
@@ -314,10 +311,10 @@ export function TicketsTable(): JSX.Element {
 
 						<div className="flex items-center space-x-2">
 							<Input
-							 placeholder="Search tickets..."
-							 value={searchTerm}
-							 onChange={(e) => setSearchTerm(e.target.value)}
-							 className="h-10 glass-royal-green"
+								placeholder="Search tickets..."
+								value={searchTerm}
+								onChange={(e) => setSearchTerm(e.target.value)}
+								className="h-10 glass-royal-green"
 							/>
 							<Button
 								variant="outline"
@@ -326,8 +323,7 @@ export function TicketsTable(): JSX.Element {
 									setSearchTerm("");
 									setStatusFilter("all");
 									setSortBy("date");
-								}}
-							>
+								}}>
 								<RefreshCw className="h-4 w-4 mr-2" />
 								Reset Filters
 							</Button>
@@ -376,14 +372,11 @@ export function TicketsTable(): JSX.Element {
 								filteredTickets.map((ticket) => (
 									<TableRow
 										key={ticket._id}
-										className="ticket-row-hover border-b border-green-100/20"
-									>
+										className="ticket-row-hover border-b border-green-100/20">
 										<TableCell className="font-mono text-sm">
 											{formatDate(ticket.createdAt)}
 										</TableCell>
-										<TableCell className="font-medium">
-											{ticket.email}
-										</TableCell>
+										<TableCell className="font-medium">{ticket.email}</TableCell>
 										<TableCell>
 											<Badge
 												variant={ticket.resolved ? "default" : "destructive"}
@@ -391,8 +384,7 @@ export function TicketsTable(): JSX.Element {
 													ticket.resolved
 														? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
 														: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400"
-												} border-0 glass-button`}
-											>
+												} border-0 glass-button`}>
 												{ticket.resolved ? (
 													<>
 														<CheckCircle className="h-3 w-3 mr-1" />
@@ -412,8 +404,7 @@ export function TicketsTable(): JSX.Element {
 													variant="outline"
 													size="sm"
 													onClick={() => openViewModal(ticket)}
-													className="h-8 px-3 bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100 dark:bg-blue-950/30 dark:border-blue-800 dark:text-blue-400 dark:hover:bg-blue-900/50 glass-button"
-												>
+													className="h-8 px-3 bg-blue-50 border-blue-200 text-blue-700 hover:bg-blue-100 dark:bg-blue-950/30 dark:border-blue-800 dark:text-blue-400 dark:hover:bg-blue-900/50 glass-button">
 													<Eye className="h-3 w-3 mr-1" />
 													View
 												</Button>
@@ -421,8 +412,7 @@ export function TicketsTable(): JSX.Element {
 													variant="outline"
 													size="sm"
 													onClick={() => openReplyModal(ticket)}
-													className="h-8 px-3 bg-green-50 border-green-200 text-green-700 hover:bg-green-100 dark:bg-green-950/30 dark:border-green-800 dark:text-green-400 dark:hover:bg-green-900/50 glass-button royal-green-glow"
-												>
+													className="h-8 px-3 bg-green-50 border-green-200 text-green-700 hover:bg-green-100 dark:bg-green-950/30 dark:border-green-800 dark:text-green-400 dark:hover:bg-green-900/50 glass-button royal-green-glow">
 													<Send className="h-3 w-3 mr-1" />
 													Reply
 												</Button>
@@ -431,8 +421,7 @@ export function TicketsTable(): JSX.Element {
 													size="sm"
 													onClick={() => updateTicketStatus(ticket._id, ticket.resolved)}
 													disabled={updating === ticket._id}
-													className="h-8 px-3 glass-button"
-												>
+													className="h-8 px-3 glass-button">
 													{updating === ticket._id ? (
 														<BeatLoader color="currentColor" size={8} />
 													) : (
@@ -466,8 +455,7 @@ export function TicketsTable(): JSX.Element {
 						enterTo="opacity-100"
 						leave="ease-in duration-200"
 						leaveFrom="opacity-100"
-						leaveTo="opacity-0"
-					>
+						leaveTo="opacity-0">
 						<div className="fixed inset-0 bg-black/25 backdrop-blur-sm" />
 					</Transition.Child>
 
@@ -480,30 +468,39 @@ export function TicketsTable(): JSX.Element {
 								enterTo="opacity-100 scale-100"
 								leave="ease-in duration-200"
 								leaveFrom="opacity-100 scale-100"
-								leaveTo="opacity-0 scale-95"
-							>
+								leaveTo="opacity-0 scale-95">
 								<Dialog.Panel className="w-full max-w-2xl transform overflow-hidden rounded-2xl p-6 text-left align-middle shadow-xl transition-all ticket-glass-modal">
 									{selectedTicket && (
 										<>
 											<Dialog.Title className="text-lg font-medium leading-6 mb-4 flex items-center space-x-2">
-												<Mail className={`h-5 w-5 ${isDark ? 'text-green-400' : 'text-green-600'}`} />
+												<Mail
+													className={`h-5 w-5 ${isDark ? "text-green-400" : "text-green-600"}`}
+												/>
 												<span>Ticket Details</span>
 											</Dialog.Title>
 
 											<div className="space-y-4">
 												<div className="grid grid-cols-2 gap-4">
 													<div className="glass-royal-green p-3 rounded-lg">
-														<label className="text-sm font-medium text-muted-foreground">From</label>
+														<label className="text-sm font-medium text-muted-foreground">
+															From
+														</label>
 														<p className="font-medium">{selectedTicket.email}</p>
 													</div>
 													<div className="glass-royal-green p-3 rounded-lg">
-														<label className="text-sm font-medium text-muted-foreground">Date</label>
-														<p className="font-medium">{formatDate(selectedTicket.createdAt)}</p>
+														<label className="text-sm font-medium text-muted-foreground">
+															Date
+														</label>
+														<p className="font-medium">
+															{formatDate(selectedTicket.createdAt)}
+														</p>
 													</div>
 												</div>
 
 												<div>
-													<label className="text-sm font-medium text-muted-foreground">Message</label>
+													<label className="text-sm font-medium text-muted-foreground">
+														Message
+													</label>
 													<div className="mt-2 p-4 rounded-lg glass-royal-green">
 														<p className="whitespace-pre-wrap">{selectedTicket.message}</p>
 													</div>
@@ -511,7 +508,10 @@ export function TicketsTable(): JSX.Element {
 											</div>
 
 											<div className="mt-6 flex justify-end space-x-3">
-												<Button variant="outline" onClick={closeModals} className="glass-button">
+												<Button
+													variant="outline"
+													onClick={closeModals}
+													className="glass-button">
 													Close
 												</Button>
 												<Button
@@ -519,8 +519,7 @@ export function TicketsTable(): JSX.Element {
 														closeModals();
 														openReplyModal(selectedTicket);
 													}}
-													className="bg-green-600 hover:bg-green-700 text-white glass-button royal-green-glow"
-												>
+													className="bg-green-600 hover:bg-green-700 text-white glass-button royal-green-glow">
 													<Send className="h-4 w-4 mr-2" />
 													Reply
 												</Button>
@@ -544,8 +543,7 @@ export function TicketsTable(): JSX.Element {
 						enterTo="opacity-100"
 						leave="ease-in duration-200"
 						leaveFrom="opacity-100"
-						leaveTo="opacity-0"
-					>
+						leaveTo="opacity-0">
 						<div className="fixed inset-0 bg-black/25 backdrop-blur-sm" />
 					</Transition.Child>
 
@@ -558,28 +556,37 @@ export function TicketsTable(): JSX.Element {
 								enterTo="opacity-100 scale-100"
 								leave="ease-in duration-200"
 								leaveFrom="opacity-100 scale-100"
-								leaveTo="opacity-0 scale-95"
-							>
+								leaveTo="opacity-0 scale-95">
 								<Dialog.Panel className="w-full max-w-3xl transform overflow-hidden rounded-2xl p-6 text-left align-middle shadow-xl transition-all ticket-glass-modal">
 									{selectedTicket && (
 										<>
 											<Dialog.Title className="text-lg font-medium leading-6 mb-6 flex items-center space-x-2">
-												<Send className={`h-5 w-5 ${isDark ? 'text-green-400' : 'text-green-600'}`} />
-												<span className="royal-green-text">Reply to {selectedTicket.email}</span>
+												<Send
+													className={`h-5 w-5 ${isDark ? "text-green-400" : "text-green-600"}`}
+												/>
+												<span className="royal-green-text">
+													Reply to {selectedTicket.email}
+												</span>
 											</Dialog.Title>
 
 											<div className="space-y-6">
 												{/* Original Message */}
 												<div>
-													<label className="text-sm font-medium text-muted-foreground">Original Message</label>
+													<label className="text-sm font-medium text-muted-foreground">
+														Original Message
+													</label>
 													<div className="mt-2 p-4 rounded-lg glass-royal-green">
-														<p className="text-sm whitespace-pre-wrap">{selectedTicket.message}</p>
+														<p className="text-sm whitespace-pre-wrap">
+															{selectedTicket.message}
+														</p>
 													</div>
 												</div>
 
 												{/* Reply Message */}
 												<div>
-													<label className="text-sm font-medium text-muted-foreground">Your Reply</label>
+													<label className="text-sm font-medium text-muted-foreground">
+														Your Reply
+													</label>
 													<Textarea
 														value={replyMessage}
 														onChange={(e) => setReplyMessage(e.target.value)}
@@ -587,23 +594,27 @@ export function TicketsTable(): JSX.Element {
 														className="mt-2 min-h-[150px] resize-none glass-royal-green neon-scroll"
 														style={{
 															background: isDark
-																? 'var(--ticket-modal-bg-dark)'
-																: 'var(--ticket-modal-bg-light)',
-															border: `1px solid ${isDark ? 'var(--ticket-border-dark)' : 'var(--ticket-border-light)'}`,
+																? "var(--ticket-modal-bg-dark)"
+																: "var(--ticket-modal-bg-light)",
+															border: `1px solid ${isDark ? "var(--ticket-border-dark)" : "var(--ticket-border-light)"}`,
 														}}
 													/>
 												</div>
 											</div>
 
 											<div className="mt-6 flex justify-end space-x-3">
-												<Button variant="outline" onClick={closeModals} className="glass-button">
+												<Button
+													variant="outline"
+													onClick={closeModals}
+													className="glass-button">
 													Cancel
 												</Button>
 												<Button
 													onClick={sendReply}
-													disabled={!replyMessage.trim() || sendingReply === selectedTicket._id}
-													className="bg-green-600 hover:bg-green-700 text-white min-w-[100px] glass-button royal-green-glow"
-												>
+													disabled={
+														!replyMessage.trim() || sendingReply === selectedTicket._id
+													}
+													className="bg-green-600 hover:bg-green-700 text-white min-w-[100px] glass-button royal-green-glow">
 													{sendingReply === selectedTicket._id ? (
 														<BeatLoader color="white" size={8} />
 													) : (

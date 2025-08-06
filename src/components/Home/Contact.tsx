@@ -98,8 +98,8 @@ export default function ContactForm(): React.JSX.Element {
 							style={{
 								fontFamily: "var(--font-playfair-display)",
 								color: isDark ? "rgba(200, 240, 200, 0.95)" : "#005050",
-								textShadow: isDark 
-									? "0 2px 8px rgba(46, 204, 113, 0.2)" 
+								textShadow: isDark
+									? "0 2px 8px rgba(46, 204, 113, 0.2)"
 									: "0 2px 8px rgba(16, 109, 32, 0.15)",
 							}}>
 							Get In Touch
@@ -201,12 +201,14 @@ export default function ContactForm(): React.JSX.Element {
 																	placeholder="Enter your email"
 																	className="pl-10 border-0 shadow-inner rounded-lg backdrop-blur-sm transition-all duration-300"
 																	style={{
-																		background: isDark 
-																			? "rgba(0, 40, 25, 0.6)" 
+																		background: isDark
+																			? "rgba(0, 40, 25, 0.6)"
 																			: "rgba(255, 255, 255, 0.8)",
-																		color: isDark ? "rgba(200, 240, 200, 0.95)" : "rgba(16, 109, 32, 0.9)",
-																		border: isDark 
-																			? "1px solid rgba(46, 204, 113, 0.3)" 
+																		color: isDark
+																			? "rgba(200, 240, 200, 0.95)"
+																			: "rgba(16, 109, 32, 0.9)",
+																		border: isDark
+																			? "1px solid rgba(46, 204, 113, 0.3)"
 																			: "1px solid rgba(16, 109, 32, 0.3)",
 																	}}
 																	onFocus={(e) => {
@@ -219,15 +221,17 @@ export default function ContactForm(): React.JSX.Element {
 																	}}
 																	onBlur={(e) => {
 																		e.target.style.boxShadow = "none";
-																		e.target.style.border = isDark 
-																			? "1px solid rgba(46, 204, 113, 0.3)" 
+																		e.target.style.border = isDark
+																			? "1px solid rgba(46, 204, 113, 0.3)"
 																			: "1px solid rgba(16, 109, 32, 0.3)";
 																	}}
 																/>
-																<HiOutlineMail 
+																<HiOutlineMail
 																	className="absolute left-3 top-3 transition-colors duration-300"
 																	style={{
-																		color: isDark ? "rgba(46, 204, 113, 0.7)" : "rgba(16, 109, 32, 0.7)",
+																		color: isDark
+																			? "rgba(46, 204, 113, 0.7)"
+																			: "rgba(16, 109, 32, 0.7)",
 																	}}
 																/>
 															</div>
@@ -251,12 +255,14 @@ export default function ContactForm(): React.JSX.Element {
 																placeholder="Enter your message"
 																className="min-h-[150px] border-0 shadow-inner rounded-lg backdrop-blur-sm transition-all duration-300"
 																style={{
-																	background: isDark 
-																		? "rgba(0, 40, 25, 0.6)" 
+																	background: isDark
+																		? "rgba(0, 40, 25, 0.6)"
 																		: "rgba(255, 255, 255, 0.8)",
-																	color: isDark ? "rgba(200, 240, 200, 0.95)" : "rgba(16, 109, 32, 0.9)",
-																	border: isDark 
-																		? "1px solid rgba(46, 204, 113, 0.3)" 
+																	color: isDark
+																		? "rgba(200, 240, 200, 0.95)"
+																		: "rgba(16, 109, 32, 0.9)",
+																	border: isDark
+																		? "1px solid rgba(46, 204, 113, 0.3)"
 																		: "1px solid rgba(16, 109, 32, 0.3)",
 																}}
 																onFocus={(e) => {
@@ -269,8 +275,8 @@ export default function ContactForm(): React.JSX.Element {
 																}}
 																onBlur={(e) => {
 																	e.target.style.boxShadow = "none";
-																	e.target.style.border = isDark 
-																		? "1px solid rgba(46, 204, 113, 0.3)" 
+																	e.target.style.border = isDark
+																		? "1px solid rgba(46, 204, 113, 0.3)"
 																		: "1px solid rgba(16, 109, 32, 0.3)";
 																}}
 															/>
@@ -329,30 +335,33 @@ export default function ContactForm(): React.JSX.Element {
 															   0 0 0 1px rgba(16, 109, 32, 0.3),
 															   inset 0 1px 0 0 rgba(255, 255, 255, 0.2)`;
 													}}>
-
 													{/* Button content */}
 													<div className="relative z-10 flex items-center justify-center">
 														{disabled ? (
-															<HashLoader 
-																color={isDark ? "rgba(200, 240, 200, 0.95)" : "#ffffff"} 
-																size={20} 
+															<HashLoader
+																color={isDark ? "rgba(200, 240, 200, 0.95)" : "#ffffff"}
+																size={20}
 															/>
 														) : (
 															<>
-																<FiSend 
+																<FiSend
 																	className="mr-2"
 																	style={{
-																		color: isDark ? "rgba(200, 240, 200, 0.95)" : "white",
+																		color: isDark
+																			? "rgba(200, 240, 200, 0.95)"
+																			: "white",
 																	}}
 																/>
 																<span
 																	className="tracking-wider font-medium text-center cursor-pointer"
 																	style={{
 																		fontFamily: "var(--font-playfair-display)",
-																		textShadow: isDark 
-																			? "0 2px 8px rgba(0, 0, 0, 0.5)" 
+																		textShadow: isDark
+																			? "0 2px 8px rgba(0, 0, 0, 0.5)"
 																			: "0 2px 8px rgba(0, 0, 0, 0.3)",
-																		color: isDark ? "rgba(200, 240, 200, 0.95)" : "white",
+																		color: isDark
+																			? "rgba(200, 240, 200, 0.95)"
+																			: "white",
 																	}}>
 																	Send Message
 																</span>
@@ -385,7 +394,7 @@ export default function ContactForm(): React.JSX.Element {
 									className="w-full flex flex-col justify-center">
 									<h3
 										className="text-2xl font-bold mb-6 text-center"
-										style={{ 
+										style={{
 											fontFamily: "var(--font-playfair-display)",
 											color: isDark ? "rgba(200, 240, 200, 0.95)" : "rgba(16, 109, 32, 0.9)",
 										}}>
@@ -398,7 +407,9 @@ export default function ContactForm(): React.JSX.Element {
 												<h4
 													className="text-xl font-medium mb-4 text-center"
 													style={{
-														color: isDark ? "rgba(200, 240, 200, 0.9)" : "rgba(16, 109, 32, 0.8)",
+														color: isDark
+															? "rgba(200, 240, 200, 0.9)"
+															: "rgba(16, 109, 32, 0.8)",
 													}}>
 													{role}
 												</h4>
@@ -413,11 +424,11 @@ export default function ContactForm(): React.JSX.Element {
 															whileHover={{ scale: 1.03 }}
 															className={`backdrop-blur-lg rounded-xl p-4 w-full ${contacts.length % 2 !== 0 && idx === contacts.length - 1 ? "md:col-span-2 md:w-[calc(50%-0.5rem)] md:mx-auto" : ""}`}
 															style={{
-																background: isDark 
-																	? "rgba(0, 40, 25, 0.6)" 
+																background: isDark
+																	? "rgba(0, 40, 25, 0.6)"
 																	: "rgba(255, 255, 255, 0.8)",
-																border: isDark 
-																	? "1px solid rgba(46, 204, 113, 0.3)" 
+																border: isDark
+																	? "1px solid rgba(46, 204, 113, 0.3)"
 																	: "1px solid rgba(16, 109, 32, 0.2)",
 																boxShadow: isDark
 																	? "0 10px 30px -10px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(46, 204, 113, 0.2)"
@@ -435,20 +446,22 @@ export default function ContactForm(): React.JSX.Element {
 																	: "0 15px 40px -10px rgba(16, 109, 32, 0.1), 0 0 20px rgba(16, 109, 32, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.6)";
 															}}
 															onMouseLeave={(e) => {
-																e.currentTarget.style.background = isDark 
-																	? "rgba(0, 40, 25, 0.6)" 
+																e.currentTarget.style.background = isDark
+																	? "rgba(0, 40, 25, 0.6)"
 																	: "rgba(255, 255, 255, 0.8)";
-																e.currentTarget.style.border = isDark 
-																	? "1px solid rgba(46, 204, 113, 0.3)" 
+																e.currentTarget.style.border = isDark
+																	? "1px solid rgba(46, 204, 113, 0.3)"
 																	: "1px solid rgba(16, 109, 32, 0.2)";
 																e.currentTarget.style.boxShadow = isDark
 																	? "0 10px 30px -10px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(46, 204, 113, 0.2)"
 																	: "0 10px 30px -10px rgba(16, 109, 32, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.4)";
 															}}>
-															<p 
+															<p
 																className="font-bold mb-2"
 																style={{
-																	color: isDark ? "rgba(200, 240, 200, 0.95)" : "rgba(16, 109, 32, 0.9)",
+																	color: isDark
+																		? "rgba(200, 240, 200, 0.95)"
+																		: "rgba(16, 109, 32, 0.9)",
 																}}>
 																{contact.name}
 															</p>
@@ -456,18 +469,26 @@ export default function ContactForm(): React.JSX.Element {
 																href={`tel:${contact.phone}`}
 																className="flex items-center transition-all duration-300"
 																style={{
-																	color: isDark ? "rgba(46, 204, 113, 0.8)" : "rgba(16, 109, 32, 0.8)",
+																	color: isDark
+																		? "rgba(46, 204, 113, 0.8)"
+																		: "rgba(16, 109, 32, 0.8)",
 																}}
 																onMouseEnter={(e) => {
-																	e.currentTarget.style.color = isDark ? "rgba(46, 204, 113, 1)" : "rgba(34, 139, 34, 1)";
+																	e.currentTarget.style.color = isDark
+																		? "rgba(46, 204, 113, 1)"
+																		: "rgba(34, 139, 34, 1)";
 																}}
 																onMouseLeave={(e) => {
-																	e.currentTarget.style.color = isDark ? "rgba(46, 204, 113, 0.8)" : "rgba(16, 109, 32, 0.8)";
+																	e.currentTarget.style.color = isDark
+																		? "rgba(46, 204, 113, 0.8)"
+																		: "rgba(16, 109, 32, 0.8)";
 																}}>
-																<BsTelephone 
+																<BsTelephone
 																	className="mr-2"
 																	style={{
-																		color: isDark ? "rgba(46, 204, 113, 0.7)" : "rgba(16, 109, 32, 0.7)",
+																		color: isDark
+																			? "rgba(46, 204, 113, 0.7)"
+																			: "rgba(16, 109, 32, 0.7)",
 																	}}
 																/>
 																{contact.phone}

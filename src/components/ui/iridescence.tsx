@@ -83,124 +83,124 @@ void main() {
 `;
 
 interface IridescenceProps {
-    speed?: number;
-    amplitude?: number;
-    mouseReact?: boolean;
-    topColor?: [number, number, number];
-    middleColor?: [number, number, number];
-    bottomColor?: [number, number, number];
-    darkTopColor?: [number, number, number];
-    darkMiddleColor?: [number, number, number];
-    darkBottomColor?: [number, number, number];
+	speed?: number;
+	amplitude?: number;
+	mouseReact?: boolean;
+	topColor?: [number, number, number];
+	middleColor?: [number, number, number];
+	bottomColor?: [number, number, number];
+	darkTopColor?: [number, number, number];
+	darkMiddleColor?: [number, number, number];
+	darkBottomColor?: [number, number, number];
 }
 
 export default function Iridescence({
-    speed = 0.8,
-    amplitude = 0.15,
-    mouseReact = true,
-    // Light mode colors - Pure green tones only
-    topColor = [0.941, 0.992, 0.957], // Light green #F0FDF4
-    middleColor = [0.863, 0.973, 0.906], // Medium light green #DCF8E7
-    bottomColor = [0.565, 0.890, 0.651], // Pure green #90E3A6
-    // Dark mode colors - Deep Royal Green theme
-    darkTopColor = [0.008, 0.071, 0.016], // Very dark green #021204
-    darkMiddleColor = [0.012, 0.125, 0.129], // Dark royal green #032021
-    darkBottomColor = [0.180, 0.800, 0.443], // Bright royal green #2ECC71
-    ...rest
+	speed = 0.8,
+	amplitude = 0.15,
+	mouseReact = true,
+	// Light mode colors - Pure green tones only
+	topColor = [0.941, 0.992, 0.957], // Light green #F0FDF4
+	middleColor = [0.863, 0.973, 0.906], // Medium light green #DCF8E7
+	bottomColor = [0.565, 0.89, 0.651], // Pure green #90E3A6
+	// Dark mode colors - Deep Royal Green theme
+	darkTopColor = [0.008, 0.071, 0.016], // Very dark green #021204
+	darkMiddleColor = [0.012, 0.125, 0.129], // Dark royal green #032021
+	darkBottomColor = [0.18, 0.8, 0.443], // Bright royal green #2ECC71
+	...rest
 }: IridescenceProps) {
-    const { theme } = useTheme();
-    const isDark = theme === "dark";
-    const ctnDom = useRef<HTMLDivElement>(null);
-    const mousePos = useRef({ x: 0.5, y: 0.5 });
+	const { theme } = useTheme();
+	const isDark = theme === "dark";
+	const ctnDom = useRef<HTMLDivElement>(null);
+	const mousePos = useRef({ x: 0.5, y: 0.5 });
 
-    // Select colors based on theme
-    const currentTopColor = isDark ? darkTopColor : topColor;
-    const currentMiddleColor = isDark ? darkMiddleColor : middleColor;
-    const currentBottomColor = isDark ? darkBottomColor : bottomColor;
+	// Select colors based on theme
+	const currentTopColor = isDark ? darkTopColor : topColor;
+	const currentMiddleColor = isDark ? darkMiddleColor : middleColor;
+	const currentBottomColor = isDark ? darkBottomColor : bottomColor;
 
-    useEffect(() => {
-        if (!ctnDom.current) return;
-        const ctn = ctnDom.current;
-        const renderer = new Renderer();
-        const gl = renderer.gl;
-        
-        // Set clear color based on theme
-        if (isDark) {
-            gl.clearColor(0.0, 0.196, 0.129, 1); // Deep green #003221
-        } else {
-            gl.clearColor(0.941, 0.996, 0.957, 1); // Very light green #F0FEF4
-        }
+	useEffect(() => {
+		if (!ctnDom.current) return;
+		const ctn = ctnDom.current;
+		const renderer = new Renderer();
+		const gl = renderer.gl;
 
-        let program: Program;
+		// Set clear color based on theme
+		if (isDark) {
+			gl.clearColor(0.0, 0.196, 0.129, 1); // Deep green #003221
+		} else {
+			gl.clearColor(0.941, 0.996, 0.957, 1); // Very light green #F0FEF4
+		}
 
-        function resize() {
-            const scale = 1;
-            renderer.setSize(ctn.offsetWidth * scale, ctn.offsetHeight * scale);
-            if (program) {
-                program.uniforms.uResolution.value = [gl.canvas.width, gl.canvas.height];
-            }
-        }
-        window.addEventListener("resize", resize, false);
-        resize();
+		let program: Program;
 
-        const geometry = new Triangle(gl);
+		function resize() {
+			const scale = 1;
+			renderer.setSize(ctn.offsetWidth * scale, ctn.offsetHeight * scale);
+			if (program) {
+				program.uniforms.uResolution.value = [gl.canvas.width, gl.canvas.height];
+			}
+		}
+		window.addEventListener("resize", resize, false);
+		resize();
 
-        try {
-            program = new Program(gl, {
-                vertex: vertexShader,
-                fragment: fragmentShader,
-                uniforms: {
-                    uTime: { value: 0 },
-                    uColor1: { value: [currentTopColor[0], currentTopColor[1], currentTopColor[2]] },
-                    uColor2: { value: [currentMiddleColor[0], currentMiddleColor[1], currentMiddleColor[2]] },
-                    uColor3: { value: [currentBottomColor[0], currentBottomColor[1], currentBottomColor[2]] },
-                    uResolution: { value: [gl.canvas.width, gl.canvas.height] },
-                    uMouse: { value: [mousePos.current.x, mousePos.current.y] },
-                    uAmplitude: { value: amplitude },
-                    uSpeed: { value: speed },
-                },
-            });
-        } catch (error) {
-            console.error("Shader compilation error:", error);
-            return;
-        }
+		const geometry = new Triangle(gl);
 
-        const mesh = new Mesh(gl, { geometry, program });
-        let animateId: number;
+		try {
+			program = new Program(gl, {
+				vertex: vertexShader,
+				fragment: fragmentShader,
+				uniforms: {
+					uTime: { value: 0 },
+					uColor1: { value: [currentTopColor[0], currentTopColor[1], currentTopColor[2]] },
+					uColor2: { value: [currentMiddleColor[0], currentMiddleColor[1], currentMiddleColor[2]] },
+					uColor3: { value: [currentBottomColor[0], currentBottomColor[1], currentBottomColor[2]] },
+					uResolution: { value: [gl.canvas.width, gl.canvas.height] },
+					uMouse: { value: [mousePos.current.x, mousePos.current.y] },
+					uAmplitude: { value: amplitude },
+					uSpeed: { value: speed },
+				},
+			});
+		} catch (error) {
+			console.error("Shader compilation error:", error);
+			return;
+		}
 
-        function update(t: number) {
-            animateId = requestAnimationFrame(update);
-            program.uniforms.uTime.value = t * 0.001;
-            renderer.render({ scene: mesh });
-        }
-        animateId = requestAnimationFrame(update);
-        ctn.appendChild(gl.canvas);
+		const mesh = new Mesh(gl, { geometry, program });
+		let animateId: number;
 
-        function handleMouseMove(e: MouseEvent) {
-            if (!mouseReact) return;
-            const rect = ctn.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width;
-            const y = 1.0 - (e.clientY - rect.top) / rect.height;
-            mousePos.current = { x, y };
-            program.uniforms.uMouse.value = [x, y];
-        }
+		function update(t: number) {
+			animateId = requestAnimationFrame(update);
+			program.uniforms.uTime.value = t * 0.001;
+			renderer.render({ scene: mesh });
+		}
+		animateId = requestAnimationFrame(update);
+		ctn.appendChild(gl.canvas);
 
-        if (mouseReact) {
-            ctn.addEventListener("mousemove", handleMouseMove);
-        }
+		function handleMouseMove(e: MouseEvent) {
+			if (!mouseReact) return;
+			const rect = ctn.getBoundingClientRect();
+			const x = (e.clientX - rect.left) / rect.width;
+			const y = 1.0 - (e.clientY - rect.top) / rect.height;
+			mousePos.current = { x, y };
+			program.uniforms.uMouse.value = [x, y];
+		}
 
-        return () => {
-            cancelAnimationFrame(animateId);
-            window.removeEventListener("resize", resize);
-            if (mouseReact) {
-                ctn.removeEventListener("mousemove", handleMouseMove);
-            }
-            if (ctn.contains(gl.canvas)) {
-                ctn.removeChild(gl.canvas);
-            }
-            gl.getExtension("WEBGL_lose_context")?.loseContext();
-        };
-    }, [speed, amplitude, mouseReact, currentTopColor, currentMiddleColor, currentBottomColor, isDark]);
+		if (mouseReact) {
+			ctn.addEventListener("mousemove", handleMouseMove);
+		}
 
-    return <div ref={ctnDom} className="w-full h-full" {...rest} />;
+		return () => {
+			cancelAnimationFrame(animateId);
+			window.removeEventListener("resize", resize);
+			if (mouseReact) {
+				ctn.removeEventListener("mousemove", handleMouseMove);
+			}
+			if (ctn.contains(gl.canvas)) {
+				ctn.removeChild(gl.canvas);
+			}
+			gl.getExtension("WEBGL_lose_context")?.loseContext();
+		};
+	}, [speed, amplitude, mouseReact, currentTopColor, currentMiddleColor, currentBottomColor, isDark]);
+
+	return <div ref={ctnDom} className="w-full h-full" {...rest} />;
 }
