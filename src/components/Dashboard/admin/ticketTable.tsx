@@ -29,7 +29,7 @@ interface ApiError {
 	message: string;
 }
 
-export function TicketsTable(): JSX.Element {
+export function TicketsTable(): React.JSX.Element {
 	const [loading, setLoading] = useState(false);
 	const [updating, setUpdating] = useState<string | null>(null);
 	const [sendingReply, setSendingReply] = useState<string | null>(null);

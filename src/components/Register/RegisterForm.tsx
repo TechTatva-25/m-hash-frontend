@@ -82,7 +82,7 @@ const registerFormSchema = z
 export default function RegisterForm(): React.JSX.Element {
 	const [colleges, setColleges] = useState<College[]>([]);
 	const [loading, setLoading] = useState(true);
-	const [disabled, setDisabled] = useState(false);
+		const [disabled, setDisabled] = useState(false);
 	const [collegeComboboxOpen, setCollegeComboboxOpen] = React.useState(false);
 	const [collegeValue, setCollegeValue] = React.useState({ display: "", value: "" });
 	const [collegeOther, setCollegeOther] = React.useState(false);
