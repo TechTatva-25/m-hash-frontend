@@ -218,7 +218,7 @@ export default function LoginForm(): React.JSX.Element {
 								<div className="mt-6 relative overflow-hidden group">
 									{/* Animated gradient background */}
 									<div
-										className="absolute inset-0 bg-gradient-to-r from-indigo-500/50 via-purple-500/50 to-pink-500/50 opacity-80 group-hover:opacity-100 transition-opacity duration-500 rounded-lg"
+										className="absolute inset-0 bg-gradient-to-r from-emerald-500/50 via-green-500/50 to-teal-500/50 opacity-80 group-hover:opacity-100 transition-opacity duration-500 rounded-lg"
 										style={{
 											backgroundSize: "200% 100%",
 											animation: "gradient-shift 3s ease infinite",
@@ -230,7 +230,7 @@ export default function LoginForm(): React.JSX.Element {
 									<Button
 										type="submit"
 										disabled={disabled}
-										className="relative w-full bg-transparent border-0 text-white py-5 rounded-lg text-base font-medium shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:shadow-[0_0_20px_rgba(255,255,255,0.25)] transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]">
+										className="relative w-full bg-transparent border-0 text-white py-5 rounded-lg text-base font-medium shadow-[0_0_15px_rgba(46,204,113,0.15)] hover:shadow-[0_0_20px_rgba(46,204,113,0.25)] transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]">
 										{disabled ? (
 											<HashLoader color="#ffffff" size={20} />
 										) : (

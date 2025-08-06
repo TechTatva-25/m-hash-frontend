@@ -4,12 +4,12 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useState } from "react";
 import { BeatLoader } from "react-spinners";
 import { toast } from "react-toastify";
-import { Send, Mail, Eye, CheckCircle, XCircle, Clock, MessageSquare, Star, Filter, Search, RefreshCw } from "lucide-react";
+import { Send, Mail, Eye, CheckCircle, XCircle, Clock, MessageSquare, RefreshCw } from "lucide-react";
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -286,9 +286,8 @@ export function TicketsTable(): JSX.Element {
 							<Select
 								value={statusFilter}
 								onValueChange={(value) => setStatusFilter(value as "all" | "open" | "resolved")}
-								className="w-[150px] glass-royal-green"
 							>
-								<SelectTrigger>
+								<SelectTrigger className="w-[150px] glass-royal-green">
 									<SelectValue placeholder="All Statuses" />
 								</SelectTrigger>
 								<SelectContent>
@@ -301,9 +300,8 @@ export function TicketsTable(): JSX.Element {
 							<Select
 								value={sortBy}
 								onValueChange={(value) => setSortBy(value as "date" | "status" | "email")}
-								className="w-[150px] glass-royal-green"
 							>
-								<SelectTrigger>
+								<SelectTrigger className="w-[150px] glass-royal-green">
 									<SelectValue placeholder="Sort By" />
 								</SelectTrigger>
 								<SelectContent>

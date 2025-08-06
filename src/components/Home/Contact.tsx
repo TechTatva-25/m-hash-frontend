@@ -189,7 +189,8 @@ export default function ContactForm(): React.JSX.Element {
 												name="email"
 												render={({ field }): React.JSX.Element => (
 													<FormItem>
-														<FormLabel className="text-foreground">
+														<FormLabel
+															className={`${isDark ? "text-[rgba(144,238,144,0.95)]" : "text-[rgba(16,109,32,0.9)]"} font-medium`}>
 															Email
 														</FormLabel>
 														<FormControl>
@@ -240,7 +241,8 @@ export default function ContactForm(): React.JSX.Element {
 												name="message"
 												render={({ field }): React.JSX.Element => (
 													<FormItem>
-														<FormLabel className="text-foreground">
+														<FormLabel
+															className={`${isDark ? "text-[rgba(144,238,144,0.95)]" : "text-[rgba(16,109,32,0.9)]"} font-medium`}>
 															Message
 														</FormLabel>
 														<FormControl>

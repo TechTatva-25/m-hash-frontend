@@ -107,7 +107,7 @@ const FormLabel = React.forwardRef<
 			className={cn(className, "font-medium")}
 			htmlFor={formItemId}
 			style={{
-				color: `${isDark ? "rgba(220, 200, 255, 0.9)" : "rgba(103, 80, 164, 0.9)"}`,
+				color: `${isDark ? "rgba(144, 238, 144, 0.95)" : "rgba(16, 109, 32, 0.9)"}`,
 			}}
 			{...props}
 		/>
@@ -144,7 +144,7 @@ const FormDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttribu
 				id={formDescriptionId}
 				className={cn("text-sm", className)}
 				style={{
-					color: `${isDark ? "rgba(200, 180, 240, 0.7)" : "rgba(103, 80, 164, 0.7)"}`,
+					color: `${isDark ? "rgba(144, 238, 144, 0.7)" : "rgba(16, 109, 32, 0.7)"}`,
 				}}
 				{...props}
 			/>
