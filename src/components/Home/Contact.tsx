@@ -81,7 +81,7 @@ export default function ContactForm(): React.JSX.Element {
 			}
 			setDisabled(false);
 		}
-	};
+	}
 
 	return (
 		<div className="relative">
