@@ -62,9 +62,10 @@ export default function Home(): React.JSX.Element {
 							style={{
 								fontFamily: "var(--font-playfair-display)",
 								color: theme === "dark" ? "rgba(200, 240, 200, 0.95)" : "#005050",
-								textShadow: theme === "dark" 
-									? "0 2px 8px rgba(46, 204, 113, 0.2)" 
-									: "0 2px 8px rgba(16, 109, 32, 0.15)",
+								textShadow:
+									theme === "dark"
+										? "0 2px 8px rgba(46, 204, 113, 0.2)"
+										: "0 2px 8px rgba(16, 109, 32, 0.15)",
 							}}>
 							Problem Statements
 						</h2>
@@ -73,9 +74,10 @@ export default function Home(): React.JSX.Element {
 						<motion.div
 							className="absolute -bottom-3 left-0 right-0 h-1 rounded-full"
 							style={{
-								background: theme === "dark"
-									? "linear-gradient(to right, rgba(46, 204, 113, 0.8), rgba(34, 197, 94, 0.6), rgba(46, 204, 113, 0.8))"
-									: "#005050",
+								background:
+									theme === "dark"
+										? "linear-gradient(to right, rgba(46, 204, 113, 0.8), rgba(34, 197, 94, 0.6), rgba(46, 204, 113, 0.8))"
+										: "#005050",
 							}}
 							initial={{ scaleX: 0 }}
 							whileInView={{ scaleX: 1 }}
@@ -85,9 +87,10 @@ export default function Home(): React.JSX.Element {
 						<motion.div
 							className="absolute -bottom-5 left-0 w-4/5 h-[0.5px] rounded-full"
 							style={{
-								background: theme === "dark"
-									? "linear-gradient(to right, rgba(46, 204, 113, 0.6), rgba(34, 197, 94, 0.4), rgba(46, 204, 113, 0.6))"
-									: "linear-gradient(to right, rgba(16, 109, 32, 0.6), rgba(34, 139, 34, 0.4), rgba(16, 109, 32, 0.6))",
+								background:
+									theme === "dark"
+										? "linear-gradient(to right, rgba(46, 204, 113, 0.6), rgba(34, 197, 94, 0.4), rgba(46, 204, 113, 0.6))"
+										: "linear-gradient(to right, rgba(16, 109, 32, 0.6), rgba(34, 139, 34, 0.4), rgba(16, 109, 32, 0.6))",
 							}}
 							initial={{ scaleX: 0 }}
 							whileInView={{ scaleX: 1 }}

@@ -16,7 +16,7 @@ interface TimelineStage {
 export function HighwayTimeline({ timeline = generalTimeLine }: { timeline?: TimelineStage[] }): React.JSX.Element {
 	const { theme } = useTheme();
 	const isDark = theme === "dark";
-	
+
 	const iconMap = [
 		<Flag key="flag" className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />,
 		<Target key="target" className="h-5 w-5 text-green-600 dark:text-green-400" />,
@@ -138,8 +138,8 @@ export function HighwayTimeline({ timeline = generalTimeLine }: { timeline?: Tim
 											? "linear-gradient(to left, rgba(46, 204, 113, 0.4), rgba(34, 197, 94, 0.4))"
 											: "linear-gradient(to right, rgba(46, 204, 113, 0.4), rgba(34, 197, 94, 0.4))"
 										: index % 2 === 0
-										? "linear-gradient(to left, rgba(0, 80, 80, 0.4), #005050)"
-										: "linear-gradient(to right, rgba(0, 80, 80, 0.4), #005050)",
+											? "linear-gradient(to left, rgba(0, 80, 80, 0.4), #005050)"
+											: "linear-gradient(to right, rgba(0, 80, 80, 0.4), #005050)",
 									backdropFilter: "blur(2px)",
 								}}>
 								<div className="absolute inset-0 blur-[1px]"></div>
@@ -217,9 +217,7 @@ const TimelineItem = ({ index, stage, icon, isLeft }: TimelineItemProps) => {
 				<div
 					className="relative flex flex-col rounded-xl p-3 md:p-4 overflow-hidden"
 					style={{
-						background: isDark
-							? "rgba(0, 40, 25, 0.6)"
-							: "rgba(255, 255, 255, 0.4)",
+						background: isDark ? "rgba(0, 40, 25, 0.6)" : "rgba(255, 255, 255, 0.4)",
 						backdropFilter: "blur(8px)",
 						borderWidth: "0.75px",
 						borderStyle: "solid",
@@ -258,12 +256,8 @@ const TimelineItem = ({ index, stage, icon, isLeft }: TimelineItemProps) => {
 							<span
 								className="text-sm font-medium px-3 py-1 rounded-full"
 								style={{
-									background: isDark
-										? "rgba(46, 204, 113, 0.12)"
-										: "rgba(16, 109, 32, 0.12)",
-									color: isDark
-										? "rgba(200, 240, 200, 0.9)"
-										: "rgba(16, 109, 32, 0.9)",
+									background: isDark ? "rgba(46, 204, 113, 0.12)" : "rgba(16, 109, 32, 0.12)",
+									color: isDark ? "rgba(200, 240, 200, 0.9)" : "rgba(16, 109, 32, 0.9)",
 									backdropFilter: "blur(8px)",
 									border: "1px solid rgba(255, 255, 255, 0.6)",
 									boxShadow:
@@ -306,25 +300,19 @@ const TimelineItem = ({ index, stage, icon, isLeft }: TimelineItemProps) => {
 							<div
 								className="absolute inset-0 rounded-lg -z-10"
 								style={{
-									background: isDark
-										? "rgba(0, 50, 33, 0.25)"
-										: "rgba(255, 255, 255, 0.25)",
+									background: isDark ? "rgba(0, 50, 33, 0.25)" : "rgba(255, 255, 255, 0.25)",
 								}}></div>
 							<h3
 								className="text-xl/[1.3] font-semibold text-balance truncate"
 								style={{
-									color: isDark
-										? "rgba(200, 240, 200, 0.9)"
-										: "rgba(16, 109, 32, 0.9)",
+									color: isDark ? "rgba(200, 240, 200, 0.9)" : "rgba(16, 109, 32, 0.9)",
 								}}>
 								{stage.badge}
 							</h3>
 							<h2
 								className="text-sm/[1.1] mb-1.5 py-1 rounded-md inline-block"
 								style={{
-									color: isDark
-										? "rgba(200, 240, 200, 0.7)"
-										: "rgba(107, 114, 128, 1)",
+									color: isDark ? "rgba(200, 240, 200, 0.7)" : "rgba(107, 114, 128, 1)",
 								}}>
 								{stage.date}
 							</h2>
@@ -332,9 +320,7 @@ const TimelineItem = ({ index, stage, icon, isLeft }: TimelineItemProps) => {
 							<div
 								className="text-sm/[1.4] overflow-y-auto flex-1 pr-1.5 scrollbar-thin scrollbar-track-transparent pb-3"
 								style={{
-									color: isDark
-										? "rgba(200, 240, 200, 0.8)"
-										: "rgba(40, 40, 80, 0.9)",
+									color: isDark ? "rgba(200, 240, 200, 0.8)" : "rgba(40, 40, 80, 0.9)",
 									scrollbarColor: isDark
 										? "rgba(46, 204, 113, 0.3) transparent"
 										: "rgba(16, 109, 32, 0.3) transparent",

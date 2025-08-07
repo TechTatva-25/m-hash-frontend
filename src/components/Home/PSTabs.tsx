@@ -71,9 +71,7 @@ export function PSTabs(): React.JSX.Element {
 							<TabsList
 								className={`mx-auto mb-6 sm:mb-8 md:mb-12 flex w-fit flex-col items-center space-y-2 rounded-xl backdrop-blur-md transition-all duration-300 p-2 sm:p-3 md:flex-row md:justify-center md:space-x-2 lg:space-x-4 md:space-y-0`}
 								style={{
-									background: isDark
-										? "rgba(0, 40, 25, 0.6)"
-										: "rgba(255, 255, 255, 0.7)",
+									background: isDark ? "rgba(0, 40, 25, 0.6)" : "rgba(255, 255, 255, 0.7)",
 									borderColor: isDark ? "rgba(46, 204, 113, 0.3)" : "rgba(16, 109, 32, 0.3)",
 									borderWidth: "1px",
 									borderStyle: "solid",
@@ -85,14 +83,15 @@ export function PSTabs(): React.JSX.Element {
 									value="all"
 									className={`transition-all duration-300 text-xs sm:text-sm px-3 sm:px-4 py-2 rounded-lg w-full md:w-auto ${
 										selectedTab === "all" &&
-										(isDark
-											? "text-[rgba(200, 240, 200, 0.95)]"
-											: "text-[rgba(16, 109, 32, 0.95)]")
+										(isDark ? "text-[rgba(200, 240, 200, 0.95)]" : "text-[rgba(16, 109, 32, 0.95)]")
 									}`}
 									style={{
-										background: selectedTab === "all" 
-											? (isDark ? "rgba(46, 204, 113, 0.2)" : "rgba(16, 109, 32, 0.15)")
-											: "transparent",
+										background:
+											selectedTab === "all"
+												? isDark
+													? "rgba(46, 204, 113, 0.2)"
+													: "rgba(16, 109, 32, 0.15)"
+												: "transparent",
 									}}>
 									ALL
 								</TabsTrigger>

@@ -105,7 +105,7 @@ export default function Iridescence({
 	// Dark mode colors - Deep Royal Green theme
 	darkTopColor = [0.008, 0.071, 0.016], // Very dark green #021204
 	darkMiddleColor = [0.012, 0.125, 0.129], // Dark royal green #032021
-	darkBottomColor = [0.180, 0.800, 0.443], // Bright royal green #2ECC71
+	darkBottomColor = [0.18, 0.8, 0.443], // Bright royal green #2ECC71
 	...rest
 }: IridescenceProps) {
 	const { theme } = useTheme();
@@ -123,7 +123,7 @@ export default function Iridescence({
 		const ctn = ctnDom.current;
 		const renderer = new Renderer();
 		const gl = renderer.gl;
-		
+
 		// Set clear color based on theme
 		if (isDark) {
 			gl.clearColor(0.0, 0.196, 0.129, 1); // Deep green #003221

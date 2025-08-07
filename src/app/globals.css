@@ -230,12 +230,14 @@ html.dark ::-webkit-scrollbar-thumb:hover {
 
 /* Enhanced glassmorphism for royal green theme */
 .glass-royal-green-enhanced {
-	background: linear-gradient(135deg, 
-		rgba(240, 255, 245, 0.1) 0%, 
-		rgba(185, 240, 201, 0.2) 50%, 
-		rgba(16, 109, 32, 0.3) 100%);
+	background: linear-gradient(
+		135deg,
+		rgba(240, 255, 245, 0.1) 0%,
+		rgba(185, 240, 201, 0.2) 50%,
+		rgba(16, 109, 32, 0.3) 100%
+	);
 	border: 1px solid rgba(46, 204, 113, 0.3);
-	box-shadow: 
+	box-shadow:
 		0 8px 32px rgba(46, 204, 113, 0.12),
 		inset 0 1px 0 rgba(255, 255, 255, 0.1);
 	backdrop-filter: blur(20px);
@@ -243,31 +245,37 @@ html.dark ::-webkit-scrollbar-thumb:hover {
 }
 
 .dark .glass-royal-green-enhanced {
-	background: linear-gradient(135deg, 
-		rgba(0, 50, 33, 0.4) 0%, /* #003221 */
-		rgba(2, 18, 4, 0.5) 50%, /* #021204 */
-		rgba(46, 204, 113, 0.2) 100%);
+	background: linear-gradient(
+		135deg,
+		rgba(0, 50, 33, 0.4) 0%,
+		/* #003221 */ rgba(2, 18, 4, 0.5) 50%,
+		/* #021204 */ rgba(46, 204, 113, 0.2) 100%
+	);
 	border: 1px solid rgba(46, 204, 113, 0.4);
-	box-shadow: 
+	box-shadow:
 		0 8px 32px rgba(46, 204, 113, 0.25),
 		inset 0 1px 0 rgba(46, 204, 113, 0.2);
 }
 
 /* Body background gradients */
 body {
-	background: linear-gradient(135deg, 
+	background: linear-gradient(
+		135deg,
 		hsl(var(--background)) 0%,
 		rgba(240, 255, 245, 0.8) 50%,
-		rgba(185, 240, 201, 0.6) 100%) !important;
+		rgba(185, 240, 201, 0.6) 100%
+	) !important;
 	min-height: 100vh;
 }
 
 .dark body {
-	background: linear-gradient(135deg, 
-		rgb(4, 20, 8) 0%, /* Very dark green base */
-		rgba(0, 50, 33, 0.95) 30%, /* #003221 */
-		rgba(2, 18, 4, 0.9) 70%, /* #021204 */
-		rgba(0, 25, 16, 0.85) 100%) !important; /* Darker green variation */
+	background: linear-gradient(
+		135deg,
+		rgb(4, 20, 8) 0%,
+		/* Very dark green base */ rgba(0, 50, 33, 0.95) 30%,
+		/* #003221 */ rgba(2, 18, 4, 0.9) 70%,
+		/* #021204 */ rgba(0, 25, 16, 0.85) 100%
+	) !important; /* Darker green variation */
 }
 
 /* Additional override for dark theme */
@@ -276,9 +284,11 @@ html.dark {
 }
 
 html.dark body {
-	background: linear-gradient(135deg, 
-		rgb(4, 20, 8) 0%, /* Very dark green base */
-		rgba(0, 50, 33, 0.95) 30%, /* #003221 */
-		rgba(2, 18, 4, 0.9) 70%, /* #021204 */
-		rgba(0, 25, 16, 0.85) 100%) !important; /* Darker green variation */
+	background: linear-gradient(
+		135deg,
+		rgb(4, 20, 8) 0%,
+		/* Very dark green base */ rgba(0, 50, 33, 0.95) 30%,
+		/* #003221 */ rgba(2, 18, 4, 0.9) 70%,
+		/* #021204 */ rgba(0, 25, 16, 0.85) 100%
+	) !important; /* Darker green variation */
 }

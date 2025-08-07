@@ -99,16 +99,18 @@ const SpotlightCard: React.FC<SpotlightCardProps> = ({ children, className = "",
 
 			{/* Enhanced inner glow with royal green highlights */}
 			<div className="absolute inset-0 bg-gradient-to-br from-white/25 via-white/5 to-transparent rounded-3xl"></div>
-			<div className={`absolute inset-0 rounded-3xl ${
-				isDark
-					? "bg-gradient-to-tl from-green-500/8 via-transparent to-emerald-500/5"
-					: "bg-gradient-to-tl from-green-500/5 via-transparent to-emerald-500/3"
-			}`}></div>
-			<div className={`absolute inset-0 rounded-3xl ${
-				isDark
-					? "bg-gradient-to-br from-emerald-300/8 via-transparent to-green-400/5"
-					: "bg-gradient-to-br from-green-300/5 via-transparent to-emerald-400/3"
-			}`}></div>
+			<div
+				className={`absolute inset-0 rounded-3xl ${
+					isDark
+						? "bg-gradient-to-tl from-green-500/8 via-transparent to-emerald-500/5"
+						: "bg-gradient-to-tl from-green-500/5 via-transparent to-emerald-500/3"
+				}`}></div>
+			<div
+				className={`absolute inset-0 rounded-3xl ${
+					isDark
+						? "bg-gradient-to-br from-emerald-300/8 via-transparent to-green-400/5"
+						: "bg-gradient-to-br from-green-300/5 via-transparent to-emerald-400/3"
+				}`}></div>
 
 			{/* Spotlight effect */}
 			<div

@@ -1,5 +1,5 @@
 export const createEmailTemplate = (message: string): string => {
-  return `
+	return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -288,7 +288,7 @@ export const createEmailTemplate = (message: string): string => {
 
 // Quick template for simple text responses
 export const createSimpleEmailTemplate = (message: string): string => {
-  return `
+	return `
 <!DOCTYPE html>
 <html>
 <head>

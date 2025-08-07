@@ -379,10 +379,7 @@ export function NavbarSheet(): React.JSX.Element {
 								}}
 								onClick={toggleTheme}>
 								{theme === "dark" ? (
-									<RiSunFill
-										className="mr-3 h-4 w-4"
-										style={{ color: "rgba(251, 191, 36, 1)" }}
-									/>
+									<RiSunFill className="mr-3 h-4 w-4" style={{ color: "rgba(251, 191, 36, 1)" }} />
 								) : (
 									<RiMoonClearFill
 										className="mr-3 h-4 w-4"
@@ -404,11 +401,15 @@ export function NavbarSheet(): React.JSX.Element {
 							}}
 							onMouseEnter={(e) => {
 								e.currentTarget.style.background = "rgba(239,68,68,0.1)";
-								e.currentTarget.style.color = isDark ? "rgba(239, 68, 68, 0.9)" : "rgba(220, 38, 38, 0.9)";
+								e.currentTarget.style.color = isDark
+									? "rgba(239, 68, 68, 0.9)"
+									: "rgba(220, 38, 38, 0.9)";
 							}}
 							onMouseLeave={(e) => {
 								e.currentTarget.style.background = "transparent";
-								e.currentTarget.style.color = isDark ? "rgba(200, 240, 200, 0.95)" : "rgba(16, 109, 32, 0.95)";
+								e.currentTarget.style.color = isDark
+									? "rgba(200, 240, 200, 0.95)"
+									: "rgba(16, 109, 32, 0.95)";
 							}}
 							onClick={signOut}
 							disabled={disabled}>
