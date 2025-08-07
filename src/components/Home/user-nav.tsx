@@ -67,7 +67,7 @@ export function UserNav(): React.JSX.Element {
 		);
 	} else if (!user) {
 		content = (
-			<Link href="/login">
+			<a href="/login">
 				<div className="group relative inline-flex items-center justify-center px-8 py-4 font-medium transition-all duration-500 ease-out hover:scale-105 active:scale-95 cursor-pointer">
 					{/* Outer border ring with royal green */}
 					<div className="absolute inset-0 rounded-full border-2 border-white/40 transition-all duration-300 group-hover:border-white/60"></div>
@@ -78,13 +78,8 @@ export function UserNav(): React.JSX.Element {
 						style={{
 							background:
 								theme === "dark"
-<<<<<<< HEAD
-									? "linear-gradient(to right, rgba(46, 204, 113, 0.2), rgba(34, 197, 94, 0.2))"
-									: "linear-gradient(to right, rgba(16, 109, 32, 0.2), rgba(34, 139, 34, 0.2))",
-=======
 									? "linear-gradient(to right, rgba(46, 204, 113, 0.3), rgba(34, 197, 94, 0.2))"
 									: "linear-gradient(to right, rgba(16, 109, 32, 0.25), rgba(34, 139, 34, 0.2))",
->>>>>>> bd0f9c6d599f84e5442ecf5adf12674c01a5c38a
 						}}></div>
 
 					{/* Enhanced glassmorphic background with royal green tint */}
@@ -147,7 +142,7 @@ export function UserNav(): React.JSX.Element {
 					{/* Ripple effect on click */}
 					<div className="absolute inset-0 rounded-full opacity-0 group-active:opacity-100 group-active:animate-ping bg-white/30 pointer-events-none"></div>
 				</div>
-			</Link>
+			</a>
 		);
 	} else {
 		content = (

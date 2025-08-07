@@ -4,23 +4,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useState } from "react";
 import { BeatLoader } from "react-spinners";
 import { toast } from "react-toastify";
-<<<<<<< HEAD
-import {
-	Send,
-	Mail,
-	Eye,
-	CheckCircle,
-	XCircle,
-	Clock,
-	MessageSquare,
-	Star,
-	Filter,
-	Search,
-	RefreshCw,
-} from "lucide-react";
-=======
 import { Send, Mail, Eye, CheckCircle, XCircle, Clock, MessageSquare, RefreshCw } from "lucide-react";
->>>>>>> bd0f9c6d599f84e5442ecf5adf12674c01a5c38a
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
@@ -300,14 +284,8 @@ export function TicketsTable(): React.JSX.Element {
 						<div className="flex space-x-4">
 							<Select
 								value={statusFilter}
-<<<<<<< HEAD
-								onValueChange={(value) => setStatusFilter(value as "all" | "open" | "resolved")}
-								className="w-[150px] glass-royal-green">
-								<SelectTrigger>
-=======
 								onValueChange={(value) => setStatusFilter(value as "all" | "open" | "resolved")}>
 								<SelectTrigger className="w-[150px] glass-royal-green">
->>>>>>> bd0f9c6d599f84e5442ecf5adf12674c01a5c38a
 									<SelectValue placeholder="All Statuses" />
 								</SelectTrigger>
 								<SelectContent>
@@ -319,14 +297,8 @@ export function TicketsTable(): React.JSX.Element {
 
 							<Select
 								value={sortBy}
-<<<<<<< HEAD
-								onValueChange={(value) => setSortBy(value as "date" | "status" | "email")}
-								className="w-[150px] glass-royal-green">
-								<SelectTrigger>
-=======
 								onValueChange={(value) => setSortBy(value as "date" | "status" | "email")}>
 								<SelectTrigger className="w-[150px] glass-royal-green">
->>>>>>> bd0f9c6d599f84e5442ecf5adf12674c01a5c38a
 									<SelectValue placeholder="Sort By" />
 								</SelectTrigger>
 								<SelectContent>

@@ -35,18 +35,18 @@ const ccMembers = [
 		linkedin: "https://www.linkedin.com/in/shubham-panda-699538258/",
 	},
 	{
-		name: "Ahmad",
+		name: "Ahmed Sahigara",
 		image: "/images/ahmad.jpeg",
 		bio: "Always down for some clean architecture and chaotic deadlines. I break things so I can fix them better — poetic, I know.",
-		instagram: "https://instagram.com/ahmad",
-		linkedin: "https://linkedin.com/in/ahmad",
+		instagram: "https://www.instagram.com/ahmdzy.s",
+		linkedin: "https://www.linkedin.com/in/ahmed-sahigara",
 	},
 	{
 		name: "Pulkit Kumar",
-		image: "/images/ahmad.jpeg",
-		bio: "Carol ensures the team stays on track and delivers on time.",
-		instagram: "https://instagram.com/pulkit",
-		linkedin: "https://linkedin.com/in/pulkit",
+		image: "/images/Pulkit.jpeg",
+		bio: "Can be found high (on code obviously) building agentic AI to take away your jobs and trying to get rid of that pesky padding under the navbar with broken css skills",
+		instagram: "https://instagram.com/desihippe",
+		linkedin: "https://linkedin.com/in/buddywhitman",
 	},
 ];
 

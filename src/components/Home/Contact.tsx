@@ -81,7 +81,7 @@ export default function ContactForm(): React.JSX.Element {
 			}
 			setDisabled(false);
 		}
-	};
+	}
 
 	return (
 		<div className="relative">
@@ -189,14 +189,10 @@ export default function ContactForm(): React.JSX.Element {
 												name="email"
 												render={({ field }): React.JSX.Element => (
 													<FormItem>
-<<<<<<< HEAD
-														<FormLabel className="text-foreground">Email</FormLabel>
-=======
 														<FormLabel
 															className={`${isDark ? "text-[rgba(144,238,144,0.95)]" : "text-[rgba(16,109,32,0.9)]"} font-medium`}>
 															Email
 														</FormLabel>
->>>>>>> bd0f9c6d599f84e5442ecf5adf12674c01a5c38a
 														<FormControl>
 															<div className="relative">
 																<Input
@@ -249,14 +245,10 @@ export default function ContactForm(): React.JSX.Element {
 												name="message"
 												render={({ field }): React.JSX.Element => (
 													<FormItem>
-<<<<<<< HEAD
-														<FormLabel className="text-foreground">Message</FormLabel>
-=======
 														<FormLabel
 															className={`${isDark ? "text-[rgba(144,238,144,0.95)]" : "text-[rgba(16,109,32,0.9)]"} font-medium`}>
 															Message
 														</FormLabel>
->>>>>>> bd0f9c6d599f84e5442ecf5adf12674c01a5c38a
 														<FormControl>
 															<Textarea
 																{...field}
