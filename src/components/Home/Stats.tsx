@@ -121,7 +121,7 @@ export function Stats(): React.JSX.Element {
 	};
 
 	return (
-		<section id="stats" className="py-20 relative">
+		<div className="relative">
 			<div className="container mx-auto px-4 relative z-10">
 				{/* Section Title */}
 				<motion.div
@@ -162,10 +162,9 @@ export function Stats(): React.JSX.Element {
 								background: isDark
 									? "linear-gradient(to right, rgba(46, 204, 113, 0.6), rgba(34, 197, 94, 0.4), rgba(46, 204, 113, 0.6))"
 									: "linear-gradient(to right, rgba(16, 109, 32, 0.6), rgba(34, 139, 34, 0.4), rgba(16, 109, 32, 0.6))",
-								left: "10%",
 							}}
 							initial={{ scaleX: 0 }}
-							whileInView={{ scaleX: 1 }}
+							whileInView={{ scaleX: 1, width: "100%" }}
 							transition={{ duration: 0.8, delay: 0.7 }}
 							viewport={{ once: true }}
 						/>
@@ -201,6 +200,7 @@ export function Stats(): React.JSX.Element {
 										className="text-2xl md:text-3xl font-bold mb-2"
 										style={{
 											color: isDark ? "rgba(200, 240, 200, 0.95)" : "#005050",
+											fontFamily: "var(--font-playfair-display)",
 										}}>
 										{typeof item.value === "number"
 											? stats.loading
@@ -212,6 +212,7 @@ export function Stats(): React.JSX.Element {
 										className="text-lg font-semibold mb-2"
 										style={{
 											color: isDark ? "rgba(200, 220, 200, 0.9)" : "rgba(40, 60, 40, 0.9)",
+											fontFamily: "var(--font-playfair-display)",
 										}}>
 										{item.title}
 									</p>
@@ -228,6 +229,6 @@ export function Stats(): React.JSX.Element {
 					))}
 				</motion.div>
 			</div>
-		</section>
+		</div>
 	);
 }

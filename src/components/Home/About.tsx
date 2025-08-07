@@ -9,19 +9,16 @@ export default function About(): React.JSX.Element {
 	const isDark = theme === "dark";
 
 	return (
-		<section id="about" className="py-16 md:py-24 relative">
-			{/* Royal Green Glassmorphic Background */}
-			<div className="absolute inset-0 overflow-hidden">
-				<div
-					className={`absolute -top-40 -right-40 w-96 h-96 rounded-full blur-3xl ${
-						isDark ? "bg-emerald-400/8" : "bg-green-400/6"
-					} animate-pulse-slow`}></div>
-				<div
-					className={`absolute -bottom-40 -left-40 w-96 h-96 rounded-full blur-3xl ${
-						isDark ? "bg-green-400/6" : "bg-emerald-400/5"
-					} animate-pulse-slow`}
-					style={{ animationDelay: "3s" }}></div>
-			</div>
+		<div className="relative">
+			{/* Royal Green Glassmorphic Background - Only in light mode */}
+			{!isDark && (
+				<div className="absolute inset-0 overflow-hidden">
+					<div className="absolute -top-40 -right-40 w-96 h-96 rounded-full blur-3xl bg-green-400/6 animate-pulse-slow"></div>
+					<div
+						className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full blur-3xl bg-emerald-400/5 animate-pulse-slow"
+						style={{ animationDelay: "3s" }}></div>
+				</div>
+			)}
 
 			<div className="container mx-auto px-4 relative z-10">
 				{/* Enhanced Royal Green Glassmorphic Card */}
@@ -159,7 +156,7 @@ export default function About(): React.JSX.Element {
 										background: isDark ? "rgba(46, 204, 113, 0.6)" : "rgba(16, 109, 32, 0.6)",
 									}}
 									initial={{ scaleX: 0 }}
-									whileInView={{ scaleX: 1 }}
+									whileInView={{ scaleX: 1, width: "100%" }}
 									transition={{ duration: 0.8, delay: 0.7 }}
 									viewport={{ once: true }}
 								/>
@@ -196,6 +193,6 @@ export default function About(): React.JSX.Element {
 					</div>
 				</motion.div>
 			</div>
-		</section>
+		</div>
 	);
 }

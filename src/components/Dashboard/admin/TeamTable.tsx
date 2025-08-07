@@ -5,7 +5,6 @@ import BoringAvatar from "boring-avatars";
 import debounce from "lodash.debounce";
 import { X } from "lucide-react";
 import React, { useCallback, useEffect, useState } from "react";
-import type { JSX } from "react";
 import { FaEllipsisVertical } from "react-icons/fa6";
 import { LuSendHorizontal } from "react-icons/lu";
 import { BeatLoader } from "react-spinners";
@@ -395,7 +394,7 @@ const columns: ColumnDef<TeamWithActions>[] = [
 	},
 ];
 
-const TeamTable = (): JSX.Element => {
+const TeamTable = (): React.JSX.Element => {
 	const [fetchProps, setFetchProps] = useState<TeamFetchParams>({
 		offset: 0,
 		search: "",

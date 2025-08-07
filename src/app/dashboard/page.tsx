@@ -69,7 +69,7 @@ export default function DashboardPage(): React.JSX.Element {
 						}}>
 						<BreadcrumbItem>
 							<BreadcrumbLink asChild>
-								<Link href="/" className="transition-colors hover:text-purple-500">
+								<Link href="/" className="transition-colors hover:text-emerald-500">
 									Home
 								</Link>
 							</BreadcrumbLink>
@@ -80,7 +80,7 @@ export default function DashboardPage(): React.JSX.Element {
 								className="font-semibold"
 								style={{
 									fontFamily: "var(--font-playfair-display)",
-									color: isDark ? "rgba(139, 92, 246, 0.8)" : "rgba(79, 70, 229, 0.8)",
+									color: isDark ? "rgba(46, 204, 113, 0.8)" : "rgba(16, 109, 32, 0.8)",
 								}}>
 								Dashboard
 							</BreadcrumbPage>
@@ -95,7 +95,7 @@ export default function DashboardPage(): React.JSX.Element {
 									key={index}
 									style={{
 										height: Math.random() * 200 + 200,
-										background: isDark ? "rgba(139, 92, 246, 0.08)" : "rgba(139, 92, 246, 0.05)",
+										background: isDark ? "rgba(46, 204, 113, 0.08)" : "rgba(46, 204, 113, 0.05)",
 										borderRadius: "12px",
 									}}
 								/>
@@ -107,7 +107,7 @@ export default function DashboardPage(): React.JSX.Element {
 									key={index}
 									style={{
 										height: Math.random() * 200 + 200,
-										background: isDark ? "rgba(139, 92, 246, 0.08)" : "rgba(139, 92, 246, 0.05)",
+										background: isDark ? "rgba(46, 204, 113, 0.08)" : "rgba(46, 204, 113, 0.05)",
 										borderRadius: "12px",
 									}}
 								/>
@@ -128,13 +128,13 @@ export default function DashboardPage(): React.JSX.Element {
 								overflow: "hidden",
 							}}>
 							<div className="relative">
-								{/* Subtle purple accent overlay */}
+								{/* Subtle green accent overlay */}
 								<div
 									className="absolute inset-0"
 									style={{
 										background: isDark
-											? "linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(79, 70, 229, 0.02))"
-											: "linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(79, 70, 229, 0.04))",
+											? "linear-gradient(135deg, rgba(46, 204, 113, 0.05), rgba(16, 109, 32, 0.02))"
+											: "linear-gradient(135deg, rgba(46, 204, 113, 0.08), rgba(16, 109, 32, 0.04))",
 									}}></div>
 
 								{/* Enhanced inner glow with subtle highlights */}
@@ -236,13 +236,13 @@ export default function DashboardPage(): React.JSX.Element {
 									boxShadow: `0 4px 20px ${isDark ? "rgba(0, 0, 0, 0.2)" : "rgba(0, 0, 0, 0.05)"}`,
 									borderRadius: "16px",
 								}}>
-								{/* Subtle purple accent overlay */}
+								{/* Subtle green accent overlay */}
 								<div
 									className="absolute inset-0"
 									style={{
 										background: isDark
-											? "linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(79, 70, 229, 0.02))"
-											: "linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(79, 70, 229, 0.04))",
+											? "linear-gradient(135deg, rgba(46, 204, 113, 0.05), rgba(16, 109, 32, 0.02))"
+											: "linear-gradient(135deg, rgba(46, 204, 113, 0.08), rgba(16, 109, 32, 0.04))",
 									}}></div>
 
 								{/* Enhanced inner glow with subtle highlights */}
@@ -261,7 +261,7 @@ export default function DashboardPage(): React.JSX.Element {
 										<CardDescription
 											className="text-bold text-md"
 											style={{
-												color: isDark ? "rgba(139, 92, 246, 0.7)" : "rgba(79, 70, 229, 0.7)",
+												color: isDark ? "rgba(46, 204, 113, 0.7)" : "rgba(16, 109, 32, 0.7)",
 											}}>
 											Team ID: {fakeTeamId}
 										</CardDescription>

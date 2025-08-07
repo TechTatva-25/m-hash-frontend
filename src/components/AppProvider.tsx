@@ -10,7 +10,7 @@ import ToastProvider from "./ToastProvider";
 export default function AppProvider({ children }: { children: React.ReactNode }): React.JSX.Element {
 	return (
 		<RecoilRoot>
-			<ThemeProvider defaultTheme="light" storageKey="mhash-theme">
+			<ThemeProvider defaultTheme="dark" storageKey="mhash-theme">
 				<GradientBg>
 					{children}
 					<ToastProvider />

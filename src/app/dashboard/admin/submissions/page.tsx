@@ -166,7 +166,7 @@ const SubmissionsTable: React.FC = () => {
 		}
 	};
 
-	const getStatusBadge = (status: string): JSX.Element => {
+	const getStatusBadge = (status: string): React.JSX.Element => {
 		const badgeColors: Record<string, string> = {
 			"admin-ap": "bg-green-900/80 text-green-300",
 			"admin-rj": "bg-red-900/80 text-red-300",

@@ -88,7 +88,7 @@ export function HighwayTimeline({ timeline = generalTimeLine }: { timeline?: Tim
 
 				{/* Vertical timeline line - perfectly centered with royal green */}
 				<div
-					className="absolute left-1/2 top-24 bottom-0 w-[2px] hidden md:block transform -translate-x-1/2 z-0 h-[calc(100%+100vh)]"
+					className="absolute left-1/2 top-24 bottom-0 w-[2px] hidden md:block transform -translate-x-1/2 z-0"
 					style={{
 						background: isDark
 							? "linear-gradient(to bottom, rgba(46, 204, 113, 0.3), rgba(34, 197, 94, 0.5), rgba(46, 204, 113, 0.3))"
@@ -172,7 +172,12 @@ const TimelineItem = ({ index, stage, icon, isLeft }: TimelineItemProps) => {
 	const imageHeight = "h-36";
 
 	return (
-		<div className="group">
+		<motion.div
+			className="group"
+			initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
+			whileInView={{ opacity: 1, x: 0 }}
+			transition={{ duration: 0.6, delay: index * 0.2 }}
+			viewport={{ once: true }}>
 			<div
 				className={`relative rounded-2xl border transition-all duration-300 will-change-transform hover:shadow-lg hover:-translate-y-1 group-hover:scale-[1.02] p-2 md:p-2.5 cursor-pointer ${!isLeft ? "md:text-right" : ""}`}
 				style={{
@@ -333,7 +338,7 @@ const TimelineItem = ({ index, stage, icon, isLeft }: TimelineItemProps) => {
 					</div>
 				</div>
 			</div>
-		</div>
+		</motion.div>
 	);
 };
 

@@ -5,7 +5,7 @@ import { useState } from "react";
 
 import { cn } from "@/lib/utils";
 
-export function SidebarToggle(): React.JSX.Element {
+export function SidebarToggle() {
 	const [toggle, setToggle] = useState(true);
 
 	// Manage toggle state locally

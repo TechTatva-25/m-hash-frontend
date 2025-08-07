@@ -20,11 +20,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSession } from "@/hooks/useSession";
 import { RULES_MARKDOWN } from "@/lib/rules";
-
-export const downloadRules = (): void => {
-	const url = "/rules.pdf";
-	window.open(url, "_blank");
-};
+import { downloadRules } from "@/lib/download-utils";
 
 export default function RulesPage(): React.JSX.Element {
 	const router = useRouter();

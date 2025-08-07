@@ -68,42 +68,74 @@ export function UserNav(): React.JSX.Element {
 	} else if (!user) {
 		content = (
 			<Link href="/login">
-				<div className="group relative inline-flex items-center justify-center px-8 py-4 font-medium text-white transition-all duration-500 ease-out hover:scale-105 active:scale-95 cursor-pointer">
-					{/* Outer border ring for better definition */}
+				<div className="group relative inline-flex items-center justify-center px-8 py-4 font-medium transition-all duration-500 ease-out hover:scale-105 active:scale-95 cursor-pointer">
+					{/* Outer border ring with royal green */}
 					<div className="absolute inset-0 rounded-full border-2 border-white/40 transition-all duration-300 group-hover:border-white/60"></div>
 
-					{/* Royal green glow effect */}
+					{/* Royal Green glow effect */}
 					<div
 						className="absolute inset-0 rounded-full blur-xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
 						style={{
 							background:
 								theme === "dark"
+<<<<<<< HEAD
 									? "linear-gradient(to right, rgba(46, 204, 113, 0.2), rgba(34, 197, 94, 0.2))"
 									: "linear-gradient(to right, rgba(16, 109, 32, 0.2), rgba(34, 139, 34, 0.2))",
+=======
+									? "linear-gradient(to right, rgba(46, 204, 113, 0.3), rgba(34, 197, 94, 0.2))"
+									: "linear-gradient(to right, rgba(16, 109, 32, 0.25), rgba(34, 139, 34, 0.2))",
+>>>>>>> bd0f9c6d599f84e5442ecf5adf12674c01a5c38a
 						}}></div>
 
-					{/* Enhanced glassmorphic background */}
-					<div className="absolute inset-1 rounded-full bg-white/15 backdrop-blur-lg border border-white/30 shadow-2xl transition-all duration-300 group-hover:bg-white/20 group-hover:border-white/40 group-hover:shadow-3xl"></div>
+					{/* Enhanced glassmorphic background with royal green tint */}
+					<div
+						className="absolute inset-1 rounded-full backdrop-blur-lg border shadow-2xl transition-all duration-300 group-hover:shadow-3xl"
+						style={{
+							background: theme === "dark" ? "rgba(15, 25, 15, 0.8)" : "rgba(240, 255, 245, 0.85)",
+							borderColor: theme === "dark" ? "rgba(46, 204, 113, 0.4)" : "rgba(16, 109, 32, 0.3)",
+							boxShadow:
+								theme === "dark"
+									? "0 8px 32px rgba(46, 204, 113, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1)"
+									: "0 8px 32px rgba(16, 109, 32, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
+						}}></div>
 
-					{/* Inner highlight */}
-					<div className="absolute inset-2 rounded-full bg-gradient-to-b from-white/20 to-transparent opacity-60"></div>
+					{/* Inner highlight with royal green accent */}
+					<div
+						className="absolute inset-2 rounded-full opacity-60"
+						style={{
+							background:
+								theme === "dark"
+									? "linear-gradient(to bottom, rgba(46, 204, 113, 0.15) 0%, transparent 100%)"
+									: "linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 0%, rgba(16, 109, 32, 0.05) 100%)",
+						}}></div>
 
 					{/* Button text with enhanced styling */}
 					<span
-						className="relative z-10 tracking-wider font-medium transition-all duration-300 group-hover:scale-105"
+						className="relative z-10 tracking-wider font-medium"
 						style={{
 							fontFamily: "var(--font-playfair-display)",
-							textShadow: "0 2px 8px rgba(0,0,0,0.5)",
+							color: theme === "dark" ? "rgba(144, 238, 144, 0.95)" : "rgba(16, 109, 32, 0.9)",
+							textShadow:
+								theme === "dark"
+									? "0 2px 8px rgba(46, 204, 113, 0.3)"
+									: "0 2px 8px rgba(16, 109, 32, 0.2)",
 						}}>
 						Login
 					</span>
 
-					{/* Animated arrow with micro-interaction */}
+					{/* Animated arrow with royal green styling */}
 					<svg
-						className="relative z-10 ml-3 h-4 w-4 transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110"
+						className="relative z-10 ml-3 h-5 w-5 transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110"
 						fill="none"
 						stroke="currentColor"
-						viewBox="0 0 24 24">
+						viewBox="0 0 24 24"
+						style={{
+							color: theme === "dark" ? "rgba(144, 238, 144, 0.95)" : "rgba(16, 109, 32, 0.9)",
+							filter:
+								theme === "dark"
+									? "drop-shadow(0 0 4px rgba(46, 204, 113, 0.3))"
+									: "drop-shadow(0 0 4px rgba(16, 109, 32, 0.2))",
+						}}>
 						<path
 							strokeLinecap="round"
 							strokeLinejoin="round"

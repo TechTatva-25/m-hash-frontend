@@ -98,10 +98,10 @@ export default function Iridescence({
 	speed = 0.8,
 	amplitude = 0.15,
 	mouseReact = true,
-	// Light mode colors - Original
-	topColor = [0.941, 1.0, 0.961], // Light green #F0FDF5
-	middleColor = [0.863, 0.988, 0.906], // Soft green cream #DCF9E7
-	bottomColor = [0.565, 0.859, 0.651], // Royal green #90DBA6
+	// Light mode colors - Pure green tones only
+	topColor = [0.941, 0.992, 0.957], // Light green #F0FDF4
+	middleColor = [0.863, 0.973, 0.906], // Medium light green #DCF8E7
+	bottomColor = [0.565, 0.89, 0.651], // Pure green #90E3A6
 	// Dark mode colors - Deep Royal Green theme
 	darkTopColor = [0.008, 0.071, 0.016], // Very dark green #021204
 	darkMiddleColor = [0.012, 0.125, 0.129], // Dark royal green #032021
@@ -128,7 +128,7 @@ export default function Iridescence({
 		if (isDark) {
 			gl.clearColor(0.0, 0.196, 0.129, 1); // Deep green #003221
 		} else {
-			gl.clearColor(1, 1, 1, 1); // White
+			gl.clearColor(0.941, 0.996, 0.957, 1); // Very light green #F0FEF4
 		}
 
 		let program: Program;

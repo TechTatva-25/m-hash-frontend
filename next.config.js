@@ -12,7 +12,6 @@ const nextConfig = {
 		],
 	},
 	reactStrictMode: true,
-	distDir: "dist",
 };
 
 const standalone = process.env.STANDALONE === "true";
