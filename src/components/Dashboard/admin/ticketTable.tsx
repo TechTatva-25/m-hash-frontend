@@ -125,12 +125,12 @@ export function TicketsTable(): React.JSX.Element {
 			const endpoint = `${apiUrl}${Endpoints.SEND_ADMIN_MESSAGE}`;
 
 			// Create the complete HTML email template
-			const htmlTemplate = createEmailTemplate(replyMessage);
+			//const htmlTemplate = createEmailTemplate(replyMessage);
 
 			console.log("Making request to:", endpoint);
 			console.log("Request payload:", {
 				mailId: selectedTicket.email,
-				message: htmlTemplate, // Send HTML template as the message
+				message: replyMessage, // Send the message
 			});
 
 			const response = await fetch(endpoint, {
@@ -138,7 +138,7 @@ export function TicketsTable(): React.JSX.Element {
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({
 					mailId: selectedTicket.email,
-					message: htmlTemplate, // Backend will use this HTML directly in emailHtml()
+					message: replyMessage,
 				}),
 				credentials: "include",
 			});
