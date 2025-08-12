@@ -13,6 +13,7 @@ import * as z from "zod";
 
 import { useSession } from "@/hooks/useSession";
 import { Endpoints, getEndpoint } from "@/lib/endpoints";
+import { cn } from "@/lib/utils";
 
 import { Button } from "../ui/button";
 import { Card, CardContent, CardDescription, CardTitle } from "../ui/card";
@@ -40,6 +41,7 @@ export default function LoginForm(): React.JSX.Element {
 	const [modalOpen, setModalOpen] = useState(false);
 	const [isRedirecting, setIsRedirecting] = useState(false);
 	const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+	const [turnstileWidget, setTurnstileWidget] = useState<any>(null);
 	const form = useForm<z.infer<typeof loginFormSchema>>({
 		mode: "onChange",
 		resolver: zodResolver(loginFormSchema),
@@ -96,6 +98,11 @@ export default function LoginForm(): React.JSX.Element {
 				toast.error((error as AxiosError<{ message: string }>).response?.data.message ?? error.message);
 			} else {
 				toast.error("An error occurred while logging in");
+			}
+			// Reset CAPTCHA on error
+			setTurnstileToken(null);
+			if (turnstileWidget) {
+				turnstileWidget.reset();
 			}
 			setDisabled(false);
 		}
@@ -209,6 +216,9 @@ export default function LoginForm(): React.JSX.Element {
 									<Turnstile
 										sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
 										onVerify={(token) => setTurnstileToken(token)}
+										onLoad={(_widgetId, widget) => setTurnstileWidget(widget)}
+										onExpire={() => setTurnstileToken(null)}
+										onError={() => setTurnstileToken(null)}
 										className="rounded-md shadow-md"
 										style={{ minWidth: 200 }}
 									/>
@@ -229,24 +239,31 @@ export default function LoginForm(): React.JSX.Element {
 
 									<Button
 										type="submit"
-										disabled={disabled}
-										className="relative w-full bg-transparent border-0 text-white py-5 rounded-lg text-base font-medium shadow-[0_0_15px_rgba(46,204,113,0.15)] hover:shadow-[0_0_20px_rgba(46,204,113,0.25)] transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]">
+										disabled={disabled || !turnstileToken}
+										className={cn(
+											"relative w-full bg-transparent border-0 text-white py-5 rounded-lg text-base font-medium shadow-[0_0_15px_rgba(46,204,113,0.15)] hover:shadow-[0_0_20px_rgba(46,204,113,0.25)] transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]",
+											!turnstileToken && "opacity-50 cursor-not-allowed hover:scale-100"
+										)}>
 										{disabled ? (
 											<HashLoader color="#ffffff" size={20} />
 										) : (
 											<>
-												<span className="relative z-10 drop-shadow-sm mr-2">Sign In</span>
-												<svg
-													xmlns="http://www.w3.org/2000/svg"
-													className="h-5 w-5 inline-block transition-transform duration-500 ease-in-out group-hover:translate-x-0.5 relative z-10"
-													viewBox="0 0 20 20"
-													fill="currentColor">
-													<path
-														fillRule="evenodd"
-														d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-														clipRule="evenodd"
-													/>
-												</svg>
+												<span className="relative z-10 drop-shadow-sm mr-2">
+													{!turnstileToken ? "Complete CAPTCHA to Continue" : "Sign In"}
+												</span>
+												{turnstileToken && (
+													<svg
+														xmlns="http://www.w3.org/2000/svg"
+														className="h-5 w-5 inline-block transition-transform duration-500 ease-in-out group-hover:translate-x-0.5 relative z-10"
+														viewBox="0 0 20 20"
+														fill="currentColor">
+														<path
+															fillRule="evenodd"
+															d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+															clipRule="evenodd"
+														/>
+													</svg>
+												)}
 												{/* Subtle inner glow */}
 												<span className="absolute inset-0 bg-white/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
 											</>
