@@ -149,11 +149,11 @@ export default function RegisterForm(): React.JSX.Element {
 
 		fetchColleges();
 	}, []);
-	// Redirect to dashboard page if verification is successful
+	// Redirect to login page after successful verification
 	useEffect(() => {
 		if (verificationSuccessful) {
-			toast.success("Account created and verified successfully! Redirecting to dashboard...");
-			setTimeout(() => router.push("/dashboard"), 2000);
+			toast.success("Account created and verified successfully! Redirecting to login page...");
+			setTimeout(() => router.push("/login"), 2000);
 		}
 	}, [verificationSuccessful, router]);
 

@@ -32,7 +32,7 @@ interface OTPVerificationFormProps {
 	onCancel: () => void;
 }
 
-export default function OTPVerificationForm({ email, onCancel }: OTPVerificationFormProps): React.JSX.Element {
+export default function OTPVerificationForm({ email, onVerificationSuccess, onCancel }: OTPVerificationFormProps): React.JSX.Element {
 	const router = useRouter();
 	const [resendDisabled, setResendDisabled] = useState(false);
 	const [timer, setTimer] = useState(0);
@@ -61,20 +61,8 @@ export default function OTPVerificationForm({ email, onCancel }: OTPVerification
 
 			toast.success(response.data.message);
 
-			// If verification was successful, redirect to login page
-			if (response.data.verified) {
-				// Small delay to show success message before redirect
-				setTimeout(() => {
-					// Try router.push first
-					try {
-						router.push("/login");
-					} catch (error) {
-						// Fallback to window.location if router fails
-						console.error("Router push failed, using window.location:", error);
-						window.location.href = "/login";
-					}
-				}, 1500); // Allow time for success message to be seen
-			}
+			// Call the success callback to let parent component handle redirect
+			onVerificationSuccess();
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
 				toast.error((error as AxiosError<{ message: string }>).response?.data.message || "Verification failed");
