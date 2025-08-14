@@ -33,7 +33,6 @@ interface OTPVerificationFormProps {
 }
 
 export default function OTPVerificationForm({ email, onVerificationSuccess, onCancel }: OTPVerificationFormProps): React.JSX.Element {
-	const router = useRouter();
 	const [resendDisabled, setResendDisabled] = useState(false);
 	const [timer, setTimer] = useState(0);
 	const [isLoading, setIsLoading] = useState(false);
