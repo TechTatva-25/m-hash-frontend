@@ -42,6 +42,9 @@ export default function LoginForm(): React.JSX.Element {
 	const [isRedirecting, setIsRedirecting] = useState(false);
 	const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 	const [turnstileWidget, setTurnstileWidget] = useState<any>(null);
+	const [showResendVerification, setShowResendVerification] = useState(false);
+	const [resendVerificationEmail, setResendVerificationEmail] = useState<string>("");
+	
 	const form = useForm<z.infer<typeof loginFormSchema>>({
 		mode: "onChange",
 		resolver: zodResolver(loginFormSchema),
@@ -75,6 +78,7 @@ export default function LoginForm(): React.JSX.Element {
 
 	const onSubmit = async (data: z.infer<typeof loginFormSchema>): Promise<void> => {
 		setDisabled(true);
+		setShowResendVerification(false); // Hide resend option on new attempt
 		try {
 			if (!turnstileToken) {
 				toast.error("Please complete the CAPTCHA.");
@@ -95,7 +99,16 @@ export default function LoginForm(): React.JSX.Element {
 			router.push("/dashboard");
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
-				toast.error((error as AxiosError<{ message: string }>).response?.data.message ?? error.message);
+				const errorMessage = (error as AxiosError<{ message: string }>).response?.data.message ?? error.message;
+				
+				// Check if the error is related to unverified user
+				if (errorMessage.toLowerCase().includes("not verified") || errorMessage.toLowerCase().includes("check your email")) {
+					setShowResendVerification(true);
+					setResendVerificationEmail(data.email);
+					toast.error(errorMessage + " - You can resend verification below.");
+				} else {
+					toast.error(errorMessage);
+				}
 			} else {
 				toast.error("An error occurred while logging in");
 			}
@@ -105,6 +118,22 @@ export default function LoginForm(): React.JSX.Element {
 				turnstileWidget.reset();
 			}
 			setDisabled(false);
+		}
+	};
+
+	const handleResendVerification = async (): Promise<void> => {
+		try {
+			await axios.post(getEndpoint(Endpoints.SEND_VERIFICATION_EMAIL), {
+				email: resendVerificationEmail,
+			});
+			toast.success("Verification email sent! Please check your inbox and verify your account.");
+			setShowResendVerification(false);
+		} catch (error) {
+			if (axios.isAxiosError(error)) {
+				toast.error((error as AxiosError<{ message: string }>).response?.data.message ?? "Failed to send verification email");
+			} else {
+				toast.error("Failed to send verification email");
+			}
 		}
 	};
 
@@ -291,6 +320,25 @@ export default function LoginForm(): React.JSX.Element {
 								</div>
 							</form>
 						</Form>
+						
+						{/* Resend Verification Section */}
+						{showResendVerification && (
+							<div className="mt-6 p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg">
+								<p className="text-sm text-yellow-200 mb-3">
+									Your account is not verified. Please check your email for the verification code.
+								</p>
+								<p className="text-xs text-gray-400 mb-3">
+									Didn't receive the email? Click below to resend verification to: <strong>{resendVerificationEmail}</strong>
+								</p>
+								<Button
+									type="button"
+									onClick={handleResendVerification}
+									variant="outline"
+									className="w-full bg-yellow-500/20 border-yellow-500/50 text-yellow-100 hover:bg-yellow-500/30 transition-colors">
+									Resend Verification Email
+								</Button>
+							</div>
+						)}
 					</CardContent>
 				</div>
 			</div>

@@ -204,7 +204,16 @@ export default function RegisterForm(): React.JSX.Element {
 			toast.success(response.data.message);
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
-				toast.error((error as AxiosError<{ message: string }>).response?.data.message ?? error.message);
+				const errorMessage = (error as AxiosError<{ message: string }>).response?.data.message ?? error.message;
+				
+				// Provide user-friendly message for email conflicts
+				if (errorMessage.includes("Email already exists and is verified")) {
+					toast.error("This email is already registered and verified. Please try logging in instead.");
+				} else if (errorMessage.includes("Email already exists")) {
+					toast.error("Registration will continue with a fresh verification process.");
+				} else {
+					toast.error(errorMessage);
+				}
 			} else {
 				toast.error("An error occurred while registering");
 			}
