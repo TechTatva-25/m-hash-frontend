@@ -111,19 +111,43 @@ const TimelineStatusIconNew = React.forwardRef<HTMLDivElement, TimelineStatusIco
 						variant={"outline"}
 						className="cursor-pointer py-1 pr-3 transition-opacity hover:opacity-90"
 						style={{
-							background: `${isDark ? "rgba(30, 30, 40, 0.6)" : "rgba(255, 255, 255, 0.6)"}`,
+							background: isDark 
+								? "linear-gradient(135deg, rgba(15, 25, 15, 0.8) 0%, rgba(10, 26, 15, 0.9) 100%)"
+								: "linear-gradient(135deg, rgba(240, 255, 245, 0.8) 0%, rgba(220, 252, 231, 0.7) 100%)",
 							backdropFilter: "blur(10px)",
-							border: `1px solid ${isDark ? "rgba(255, 200, 0, 0.5)" : "rgba(255, 200, 0, 0.5)"}`,
-							boxShadow: `0 4px 12px ${isDark ? "rgba(255, 200, 0, 0.2)" : "rgba(255, 200, 0, 0.2)"}`,
+							border: isDark 
+								? "1px solid rgba(46, 204, 113, 0.5)" 
+								: "1px solid rgba(16, 109, 32, 0.5)",
+							boxShadow: isDark 
+								? "0 4px 12px rgba(46, 204, 113, 0.2)" 
+								: "0 4px 12px rgba(16, 109, 32, 0.2)",
 						}}>
 						<div className="flex items-center space-x-2">
 							<span className="relative flex h-3 w-3 items-center justify-center">
-								<span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-amber-400 opacity-75"></span>
-								<span className="relative inline-flex h-2 w-2 rounded-full bg-amber-500"></span>
+								<span 
+									className="absolute inline-flex h-2 w-2 animate-ping rounded-full opacity-75"
+									style={{ 
+										backgroundColor: isDark 
+											? "rgba(46, 204, 113, 0.8)" 
+											: "rgba(16, 109, 32, 0.8)" 
+									}}>
+								</span>
+								<span 
+									className="relative inline-flex h-2 w-2 rounded-full"
+									style={{ 
+										backgroundColor: isDark 
+											? "rgba(46, 204, 113, 1)" 
+											: "rgba(16, 109, 32, 1)" 
+									}}>
+								</span>
 							</span>
 							<span
 								className="text-xs"
-								style={{ color: `${isDark ? "rgba(255, 220, 150, 0.9)" : "rgba(180, 120, 0, 0.9)"}` }}>
+								style={{ 
+									color: isDark 
+										? "rgba(46, 204, 113, 0.5)" 
+										: "rgba(40, 80, 40, 0.9)" 
+								}}>
 								In Progress
 							</span>
 						</div>
@@ -134,20 +158,34 @@ const TimelineStatusIconNew = React.forwardRef<HTMLDivElement, TimelineStatusIco
 						variant={"outline"}
 						className="cursor-pointer py-1 pr-3 transition-opacity hover:opacity-90"
 						style={{
-							background: `${isDark ? "rgba(30, 30, 40, 0.6)" : "rgba(255, 255, 255, 0.6)"}`,
+							background: isDark 
+								? "linear-gradient(135deg, rgba(15, 25, 15, 0.8) 0%, rgba(10, 26, 15, 0.9) 100%)"
+								: "linear-gradient(135deg, rgba(240, 255, 245, 0.8) 0%, rgba(220, 252, 231, 0.7) 100%)",
 							backdropFilter: "blur(10px)",
 							border:
 								stage._id === currentStage?._id
-									? `1px solid ${isDark ? "rgba(220, 50, 50, 0.5)" : "rgba(220, 50, 50, 0.5)"}`
+									? isDark 
+										? "1px solid rgba(220, 50, 50, 0.5)" 
+										: "1px solid rgba(200, 40, 40, 0.5)"
 									: elapsedNotAttemptedStages.includes(stage)
-										? `1px solid ${isDark ? "rgba(100, 100, 100, 0.5)" : "rgba(150, 150, 150, 0.5)"}`
-										: `1px solid ${isDark ? "rgba(0, 180, 130, 0.5)" : "rgba(0, 200, 130, 0.5)"}`,
+										? isDark 
+											? "1px solid rgba(100, 100, 100, 0.5)" 
+											: "1px solid rgba(150, 150, 150, 0.5)"
+										: isDark 
+											? "1px solid rgba(46, 204, 113, 0.5)" 
+											: "1px solid rgba(16, 109, 32, 0.5)",
 							boxShadow:
 								stage._id === currentStage?._id
-									? `0 4px 12px ${isDark ? "rgba(220, 50, 50, 0.2)" : "rgba(220, 50, 50, 0.2)"}`
+									? isDark 
+										? "0 4px 12px rgba(220, 50, 50, 0.2)" 
+										: "0 4px 12px rgba(200, 40, 40, 0.2)"
 									: elapsedNotAttemptedStages.includes(stage)
-										? `0 4px 12px ${isDark ? "rgba(100, 100, 100, 0.2)" : "rgba(150, 150, 150, 0.2)"}`
-										: `0 4px 12px ${isDark ? "rgba(0, 180, 130, 0.2)" : "rgba(0, 200, 130, 0.2)"}`,
+										? isDark 
+											? "0 4px 12px rgba(100, 100, 100, 0.2)" 
+											: "0 4px 12px rgba(150, 150, 150, 0.2)"
+										: isDark 
+											? "0 4px 12px rgba(46, 204, 113, 0.2)" 
+											: "0 4px 12px rgba(16, 109, 32, 0.2)",
 						}}>
 						<div className="flex items-center space-x-2">
 							{stage._id === currentStage?._id ? (
@@ -201,19 +239,35 @@ const TimelineStatusIconNew = React.forwardRef<HTMLDivElement, TimelineStatusIco
 						variant={"outline"}
 						className="cursor-pointer py-1 pr-3 transition-opacity hover:opacity-90"
 						style={{
-							background: `${isDark ? "rgba(30, 30, 40, 0.6)" : "rgba(255, 255, 255, 0.6)"}`,
+							background: isDark 
+								? "linear-gradient(135deg, rgba(15, 25, 15, 0.8) 0%, rgba(10, 26, 15, 0.9) 100%)"
+								: "linear-gradient(135deg, rgba(240, 255, 245, 0.8) 0%, rgba(220, 252, 231, 0.7) 100%)",
 							backdropFilter: "blur(10px)",
-							border: `1px solid ${isDark ? "rgba(80, 120, 200, 0.5)" : "rgba(80, 120, 200, 0.5)"}`,
-							boxShadow: `0 4px 12px ${isDark ? "rgba(80, 120, 200, 0.2)" : "rgba(80, 120, 200, 0.2)"}`,
+							border: isDark 
+								? "1px solid rgba(80, 120, 200, 0.5)" 
+								: "1px solid rgba(60, 100, 180, 0.5)",
+							boxShadow: isDark 
+								? "0 4px 12px rgba(80, 120, 200, 0.2)" 
+								: "0 4px 12px rgba(60, 100, 180, 0.2)",
 						}}>
 						<div className="flex items-center space-x-2">
 							<span className="relative flex h-3 w-3 items-center justify-center">
-								<span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-blue-500 opacity-75"></span>
-								<span className="relative inline-flex h-2 w-2 rounded-full bg-blue-500"></span>
+								<span 
+									className="absolute inline-flex h-2 w-2 animate-ping rounded-full opacity-75"
+									style={{ backgroundColor: "rgba(80, 120, 200, 0.8)" }}>
+								</span>
+								<span 
+									className="relative inline-flex h-2 w-2 rounded-full"
+									style={{ backgroundColor: "rgba(80, 120, 200, 1)" }}>
+								</span>
 							</span>
 							<span
 								className="text-xs"
-								style={{ color: `${isDark ? "rgba(180, 200, 255, 0.9)" : "rgba(50, 100, 200, 0.9)"}` }}>
+								style={{ 
+									color: isDark 
+										? "rgba(180, 200, 255, 0.9)" 
+										: "rgba(50, 100, 200, 0.9)" 
+								}}>
 								Upcoming
 							</span>
 						</div>
@@ -269,13 +323,16 @@ const TimelineDot = React.forwardRef<HTMLDivElement, TimelineDotProps>(
 					<div
 						className={cn("absolute h-8 w-8 rounded-full", bg_color)}
 						style={{
-							boxShadow: `0 0 20px ${isDark ? "rgba(103, 80, 164, 0.7)" : "rgba(132, 95, 220, 0.5)"}`,
+							boxShadow: isDark 
+								? `0 0 20px rgba(46, 204, 113, 0.7)` 
+								: `0 0 20px rgba(16, 109, 32, 0.5)`,
 							opacity: 1,
 						}}
 					/>
 					<CustomIcon
-						className="absolute z-10 h-5 w-5 text-white"
+						className="absolute z-10 h-5 w-5"
 						style={{
+							color: isDark ? "rgba(200, 240, 200, 0.95)" : "rgba(240, 255, 245, 0.95)",
 							filter: `drop-shadow(0 0 5px rgba(0, 0, 0, 0.7))`,
 						}}
 					/>
@@ -327,7 +384,9 @@ const TimelineContent = React.forwardRef<HTMLDivElement, TimelineContentProps>((
 				ref={ref}
 				style={{
 					transition: "transform 0.3s ease",
-					boxShadow: `0 8px 32px ${isDark ? "rgba(0, 0, 0, 0.2)" : "rgba(103, 80, 164, 0.1)"}`,
+					boxShadow: isDark 
+						? `0 8px 32px rgba(46, 204, 113, 0.1)` 
+						: `0 8px 32px rgba(16, 109, 32, 0.08)`,
 				}}
 				{...props}
 			/>

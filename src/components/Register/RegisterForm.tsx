@@ -152,7 +152,7 @@ export default function RegisterForm(): React.JSX.Element {
 	// Redirect to login page after successful verification
 	useEffect(() => {
 		if (verificationSuccessful) {
-			toast.success("Account created and verified successfully! Redirecting to login page...");
+			// toast.success("Account created and verified successfully! Redirecting to login page...");
 			setTimeout(() => router.push("/login"), 2000);
 		}
 	}, [verificationSuccessful, router]);
