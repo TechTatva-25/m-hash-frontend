@@ -91,6 +91,7 @@ export default function RegisterForm(): React.JSX.Element {
 	const [registrationEmail, setRegistrationEmail] = useState("");
 	const [verificationSuccessful, setVerificationSuccessful] = useState(false);
 	const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+	const [turnstileWidget, setTurnstileWidget] = useState<any>(null);
 
 	const router = useRouter();
 
@@ -148,11 +149,11 @@ export default function RegisterForm(): React.JSX.Element {
 
 		fetchColleges();
 	}, []);
-	// Redirect to dashboard page if verification is successful
+	// Redirect to login page after successful verification
 	useEffect(() => {
 		if (verificationSuccessful) {
-			toast.success("Account created and verified successfully! Redirecting to dashboard...");
-			setTimeout(() => router.push("/dashboard"), 2000);
+			// toast.success("Account created and verified successfully! Redirecting to login page...");
+			setTimeout(() => router.push("/login"), 2000);
 		}
 	}, [verificationSuccessful, router]);
 
@@ -203,9 +204,23 @@ export default function RegisterForm(): React.JSX.Element {
 			toast.success(response.data.message);
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
-				toast.error((error as AxiosError<{ message: string }>).response?.data.message ?? error.message);
+				const errorMessage = (error as AxiosError<{ message: string }>).response?.data.message ?? error.message;
+				
+				// Provide user-friendly message for email conflicts
+				if (errorMessage.includes("Email already exists and is verified")) {
+					toast.error("This email is already registered and verified. Please try logging in instead.");
+				} else if (errorMessage.includes("Email already exists")) {
+					toast.error("Registration will continue with a fresh verification process.");
+				} else {
+					toast.error(errorMessage);
+				}
 			} else {
 				toast.error("An error occurred while registering");
+			}
+			// Reset CAPTCHA on error
+			setTurnstileToken(null);
+			if (turnstileWidget) {
+				turnstileWidget.reset();
 			}
 		}
 		setDisabled(false);
@@ -355,7 +370,7 @@ export default function RegisterForm(): React.JSX.Element {
 													<FormControl>
 														<SelectTrigger
 															className="h-10 backdrop-blur-md bg-black/30 border-gray-400/30 text-white shadow-sm
-															hover:bg-white/10 transition-colors focus:ring-2 focus:ring-purple-500/50 focus:border-purple-400/50">
+															hover:bg-white/10 transition-colors focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-400/50">
 															<SelectValue
 																placeholder="Select your Gender"
 																className="placeholder:text-gray-300"
@@ -400,7 +415,7 @@ export default function RegisterForm(): React.JSX.Element {
 														}}
 														defaultCountry="IN"
 														placeholder="Enter your phone number"
-														className="backdrop-blur-md bg-black/30 border-gray-400/30 text-white shadow-sm hover:bg-black/20 focus:ring-2 focus:ring-purple-500/50 focus:border-purple-400/50"
+														className="backdrop-blur-md bg-black/30 border-gray-400/30 text-white shadow-sm hover:bg-black/20 focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-400/50"
 													/>
 												</FormControl>
 											</FormItem>
@@ -426,7 +441,7 @@ export default function RegisterForm(): React.JSX.Element {
 																role="combobox"
 																aria-expanded={collegeComboboxOpen}
 																className="w-full justify-between font-normal h-10 backdrop-blur-md bg-black/30 border-gray-400/30 text-white
-																hover:bg-white/10 transition-colors focus:ring-2 focus:ring-purple-500/50 focus:border-purple-400/50">
+																hover:bg-white/10 transition-colors focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-400/50">
 																{loading ? (
 																	<span className="text-gray-400">
 																		Loading colleges...
@@ -697,6 +712,9 @@ export default function RegisterForm(): React.JSX.Element {
 									<Turnstile
 										sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
 										onVerify={(token) => setTurnstileToken(token)}
+										onLoad={(_widgetId, widget) => setTurnstileWidget(widget)}
+										onExpire={() => setTurnstileToken(null)}
+										onError={() => setTurnstileToken(null)}
 										className="rounded-md shadow-md"
 										style={{ minWidth: 200 }}
 									/>
@@ -706,7 +724,7 @@ export default function RegisterForm(): React.JSX.Element {
 								<div className="mt-6 relative overflow-hidden group">
 									{/* Animated gradient background */}
 									<div
-										className="absolute inset-0 bg-gradient-to-r from-indigo-500/50 via-purple-500/50 to-pink-500/50 opacity-80 group-hover:opacity-100 transition-opacity duration-500 rounded-lg"
+										className="absolute inset-0 bg-gradient-to-r from-emerald-500/50 via-green-500/50 to-teal-500/50 opacity-80 group-hover:opacity-100 transition-opacity duration-500 rounded-lg"
 										style={{
 											backgroundSize: "200% 100%",
 											animation: "gradient-shift 3s ease infinite",
@@ -718,20 +736,23 @@ export default function RegisterForm(): React.JSX.Element {
 									{/* Apply SpotlightCard directly to the Button */}
 									<SpotlightCard
 										className="bg-transparent border-0 rounded-lg p-0 w-full"
-										spotlightColor="rgba(147, 51, 234, 0.3)">
+										spotlightColor="rgba(46, 204, 113, 0.3)">
 										<Button
 											type="submit"
-											disabled={disabled}
+											disabled={disabled || !turnstileToken}
 											className={cn(
 												"relative w-full bg-transparent border-0 text-white py-5 rounded-lg text-base font-medium",
 												"shadow-[0_0_15px_rgba(255,255,255,0.15)] hover:shadow-[0_0_20px_rgba(255,255,255,0.25)]",
-												"transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]"
+												"transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]",
+												!turnstileToken && "opacity-50 cursor-not-allowed hover:scale-100"
 											)}>
 											{disabled ? (
 												<HashLoader color="#ffffff" size={20} />
 											) : (
 												<>
-													<span className="relative z-10 drop-shadow-sm">Next</span>
+													<span className="relative z-10 drop-shadow-sm">
+														{!turnstileToken ? "Complete CAPTCHA to Continue" : "Next"}
+													</span>
 													{/* Subtle inner glow */}
 													<span className="absolute inset-0 bg-white/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
 												</>

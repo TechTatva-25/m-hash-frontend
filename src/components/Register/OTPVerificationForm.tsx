@@ -2,7 +2,6 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios, { AxiosError } from "axios";
-import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { HashLoader } from "react-spinners";
@@ -32,8 +31,7 @@ interface OTPVerificationFormProps {
 	onCancel: () => void;
 }
 
-export default function OTPVerificationForm({ email, onCancel }: OTPVerificationFormProps): React.JSX.Element {
-	const router = useRouter();
+export default function OTPVerificationForm({ email, onVerificationSuccess, onCancel }: OTPVerificationFormProps): React.JSX.Element {
 	const [resendDisabled, setResendDisabled] = useState(false);
 	const [timer, setTimer] = useState(0);
 	const [isLoading, setIsLoading] = useState(false);
@@ -61,20 +59,8 @@ export default function OTPVerificationForm({ email, onCancel }: OTPVerification
 
 			toast.success(response.data.message);
 
-			// If verification was successful, redirect to login page
-			if (response.data.verified) {
-				// Small delay to show success message before redirect
-				setTimeout(() => {
-					// Try router.push first
-					try {
-						router.push("/login");
-					} catch (error) {
-						// Fallback to window.location if router fails
-						console.error("Router push failed, using window.location:", error);
-						window.location.href = "/login";
-					}
-				}, 1500); // Allow time for success message to be seen
-			}
+			// Call the success callback to let parent component handle redirect
+			onVerificationSuccess();
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
 				toast.error((error as AxiosError<{ message: string }>).response?.data.message || "Verification failed");
@@ -154,9 +140,11 @@ export default function OTPVerificationForm({ email, onCancel }: OTPVerification
 						<div className="flex flex-col gap-4">
 							{/* Verify OTP Button */}
 							<div className="relative overflow-hidden group">
-								<div className="absolute inset-0 bg-gradient-to-r from-indigo-500/50 via-purple-500/50 to-pink-500/50 opacity-80 group-hover:opacity-100 transition-opacity duration-500 rounded-lg"></div>
+								<div className="absolute inset-0 bg-gradient-to-r from-emerald-500/50 via-green-500/50 to-teal-500/50 opacity-80 group-hover:opacity-100 transition-opacity duration-500 rounded-lg"></div>
 								<div className="absolute inset-0 backdrop-blur-md bg-white/10 rounded-lg border border-white/30"></div>
-								<SpotlightCard className="bg-transparent border-0 rounded-lg p-0 w-full">
+								<SpotlightCard 
+									className="bg-transparent border-0 rounded-lg p-0 w-full"
+									spotlightColor="rgba(46, 204, 113, 0.3)">
 									<Button
 										type="submit"
 										disabled={isLoading}

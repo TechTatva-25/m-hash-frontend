@@ -3,3 +3,123 @@
 	--toastify-color-progress-light: hsl(268, 91%, 44%);
 	--toastify-color-light: hsl(210 40% 96.1%);
 }
+
+/* Custom toast container */
+.custom-toast-container {
+	z-index: 9999;
+}
+
+/* Enhanced toast styling with glassmorphic background and proper stacking */
+.Toastify__toast {
+	backdrop-filter: blur(16px);
+	border-radius: 12px;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+	margin-bottom: 8px;
+	transition: all 0.3s ease-in-out;
+	transform: translateX(0);
+}
+
+/* Light theme toast */
+.Toastify__toast--light {
+	background: linear-gradient(135deg, 
+		rgba(240, 255, 245, 0.95) 0%, 
+		rgba(220, 252, 231, 0.9) 100%);
+	border: 1px solid rgba(16, 109, 32, 0.2);
+	color: rgba(40, 60, 40, 0.95);
+	box-shadow: 0 8px 32px rgba(16, 109, 32, 0.15);
+}
+
+/* Dark theme toast */
+.Toastify__toast--dark {
+	background: linear-gradient(135deg, 
+		rgba(15, 25, 15, 0.95) 0%, 
+		rgba(10, 26, 15, 0.9) 100%);
+	border: 1px solid rgba(46, 204, 113, 0.3);
+	color: rgba(200, 220, 200, 0.9);
+	box-shadow: 0 8px 32px rgba(46, 204, 113, 0.2);
+}
+
+/* Success toast */
+.Toastify__toast--success {
+	border-left: 4px solid rgba(46, 204, 113, 0.8);
+}
+
+.Toastify__toast--success .Toastify__toast-icon {
+	color: rgba(46, 204, 113, 1);
+}
+
+/* Error toast */
+.Toastify__toast--error {
+	border-left: 4px solid rgba(220, 50, 50, 0.8);
+}
+
+.Toastify__toast--error .Toastify__toast-icon {
+	color: rgba(220, 50, 50, 1);
+}
+
+/* Warning toast */
+.Toastify__toast--warning {
+	border-left: 4px solid rgba(255, 193, 7, 0.8);
+}
+
+.Toastify__toast--warning .Toastify__toast-icon {
+	color: rgba(255, 193, 7, 1);
+}
+
+/* Info toast */
+.Toastify__toast--info {
+	border-left: 4px solid rgba(80, 120, 200, 0.8);
+}
+
+.Toastify__toast--info .Toastify__toast-icon {
+	color: rgba(80, 120, 200, 1);
+}
+
+/* Progress bar */
+.Toastify__progress-bar {
+	background: linear-gradient(90deg, 
+		rgba(46, 204, 113, 0.8) 0%, 
+		rgba(16, 109, 32, 0.8) 100%);
+	height: 2px;
+}
+
+/* Close button */
+.Toastify__close-button {
+	color: inherit;
+	opacity: 0.7;
+	transition: opacity 0.2s ease;
+}
+
+.Toastify__close-button:hover {
+	opacity: 1;
+}
+
+/* Animation for stacking */
+.Toastify__toast:nth-child(n+2) {
+	transform: translateY(-4px) scale(0.98);
+	opacity: 0.9;
+}
+
+.Toastify__toast:nth-child(n+3) {
+	transform: translateY(-8px) scale(0.96);
+	opacity: 0.8;
+}
+
+.Toastify__toast:nth-child(n+4) {
+	transform: translateY(-12px) scale(0.94);
+	opacity: 0.7;
+}
+
+/* Hover effects */
+.Toastify__toast:hover {
+	transform: translateX(0) scale(1.02);
+	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Body text styling */
+.Toastify__toast-body {
+	font-size: 14px;
+	line-height: 1.4;
+	padding: 8px 0;
+}

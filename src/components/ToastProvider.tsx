@@ -12,9 +12,9 @@ export default function ToastProvider(): React.JSX.Element {
 	return (
 		<ToastContainer
 			stacked
-			position="bottom-right"
+			position="top-right"
 			autoClose={5000}
-			newestOnTop={false}
+			newestOnTop={true}
 			closeOnClick
 			rtl={false}
 			pauseOnFocusLoss
@@ -22,6 +22,7 @@ export default function ToastProvider(): React.JSX.Element {
 			pauseOnHover
 			transition={Bounce}
 			theme={resolvedTheme}
+			className="custom-toast-container"
 		/>
 	);
 }
