@@ -184,7 +184,7 @@ export default function About(): React.JSX.Element {
 								</p>
 
 								<p>
-									With a focus on collaboration, innovation, and excellence, M-Hash continues to be a
+									With a focus on collaboration, innovation, and excellence, M# continues to be a
 									catalyst for technological advancement and a launching pad for the next generation
 									of tech leaders.
 								</p>

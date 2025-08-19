@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios, { AxiosError } from "axios";
+import { Check, Info, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -10,6 +11,8 @@ import { useForm } from "react-hook-form";
 import { HashLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import * as z from "zod";
+
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 import { useSession } from "@/hooks/useSession";
 import { Endpoints, getEndpoint } from "@/lib/endpoints";
@@ -25,14 +28,9 @@ import Turnstile from "react-turnstile";
 
 const loginFormSchema = z.object({
 	email: z.string().email(),
-	password: z
-		.string()
-		.min(8)
-		.regex(
-			/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/,
-			"Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
-		),
+	password: z.string().min(1, "Password is required"), // only check empty here
 });
+
 
 export default function LoginForm(): React.JSX.Element {
 	const router = useRouter();
@@ -44,6 +42,35 @@ export default function LoginForm(): React.JSX.Element {
 	const [turnstileWidget, setTurnstileWidget] = useState<any>(null);
 	const [showResendVerification, setShowResendVerification] = useState(false);
 	const [resendVerificationEmail, setResendVerificationEmail] = useState<string>("");
+	const [passwordFocused, setPasswordFocused] = useState(false);
+	
+	// Password requirements
+	const passwordRequirements = [
+		{ id: 1, text: "At least 8 characters" },
+		{ id: 2, text: "At least one uppercase letter (A-Z)" },
+		{ id: 3, text: "At least one lowercase letter (a-z)" },
+		{ id: 4, text: "At least one number (0-9)" },
+		{ id: 5, text: "At least one special character (!@#$...)" },
+	];
+
+	// Function to check if a specific password requirement is met
+	const checkRequirement = (requirement: string, password: string): boolean => {
+		if (!password) return false;
+		switch (requirement) {
+			case "At least 8 characters":
+				return password.length >= 8;
+			case "At least one uppercase letter (A-Z)":
+				return /[A-Z]/.test(password);
+			case "At least one lowercase letter (a-z)":
+				return /[a-z]/.test(password);
+			case "At least one number (0-9)":
+				return /[0-9]/.test(password);
+			case "At least one special character (!@#$...)":
+				return /[^\da-zA-Z]/.test(password);
+			default:
+				return false;
+		}
+	};
 	
 	const form = useForm<z.infer<typeof loginFormSchema>>({
 		mode: "onChange",
@@ -79,6 +106,17 @@ export default function LoginForm(): React.JSX.Element {
 	const onSubmit = async (data: z.infer<typeof loginFormSchema>): Promise<void> => {
 		setDisabled(true);
 		setShowResendVerification(false); // Hide resend option on new attempt
+		
+		// Check password requirements before submitting
+		// const failedRequirements = passwordRequirements.filter(req => !checkRequirement(req.text, data.password));
+		// if (failedRequirements.length > 0) {
+		// 	toast.error("Email/password is incorrect", {
+		// 		autoClose: 5000,
+		// 	});
+		// 	setDisabled(false);
+		// 	return;
+		// }
+		
 		try {
 			if (!turnstileToken) {
 				toast.error("Please complete the CAPTCHA.");
@@ -224,19 +262,68 @@ export default function LoginForm(): React.JSX.Element {
 										<FormItem className="mt-4">
 											<div className="flex flex-row items-center justify-between">
 												<FormLabel className="text-gray-200">Password</FormLabel>
-												<ForgotPasswordDialog
-													modalOpen={modalOpen}
-													setModalOpen={setModalOpen}
-												/>
+												<div className="flex items-center space-x-2">
+													<TooltipProvider>
+														<Tooltip delayDuration={0}>
+															<TooltipTrigger asChild>
+																<Button
+																	variant="ghost"
+																	size="icon"
+																	className="h-5 w-5 rounded-full p-0 text-gray-400 hover:bg-transparent hover:text-gray-300">
+																	<Info className="h-4 w-4" />
+																	<span className="sr-only">Password requirements</span>
+																</Button>
+															</TooltipTrigger>
+															<TooltipContent
+																align="end"
+																className="w-[260px] p-0 bg-gray-900/95 border-gray-700">
+																<div className="p-3">
+																	<p className="text-sm font-medium text-gray-300 mb-2">Password Requirements:</p>
+																	<ul className="text-xs space-y-1 text-gray-400">
+																		{passwordRequirements.map((req) => {
+																			const isMet = checkRequirement(req.text, field.value);
+																			return (
+																				<li key={req.id} className="flex items-center">
+																					{isMet ? (
+																						<Check className="mr-1.5 h-3.5 w-3.5 text-green-500" />
+																					) : (
+																						<X className="mr-1.5 h-3.5 w-3.5 text-red-500" />
+																					)}
+																					{req.text}
+																				</li>
+																			);
+																		})}
+																	</ul>
+																</div>
+															</TooltipContent>
+														</Tooltip>
+													</TooltipProvider>
+													<ForgotPasswordDialog
+														modalOpen={modalOpen}
+														setModalOpen={setModalOpen}
+													/>
+												</div>
 											</div>
 											<FormControl>
 												<PasswordInput
 													{...field}
 													placeholder="Enter your password"
 													className="bg-black/20 border-gray-500/30 text-white placeholder:text-gray-400"
+													onFocus={() => setPasswordFocused(true)}
+													onBlur={() => {
+														setPasswordFocused(false);
+														field.onBlur();
+													}}
 												/>
 											</FormControl>
-											{/* No validation messages for password */}
+											{/* Show password validation errors */}
+											{form.formState.errors.password && (
+												<div className="text-xs text-red-500 mt-1">
+													{form.formState.errors.password.message as string}
+												</div>
+											)}
+											
+											{/* No popup when focused - only show validation errors below */}
 										</FormItem>
 									)}
 								/>
