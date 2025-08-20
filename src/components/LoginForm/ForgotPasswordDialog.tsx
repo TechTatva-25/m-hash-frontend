@@ -70,7 +70,7 @@ export default function ForgotPasswordDialog({
 					Forgot password?
 				</Button>
 			</AlertDialogTrigger>
-			<AlertDialogContent 
+			<AlertDialogContent
 				className="backdrop-blur-2xl border rounded-2xl shadow-2xl overflow-hidden"
 				style={{
 					background: isDark
@@ -82,7 +82,7 @@ export default function ForgotPasswordDialog({
 						: "0 32px 64px -12px rgba(16, 109, 32, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.3)",
 				}}>
 				<AlertDialogHeader>
-					<AlertDialogTitle 
+					<AlertDialogTitle
 						style={{
 							color: isDark ? "rgba(200, 240, 200, 0.95)" : "rgba(40, 80, 40, 0.95)",
 						}}>
@@ -105,17 +105,21 @@ export default function ForgotPasswordDialog({
 								render={({ field }): React.JSX.Element => (
 									<FormItem>
 										<FormControl>
-											<Input 
-												{...field} 
-												type="email" 
+											<Input
+												{...field}
+												type="email"
 												placeholder="Enter your email"
 												className="backdrop-blur-sm border transition-all duration-300"
 												style={{
 													background: isDark
 														? "linear-gradient(135deg, rgba(15, 25, 15, 0.6), rgba(10, 26, 15, 0.8))"
 														: "linear-gradient(135deg, rgba(240, 255, 245, 0.6), rgba(220, 252, 231, 0.8))",
-													borderColor: isDark ? "rgba(46, 204, 113, 0.3)" : "rgba(16, 109, 32, 0.3)",
-													color: isDark ? "rgba(200, 240, 200, 0.95)" : "rgba(40, 80, 40, 0.95)",
+													borderColor: isDark
+														? "rgba(46, 204, 113, 0.3)"
+														: "rgba(16, 109, 32, 0.3)",
+													color: isDark
+														? "rgba(200, 240, 200, 0.95)"
+														: "rgba(40, 80, 40, 0.95)",
 												}}
 											/>
 										</FormControl>

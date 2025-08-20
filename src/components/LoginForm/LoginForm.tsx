@@ -31,7 +31,6 @@ const loginFormSchema = z.object({
 	password: z.string().min(1, "Password is required"), // only check empty here
 });
 
-
 export default function LoginForm(): React.JSX.Element {
 	const router = useRouter();
 	const session = useSession();
@@ -43,7 +42,7 @@ export default function LoginForm(): React.JSX.Element {
 	const [showResendVerification, setShowResendVerification] = useState(false);
 	const [resendVerificationEmail, setResendVerificationEmail] = useState<string>("");
 	const [passwordFocused, setPasswordFocused] = useState(false);
-	
+
 	// Password requirements
 	const passwordRequirements = [
 		{ id: 1, text: "At least 8 characters" },
@@ -71,7 +70,7 @@ export default function LoginForm(): React.JSX.Element {
 				return false;
 		}
 	};
-	
+
 	const form = useForm<z.infer<typeof loginFormSchema>>({
 		mode: "onChange",
 		resolver: zodResolver(loginFormSchema),
@@ -106,7 +105,7 @@ export default function LoginForm(): React.JSX.Element {
 	const onSubmit = async (data: z.infer<typeof loginFormSchema>): Promise<void> => {
 		setDisabled(true);
 		setShowResendVerification(false); // Hide resend option on new attempt
-		
+
 		// Check password requirements before submitting
 		// const failedRequirements = passwordRequirements.filter(req => !checkRequirement(req.text, data.password));
 		// if (failedRequirements.length > 0) {
@@ -116,7 +115,7 @@ export default function LoginForm(): React.JSX.Element {
 		// 	setDisabled(false);
 		// 	return;
 		// }
-		
+
 		try {
 			if (!turnstileToken) {
 				toast.error("Please complete the CAPTCHA.");
@@ -138,9 +137,12 @@ export default function LoginForm(): React.JSX.Element {
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
 				const errorMessage = (error as AxiosError<{ message: string }>).response?.data.message ?? error.message;
-				
+
 				// Check if the error is related to unverified user
-				if (errorMessage.toLowerCase().includes("not verified") || errorMessage.toLowerCase().includes("check your email")) {
+				if (
+					errorMessage.toLowerCase().includes("not verified") ||
+					errorMessage.toLowerCase().includes("check your email")
+				) {
 					setShowResendVerification(true);
 					setResendVerificationEmail(data.email);
 					toast.error(errorMessage + " - You can resend verification below.");
@@ -168,7 +170,10 @@ export default function LoginForm(): React.JSX.Element {
 			setShowResendVerification(false);
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
-				toast.error((error as AxiosError<{ message: string }>).response?.data.message ?? "Failed to send verification email");
+				toast.error(
+					(error as AxiosError<{ message: string }>).response?.data.message ??
+						"Failed to send verification email"
+				);
 			} else {
 				toast.error("Failed to send verification email");
 			}
@@ -271,19 +276,28 @@ export default function LoginForm(): React.JSX.Element {
 																	size="icon"
 																	className="h-5 w-5 rounded-full p-0 text-gray-400 hover:bg-transparent hover:text-gray-300">
 																	<Info className="h-4 w-4" />
-																	<span className="sr-only">Password requirements</span>
+																	<span className="sr-only">
+																		Password requirements
+																	</span>
 																</Button>
 															</TooltipTrigger>
 															<TooltipContent
 																align="end"
 																className="w-[260px] p-0 bg-gray-900/95 border-gray-700">
 																<div className="p-3">
-																	<p className="text-sm font-medium text-gray-300 mb-2">Password Requirements:</p>
+																	<p className="text-sm font-medium text-gray-300 mb-2">
+																		Password Requirements:
+																	</p>
 																	<ul className="text-xs space-y-1 text-gray-400">
 																		{passwordRequirements.map((req) => {
-																			const isMet = checkRequirement(req.text, field.value);
+																			const isMet = checkRequirement(
+																				req.text,
+																				field.value
+																			);
 																			return (
-																				<li key={req.id} className="flex items-center">
+																				<li
+																					key={req.id}
+																					className="flex items-center">
 																					{isMet ? (
 																						<Check className="mr-1.5 h-3.5 w-3.5 text-green-500" />
 																					) : (
@@ -322,7 +336,7 @@ export default function LoginForm(): React.JSX.Element {
 													{form.formState.errors.password.message as string}
 												</div>
 											)}
-											
+
 											{/* No popup when focused - only show validation errors below */}
 										</FormItem>
 									)}
@@ -407,7 +421,7 @@ export default function LoginForm(): React.JSX.Element {
 								</div>
 							</form>
 						</Form>
-						
+
 						{/* Resend Verification Section */}
 						{showResendVerification && (
 							<div className="mt-6 p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg">
@@ -415,7 +429,8 @@ export default function LoginForm(): React.JSX.Element {
 									Your account is not verified. Please check your email for the verification code.
 								</p>
 								<p className="text-xs text-gray-400 mb-3">
-									Didn't receive the email? Click below to resend verification to: <strong>{resendVerificationEmail}</strong>
+									Didn't receive the email? Click below to resend verification to:{" "}
+									<strong>{resendVerificationEmail}</strong>
 								</p>
 								<Button
 									type="button"

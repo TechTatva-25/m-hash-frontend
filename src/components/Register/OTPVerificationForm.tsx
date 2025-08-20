@@ -31,7 +31,11 @@ interface OTPVerificationFormProps {
 	onCancel: () => void;
 }
 
-export default function OTPVerificationForm({ email, onVerificationSuccess, onCancel }: OTPVerificationFormProps): React.JSX.Element {
+export default function OTPVerificationForm({
+	email,
+	onVerificationSuccess,
+	onCancel,
+}: OTPVerificationFormProps): React.JSX.Element {
 	const [resendDisabled, setResendDisabled] = useState(false);
 	const [timer, setTimer] = useState(0);
 	const [isLoading, setIsLoading] = useState(false);
@@ -142,7 +146,7 @@ export default function OTPVerificationForm({ email, onVerificationSuccess, onCa
 							<div className="relative overflow-hidden group">
 								<div className="absolute inset-0 bg-gradient-to-r from-emerald-500/50 via-green-500/50 to-teal-500/50 opacity-80 group-hover:opacity-100 transition-opacity duration-500 rounded-lg"></div>
 								<div className="absolute inset-0 backdrop-blur-md bg-white/10 rounded-lg border border-white/30"></div>
-								<SpotlightCard 
+								<SpotlightCard
 									className="bg-transparent border-0 rounded-lg p-0 w-full"
 									spotlightColor="rgba(46, 204, 113, 0.3)">
 									<Button

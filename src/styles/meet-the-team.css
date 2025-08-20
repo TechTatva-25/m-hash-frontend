@@ -1,0 +1,145 @@
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.team-grid .team-card {
+  flex: 0 0 calc(33.333% - 1.5rem);
+  min-width: 280px;
+  max-width: 320px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .team-grid .team-card {
+    flex: 0 0 calc(33.333% - 1rem);
+  }
+}
+
+/* Single item grid - centered */
+.team-grid-single {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.team-grid-single .team-card {
+  flex: 0 0 auto;
+  min-width: 280px;
+  max-width: 320px;
+}
+
+/* Double item grid - centered */
+.team-grid-double {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: start;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.team-grid-double .team-card {
+  flex: 0 0 calc(50% - 1rem);
+  min-width: 280px;
+  max-width: 320px;
+}
+
+/* Ensure cards have consistent width */
+.team-card {
+  width: 100%;
+  max-width: 320px;
+  min-width: 280px;
+}
+
+/* Responsive grid layouts */
+@media (min-width: 900px) and (max-width: 1199px) {
+  .team-grid {
+    max-width: 1000px;
+  }
+  
+  .team-grid .team-card {
+    flex: 0 0 calc(33.333% - 1.5rem);
+  }
+  
+  .team-grid-single {
+    max-width: 350px;
+  }
+
+  .team-grid-double {
+    max-width: 700px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 899px) {
+  .team-grid .team-card {
+    flex: 0 0 calc(50% - 1rem);
+  }
+  
+  .team-grid {
+    max-width: 700px;
+  }
+  
+  .team-grid-single {
+    max-width: 350px;
+  }
+  
+  .team-grid-double {
+    max-width: 700px;
+  }
+}
+
+@media (max-width: 599px) {
+  .team-grid .team-card,
+  .team-grid-single .team-card,
+  .team-grid-double .team-card {
+    flex: 0 0 100%;
+    max-width: 350px;
+  }
+  
+  .team-grid,
+  .team-grid-single,
+  .team-grid-double {
+    max-width: 350px;
+  }
+}
+
+/* Section spacing */
+.team-section {
+  margin-bottom: 4rem;
+}
+
+.team-section:last-child {
+  margin-bottom: 0;
+}
+
+/* Animation for better visual appeal */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.team-card {
+  animation: slideInUp 0.6s ease-out forwards;
+}
+
+/* Section title styling */
+.section-title {
+  background: linear-gradient(135deg, #005050, #22c55e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
