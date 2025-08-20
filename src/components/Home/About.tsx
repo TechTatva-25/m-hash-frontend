@@ -172,7 +172,7 @@ export default function About(): React.JSX.Element {
 								transition={{ duration: 0.5, delay: 0.4 }}
 								viewport={{ once: true }}>
 								<p>
-									Manipal Hackathon (M-Hash) is one of India's premier student hackathons, bringing
+									Manipal Hackathon (M#) is one of India's premier student hackathons, bringing
 									together brilliant minds from across the nation to solve real-world challenges
 									through innovative technology solutions.
 								</p>

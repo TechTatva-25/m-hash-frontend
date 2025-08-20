@@ -48,6 +48,62 @@ const ccMembers = [
 		instagram: "https://instagram.com/desihippe",
 		linkedin: "https://linkedin.com/in/buddywhitman",
 	},
+	{
+		name: "Sanya",
+		image: "/images/Pulkit.jpeg",
+		bio: "Can be found high (on code obviously) building agentic AI to take away your jobs and trying to get rid of that pesky padding under the navbar with broken css skills",
+		instagram: "https://instagram.com/desihippe",
+		linkedin: "https://linkedin.com/in/buddywhitman",
+	},
+	{
+		name: "Ruchita",
+		image: "/images/Pulkit.jpeg",
+		bio: "Can be found high (on code obviously) building agentic AI to take away your jobs and trying to get rid of that pesky padding under the navbar with broken css skills",
+		instagram: "https://instagram.com/desihippe",
+		linkedin: "https://linkedin.com/in/buddywhitman",
+	},
+	{
+		name: "Manas",
+		image: "/images/Pulkit.jpeg",
+		bio: "Can be found high (on code obviously) building agentic AI to take away your jobs and trying to get rid of that pesky padding under the navbar with broken css skills",
+		instagram: "https://instagram.com/desihippe",
+		linkedin: "https://linkedin.com/in/buddywhitman",
+	},
+	{
+		name: "Sharika",
+		image: "/images/Pulkit.jpeg",
+		bio: "Can be found high (on code obviously) building agentic AI to take away your jobs and trying to get rid of that pesky padding under the navbar with broken css skills",
+		instagram: "https://instagram.com/desihippe",
+		linkedin: "https://linkedin.com/in/buddywhitman",
+	},
+	{
+		name: "Prakhar",
+		image: "/images/Pulkit.jpeg",
+		bio: "Can be found high (on code obviously) building agentic AI to take away your jobs and trying to get rid of that pesky padding under the navbar with broken css skills",
+		instagram: "https://instagram.com/desihippe",
+		linkedin: "https://linkedin.com/in/buddywhitman",
+	},
+	{
+		name: "Riddhima",
+		image: "/images/Pulkit.jpeg",
+		bio: "Can be found high (on code obviously) building agentic AI to take away your jobs and trying to get rid of that pesky padding under the navbar with broken css skills",
+		instagram: "https://instagram.com/desihippe",
+		linkedin: "https://linkedin.com/in/buddywhitman",
+	},
+	{
+		name: "Raghav",
+		image: "/images/Pulkit.jpeg",
+		bio: "Can be found high (on code obviously) building agentic AI to take away your jobs and trying to get rid of that pesky padding under the navbar with broken css skills",
+		instagram: "https://instagram.com/desihippe",
+		linkedin: "https://linkedin.com/in/buddywhitman",
+	},
+	{
+		name: "Aneesha",
+		image: "/images/Pulkit.jpeg",
+		bio: "Can be found high (on code obviously) building agentic AI to take away your jobs and trying to get rid of that pesky padding under the navbar with broken css skills",
+		instagram: "https://instagram.com/desihippe",
+		linkedin: "https://linkedin.com/in/buddywhitman",
+	},
 ];
 
 const MeetTheTeam: React.FC = () => {
@@ -250,7 +306,6 @@ const MeetTheTeam: React.FC = () => {
 									{member.name}
 								</h3>
 
-								{/* Bio */}
 								<p
 									className="text-sm leading-relaxed mb-6"
 									style={{
