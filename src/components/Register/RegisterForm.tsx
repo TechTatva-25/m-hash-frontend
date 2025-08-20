@@ -649,7 +649,7 @@ export default function RegisterForm(): React.JSX.Element {
 
 													{/* Show password hint popover when focused - positioned below the input */}
 													{passwordFocused && (
-														<div className="mt-2 p-3 bg-gray-900/95 border border-gray-700 rounded-md shadow-lg absolute z-10 left-0 top-full mt-1 w-[260px]">
+														<div className="p-3 bg-gray-900/95 border border-gray-700 rounded-md shadow-lg absolute z-10 left-0 top-full mt-1 w-[260px]">
 															<p className="text-sm font-medium text-gray-300 mb-2">
 																Password Requirements:
 															</p>

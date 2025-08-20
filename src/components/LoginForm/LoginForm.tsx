@@ -41,7 +41,7 @@ export default function LoginForm(): React.JSX.Element {
 	const [turnstileWidget, setTurnstileWidget] = useState<any>(null);
 	const [showResendVerification, setShowResendVerification] = useState(false);
 	const [resendVerificationEmail, setResendVerificationEmail] = useState<string>("");
-	const [passwordFocused, setPasswordFocused] = useState(false);
+	const [, setPasswordFocused] = useState(false);
 
 	// Password requirements
 	const passwordRequirements = [
