@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 	description:
 		"Get ready to dive into the future at Manipal Hackathon 2025! With the theme 'Pioneering Paradigms', this flagship event of TechTatva 2025 is where creativity and innovation come to the forefront. Join us in 36 thrilling hours of coding where you will compete with brilliant minds, tackle challenges, and transform groundbreaking ideas into reality. This isn’t just about coding — it’s about pushing boundaries, exploring new possibilities, and setting the trends others will follow. Whether you're a seasoned pro or an enthusiastic newcomer, this is your chance to shine, learn, and make a mark. Don’t miss out on the excitement, the learning, and the opportunity to be part of something extraordinary.",
 	icons: {
-		icon: "/favicon.ico",
+		icon: "/favicon.ico?v=2",
 	},
 	metadataBase: process.env.NEXT_PUBLIC_BASE_URL ? new URL(String(process.env.NEXT_PUBLIC_BASE_URL)) : undefined,
 	keywords: [

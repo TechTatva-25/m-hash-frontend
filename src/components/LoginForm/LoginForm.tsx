@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios, { AxiosError } from "axios";
+import { Check, Info, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -11,8 +12,11 @@ import { HashLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import * as z from "zod";
 
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+
 import { useSession } from "@/hooks/useSession";
 import { Endpoints, getEndpoint } from "@/lib/endpoints";
+import { cn } from "@/lib/utils";
 
 import { Button } from "../ui/button";
 import { Card, CardContent, CardDescription, CardTitle } from "../ui/card";
@@ -24,14 +28,9 @@ import Turnstile from "react-turnstile";
 
 const loginFormSchema = z.object({
 	email: z.string().email(),
-	password: z
-		.string()
-		.min(8)
-		.regex(
-			/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$/,
-			"Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
-		),
+	password: z.string().min(1, "Password is required"), // only check empty here
 });
+
 
 export default function LoginForm(): React.JSX.Element {
 	const router = useRouter();
@@ -40,6 +39,39 @@ export default function LoginForm(): React.JSX.Element {
 	const [modalOpen, setModalOpen] = useState(false);
 	const [isRedirecting, setIsRedirecting] = useState(false);
 	const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+	const [turnstileWidget, setTurnstileWidget] = useState<any>(null);
+	const [showResendVerification, setShowResendVerification] = useState(false);
+	const [resendVerificationEmail, setResendVerificationEmail] = useState<string>("");
+	const [passwordFocused, setPasswordFocused] = useState(false);
+	
+	// Password requirements
+	const passwordRequirements = [
+		{ id: 1, text: "At least 8 characters" },
+		{ id: 2, text: "At least one uppercase letter (A-Z)" },
+		{ id: 3, text: "At least one lowercase letter (a-z)" },
+		{ id: 4, text: "At least one number (0-9)" },
+		{ id: 5, text: "At least one special character (!@#$...)" },
+	];
+
+	// Function to check if a specific password requirement is met
+	const checkRequirement = (requirement: string, password: string): boolean => {
+		if (!password) return false;
+		switch (requirement) {
+			case "At least 8 characters":
+				return password.length >= 8;
+			case "At least one uppercase letter (A-Z)":
+				return /[A-Z]/.test(password);
+			case "At least one lowercase letter (a-z)":
+				return /[a-z]/.test(password);
+			case "At least one number (0-9)":
+				return /[0-9]/.test(password);
+			case "At least one special character (!@#$...)":
+				return /[^\da-zA-Z]/.test(password);
+			default:
+				return false;
+		}
+	};
+	
 	const form = useForm<z.infer<typeof loginFormSchema>>({
 		mode: "onChange",
 		resolver: zodResolver(loginFormSchema),
@@ -73,6 +105,18 @@ export default function LoginForm(): React.JSX.Element {
 
 	const onSubmit = async (data: z.infer<typeof loginFormSchema>): Promise<void> => {
 		setDisabled(true);
+		setShowResendVerification(false); // Hide resend option on new attempt
+		
+		// Check password requirements before submitting
+		// const failedRequirements = passwordRequirements.filter(req => !checkRequirement(req.text, data.password));
+		// if (failedRequirements.length > 0) {
+		// 	toast.error("Email/password is incorrect", {
+		// 		autoClose: 5000,
+		// 	});
+		// 	setDisabled(false);
+		// 	return;
+		// }
+		
 		try {
 			if (!turnstileToken) {
 				toast.error("Please complete the CAPTCHA.");
@@ -93,11 +137,41 @@ export default function LoginForm(): React.JSX.Element {
 			router.push("/dashboard");
 		} catch (error) {
 			if (axios.isAxiosError(error)) {
-				toast.error((error as AxiosError<{ message: string }>).response?.data.message ?? error.message);
+				const errorMessage = (error as AxiosError<{ message: string }>).response?.data.message ?? error.message;
+				
+				// Check if the error is related to unverified user
+				if (errorMessage.toLowerCase().includes("not verified") || errorMessage.toLowerCase().includes("check your email")) {
+					setShowResendVerification(true);
+					setResendVerificationEmail(data.email);
+					toast.error(errorMessage + " - You can resend verification below.");
+				} else {
+					toast.error(errorMessage);
+				}
 			} else {
 				toast.error("An error occurred while logging in");
 			}
+			// Reset CAPTCHA on error
+			setTurnstileToken(null);
+			if (turnstileWidget) {
+				turnstileWidget.reset();
+			}
 			setDisabled(false);
+		}
+	};
+
+	const handleResendVerification = async (): Promise<void> => {
+		try {
+			await axios.post(getEndpoint(Endpoints.SEND_VERIFICATION_EMAIL), {
+				email: resendVerificationEmail,
+			});
+			toast.success("Verification email sent! Please check your inbox and verify your account.");
+			setShowResendVerification(false);
+		} catch (error) {
+			if (axios.isAxiosError(error)) {
+				toast.error((error as AxiosError<{ message: string }>).response?.data.message ?? "Failed to send verification email");
+			} else {
+				toast.error("Failed to send verification email");
+			}
 		}
 	};
 
@@ -188,19 +262,68 @@ export default function LoginForm(): React.JSX.Element {
 										<FormItem className="mt-4">
 											<div className="flex flex-row items-center justify-between">
 												<FormLabel className="text-gray-200">Password</FormLabel>
-												<ForgotPasswordDialog
-													modalOpen={modalOpen}
-													setModalOpen={setModalOpen}
-												/>
+												<div className="flex items-center space-x-2">
+													<TooltipProvider>
+														<Tooltip delayDuration={0}>
+															<TooltipTrigger asChild>
+																<Button
+																	variant="ghost"
+																	size="icon"
+																	className="h-5 w-5 rounded-full p-0 text-gray-400 hover:bg-transparent hover:text-gray-300">
+																	<Info className="h-4 w-4" />
+																	<span className="sr-only">Password requirements</span>
+																</Button>
+															</TooltipTrigger>
+															<TooltipContent
+																align="end"
+																className="w-[260px] p-0 bg-gray-900/95 border-gray-700">
+																<div className="p-3">
+																	<p className="text-sm font-medium text-gray-300 mb-2">Password Requirements:</p>
+																	<ul className="text-xs space-y-1 text-gray-400">
+																		{passwordRequirements.map((req) => {
+																			const isMet = checkRequirement(req.text, field.value);
+																			return (
+																				<li key={req.id} className="flex items-center">
+																					{isMet ? (
+																						<Check className="mr-1.5 h-3.5 w-3.5 text-green-500" />
+																					) : (
+																						<X className="mr-1.5 h-3.5 w-3.5 text-red-500" />
+																					)}
+																					{req.text}
+																				</li>
+																			);
+																		})}
+																	</ul>
+																</div>
+															</TooltipContent>
+														</Tooltip>
+													</TooltipProvider>
+													<ForgotPasswordDialog
+														modalOpen={modalOpen}
+														setModalOpen={setModalOpen}
+													/>
+												</div>
 											</div>
 											<FormControl>
 												<PasswordInput
 													{...field}
 													placeholder="Enter your password"
 													className="bg-black/20 border-gray-500/30 text-white placeholder:text-gray-400"
+													onFocus={() => setPasswordFocused(true)}
+													onBlur={() => {
+														setPasswordFocused(false);
+														field.onBlur();
+													}}
 												/>
 											</FormControl>
-											{/* No validation messages for password */}
+											{/* Show password validation errors */}
+											{form.formState.errors.password && (
+												<div className="text-xs text-red-500 mt-1">
+													{form.formState.errors.password.message as string}
+												</div>
+											)}
+											
+											{/* No popup when focused - only show validation errors below */}
 										</FormItem>
 									)}
 								/>
@@ -209,6 +332,9 @@ export default function LoginForm(): React.JSX.Element {
 									<Turnstile
 										sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
 										onVerify={(token) => setTurnstileToken(token)}
+										onLoad={(_widgetId, widget) => setTurnstileWidget(widget)}
+										onExpire={() => setTurnstileToken(null)}
+										onError={() => setTurnstileToken(null)}
 										className="rounded-md shadow-md"
 										style={{ minWidth: 200 }}
 									/>
@@ -229,24 +355,31 @@ export default function LoginForm(): React.JSX.Element {
 
 									<Button
 										type="submit"
-										disabled={disabled}
-										className="relative w-full bg-transparent border-0 text-white py-5 rounded-lg text-base font-medium shadow-[0_0_15px_rgba(46,204,113,0.15)] hover:shadow-[0_0_20px_rgba(46,204,113,0.25)] transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]">
+										disabled={disabled || !turnstileToken}
+										className={cn(
+											"relative w-full bg-transparent border-0 text-white py-5 rounded-lg text-base font-medium shadow-[0_0_15px_rgba(46,204,113,0.15)] hover:shadow-[0_0_20px_rgba(46,204,113,0.25)] transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]",
+											!turnstileToken && "opacity-50 cursor-not-allowed hover:scale-100"
+										)}>
 										{disabled ? (
 											<HashLoader color="#ffffff" size={20} />
 										) : (
 											<>
-												<span className="relative z-10 drop-shadow-sm mr-2">Sign In</span>
-												<svg
-													xmlns="http://www.w3.org/2000/svg"
-													className="h-5 w-5 inline-block transition-transform duration-500 ease-in-out group-hover:translate-x-0.5 relative z-10"
-													viewBox="0 0 20 20"
-													fill="currentColor">
-													<path
-														fillRule="evenodd"
-														d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-														clipRule="evenodd"
-													/>
-												</svg>
+												<span className="relative z-10 drop-shadow-sm mr-2">
+													{!turnstileToken ? "Complete CAPTCHA to Continue" : "Sign In"}
+												</span>
+												{turnstileToken && (
+													<svg
+														xmlns="http://www.w3.org/2000/svg"
+														className="h-5 w-5 inline-block transition-transform duration-500 ease-in-out group-hover:translate-x-0.5 relative z-10"
+														viewBox="0 0 20 20"
+														fill="currentColor">
+														<path
+															fillRule="evenodd"
+															d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+															clipRule="evenodd"
+														/>
+													</svg>
+												)}
 												{/* Subtle inner glow */}
 												<span className="absolute inset-0 bg-white/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
 											</>
@@ -274,6 +407,25 @@ export default function LoginForm(): React.JSX.Element {
 								</div>
 							</form>
 						</Form>
+						
+						{/* Resend Verification Section */}
+						{showResendVerification && (
+							<div className="mt-6 p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-lg">
+								<p className="text-sm text-yellow-200 mb-3">
+									Your account is not verified. Please check your email for the verification code.
+								</p>
+								<p className="text-xs text-gray-400 mb-3">
+									Didn't receive the email? Click below to resend verification to: <strong>{resendVerificationEmail}</strong>
+								</p>
+								<Button
+									type="button"
+									onClick={handleResendVerification}
+									variant="outline"
+									className="w-full bg-yellow-500/20 border-yellow-500/50 text-yellow-100 hover:bg-yellow-500/30 transition-colors">
+									Resend Verification Email
+								</Button>
+							</div>
+						)}
 					</CardContent>
 				</div>
 			</div>
