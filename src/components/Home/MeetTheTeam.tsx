@@ -62,7 +62,7 @@ const Conveners = [
 
 const adminPrCC = [
 	{
-		name: "Sanya Srivatsava",
+		name: "Sanya Srivastava",
 		image: "/images/sanya.jpeg",
 		instagram: "",
 		linkedin: "https://www.linkedin.com/in/sanya-srivastava-s",
